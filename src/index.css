@@ -1,0 +1,60 @@
+@import "tailwindcss";
+
+html {
+  scroll-behavior: smooth;
+}
+
+:root {
+  font-family: "Roboto", sans-serif;
+
+  /* Primary Color Palette */
+  --primary-blue: #18b6e3;
+  --primary-blue-dark: #129ec6;
+  --primary-blue-light: #1fb6ff;
+  --primary-blue-lighter: #56c9f5;
+  --primary-blue-lightest: #40bef1;
+
+  --primary-green: #86c440;
+  --primary-green-dark: #76b43a;
+  --primary-green-darker: #6aa341;
+  --primary-green-light: #9cd655;
+  --primary-green-lightest: #86c440;
+  --primary-navy: #0f1f38;
+  --primary-navy-dark: #0b1538;
+  --primary-navy-medium: #1a1f36;
+
+  --primary-cyan: #22d3ee;
+  --primary-cyan-light: #67e8f9;
+
+  /* Text Colors */
+  --text-primary: #0f1f38;
+  --text-secondary: #4a5b7b;
+  --text-tertiary: #6b7a99;
+  --text-light: #e9edf5;
+
+  /* Background Colors */
+  --bg-primary: #ffffff;
+  --bg-secondary: #f5f6f8;
+  --bg-tertiary: #f5f6f7;
+  --bg-dark: #0b1538;
+
+  color: #e9edf5;
+  background-color: #0b1538;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background-color: var(--bg-dark);
+  color: var(--text-light);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}

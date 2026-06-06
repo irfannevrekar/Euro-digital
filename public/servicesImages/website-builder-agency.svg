@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1858 849">
+  <rect width="1858" height="849" fill="#f7f4ee"/>
+  <rect y="0" width="1858" height="78" fill="#fff" opacity=".7"/>
+  <text x="70" y="42" font-family="Arial Black, Arial, sans-serif" font-size="22" font-weight="900" fill="#050505">FORGE</text>
+  <g font-family="Arial, sans-serif" font-size="10" letter-spacing="2" fill="#777">
+    <text x="729" y="39">ABOUT</text><text x="794" y="39">SERVICES</text><text x="876" y="39">WORK</text><text x="936" y="39">PRICING</text><text x="1011" y="39">CONTACT</text>
+  </g>
+  <rect x="1630" y="13" width="148" height="45" fill="#ff4b12"/>
+  <text x="1704" y="40" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="800" fill="#fff">Start a Project</text>
+  <text x="70" y="248" font-family="Arial Black, Arial, sans-serif" font-size="142" font-weight="900" fill="#050505">Brands</text>
+  <text x="70" y="392" font-family="Arial Black, Arial, sans-serif" font-size="142" font-weight="900" fill="#050505">That Burn</text>
+  <text x="70" y="536" font-family="Arial Black, Arial, sans-serif" font-size="142" font-weight="900" fill="#050505">Bright</text>
+  <text x="70" y="603" font-family="Arial, sans-serif" font-size="24" fill="#4b5563">We forge iconic identities for startups ready to dominate. Strategy, design, and motion — built</text>
+  <text x="70" y="637" font-family="Arial, sans-serif" font-size="24" fill="#4b5563">to make your brand unforgettable from day one.</text>
+  <rect x="70" y="684" width="149" height="46" fill="#ff4b12"/>
+  <text x="145" y="712" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="800" fill="#fff">Start a Project</text>
+  <text x="902" y="785" font-family="Arial, sans-serif" font-size="10" letter-spacing="2" fill="#999">SCROLL</text>
+  <line x1="924" y1="804" x2="924" y2="833" stroke="#999"/>
+</svg>

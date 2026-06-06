@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1884 854">
+  <rect width="1884" height="854" fill="#fff"/>
+  <rect x="777" y="30" width="312" height="30" fill="#fff" stroke="#f43f5e" stroke-width="2"/>
+  <text x="933" y="51" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="800" letter-spacing="6" fill="#e11d48">7-FIGURE BUSINESS COACHING</text>
+  <text x="942" y="132" text-anchor="middle" font-family="Arial Black, Arial, sans-serif" font-size="56" font-weight="900" fill="#111827">We'll Help You Scale Your</text>
+  <text x="942" y="188" text-anchor="middle" font-family="Arial Black, Arial, sans-serif" font-size="56" font-weight="900" fill="#111827">Business To</text>
+  <rect x="673" y="198" width="520" height="58" fill="#fde047"/>
+  <text x="933" y="244" text-anchor="middle" font-family="Arial Black, Arial, sans-serif" font-size="56" font-weight="900" fill="#111827">$1,00,000+ Per Year</text>
+  <text x="942" y="300" text-anchor="middle" font-family="Arial Black, Arial, sans-serif" font-size="56" font-weight="900" fill="#111827">In The Next 12 Months</text>
+  <text x="942" y="356" text-anchor="middle" font-family="Arial, sans-serif" font-size="24" font-weight="700" fill="#334155">The exact frameworks, systems, and weekly accountability that</text>
+  <text x="942" y="386" text-anchor="middle" font-family="Arial, sans-serif" font-size="24" fill="#334155">200+ entrepreneurs have used to break through 6-figures and</text>
+  <text x="942" y="416" text-anchor="middle" font-family="Arial, sans-serif" font-size="24" fill="#334155">build real, sustainable 7-figure businesses — without burning out.</text>
+  <g font-family="Arial, sans-serif" font-size="14" font-weight="700" fill="#1f2937">
+    <circle cx="607" cy="472" r="11" fill="#10b981"/><text x="626" y="477">200+ Success Stories</text>
+    <circle cx="807" cy="472" r="11" fill="#10b981"/><text x="826" y="477">Average 4.2x Revenue Increase</text>
+    <circle cx="1067" cy="472" r="11" fill="#10b981"/><text x="1086" y="477">100% Satisfaction Guarantee</text>
+  </g>
+  <rect x="558" y="530" width="748" height="325" fill="#111827"/>
+  <rect x="558" y="530" width="748" height="325" fill="#9ca3af" stroke="#111827" stroke-width="4"/>
+  <circle cx="932" cy="678" r="165" fill="#d6a37f"/>
+  <ellipse cx="872" cy="660" rx="20" ry="12" fill="#111827"/>
+  <ellipse cx="992" cy="660" rx="20" ry="12" fill="#111827"/>
+  <path d="M875 760 Q932 805 990 760" stroke="#7f1d1d" stroke-width="8" fill="none"/>
+  <rect x="898" y="705" width="72" height="72" fill="#e11d48"/>
+  <path d="M925 727 L925 755 L947 741 Z" fill="#fff"/>
+</svg>
