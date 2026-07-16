@@ -17,21 +17,28 @@ function AIAddonServices() {
       "API-based AI enhancements",
       "Workflow and system optimisation",
     ],
-    detailedDescription: "EuroDigital ensures every add-on integrates smoothly into your current ecosystem.",
+    detailedDescription:
+      "EuroDigital ensures every add-on integrates smoothly into your current ecosystem.",
     primaryButtonText: "Talk to Sales",
-    video: "https://player.mediadelivery.net/play/661416/0547118b-9fd8-4aae-864f-77f5f0690710",
+    video:
+      "https://player.mediadelivery.net/play/661416/0547118b-9fd8-4aae-864f-77f5f0690710",
   };
-
 
   return (
     <>
       <ServiceHeroVideo
         videoUrl={serviceData.video}
         overlayTitle="Ready to Enhance Your Tools with AI?"
-        ctaLink="https://link.quickadpro.com/widget/bookings/web-booking-euro"
+        ctaLink="https://crm.eurodigital.ae/widget/bookings/web-booking-euro"
       />
       {/* Service Content */}
-      <section className="py-16 md:py-24" style={{ background: 'linear-gradient(to right, white 50%, rgba(224, 242, 254, 0.6) 50%)' }}>
+      <section
+        className="py-16 md:py-24"
+        style={{
+          background:
+            "linear-gradient(to right, white 50%, rgba(224, 242, 254, 0.6) 50%)",
+        }}
+      >
         <div className="max-w-7xl mx-auto px-6 md:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -41,10 +48,16 @@ function AIAddonServices() {
             className="grid md:grid-cols-2 gap-12 items-center"
           >
             <div className="space-y-3">
-              <h1 className="text-4xl md:text-5xl font-semibold" style={{ color: 'var(--primary-navy)' }}>
+              <h1
+                className="text-4xl md:text-5xl font-semibold"
+                style={{ color: "var(--primary-navy)" }}
+              >
                 {serviceData.title}
               </h1>
-              <p className="text-lg leading-relaxed" style={{ color: 'var(--text-secondary)' }}>
+              <p
+                className="text-lg leading-relaxed"
+                style={{ color: "var(--text-secondary)" }}
+              >
                 {serviceData.description}
               </p>
 
@@ -53,15 +66,25 @@ function AIAddonServices() {
                   <ul className="space-y-2">
                     {serviceData.features.map((feature, idx) => (
                       <li key={idx} className="flex items-start gap-2">
-                        <span className="text-xs mt-1" style={{ color: 'var(--text-tertiary)' }}>●</span>
-                        <span style={{ color: 'var(--text-secondary)' }}>{feature}</span>
+                        <span
+                          className="text-xs mt-1"
+                          style={{ color: "var(--text-tertiary)" }}
+                        >
+                          ●
+                        </span>
+                        <span style={{ color: "var(--text-secondary)" }}>
+                          {feature}
+                        </span>
                       </li>
                     ))}
                   </ul>
                 </div>
               )}
               {serviceData.detailedDescription && (
-                <p className="text-base leading-relaxed" style={{ color: 'var(--text-tertiary)' }}>
+                <p
+                  className="text-base leading-relaxed"
+                  style={{ color: "var(--text-tertiary)" }}
+                >
                   {serviceData.detailedDescription}
                 </p>
               )}
@@ -69,11 +92,10 @@ function AIAddonServices() {
               <div className="flex gap-4 pt-4">
                 <button
                   className="rounded-full text-black font-medium px-6 py-2 shadow-lg cursor-pointer "
-                  style={{ backgroundColor: 'var(--primary-blue)' }}
+                  style={{ backgroundColor: "var(--primary-blue)" }}
                 >
                   {serviceData.primaryButtonText}
                 </button>
-
               </div>
             </div>
 
@@ -90,8 +112,6 @@ function AIAddonServices() {
           </motion.div>
         </div>
       </section>
-
-
 
       {/* Stacking Cards Section */}
       <section className="py-16 md:py-24 bg-white">
@@ -119,7 +139,9 @@ function AIAddonServices() {
                   </h3>
 
                   <div className="mb-8">
-                    <span className="text-5xl md:text-7xl font-bold text-slate-700">$500</span>
+                    <span className="text-5xl md:text-7xl font-bold text-slate-700">
+                      $500
+                    </span>
                     <div className="text-base text-slate-600 mt-2">
                       • ($29 / Month Subscription)
                     </div>
@@ -127,20 +149,36 @@ function AIAddonServices() {
 
                   <div className="space-y-4">
                     <div className="flex items-center gap-3">
-                      <span className="text-green-500 text-2xl font-bold">✓</span>
-                      <span className="text-slate-700 text-lg">Voice Customisation</span>
+                      <span className="text-green-500 text-2xl font-bold">
+                        ✓
+                      </span>
+                      <span className="text-slate-700 text-lg">
+                        Voice Customisation
+                      </span>
                     </div>
                     <div className="flex items-center gap-3">
-                      <span className="text-green-500 text-2xl font-bold">✓</span>
-                      <span className="text-slate-700 text-lg">Custom Integration</span>
+                      <span className="text-green-500 text-2xl font-bold">
+                        ✓
+                      </span>
+                      <span className="text-slate-700 text-lg">
+                        Custom Integration
+                      </span>
                     </div>
                     <div className="flex items-center gap-3">
-                      <span className="text-green-500 text-2xl font-bold">✓</span>
-                      <span className="text-slate-700 text-lg">Priority Support</span>
+                      <span className="text-green-500 text-2xl font-bold">
+                        ✓
+                      </span>
+                      <span className="text-slate-700 text-lg">
+                        Priority Support
+                      </span>
                     </div>
                     <div className="flex items-center gap-3">
-                      <span className="text-green-500 text-2xl font-bold">✓</span>
-                      <span className="text-slate-700 text-lg">Calling Price 15 cents a Minutes</span>
+                      <span className="text-green-500 text-2xl font-bold">
+                        ✓
+                      </span>
+                      <span className="text-slate-700 text-lg">
+                        Calling Price 15 cents a Minutes
+                      </span>
                     </div>
                   </div>
                 </div>
@@ -168,30 +206,54 @@ function AIAddonServices() {
                   </h3>
 
                   <div className="mb-8">
-                    <span className="text-5xl md:text-7xl font-bold text-slate-700">$799</span>
-                    <span className="text-xl text-slate-600 ml-3">Per Month</span>
+                    <span className="text-5xl md:text-7xl font-bold text-slate-700">
+                      $799
+                    </span>
+                    <span className="text-xl text-slate-600 ml-3">
+                      Per Month
+                    </span>
                   </div>
 
                   <div className="space-y-4">
                     <div className="flex items-center gap-3">
-                      <span className="text-green-500 text-2xl font-bold">✓</span>
-                      <span className="text-slate-700 text-lg">Everything in Basic Plan</span>
+                      <span className="text-green-500 text-2xl font-bold">
+                        ✓
+                      </span>
+                      <span className="text-slate-700 text-lg">
+                        Everything in Basic Plan
+                      </span>
                     </div>
                     <div className="flex items-center gap-3">
-                      <span className="text-green-500 text-2xl font-bold">✓</span>
-                      <span className="text-slate-700 text-lg">Multi-language Support</span>
+                      <span className="text-green-500 text-2xl font-bold">
+                        ✓
+                      </span>
+                      <span className="text-slate-700 text-lg">
+                        Multi-language Support
+                      </span>
                     </div>
                     <div className="flex items-center gap-3">
-                      <span className="text-green-500 text-2xl font-bold">✓</span>
-                      <span className="text-slate-700 text-lg">Advanced Analytics</span>
+                      <span className="text-green-500 text-2xl font-bold">
+                        ✓
+                      </span>
+                      <span className="text-slate-700 text-lg">
+                        Advanced Analytics
+                      </span>
                     </div>
                     <div className="flex items-center gap-3">
-                      <span className="text-green-500 text-2xl font-bold">✓</span>
-                      <span className="text-slate-700 text-lg">API Integration</span>
+                      <span className="text-green-500 text-2xl font-bold">
+                        ✓
+                      </span>
+                      <span className="text-slate-700 text-lg">
+                        API Integration
+                      </span>
                     </div>
                     <div className="flex items-center gap-3">
-                      <span className="text-green-500 text-2xl font-bold">✓</span>
-                      <span className="text-slate-700 text-lg">Call Recording & Transcription</span>
+                      <span className="text-green-500 text-2xl font-bold">
+                        ✓
+                      </span>
+                      <span className="text-slate-700 text-lg">
+                        Call Recording & Transcription
+                      </span>
                     </div>
                   </div>
                 </div>
@@ -218,34 +280,62 @@ function AIAddonServices() {
                   </h3>
 
                   <div className="mb-8">
-                    <span className="text-5xl md:text-7xl font-bold text-slate-700">$1,199</span>
-                    <span className="text-xl text-slate-600 ml-3">Per Month</span>
+                    <span className="text-5xl md:text-7xl font-bold text-slate-700">
+                      $1,199
+                    </span>
+                    <span className="text-xl text-slate-600 ml-3">
+                      Per Month
+                    </span>
                   </div>
 
                   <div className="space-y-4">
                     <div className="flex items-center gap-3">
-                      <span className="text-green-500 text-2xl font-bold">✓</span>
-                      <span className="text-slate-700 text-lg">Everything in Advanced Plan</span>
+                      <span className="text-green-500 text-2xl font-bold">
+                        ✓
+                      </span>
+                      <span className="text-slate-700 text-lg">
+                        Everything in Advanced Plan
+                      </span>
                     </div>
                     <div className="flex items-center gap-3">
-                      <span className="text-green-500 text-2xl font-bold">✓</span>
-                      <span className="text-slate-700 text-lg">Unlimited Calling Minutes</span>
+                      <span className="text-green-500 text-2xl font-bold">
+                        ✓
+                      </span>
+                      <span className="text-slate-700 text-lg">
+                        Unlimited Calling Minutes
+                      </span>
                     </div>
                     <div className="flex items-center gap-3">
-                      <span className="text-green-500 text-2xl font-bold">✓</span>
-                      <span className="text-slate-700 text-lg">24/7 Support</span>
+                      <span className="text-green-500 text-2xl font-bold">
+                        ✓
+                      </span>
+                      <span className="text-slate-700 text-lg">
+                        24/7 Support
+                      </span>
                     </div>
                     <div className="flex items-center gap-3">
-                      <span className="text-green-500 text-2xl font-bold">✓</span>
-                      <span className="text-slate-700 text-lg">Custom Voice Training</span>
+                      <span className="text-green-500 text-2xl font-bold">
+                        ✓
+                      </span>
+                      <span className="text-slate-700 text-lg">
+                        Custom Voice Training
+                      </span>
                     </div>
                     <div className="flex items-center gap-3">
-                      <span className="text-green-500 text-2xl font-bold">✓</span>
-                      <span className="text-slate-700 text-lg">Dedicated Account Manager</span>
+                      <span className="text-green-500 text-2xl font-bold">
+                        ✓
+                      </span>
+                      <span className="text-slate-700 text-lg">
+                        Dedicated Account Manager
+                      </span>
                     </div>
                     <div className="flex items-center gap-3">
-                      <span className="text-green-500 text-2xl font-bold">✓</span>
-                      <span className="text-slate-700 text-lg">CRM Integration</span>
+                      <span className="text-green-500 text-2xl font-bold">
+                        ✓
+                      </span>
+                      <span className="text-slate-700 text-lg">
+                        CRM Integration
+                      </span>
                     </div>
                   </div>
                 </div>
@@ -272,37 +362,67 @@ function AIAddonServices() {
                   </h3>
 
                   <div className="mb-8">
-                    <span className="text-5xl md:text-7xl font-bold text-slate-700">Custom</span>
+                    <span className="text-5xl md:text-7xl font-bold text-slate-700">
+                      Custom
+                    </span>
                   </div>
 
                   <div className="space-y-4">
                     <div className="flex items-center gap-3">
-                      <span className="text-green-500 text-2xl font-bold">✓</span>
-                      <span className="text-slate-700 text-lg">Everything in Professional Plan</span>
+                      <span className="text-green-500 text-2xl font-bold">
+                        ✓
+                      </span>
+                      <span className="text-slate-700 text-lg">
+                        Everything in Professional Plan
+                      </span>
                     </div>
                     <div className="flex items-center gap-3">
-                      <span className="text-green-500 text-2xl font-bold">✓</span>
-                      <span className="text-slate-700 text-lg">Custom Infrastructure</span>
+                      <span className="text-green-500 text-2xl font-bold">
+                        ✓
+                      </span>
+                      <span className="text-slate-700 text-lg">
+                        Custom Infrastructure
+                      </span>
                     </div>
                     <div className="flex items-center gap-3">
-                      <span className="text-green-500 text-2xl font-bold">✓</span>
-                      <span className="text-slate-700 text-lg">On-Premise Deployment</span>
+                      <span className="text-green-500 text-2xl font-bold">
+                        ✓
+                      </span>
+                      <span className="text-slate-700 text-lg">
+                        On-Premise Deployment
+                      </span>
                     </div>
                     <div className="flex items-center gap-3">
-                      <span className="text-green-500 text-2xl font-bold">✓</span>
-                      <span className="text-slate-700 text-lg">Advanced Security Features</span>
+                      <span className="text-green-500 text-2xl font-bold">
+                        ✓
+                      </span>
+                      <span className="text-slate-700 text-lg">
+                        Advanced Security Features
+                      </span>
                     </div>
                     <div className="flex items-center gap-3">
-                      <span className="text-green-500 text-2xl font-bold">✓</span>
-                      <span className="text-slate-700 text-lg">SLA Guarantee</span>
+                      <span className="text-green-500 text-2xl font-bold">
+                        ✓
+                      </span>
+                      <span className="text-slate-700 text-lg">
+                        SLA Guarantee
+                      </span>
                     </div>
                     <div className="flex items-center gap-3">
-                      <span className="text-green-500 text-2xl font-bold">✓</span>
-                      <span className="text-slate-700 text-lg">Priority Processing</span>
+                      <span className="text-green-500 text-2xl font-bold">
+                        ✓
+                      </span>
+                      <span className="text-slate-700 text-lg">
+                        Priority Processing
+                      </span>
                     </div>
                     <div className="flex items-center gap-3">
-                      <span className="text-green-500 text-2xl font-bold">✓</span>
-                      <span className="text-slate-700 text-lg">Multi-region Support</span>
+                      <span className="text-green-500 text-2xl font-bold">
+                        ✓
+                      </span>
+                      <span className="text-slate-700 text-lg">
+                        Multi-region Support
+                      </span>
                     </div>
                   </div>
                 </div>
@@ -332,4 +452,3 @@ function AIAddonServices() {
 }
 
 export default AIAddonServices;
-

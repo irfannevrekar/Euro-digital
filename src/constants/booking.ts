@@ -1,2 +1,2 @@
 export const BOOKING_URL =
-  "https://link.quickadpro.com/widget/bookings/web-booking-euro";
+  "https://crm.eurodigital.ae/widget/bookings/web-booking-euro";

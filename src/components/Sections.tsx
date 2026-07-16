@@ -12,17 +12,22 @@ interface Card {
   link: string;
 }
 
+const BOOK_DEMO_URL =
+  "https://crm.eurodigital.ae/widget/bookings/web-booking-euro";
+
 const cards: Card[] = [
   {
     title: "AI Business Automation",
     desc: "Streamline Operations. Reduce Manual Work. Scale Faster. Automate repetitive tasks and optimize workflows to drive efficiency across your entire organization.",
-    video: "https://player.mediadelivery.net/play/661416/aba8e1cb-c5df-4c8e-8d47-a8bf6d066411",
+    video:
+      "https://player.mediadelivery.net/play/661416/aba8e1cb-c5df-4c8e-8d47-a8bf6d066411",
     link: "/services/ai-business-automation",
   },
   {
     title: "AI Business Promotion",
     desc: "Smarter Marketing Powered by AI. Leverage data-driven insights to create personalized campaigns that convert and engage your audience effectively.",
-    video: "https://player.mediadelivery.net/play/661416/02126d15-3c9d-4d94-a8ac-1d8bbc37332e",
+    video:
+      "https://player.mediadelivery.net/play/661416/02126d15-3c9d-4d94-a8ac-1d8bbc37332e",
     link: "/services/ai-business-promotion",
   },
   {
@@ -34,41 +39,53 @@ const cards: Card[] = [
   {
     title: "AI Automated Chatbot",
     desc: "Always-on support with human-like responses. Deliver instant, 24/7 customer service with intelligent chatbots that understand context and intent.",
-    video: "https://player.mediadelivery.net/play/661416/c564b724-82f9-4426-b62e-079b3a1b8fb4",
+    video:
+      "https://player.mediadelivery.net/play/661416/c564b724-82f9-4426-b62e-079b3a1b8fb4",
     link: "/services/ai-automated-chatbot",
   },
   {
     title: "AI add-on Services",
     desc: "Extend capabilities with modular AI services. Integrate powerful AI tools into your existing systems to enhance functionality and performance.",
-    video: "https://player.mediadelivery.net/play/661416/0547118b-9fd8-4aae-864f-77f5f0690710",
+    video:
+      "https://player.mediadelivery.net/play/661416/0547118b-9fd8-4aae-864f-77f5f0690710",
     link: "/services/ai-addon-services",
   },
   {
     title: "Industry Specific AI Use Cases",
     desc: "Tailored accelerators for your vertical. Industry-specific solutions designed to address unique challenges and accelerate growth in your sector.",
-    video: "https://player.mediadelivery.net/play/661416/78158008-7515-443f-a183-a54a8d3b3a3f",
+    video:
+      "https://player.mediadelivery.net/play/661416/78158008-7515-443f-a183-a54a8d3b3a3f",
     link: "/services/industry-specific",
   },
   {
     title: "AI Website Builder",
     desc: "Launch polished, high-converting websites in minutes—not weeks. Generate landing pages, supporting pages, and offer flows from simple prompts without writing code.",
-    video: "https://player.mediadelivery.net/play/661416/02126d15-3c9d-4d94-a8ac-1d8bbc37332e",
+    video:
+      "https://player.mediadelivery.net/play/661416/02126d15-3c9d-4d94-a8ac-1d8bbc37332e",
     link: "/products/website-builder",
   },
   {
     title: "ED-CRM",
     desc: "One platform to attract leads, automate follow-up, and grow revenue. Bring funnels, workflows, AI agents, and real-time reporting together in a single CRM.",
-    video: "https://player.mediadelivery.net/play/667434/9498cecf-b56b-403f-a713-3551b8f7cf8c",
+    video:
+      "https://player.mediadelivery.net/play/667434/9498cecf-b56b-403f-a713-3551b8f7cf8c",
     link: "/products/edcrm",
   },
   {
     title: "Emotion AI",
     desc: "Connect with customers in a personal, empathetic way. Emotion AI senses tone and intent in real time so every reply feels timely, human, and built to convert.",
-    video: "https://player.mediadelivery.net/play/661416/78158008-7515-443f-a183-a54a8d3b3a3f",
+    video:
+      "https://player.mediadelivery.net/play/661416/78158008-7515-443f-a183-a54a8d3b3a3f",
     link: "/products/emotionai",
   },
+  {
+    title: "WhatsApp Video Automation",
+    desc: "Engage customers at scale with automated, personalized WhatsApp video journeys. Capture leads, respond instantly, nurture sales conversations, and support customers from one unified AI-powered platform.",
+    video:
+      "https://player.mediadelivery.net/play/661416/6a61d538-971f-4b67-898e-708a8dfa12ab",
+    link: "https://www.eurodigital.marketing/",
+  },
 ];
-
 
 // execSteps removed — it was unused and caused a TypeScript compile error
 
@@ -90,10 +107,13 @@ const industries = [
   },
 ];
 
-
 function Sections() {
-  const [currentlyPlayingIndex, setCurrentlyPlayingIndex] = useState<number | null>(null);
-  const [bufferingVideoIndex, setBufferingVideoIndex] = useState<number | null>(null);
+  const [currentlyPlayingIndex, setCurrentlyPlayingIndex] = useState<
+    number | null
+  >(null);
+  const [bufferingVideoIndex, setBufferingVideoIndex] = useState<number | null>(
+    null,
+  );
   const videoRefs = useRef<(HTMLVideoElement | null)[]>([]);
 
   const warmVideo = (index: number) => {
@@ -144,31 +164,45 @@ function Sections() {
       warmVideo(index);
       video.muted = false;
       setBufferingVideoIndex(index);
-      video.play().then(() => {
-        setCurrentlyPlayingIndex(index);
-      }).catch((error) => {
-        console.error("Video playback failed:", error);
-        setBufferingVideoIndex(null);
-      });
+      video
+        .play()
+        .then(() => {
+          setCurrentlyPlayingIndex(index);
+        })
+        .catch((error) => {
+          console.error("Video playback failed:", error);
+          setBufferingVideoIndex(null);
+        });
     }
   };
 
   return (
     <div className="bg-[#0b1538] text-white">
       {/* Overview Section - Kept as is */}
-      <section className="bg-white" style={{ color: 'var(--primary-navy)' }}>
+      <section className="bg-white" style={{ color: "var(--primary-navy)" }}>
         {/* ... (Overview content) */}
       </section>
 
       {/* Personal Secretary grid - UPDATED FOR CONSISTENCY */}
-      <section id="services" className="bg-white py-20 md:py-16 scroll-mt-32" style={{ color: 'var(--primary-navy)' }}>
+      <section
+        id="services"
+        className="bg-white py-20 md:py-16 scroll-mt-32"
+        style={{ color: "var(--primary-navy)" }}
+      >
         <div className="max-w-7xl mx-auto px-6 md:px-12 space-y-6 text-center mb-14 md:mb-20">
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-semibold" style={{ color: 'var(--text-primary)' }}>
+          <h2
+            className="text-4xl md:text-5xl lg:text-6xl font-semibold"
+            style={{ color: "var(--text-primary)" }}
+          >
             Everything Your Personal Secretary Should Do
           </h2>
-          <p className="text-base md:text-[19px] max-w-3xl mx-auto leading-relaxed capitalize" style={{ color: 'var(--text-secondary)' }}>
-           EuroDigital helps businesses automate operations, improve customer engagement,
-and launch practical AI systems that create measurable growth.
+          <p
+            className="text-base md:text-[19px] max-w-3xl mx-auto leading-relaxed capitalize"
+            style={{ color: "var(--text-secondary)" }}
+          >
+            EuroDigital helps businesses automate operations, improve customer
+            engagement, and launch practical AI systems that create measurable
+            growth.
           </p>
         </div>
 
@@ -181,7 +215,7 @@ and launch practical AI systems that create measurable growth.
               <div
                 key={card.title}
                 className="group rounded-3xl flex flex-col p-5 md:p-6 border border-slate-200/80 shadow-[0_10px_35px_rgba(15,31,56,0.06)] hover:shadow-[0_22px_60px_rgba(15,31,56,0.14)] hover:-translate-y-1 transition-all duration-300 h-full"
-                style={{ backgroundColor: 'var(--bg-secondary)' }}
+                style={{ backgroundColor: "var(--bg-secondary)" }}
               >
                 {/* Media Area: Supports both Images and Videos */}
                 <div className="relative w-full h-72 md:h-80 rounded-xl shrink-0 overflow-hidden">
@@ -192,58 +226,62 @@ and launch practical AI systems that create measurable growth.
                         title={card.title}
                         className="h-full rounded-xl"
                         aspectClassName="h-full min-h-[18rem] md:min-h-[20rem]"
-                        isActive={currentlyPlayingIndex === null || currentlyPlayingIndex === index}
+                        isActive={
+                          currentlyPlayingIndex === null ||
+                          currentlyPlayingIndex === index
+                        }
                         onActivate={() => handleBunnyVideoActivate(index)}
                         onDeactivate={() => handleBunnyVideoDeactivate(index)}
                       />
                     ) : (
-                    <>
-                      <video
-                        ref={(el) => { videoRefs.current[index] = el; }}
-                        src={card.video}
-                        muted
-                        playsInline
-                        preload={isPlaying || isBuffering ? "auto" : "metadata"}
-                        className="relative z-10 h-full w-full object-cover"
-                        onMouseEnter={() => warmVideo(index)}
-                        onTouchStart={() => warmVideo(index)}
-                        onCanPlay={() => {
-                          if (bufferingVideoIndex === index) {
-                            setBufferingVideoIndex(null);
+                      <>
+                        <video
+                          ref={(el) => {
+                            videoRefs.current[index] = el;
+                          }}
+                          src={card.video}
+                          muted
+                          playsInline
+                          preload={
+                            isPlaying || isBuffering ? "auto" : "metadata"
                           }
-                        }}
-                        onPlaying={() => {
-                          setCurrentlyPlayingIndex(index);
-                          setBufferingVideoIndex(null);
-                        }}
-                        onWaiting={() => setBufferingVideoIndex(index)}
-                        onStalled={() => setBufferingVideoIndex(index)}
-                        onEnded={() => {
-                          setCurrentlyPlayingIndex(null);
-                          setBufferingVideoIndex(null);
-                        }}
-                      />
-                      <div
-                        onClick={() => handleVideoPlay(index)}
-                        className="absolute inset-0 z-20 flex items-center justify-center bg-black/10 group-hover:bg-black/30 transition-all duration-300 cursor-pointer"
-                      >
-                        <div className="bg-white/20 backdrop-blur-sm p-4 rounded-full border border-white/30 transform transition-transform group-hover:scale-110">
-                          {isBuffering ? (
-                            <div className="h-10 w-10 rounded-full border-4 border-white/35 border-t-white animate-spin" />
-                          ) : isPlaying ? (
-                            <div className="flex gap-1.5">
-                              <div className="w-2.5 h-10 bg-white rounded-full" />
-                              <div className="w-2.5 h-10 bg-white rounded-full" />
-                            </div>
-                          ) : (
-                            <Play
-                              className="w-10 h-10 text-white fill-white"
-                            />
-                          )}
-
+                          className="relative z-10 h-full w-full object-cover"
+                          onMouseEnter={() => warmVideo(index)}
+                          onTouchStart={() => warmVideo(index)}
+                          onCanPlay={() => {
+                            if (bufferingVideoIndex === index) {
+                              setBufferingVideoIndex(null);
+                            }
+                          }}
+                          onPlaying={() => {
+                            setCurrentlyPlayingIndex(index);
+                            setBufferingVideoIndex(null);
+                          }}
+                          onWaiting={() => setBufferingVideoIndex(index)}
+                          onStalled={() => setBufferingVideoIndex(index)}
+                          onEnded={() => {
+                            setCurrentlyPlayingIndex(null);
+                            setBufferingVideoIndex(null);
+                          }}
+                        />
+                        <div
+                          onClick={() => handleVideoPlay(index)}
+                          className="absolute inset-0 z-20 flex items-center justify-center bg-black/10 group-hover:bg-black/30 transition-all duration-300 cursor-pointer"
+                        >
+                          <div className="bg-white/20 backdrop-blur-sm p-4 rounded-full border border-white/30 transform transition-transform group-hover:scale-110">
+                            {isBuffering ? (
+                              <div className="h-10 w-10 rounded-full border-4 border-white/35 border-t-white animate-spin" />
+                            ) : isPlaying ? (
+                              <div className="flex gap-1.5">
+                                <div className="w-2.5 h-10 bg-white rounded-full" />
+                                <div className="w-2.5 h-10 bg-white rounded-full" />
+                              </div>
+                            ) : (
+                              <Play className="w-10 h-10 text-white fill-white" />
+                            )}
+                          </div>
                         </div>
-                      </div>
-                    </>
+                      </>
                     )
                   ) : card.image ? (
                     <img
@@ -259,27 +297,58 @@ and launch practical AI systems that create measurable growth.
 
                 {/* Content Area: flex-grow ensures this fills space to push buttons down */}
                 <div className="pt-6 md:pt-8 flex flex-col flex-grow">
-                  <div className="flex items-start justify-between gap-4 mb-4">
+                  <div className="mb-4">
                     {/* Fixed Title Height or min-height ensures text levels stay same */}
-                    <h3 className="text-2xl md:text-3xl font-semibold leading-tight min-h-[3.5rem] md:min-h-[4.5rem]" style={{ color: 'var(--text-primary)' }}>
+                    <h3
+                      className="text-2xl md:text-3xl font-semibold leading-tight min-h-[3.5rem] md:min-h-[4.5rem]"
+                      style={{ color: "var(--text-primary)" }}
+                    >
                       {card.title}
                     </h3>
-                    <Link to={card.link} className="shrink-0">
-                      <button
-                        className="cursor-pointer inline-flex items-center justify-center rounded-lg text-black font-medium px-5 py-2.5 transition-colors whitespace-nowrap text-sm"
-                        style={{ backgroundColor: 'var(--primary-blue-light)' }}
-                        onMouseEnter={(e) => e.currentTarget.style.backgroundColor = 'var(--primary-blue)'}
-                        onMouseLeave={(e) => e.currentTarget.style.backgroundColor = 'var(--primary-blue-light)'}
-                      >
-                        Learn More
-                      </button>
-                    </Link>
                   </div>
 
                   {/* Description area */}
-                  <p className="text-base md:text-lg leading-relaxed mb-4 capitalize" style={{ color: 'var(--text-secondary)' }}>
+                  <p
+                    className="text-base md:text-lg leading-relaxed mb-4 capitalize"
+                    style={{ color: "var(--text-secondary)" }}
+                  >
                     {card.desc}
                   </p>
+
+                  <div className="mt-auto flex flex-wrap items-center gap-3">
+                    <Link
+                      to={card.link}
+                      className="inline-flex items-center justify-center whitespace-nowrap rounded-lg px-5 py-2.5 text-sm font-medium text-black transition-colors"
+                      style={{ backgroundColor: "var(--primary-blue-light)" }}
+                      onMouseEnter={(e) =>
+                        (e.currentTarget.style.backgroundColor =
+                          "var(--primary-blue)")
+                      }
+                      onMouseLeave={(e) =>
+                        (e.currentTarget.style.backgroundColor =
+                          "var(--primary-blue-light)")
+                      }
+                    >
+                      Learn More
+                    </Link>
+                    <a
+                      href={BOOK_DEMO_URL}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center justify-center whitespace-nowrap rounded-lg px-5 py-2.5 text-sm font-medium text-white transition-colors"
+                      style={{ backgroundColor: "var(--primary-navy)" }}
+                      onMouseEnter={(e) =>
+                        (e.currentTarget.style.backgroundColor =
+                          "var(--primary-blue)")
+                      }
+                      onMouseLeave={(e) =>
+                        (e.currentTarget.style.backgroundColor =
+                          "var(--primary-navy)")
+                      }
+                    >
+                      Book Demo
+                    </a>
+                  </div>
                 </div>
               </div>
             );
@@ -288,17 +357,29 @@ and launch practical AI systems that create measurable growth.
       </section>
 
       {/* Executive Assistant timeline - Kept as is */}
-      <section className="bg-white py-20 md:py-16" style={{ color: 'var(--primary-navy)' }}>
+      <section
+        className="bg-white py-20 md:py-16"
+        style={{ color: "var(--primary-navy)" }}
+      >
         {/* ... (Timeline content) */}
       </section>
 
       {/* Industry specific AI use cases - UPDATED FOR CONSISTENCY */}
-      <section className="bg-white py-20 md:py-20" style={{ color: 'var(--primary-navy)' }}>
+      <section
+        className="bg-white py-20 md:py-20"
+        style={{ color: "var(--primary-navy)" }}
+      >
         <div className="max-w-7xl mx-auto px-6 md:px-12 space-y-6 text-center mb-14 md:mb-20">
-          <h2 className="text-4xl md:text-6xl lg:text-6xl font-semibold" style={{ color: 'var(--text-primary)' }}>
+          <h2
+            className="text-4xl md:text-6xl lg:text-6xl font-semibold"
+            style={{ color: "var(--text-primary)" }}
+          >
             Industry Specific AI Use Cases
           </h2>
-          <p className="text-base md:text-[19px] max-w-4xl mx-auto leading-relaxed" style={{ color: 'var(--text-secondary)' }}>
+          <p
+            className="text-base md:text-[19px] max-w-4xl mx-auto leading-relaxed"
+            style={{ color: "var(--text-secondary)" }}
+          >
             Practical and measurable impact across different business domains.
           </p>
         </div>
@@ -308,7 +389,10 @@ and launch practical AI systems that create measurable growth.
             <div
               key={industry.title}
               className="rounded-2xl overflow-hidden shadow-[0_16px_45px_rgba(0,0,0,0.12)] flex flex-col h-full hover:shadow-2xl transition-shadow duration-300"
-              style={{ borderWidth: '1px', borderColor: 'rgba(24, 182, 227, 0.2)' }}
+              style={{
+                borderWidth: "1px",
+                borderColor: "rgba(24, 182, 227, 0.2)",
+              }}
             >
               {/* Fixed Image Height: h-64 md:h-72 ensures level alignment */}
               <img
@@ -321,9 +405,12 @@ and launch practical AI systems that create measurable growth.
               />
               <div
                 className="py-6 px-8 text-center flex-grow flex items-center justify-center"
-                style={{ backgroundColor: 'var(--bg-secondary)' }}
+                style={{ backgroundColor: "var(--bg-secondary)" }}
               >
-                <h3 className="text-xl md:text-2xl font-semibold leading-snug" style={{ color: 'var(--text-primary)' }}>
+                <h3
+                  className="text-xl md:text-2xl font-semibold leading-snug"
+                  style={{ color: "var(--text-primary)" }}
+                >
                   {industry.title}
                 </h3>
               </div>

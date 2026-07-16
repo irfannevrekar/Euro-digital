@@ -18,6 +18,8 @@ const products = [
   { id: "emotionai", title: "Emotion AI", path: "/products/emotionai" },
 ];
 
+const WHATSAPP_AUTOMATION_URL = "https://www.eurodigital.marketing/";
+
 function Header() {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [isProductsDropdownOpen, setIsProductsDropdownOpen] = useState(false);
@@ -159,6 +161,18 @@ function Header() {
                     </span>
                   </Link>
                 ))}
+                <a
+                  href={WHATSAPP_AUTOMATION_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={() => setIsProductsDropdownOpen(false)}
+                  className="group flex w-full items-center px-5 py-3 text-left text-[14px] font-medium transition-all duration-200 hover:bg-slate-50 cursor-pointer"
+                >
+                  <div className="w-1.5 h-1.5 rounded-full bg-blue-600 mr-3 opacity-0 -ml-2 transition-all duration-300 group-hover:opacity-100 group-hover:ml-0" />
+                  <span className="text-slate-700 group-hover:text-blue-600 transition-colors">
+                    Whatsapp Automation
+                  </span>
+                </a>
               </div>
             </div>
           </div>
@@ -256,6 +270,15 @@ function Header() {
                     {product.title}
                   </Link>
                 ))}
+                <a
+                  href={WHATSAPP_AUTOMATION_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className="text-left text-slate-600 hover:text-blue-600 font-medium py-1"
+                >
+                  Whatsapp Automation
+                </a>
               </div>
             </div>
 
