@@ -73,7 +73,7 @@ const cards: Card[] = [
     title: "Emotion AI",
     desc: "Connect with customers in a personal, empathetic way. Emotion AI senses tone and intent in real time so every reply feels timely, human, and built to convert.",
     video:
-      "https://player.mediadelivery.net/play/661416/78158008-7515-443f-a183-a54a8d3b3a3f",
+      "https://player.mediadelivery.net/play/661416/63fe6a94-5414-484c-b852-3c38c580a74f",
     link: "/products/emotionai",
   },
   {
