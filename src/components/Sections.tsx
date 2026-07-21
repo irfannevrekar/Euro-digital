@@ -3,7 +3,7 @@ import { Play, X } from "lucide-react";
 import { useEffect, useState, useRef } from "react";
 import BunnyStreamPlayer from "./BunnyStreamPlayer";
 import { isBunnyStreamUrl } from "../utils/bunnyStream";
-import { BOOKING_URL } from "../constants/booking";
+import { BOOKING_URL, SERVICE_BOOKING_URLS } from "../constants/booking";
 
 interface Card {
   title: string;
@@ -11,6 +11,7 @@ interface Card {
   video?: string;
   image?: string;
   link: string;
+  bookingUrl?: string;
 }
 
 const cards: Card[] = [
@@ -20,6 +21,7 @@ const cards: Card[] = [
     video:
       "https://player.mediadelivery.net/play/661416/aba8e1cb-c5df-4c8e-8d47-a8bf6d066411",
     link: "/services/ai-business-automation",
+    bookingUrl: SERVICE_BOOKING_URLS.aiBusinessAutomation,
   },
   {
     title: "AI Business Promotion",
@@ -27,6 +29,7 @@ const cards: Card[] = [
     video:
       "https://player.mediadelivery.net/play/661416/02126d15-3c9d-4d94-a8ac-1d8bbc37332e",
     link: "/services/ai-business-promotion",
+    bookingUrl: SERVICE_BOOKING_URLS.aiBusinessPromotion,
   },
   {
     title: "AI Agent Talk Time",
@@ -40,6 +43,7 @@ const cards: Card[] = [
     video:
       "https://player.mediadelivery.net/play/661416/c564b724-82f9-4426-b62e-079b3a1b8fb4",
     link: "/services/ai-automated-chatbot",
+    bookingUrl: SERVICE_BOOKING_URLS.aiAutomatedChatbot,
   },
   {
     title: "AI add-on Services",
@@ -47,6 +51,7 @@ const cards: Card[] = [
     video:
       "https://player.mediadelivery.net/play/661416/0547118b-9fd8-4aae-864f-77f5f0690710",
     link: "/services/ai-addon-services",
+    bookingUrl: SERVICE_BOOKING_URLS.aiAddon,
   },
   {
     title: "Industry Specific AI Use Cases",
@@ -61,6 +66,7 @@ const cards: Card[] = [
     video:
       "https://player.mediadelivery.net/play/661416/2fbe2f5c-3f7c-4ebd-8121-5312b7173497",
     link: "/products/website-builder",
+    bookingUrl: SERVICE_BOOKING_URLS.aiWebsiteBuilder,
   },
   {
     title: "ED-CRM",
@@ -68,6 +74,7 @@ const cards: Card[] = [
     video:
       "https://player.mediadelivery.net/play/667434/9498cecf-b56b-403f-a713-3551b8f7cf8c",
     link: "/products/edcrm",
+    bookingUrl: SERVICE_BOOKING_URLS.edCrm,
   },
   {
     title: "Emotion AI",
@@ -75,6 +82,7 @@ const cards: Card[] = [
     video:
       "https://player.mediadelivery.net/play/661416/63fe6a94-5414-484c-b852-3c38c580a74f",
     link: "/products/emotionai",
+    bookingUrl: SERVICE_BOOKING_URLS.emotionAi,
   },
   {
     title: "WhatsApp Business API",
@@ -82,6 +90,7 @@ const cards: Card[] = [
     video:
       "https://player.mediadelivery.net/play/661416/6a61d538-971f-4b67-898e-708a8dfa12ab",
     link: "https://www.eurodigital.marketing/",
+    bookingUrl: SERVICE_BOOKING_URLS.whatsappApi,
   },
 ];
 
@@ -349,22 +358,42 @@ function Sections() {
                     >
                       Learn More
                     </Link>
-                    <button
-                      type="button"
-                      onClick={() => setIsBookingModalOpen(true)}
-                      className="inline-flex items-center justify-center whitespace-nowrap rounded-lg px-5 py-2.5 text-sm font-medium text-white transition-colors"
-                      style={{ backgroundColor: "var(--primary-navy)" }}
-                      onMouseEnter={(e) =>
-                        (e.currentTarget.style.backgroundColor =
-                          "var(--primary-blue)")
-                      }
-                      onMouseLeave={(e) =>
-                        (e.currentTarget.style.backgroundColor =
-                          "var(--primary-navy)")
-                      }
-                    >
-                      Book Demo
-                    </button>
+                    {card.bookingUrl ? (
+                      <a
+                        href={card.bookingUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center justify-center whitespace-nowrap rounded-lg px-5 py-2.5 text-sm font-medium text-white transition-colors"
+                        style={{ backgroundColor: "var(--primary-navy)" }}
+                        onMouseEnter={(e) =>
+                          (e.currentTarget.style.backgroundColor =
+                            "var(--primary-blue)")
+                        }
+                        onMouseLeave={(e) =>
+                          (e.currentTarget.style.backgroundColor =
+                            "var(--primary-navy)")
+                        }
+                      >
+                        Book Demo
+                      </a>
+                    ) : (
+                      <button
+                        type="button"
+                        onClick={() => setIsBookingModalOpen(true)}
+                        className="inline-flex items-center justify-center whitespace-nowrap rounded-lg px-5 py-2.5 text-sm font-medium text-white transition-colors"
+                        style={{ backgroundColor: "var(--primary-navy)" }}
+                        onMouseEnter={(e) =>
+                          (e.currentTarget.style.backgroundColor =
+                            "var(--primary-blue)")
+                        }
+                        onMouseLeave={(e) =>
+                          (e.currentTarget.style.backgroundColor =
+                            "var(--primary-navy)")
+                        }
+                      >
+                        Book Demo
+                      </button>
+                    )}
                   </div>
                 </div>
               </div>
