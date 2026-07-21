@@ -7,7 +7,7 @@ function AIBuilder() {
       title="Emotion AI"
       description="Connect with customers in a way that feels personal, not robotic. Emotion AI senses tone and intent as conversations unfold—so every reply feels timely, empathetic, and built to earn trust."
       image="/servicesImages/emotion_ai.png"
-      video="https://player.mediadelivery.net/play/661416/78158008-7515-443f-a183-a54a8d3b3a3f"
+      video="https://player.mediadelivery.net/play/661416/63fe6a94-5414-484c-b852-3c38c580a74f"
       overlayTitle="Ready to Build Your AI Assistant?"
       showFAQs
       features={[
@@ -22,20 +22,35 @@ function AIBuilder() {
           name: "Launch",
           price: "$199",
           description: "For one AI assistant or automation flow.",
-          features: ["1 assistant", "Knowledge setup", "Basic workflow", "Email support"],
+          features: [
+            "1 assistant",
+            "Knowledge setup",
+            "Basic workflow",
+            "Email support",
+          ],
         },
         {
           name: "Scale",
           price: "$499",
           description: "For teams building multiple AI workflows.",
           highlighted: true,
-          features: ["5 assistants", "Advanced workflows", "CRM integration", "Priority support"],
+          features: [
+            "5 assistants",
+            "Advanced workflows",
+            "CRM integration",
+            "Priority support",
+          ],
         },
         {
           name: "Custom",
           price: "Custom",
           description: "For advanced AI systems and private workflows.",
-          features: ["Custom agents", "API access", "Private knowledge base", "Dedicated support"],
+          features: [
+            "Custom agents",
+            "API access",
+            "Private knowledge base",
+            "Dedicated support",
+          ],
         },
       ]}
     />
