@@ -1,9 +1,9 @@
 import { Link } from "react-router-dom";
-import { Play, X } from "lucide-react";
-import { useEffect, useState, useRef } from "react";
+import { Play } from "lucide-react";
+import { useState, useRef } from "react";
 import BunnyStreamPlayer from "./BunnyStreamPlayer";
 import { isBunnyStreamUrl } from "../utils/bunnyStream";
-import { BOOKING_URL, SERVICE_BOOKING_URLS } from "../constants/booking";
+import { SERVICE_BOOKING_URLS } from "../constants/booking";
 
 interface Card {
   title: string;
@@ -114,8 +114,11 @@ const industries = [
   },
 ];
 
-function Sections() {
-  const [isBookingModalOpen, setIsBookingModalOpen] = useState(false);
+interface SectionsProps {
+  onBookDemo: (bookingUrl?: string) => void;
+}
+
+function Sections({ onBookDemo }: SectionsProps) {
   const [currentlyPlayingIndex, setCurrentlyPlayingIndex] = useState<
     number | null
   >(null);
@@ -123,25 +126,6 @@ function Sections() {
     null,
   );
   const videoRefs = useRef<(HTMLVideoElement | null)[]>([]);
-
-  useEffect(() => {
-    if (!isBookingModalOpen) return;
-
-    const previousOverflow = document.body.style.overflow;
-    const handleKeyDown = (event: KeyboardEvent) => {
-      if (event.key === "Escape") {
-        setIsBookingModalOpen(false);
-      }
-    };
-
-    document.body.style.overflow = "hidden";
-    document.addEventListener("keydown", handleKeyDown);
-
-    return () => {
-      document.body.style.overflow = previousOverflow;
-      document.removeEventListener("keydown", handleKeyDown);
-    };
-  }, [isBookingModalOpen]);
 
   const warmVideo = (index: number) => {
     const video = videoRefs.current[index];
@@ -358,28 +342,9 @@ function Sections() {
                     >
                       Learn More
                     </Link>
-                    {card.bookingUrl ? (
-                      <a
-                        href={card.bookingUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center justify-center whitespace-nowrap rounded-lg px-5 py-2.5 text-sm font-medium text-white transition-colors"
-                        style={{ backgroundColor: "var(--primary-navy)" }}
-                        onMouseEnter={(e) =>
-                          (e.currentTarget.style.backgroundColor =
-                            "var(--primary-blue)")
-                        }
-                        onMouseLeave={(e) =>
-                          (e.currentTarget.style.backgroundColor =
-                            "var(--primary-navy)")
-                        }
-                      >
-                        Book Demo
-                      </a>
-                    ) : (
-                      <button
+                    <button
                         type="button"
-                        onClick={() => setIsBookingModalOpen(true)}
+                        onClick={() => onBookDemo(card.bookingUrl)}
                         className="inline-flex items-center justify-center whitespace-nowrap rounded-lg px-5 py-2.5 text-sm font-medium text-white transition-colors"
                         style={{ backgroundColor: "var(--primary-navy)" }}
                         onMouseEnter={(e) =>
@@ -390,10 +355,9 @@ function Sections() {
                           (e.currentTarget.style.backgroundColor =
                             "var(--primary-navy)")
                         }
-                      >
+                    >
                         Book Demo
-                      </button>
-                    )}
+                    </button>
                   </div>
                 </div>
               </div>
@@ -465,46 +429,6 @@ function Sections() {
         </div>
       </section>
 
-      {isBookingModalOpen && (
-        <div className="fixed inset-0 z-[100] flex items-center justify-center p-3 sm:p-6">
-          <button
-            type="button"
-            onClick={() => setIsBookingModalOpen(false)}
-            className="absolute inset-0 bg-slate-950/75 backdrop-blur-sm"
-            aria-label="Close booking modal"
-          />
-
-          <div
-            role="dialog"
-            aria-modal="true"
-            aria-labelledby="booking-modal-title"
-            className="relative z-10 flex h-[90vh] max-h-[850px] w-full max-w-5xl flex-col overflow-hidden rounded-2xl bg-white shadow-2xl"
-          >
-            <div className="flex shrink-0 items-center justify-between border-b border-slate-200 px-5 py-4 sm:px-6">
-              <h2
-                id="booking-modal-title"
-                className="text-xl font-semibold text-slate-900 sm:text-2xl"
-              >
-                Book a Demo
-              </h2>
-              <button
-                type="button"
-                onClick={() => setIsBookingModalOpen(false)}
-                className="flex h-10 w-10 items-center justify-center rounded-full text-slate-600 transition-colors hover:bg-slate-100 hover:text-slate-950 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
-                aria-label="Close booking modal"
-              >
-                <X className="h-6 w-6" />
-              </button>
-            </div>
-
-            <iframe
-              src={BOOKING_URL}
-              title="Book a demo appointment"
-              className="min-h-0 flex-1 border-0 bg-white"
-            />
-          </div>
-        </div>
-      )}
     </div>
   );
 }

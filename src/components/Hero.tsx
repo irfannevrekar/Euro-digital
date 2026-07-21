@@ -1,7 +1,10 @@
 import { Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { useEffect, useState } from "react";
-import { BOOKING_URL } from "../constants/booking";
+
+interface HeroProps {
+  onBookDemo: () => void;
+}
 
 type Slide = {
   title: string;
@@ -65,7 +68,7 @@ const slides: Slide[] = [
   },
 ];
 
-function Hero() {
+function Hero({ onBookDemo }: HeroProps) {
   const [currentSlide, setCurrentSlide] = useState(0);
 
   useEffect(() => {
@@ -196,26 +199,26 @@ function Hero() {
 
         {/* Buttons */}
         <div className="mt-12 flex flex-col sm:flex-row items-center justify-center gap-5">
-          <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer">
-            <button
-              className="rounded-2xl font-semibold px-9 py-4 shadow-[0_14px_40px_rgba(0,0,0,0.25)] transition-colors text-lg cursor-pointer"
-              style={{
-                backgroundColor: "var(--primary-green)",
-                color: "var(--primary-navy)",
-                borderColor: "var(--primary-green-dark)",
-                borderWidth: "1px",
-              }}
-              onMouseEnter={(e) =>
-                (e.currentTarget.style.backgroundColor =
-                  "var(--primary-green-dark)")
-              }
-              onMouseLeave={(e) =>
-                (e.currentTarget.style.backgroundColor = "var(--primary-green)")
-              }
-            >
-              Book A Demo
-            </button>
-          </a>
+          <button
+            type="button"
+            onClick={onBookDemo}
+            className="rounded-2xl font-semibold px-9 py-4 shadow-[0_14px_40px_rgba(0,0,0,0.25)] transition-colors text-lg cursor-pointer"
+            style={{
+              backgroundColor: "var(--primary-green)",
+              color: "var(--primary-navy)",
+              borderColor: "var(--primary-green-dark)",
+              borderWidth: "1px",
+            }}
+            onMouseEnter={(e) =>
+              (e.currentTarget.style.backgroundColor =
+                "var(--primary-green-dark)")
+            }
+            onMouseLeave={(e) =>
+              (e.currentTarget.style.backgroundColor = "var(--primary-green)")
+            }
+          >
+            Book A Demo
+          </button>
 
           {slides[currentSlide].link && (
             <Link to={slides[currentSlide].link}>
