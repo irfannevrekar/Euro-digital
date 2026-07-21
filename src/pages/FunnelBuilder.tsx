@@ -7,7 +7,7 @@ function FunnelBuilder() {
       title="AI Website Builder"
       description="Launch polished, high-converting websites in minutes—not weeks. Describe what you need, and AI Website Builder assembles landing pages, supporting pages, and offer flows without touching a line of code."
       image="/servicesImages/ai-funnel.png"
-      video="https://player.mediadelivery.net/play/661416/02126d15-3c9d-4d94-a8ac-1d8bbc37332e"
+      video="https://player.mediadelivery.net/play/661416/2fbe2f5c-3f7c-4ebd-8121-5312b7173497"
       overlayTitle="Ready to Build Your Website?"
       showFAQs
       showWebsiteShowcase
