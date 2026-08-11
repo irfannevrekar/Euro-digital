@@ -72,7 +72,7 @@ const industryDetails: Record<string, IndustryContent> = {
       </div>
     ),
   },
-  "SAAS Company": {
+  "SaaS Company": {
     title: "SaaS Growth Acceleration",
     description:
       "Driving user acquisition and retention with intelligent bots.",
@@ -231,13 +231,14 @@ function IndustrySpecificAI() {
                 Real Estate
               </h3>
               <p className="text-slate-600 mb-6 leading-relaxed">
-                To know about real estate click on learn more.
+                Explore lead response, qualification, follow-up, and customer
+                engagement workflows for real estate businesses.
               </p>
               <button
                 onClick={() => openModal("Real Estate")}
                 className="inline-flex items-center text-cyan-600 font-semibold hover:text-cyan-700 focus:outline-none cursor-pointer hover:underline"
               >
-                Learn More
+                Learn about Real Estate AI
                 <svg
                   className="w-5 h-5 ml-2"
                   fill="none"
@@ -281,13 +282,14 @@ function IndustrySpecificAI() {
                 Healthcare
               </h3>
               <p className="text-slate-600 mb-6 leading-relaxed">
-                To know more about AI in Healthcare, click on leanr more.
+                Explore appointment, inquiry, follow-up, and patient engagement
+                workflows for healthcare organizations.
               </p>
               <button
                 onClick={() => openModal("Healthcare")}
                 className="inline-flex items-center text-cyan-600 font-semibold hover:text-cyan-700 focus:outline-none cursor-pointer hover:underline"
               >
-                Learn More
+                Learn about Healthcare AI
                 <svg
                   className="w-5 h-5 ml-2"
                   fill="none"
@@ -331,13 +333,14 @@ function IndustrySpecificAI() {
                 Consultancy
               </h3>
               <p className="text-slate-600 mb-6 leading-relaxed">
-                To know more about AI in Consultancy, click on learn more.
+                Explore lead management, client communication, and workflow
+                automation for consulting businesses.
               </p>
               <button
                 onClick={() => openModal("Consultancy")}
                 className="inline-flex items-center text-cyan-600 font-semibold hover:text-cyan-700 focus:outline-none cursor-pointer hover:underline"
               >
-                Learn More
+                Learn about Consultancy AI
                 <svg
                   className="w-5 h-5 ml-2"
                   fill="none"
@@ -354,7 +357,7 @@ function IndustrySpecificAI() {
               </button>
             </motion.div>
 
-            {/* SAAS Company */}
+            {/* SaaS Company */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -378,16 +381,17 @@ function IndustrySpecificAI() {
                 </svg>
               </div>
               <h3 className="text-2xl font-bold text-slate-800 mb-4">
-                SAAS Company
+                SaaS Company
               </h3>
               <p className="text-slate-600 mb-6 leading-relaxed">
-                To know more about AI in SAAS Company, click on learn more.
+                Explore customer acquisition, onboarding, support, and retention
+                workflows for SaaS companies.
               </p>
               <button
-                onClick={() => openModal("SAAS Company")}
+                onClick={() => openModal("SaaS Company")}
                 className="inline-flex items-center text-cyan-600 font-semibold hover:text-cyan-700 focus:outline-none cursor-pointer hover:underline"
               >
-                Learn More
+                Learn about SaaS AI
                 <svg
                   className="w-5 h-5 ml-2"
                   fill="none"
@@ -431,13 +435,14 @@ function IndustrySpecificAI() {
                 Insurance Company
               </h3>
               <p className="text-slate-600 mb-6 leading-relaxed">
-                To know more about AI in Insurance Company, click on learn more.
+                Explore inquiry handling, qualification, reminders, and customer
+                communication workflows for insurance companies.
               </p>
               <button
                 onClick={() => openModal("Insurance Company")}
                 className="inline-flex items-center text-cyan-600 font-semibold hover:text-cyan-700 focus:outline-none cursor-pointer hover:underline"
               >
-                Learn More
+                Learn about Insurance AI
                 <svg
                   className="w-5 h-5 ml-2"
                   fill="none"
@@ -481,13 +486,14 @@ function IndustrySpecificAI() {
                 Banking System
               </h3>
               <p className="text-slate-600 mb-6 leading-relaxed">
-                To know more about AI in Banking System, click on learn more.
+                Explore customer inquiry, follow-up, and service automation
+                workflows for banking teams.
               </p>
               <button
                 onClick={() => openModal("Banking System")}
                 className="inline-flex items-center text-cyan-600 font-semibold hover:text-cyan-700 focus:outline-none cursor-pointer hover:underline"
               >
-                Learn More
+                Learn about Banking AI
                 <svg
                   className="w-5 h-5 ml-2"
                   fill="none"
@@ -531,13 +537,14 @@ function IndustrySpecificAI() {
                 Solar Companies
               </h3>
               <p className="text-slate-600 mb-6 leading-relaxed">
-                To know more about AI in Solar Companies, click on learn more.
+                Explore lead qualification, appointment booking, follow-up, and
+                customer engagement workflows for solar companies.
               </p>
               <button
                 onClick={() => openModal("Solar Companies")}
                 className="inline-flex items-center text-cyan-600 font-semibold hover:text-cyan-700 focus:outline-none cursor-pointer hover:underline"
               >
-                Learn More
+                Learn about Solar Industry AI
                 <svg
                   className="w-5 h-5 ml-2"
                   fill="none"
@@ -571,7 +578,7 @@ function IndustrySpecificAI() {
         onClose={closeModal}
         title={selectedIndustry ? industryDetails[selectedIndustry].title : ""}
         ctaUrl="https://crm.eurodigital.ae/widget/bookings/web-booking-euro"
-        ctaText="Contact Sale"
+        ctaText="Contact Sales"
       >
         {selectedIndustry && (
           <div className="space-y-6">

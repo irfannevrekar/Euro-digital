@@ -16,13 +16,18 @@ function About() {
           <div className="space-y-6 text-lg leading-8">
             <p>
               EuroDigital, operated by Euro Digital Technologies LLC, is a digital
-              marketing and AI automation company based in Abu Dhabi, UAE.
+              marketing company based in Abu Dhabi, UAE.
             </p>
             <p>
-              We help businesses with digital marketing, lead generation,
-              marketing automation, CRM systems, conversion-focused websites,
-              AI customer engagement, chatbots, voice agents, and business
-              process automation.
+              We combine digital marketing, lead generation systems, CRM,
+              conversion-focused web experiences, and marketing automation to
+              help businesses acquire, engage, and convert customers.
+            </p>
+            <p>
+              AI automation is part of how we make those marketing systems more
+              responsive and scalable. Voice agents, chatbots, automated
+              follow-up, and intelligent sales workflows help teams respond to
+              leads faster and maintain consistent customer engagement.
             </p>
           </div>
         </section>

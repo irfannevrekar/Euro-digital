@@ -1,383 +1,308 @@
-import { Link } from "react-router-dom";
-import { useState, useRef, useEffect } from "react";
 import { ChevronDown, LogIn, Menu, X } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
+import { Link } from "react-router-dom";
 import { BOOKING_URL } from "../constants/booking";
 
-const services = [
+type NavigationItem = {
+  title: string;
+  path: string;
+  external?: boolean;
+};
+
+const navigationGroups: Array<{
+  title: string;
+  items: NavigationItem[];
+}> = [
   {
-    id: "ai-business-automation",
-    title: "AI Business Automation",
-    path: "/services/ai-business-automation",
+    title: "Digital Marketing & Growth",
+    items: [
+      {
+        title: "AI Digital Marketing",
+        path: "/services/ai-business-promotion",
+      },
+      {
+        title: "Website & Funnel Builder",
+        path: "/products/website-builder",
+      },
+      { title: "ED-CRM & Lead Management", path: "/products/edcrm" },
+      {
+        title: "WhatsApp Customer Engagement",
+        path: "https://www.eurodigital.marketing/",
+        external: true,
+      },
+    ],
   },
   {
-    id: "ai-business-promotion",
-    title: "AI Digital Marketing & Business Promotion",
-    path: "/services/ai-business-promotion",
+    title: "AI Customer Engagement",
+    items: [
+      {
+        title: "AI Voice Agents",
+        path: "/services/ai-agent-talk-time",
+      },
+      {
+        title: "AI Automated Chatbots",
+        path: "/services/ai-automated-chatbot",
+      },
+      { title: "Emotion AI", path: "/products/emotionai" },
+    ],
   },
   {
-    id: "ai-agent-talk-time",
-    title: "AI Voice Agent Talk Time",
-    path: "/services/ai-agent-talk-time",
-  },
-  {
-    id: "ai-automated-chatbot",
-    title: "AI Automated Chatbot",
-    path: "/services/ai-automated-chatbot",
-  },
-  {
-    id: "ai-addon-services",
-    title: "AI add-on Services",
-    path: "/services/ai-addon-services",
-  },
-  {
-    id: "industry-specific",
-    title: "Industry Specific AI Use Cases",
-    path: "/services/industry-specific",
+    title: "Business Automation",
+    items: [
+      {
+        title: "AI Business Automation",
+        path: "/services/ai-business-automation",
+      },
+      {
+        title: "AI Add-on Services",
+        path: "/services/ai-addon-services",
+      },
+      {
+        title: "Industry-Specific AI",
+        path: "/services/industry-specific",
+      },
+    ],
   },
 ];
 
-const products = [
-  {
-    id: "website-builder",
-    title: "AI Website Builder",
-    path: "/products/website-builder",
-  },
-  { id: "edcrm", title: "ED-CRM", path: "/products/edcrm" },
-  { id: "emotionai", title: "Emotion AI", path: "/products/emotionai" },
-];
+function NavigationLink({
+  item,
+  onClick,
+  className,
+}: {
+  item: NavigationItem;
+  onClick: () => void;
+  className: string;
+}) {
+  if (item.external) {
+    return (
+      <a
+        href={item.path}
+        target="_blank"
+        rel="noopener noreferrer"
+        onClick={onClick}
+        className={className}
+      >
+        {item.title}
+      </a>
+    );
+  }
 
-const WHATSAPP_AUTOMATION_URL = "https://www.eurodigital.marketing/";
+  return (
+    <Link to={item.path} onClick={onClick} className={className}>
+      {item.title}
+    </Link>
+  );
+}
 
 function Header() {
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  const [isProductsDropdownOpen, setIsProductsDropdownOpen] = useState(false);
+  const [isServicesOpen, setIsServicesOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isMobileServicesOpen, setIsMobileServicesOpen] = useState(false);
-  const [isMobileProductsOpen, setIsMobileProductsOpen] = useState(false);
-  const servicesTimeoutRef = useRef<number | null>(null);
-  const productsTimeoutRef = useRef<number | null>(null);
+  const closeTimerRef = useRef<number | null>(null);
 
-  // Close mobile menu when window is resized to desktop width
   useEffect(() => {
     const handleResize = () => {
-      if (window.innerWidth >= 768) {
-        setIsMobileMenuOpen(false);
-      }
+      if (window.innerWidth >= 768) setIsMobileMenuOpen(false);
     };
+
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  // Prevent scrolling when mobile menu is open
   useEffect(() => {
-    if (isMobileMenuOpen) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "unset";
-    }
-
+    document.body.style.overflow = isMobileMenuOpen ? "hidden" : "unset";
     return () => {
       document.body.style.overflow = "unset";
     };
   }, [isMobileMenuOpen]);
 
-  const handleMouseEnter = () => {
-    if (servicesTimeoutRef.current) clearTimeout(servicesTimeoutRef.current);
-    if (productsTimeoutRef.current) clearTimeout(productsTimeoutRef.current);
-    setIsProductsDropdownOpen(false);
-    setIsDropdownOpen(true);
+  const openServices = () => {
+    if (closeTimerRef.current) window.clearTimeout(closeTimerRef.current);
+    setIsServicesOpen(true);
   };
 
-  const handleMouseLeave = () => {
-    servicesTimeoutRef.current = window.setTimeout(() => {
-      setIsDropdownOpen(false);
-    }, 150);
+  const scheduleServicesClose = () => {
+    closeTimerRef.current = window.setTimeout(() => setIsServicesOpen(false), 150);
   };
 
-  const handleProductsMouseEnter = () => {
-    if (productsTimeoutRef.current) clearTimeout(productsTimeoutRef.current);
-    if (servicesTimeoutRef.current) clearTimeout(servicesTimeoutRef.current);
-    setIsDropdownOpen(false);
-    setIsProductsDropdownOpen(true);
-  };
-
-  const handleProductsMouseLeave = () => {
-    productsTimeoutRef.current = window.setTimeout(() => {
-      setIsProductsDropdownOpen(false);
-    }, 150);
-  };
+  const closeDesktopServices = () => setIsServicesOpen(false);
+  const closeMobileMenu = () => setIsMobileMenuOpen(false);
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 px-4 md:px-10 py-3 md:py-4 bg-white shadow-sm border-b border-black/5">
-      <div className="max-w-7xl mx-auto flex items-center justify-between">
-        {/* Logo */}
-        <div className="flex items-center cursor-pointer z-50">
-          <Link to="/" onClick={() => setIsMobileMenuOpen(false)}>
-            <img
-              src="/logo/logo.svg"
-              alt="Logo"
-              className="h-12 md:h-18 transition-all"
-            />
-          </Link>
-        </div>
+    <header className="fixed inset-x-0 top-0 z-50 border-b border-black/5 bg-white px-4 py-3 shadow-sm md:px-10 md:py-4">
+      <div className="mx-auto flex max-w-7xl items-center justify-between">
+        <Link to="/" onClick={closeMobileMenu} className="z-50">
+          <img
+            src="/logo/logo.svg"
+            alt="EuroDigital"
+            className="h-12 transition-all md:h-18"
+          />
+        </Link>
 
-        {/* Navigation */}
-        <nav className="hidden md:flex items-center gap-10">
-          <Link to="/">
-            <span
-              className="relative font-medium tracking-wide group"
-              style={{ color: "var(--primary-navy)" }}
-            >
-              Home
-              <span
-                className="absolute left-0 -bottom-1 w-0 h-px transition-all duration-300 ease-in-out group-hover:w-full"
-                style={{ backgroundColor: "var(--primary-navy)" }}
-              ></span>
-            </span>
+        <nav className="hidden items-center gap-8 md:flex" aria-label="Primary navigation">
+          <Link className="font-medium tracking-wide text-slate-800 hover:text-blue-700" to="/">
+            Home
+          </Link>
+          <Link
+            className="font-semibold tracking-wide text-blue-700"
+            to="/services/ai-business-promotion"
+          >
+            Digital Marketing
           </Link>
 
-          {/* Services Dropdown */}
           <div
             className="relative"
-            onMouseEnter={handleMouseEnter}
-            onMouseLeave={handleMouseLeave}
+            onMouseEnter={openServices}
+            onMouseLeave={scheduleServicesClose}
+            onFocus={openServices}
+            onBlur={(event) => {
+              if (!event.currentTarget.contains(event.relatedTarget)) closeDesktopServices();
+            }}
           >
             <button
-              className="flex items-center gap-1 py-2 font-medium tracking-wide outline-none"
-              style={{ color: "var(--primary-navy)" }}
+              type="button"
+              className="flex items-center gap-1 py-2 font-medium tracking-wide text-slate-800"
+              aria-expanded={isServicesOpen}
+              aria-haspopup="true"
+              onClick={() => setIsServicesOpen((open) => !open)}
             >
               Services
-              <ChevronDown
-                className={`w-4 h-4 transition-transform duration-300 ${isDropdownOpen ? "rotate-180" : ""}`}
-              />
-              {/* Highlight line under 'Services' when open */}
-              <span
-                className={`absolute left-0 bottom-1 h-px transition-all duration-300 ${isDropdownOpen ? "w-full" : "w-0"}`}
-                style={{ backgroundColor: "var(--primary-navy)" }}
-              ></span>
-            </button>
-
-            {/* Dropdown Menu */}
-            <div
-              className={`absolute left-0 w-72 pt-3 transition-all duration-300 ${isDropdownOpen ? "opacity-100 translate-y-0 visible" : "opacity-0 translate-y-2 invisible pointer-events-none"}`}
-            >
-              <div className="bg-white border border-gray-100 shadow-2xl rounded-xl py-2 overflow-hidden">
-                {services.map((service) => (
-                  <Link
-                    key={service.id}
-                    to={service.path}
-                    onClick={() => setIsDropdownOpen(false)}
-                    className="group flex items-center px-5 py-3 text-[14px] font-medium transition-all duration-200 hover:bg-slate-50"
-                  >
-                    {/* Highlighter Dot */}
-                    <div className="w-1.5 h-1.5 rounded-full bg-blue-600 mr-3 opacity-0 -ml-2 transition-all duration-300 group-hover:opacity-100 group-hover:ml-0" />
-
-                    <span className="text-slate-700 group-hover:text-blue-600 transition-colors">
-                      {service.title}
-                    </span>
-                  </Link>
-                ))}
-              </div>
-            </div>
-          </div>
-
-          {/* Products Dropdown */}
-          <div
-            className="relative"
-            onMouseEnter={handleProductsMouseEnter}
-            onMouseLeave={handleProductsMouseLeave}
-          >
-            <button
-              className="flex items-center gap-1 py-2 font-medium tracking-wide outline-none"
-              style={{ color: "var(--primary-navy)" }}
-            >
-              AI Tools
-              <ChevronDown
-                className={`w-4 h-4 transition-transform duration-300 ${isProductsDropdownOpen ? "rotate-180" : ""}`}
-              />
-              <span
-                className={`absolute left-0 bottom-1 h-px transition-all duration-300 ${isProductsDropdownOpen ? "w-full" : "w-0"}`}
-                style={{ backgroundColor: "var(--primary-navy)" }}
-              ></span>
+              <ChevronDown className={`h-4 w-4 transition-transform ${isServicesOpen ? "rotate-180" : ""}`} />
             </button>
 
             <div
-              className={`absolute left-0 w-56 pt-3 transition-all duration-300 ${isProductsDropdownOpen ? "opacity-100 translate-y-0 visible" : "opacity-0 translate-y-2 invisible pointer-events-none"}`}
+              className={`absolute -left-60 w-[760px] pt-3 transition-all duration-200 ${isServicesOpen ? "visible translate-y-0 opacity-100" : "invisible translate-y-2 opacity-0 pointer-events-none"}`}
             >
-              <div className="bg-white border border-gray-100 shadow-2xl rounded-xl py-2 overflow-hidden">
-                {products.map((product) => (
-                  <Link
-                    key={product.id}
-                    to={product.path}
-                    onClick={() => setIsProductsDropdownOpen(false)}
-                    className="group flex w-full items-center px-5 py-3 text-left text-[14px] font-medium transition-all duration-200 hover:bg-slate-50 cursor-pointer"
-                  >
-                    <div className="w-1.5 h-1.5 rounded-full bg-blue-600 mr-3 opacity-0 -ml-2 transition-all duration-300 group-hover:opacity-100 group-hover:ml-0" />
-
-                    <span className="text-slate-700 group-hover:text-blue-600 transition-colors">
-                      {product.title}
-                    </span>
-                  </Link>
+              <div className="grid grid-cols-3 gap-6 rounded-2xl border border-gray-100 bg-white p-6 shadow-2xl">
+                {navigationGroups.map((group) => (
+                  <section key={group.title}>
+                    <h2 className="mb-3 text-xs font-bold uppercase tracking-wider text-blue-700">
+                      {group.title}
+                    </h2>
+                    <div className="space-y-1">
+                      {group.items.map((item) => (
+                        <NavigationLink
+                          key={item.title}
+                          item={item}
+                          onClick={closeDesktopServices}
+                          className="block rounded-lg px-3 py-2 text-sm font-medium text-slate-700 transition-colors hover:bg-slate-50 hover:text-blue-700"
+                        />
+                      ))}
+                    </div>
+                  </section>
                 ))}
-                <a
-                  href={WHATSAPP_AUTOMATION_URL}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  onClick={() => setIsProductsDropdownOpen(false)}
-                  className="group flex w-full items-center px-5 py-3 text-left text-[14px] font-medium transition-all duration-200 hover:bg-slate-50 cursor-pointer"
+                <Link
+                  to="/services"
+                  onClick={closeDesktopServices}
+                  className="col-span-3 border-t border-slate-100 pt-4 text-sm font-semibold text-blue-700"
                 >
-                  <div className="w-1.5 h-1.5 rounded-full bg-blue-600 mr-3 opacity-0 -ml-2 transition-all duration-300 group-hover:opacity-100 group-hover:ml-0" />
-                  <span className="text-slate-700 group-hover:text-blue-600 transition-colors">
-                    Whatsapp Business API
-                  </span>
-                </a>
+                  View all digital marketing and growth services
+                </Link>
               </div>
             </div>
           </div>
 
-          <Link to="/contact">
-            <span
-              className="relative font-medium tracking-wide group"
-              style={{ color: "var(--primary-navy)" }}
-            >
-              Contact
-              <span
-                className="absolute left-0 -bottom-1 w-0 h-px transition-all duration-300 ease-in-out group-hover:w-full"
-                style={{ backgroundColor: "var(--primary-navy)" }}
-              ></span>
-            </span>
+          <Link className="font-medium tracking-wide text-slate-800 hover:text-blue-700" to="/about">
+            About
+          </Link>
+          <Link className="font-medium tracking-wide text-slate-800 hover:text-blue-700" to="/contact">
+            Contact
           </Link>
         </nav>
 
-        <div className="hidden md:flex items-center gap-3">
+        <div className="hidden items-center gap-3 md:flex">
           <Link
             to="/login"
-            className="inline-flex items-center gap-2 rounded-md border px-5 py-2.5 font-semibold transition-all hover:bg-slate-50 active:scale-95"
-            style={{
-              borderColor: "var(--primary-blue)",
-              color: "var(--primary-navy)",
-            }}
+            className="inline-flex items-center gap-2 rounded-md border px-5 py-2.5 font-semibold text-slate-800 transition-all hover:bg-slate-50"
+            style={{ borderColor: "var(--primary-blue)" }}
           >
             <LogIn className="h-4 w-4" />
             Login
           </Link>
-          <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer">
-            <button
-              className="rounded-md text-white font-semibold px-6 py-2.5 shadow-lg transition-all hover:brightness-110 active:scale-95 cursor-pointer"
-              style={{ backgroundColor: "var(--primary-blue)" }}
-            >
-              Book Consultation
-            </button>
+          <a
+            href={BOOKING_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="rounded-md px-6 py-2.5 font-semibold text-white shadow-lg transition-all hover:brightness-110"
+            style={{ backgroundColor: "var(--primary-blue)" }}
+          >
+            Book Consultation
           </a>
         </div>
 
-        {/* Mobile Menu Toggle */}
         <button
-          className="md:hidden p-2 z-50 transition-colors text-slate-700"
-          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          type="button"
+          className="z-50 p-2 text-slate-700 md:hidden"
+          onClick={() => setIsMobileMenuOpen((open) => !open)}
           aria-label="Toggle menu"
+          aria-expanded={isMobileMenuOpen}
         >
-          {isMobileMenuOpen ? (
-            <X className="w-7 h-7" />
-          ) : (
-            <Menu className="w-7 h-7" />
-          )}
+          {isMobileMenuOpen ? <X className="h-7 w-7" /> : <Menu className="h-7 w-7" />}
         </button>
       </div>
 
-      {/* Mobile Menu Sidebar */}
       <div
-        className={`fixed inset-0 bg-white z-40 transition-transform duration-300 ease-in-out md:hidden ${isMobileMenuOpen ? "translate-x-0" : "translate-x-full"}`}
+        className={`fixed inset-0 z-40 bg-white transition-transform duration-300 md:hidden ${isMobileMenuOpen ? "translate-x-0" : "translate-x-full"}`}
       >
-        <div className="flex flex-col h-full pt-24 px-6 overflow-y-auto">
-          <nav className="flex flex-col gap-6 text-lg font-medium">
-            <Link
-              to="/"
-              onClick={() => setIsMobileMenuOpen(false)}
-              className="py-2 border-b border-gray-100"
-              style={{ color: "var(--primary-navy)" }}
-            >
+        <div className="h-full overflow-y-auto px-6 pt-24 pb-10">
+          <nav className="flex flex-col gap-5 text-lg font-medium" aria-label="Mobile navigation">
+            <Link to="/" onClick={closeMobileMenu} className="border-b border-gray-100 py-2 text-slate-800">
               Home
             </Link>
-
-            <div className="flex flex-col">
-              <button
-                className="flex items-center justify-between py-2 border-b border-gray-100 outline-none"
-                style={{ color: "var(--primary-navy)" }}
-                onClick={() => setIsMobileServicesOpen(!isMobileServicesOpen)}
-              >
-                <span>Services</span>
-                <ChevronDown
-                  className={`w-5 h-5 transition-transform duration-300 ${isMobileServicesOpen ? "rotate-180" : ""}`}
-                />
-              </button>
-
-              <div
-                className={`flex flex-col gap-4 mt-4 pl-4 overflow-hidden transition-all duration-300 ${isMobileServicesOpen ? "max-h-[500px] opacity-100" : "max-h-0 opacity-0"}`}
-              >
-                {services.map((service) => (
-                  <Link
-                    key={service.id}
-                    to={service.path}
-                    onClick={() => setIsMobileMenuOpen(false)}
-                    className="text-slate-600 hover:text-blue-600 font-medium py-1"
-                  >
-                    {service.title}
-                  </Link>
-                ))}
-              </div>
-            </div>
-
-            <div className="flex flex-col">
-              <button
-                className="flex items-center justify-between py-2 border-b border-gray-100 outline-none"
-                style={{ color: "var(--primary-navy)" }}
-                onClick={() => setIsMobileProductsOpen(!isMobileProductsOpen)}
-              >
-                <span>AI Tools</span>
-                <ChevronDown
-                  className={`w-5 h-5 transition-transform duration-300 ${isMobileProductsOpen ? "rotate-180" : ""}`}
-                />
-              </button>
-
-              <div
-                className={`flex flex-col gap-4 mt-4 pl-4 overflow-hidden transition-all duration-300 ${isMobileProductsOpen ? "max-h-[240px] opacity-100" : "max-h-0 opacity-0"}`}
-              >
-                {products.map((product) => (
-                  <Link
-                    key={product.id}
-                    to={product.path}
-                    onClick={() => setIsMobileMenuOpen(false)}
-                    className="text-left text-slate-600 hover:text-blue-600 font-medium py-1"
-                  >
-                    {product.title}
-                  </Link>
-                ))}
-                <a
-                  href={WHATSAPP_AUTOMATION_URL}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  className="text-left text-slate-600 hover:text-blue-600 font-medium py-1"
-                >
-                  Whatsapp Business API
-                </a>
-              </div>
-            </div>
-
             <Link
-              to="/contact"
-              onClick={() => setIsMobileMenuOpen(false)}
-              className="py-2 border-b border-gray-100"
-              style={{ color: "var(--primary-navy)" }}
+              to="/services/ai-business-promotion"
+              onClick={closeMobileMenu}
+              className="border-b border-gray-100 py-2 font-semibold text-blue-700"
             >
-              Contact
+              Digital Marketing
             </Link>
 
+            <div>
+              <button
+                type="button"
+                className="flex w-full items-center justify-between border-b border-gray-100 py-2 text-slate-800"
+                onClick={() => setIsMobileServicesOpen((open) => !open)}
+                aria-expanded={isMobileServicesOpen}
+              >
+                Services
+                <ChevronDown className={`h-5 w-5 transition-transform ${isMobileServicesOpen ? "rotate-180" : ""}`} />
+              </button>
+
+              <div className={`${isMobileServicesOpen ? "block" : "hidden"} space-y-6 py-5 pl-3`}>
+                {navigationGroups.map((group) => (
+                  <section key={group.title}>
+                    <h2 className="mb-2 text-xs font-bold uppercase tracking-wider text-blue-700">
+                      {group.title}
+                    </h2>
+                    <div className="flex flex-col gap-2">
+                      {group.items.map((item) => (
+                        <NavigationLink
+                          key={item.title}
+                          item={item}
+                          onClick={closeMobileMenu}
+                          className="py-1 text-sm font-medium text-slate-600 hover:text-blue-700"
+                        />
+                      ))}
+                    </div>
+                  </section>
+                ))}
+                <Link to="/services" onClick={closeMobileMenu} className="block text-sm font-semibold text-blue-700">
+                  View all services
+                </Link>
+              </div>
+            </div>
+
+            <Link to="/about" onClick={closeMobileMenu} className="border-b border-gray-100 py-2 text-slate-800">
+              About
+            </Link>
+            <Link to="/contact" onClick={closeMobileMenu} className="border-b border-gray-100 py-2 text-slate-800">
+              Contact
+            </Link>
             <Link
               to="/login"
-              onClick={() => setIsMobileMenuOpen(false)}
-              className="mt-2 inline-flex items-center justify-center gap-2 rounded-md px-5 py-3 text-base font-semibold text-white shadow-lg"
+              onClick={closeMobileMenu}
+              className="mt-2 inline-flex items-center justify-center gap-2 rounded-md px-5 py-3 text-white shadow-lg"
               style={{ backgroundColor: "var(--primary-blue)" }}
             >
               <LogIn className="h-5 w-5" />

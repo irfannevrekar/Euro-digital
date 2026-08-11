@@ -1,76 +1,158 @@
+import { Link } from "react-router-dom";
+
+const serviceGroups = [
+  {
+    title: "Digital Marketing & Growth",
+    description:
+      "Build a connected customer-acquisition system spanning campaigns, lead capture, websites, CRM, follow-up, and conversion.",
+    services: [
+      {
+        title: "AI Digital Marketing & Business Promotion",
+        description:
+          "Generate leads and improve campaigns through audience targeting, personalized communication, campaign automation, and performance analytics.",
+        path: "/services/ai-business-promotion",
+      },
+      {
+        title: "Conversion-focused Website Builder",
+        description:
+          "Create websites, landing pages, and offer flows designed to capture interest and support conversion.",
+        path: "/products/website-builder",
+      },
+      {
+        title: "ED-CRM & Lead Management",
+        description:
+          "Connect lead capture, pipelines, customer communication, automated follow-up, and sales reporting in one platform.",
+        path: "/products/edcrm",
+      },
+      {
+        title: "WhatsApp Customer Engagement",
+        description:
+          "Capture, nurture, and support leads through automated and personalized WhatsApp customer journeys.",
+        path: "https://www.eurodigital.marketing/",
+      },
+    ],
+  },
+  {
+    title: "AI-powered Customer Engagement",
+    description:
+      "Use AI to respond faster, maintain consistent conversations, qualify leads, and support customers across voice and messaging channels.",
+    services: [
+      {
+        title: "AI Voice Agent Talk Time",
+        description:
+          "Automate sales, support, appointment booking, qualification, and customer follow-up through natural voice conversations.",
+        path: "/services/ai-agent-talk-time",
+      },
+      {
+        title: "AI Automated Chatbots",
+        description:
+          "Provide 24/7 support, answer common questions, qualify leads, and automate engagement on websites and messaging channels.",
+        path: "/services/ai-automated-chatbot",
+      },
+      {
+        title: "Emotion AI",
+        description:
+          "Use customer tone and intent to support more responsive, personalized engagement and follow-up.",
+        path: "/products/emotionai",
+      },
+    ],
+  },
+  {
+    title: "Business Automation",
+    description:
+      "Strengthen marketing and customer workflows by reducing repetitive work and connecting existing business systems.",
+    services: [
+      {
+        title: "AI Business Automation",
+        description:
+          "Automate repetitive processes and connected workflows so teams can focus on customer acquisition and growth.",
+        path: "/services/ai-business-automation",
+      },
+      {
+        title: "AI Add-on Services",
+        description:
+          "Add modular AI capabilities to the tools and platforms already used by your business.",
+        path: "/services/ai-addon-services",
+      },
+      {
+        title: "Industry-specific AI",
+        description:
+          "Apply practical automation and customer-engagement systems to the needs of specific industries.",
+        path: "/services/industry-specific",
+      },
+    ],
+  },
+];
+
 function Services() {
   return (
-    <section className="py-20 md:py-32 bg-gradient-to-b from-white to-cyan-50/30">
-      <div className="max-w-7xl mx-auto px-6 md:px-12 text-center">
-        <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-slate-800 mb-6">
-          Our AI Services
-        </h1>
-        <p className="text-lg md:text-xl text-slate-600 max-w-3xl mx-auto mb-12">
-          Explore our comprehensive AI solutions designed to transform your
-          business operations, enhance customer engagement, and drive growth.
-        </p>
+    <section className="bg-gradient-to-b from-white to-cyan-50/30 py-20 md:py-28">
+      <div className="mx-auto max-w-7xl px-6 md:px-12">
+        <header className="mx-auto max-w-4xl text-center">
+          <p className="mb-4 text-sm font-semibold uppercase tracking-[0.2em] text-blue-600">
+            Customer acquisition, engagement, and conversion
+          </p>
+          <h1 className="mb-6 text-4xl font-bold text-slate-800 md:text-5xl lg:text-6xl">
+            Digital Marketing Services Powered by AI
+          </h1>
+          <p className="text-lg leading-8 text-slate-600 md:text-xl">
+            EuroDigital connects digital marketing, lead generation, customer
+            acquisition, automated follow-up, conversion-focused websites, CRM,
+            and business automation into one coherent growth system. AI supports
+            that system by helping teams respond faster and engage leads more
+            consistently.
+          </p>
+        </header>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mt-16">
-          {/* Static Service Cards */}
-          <div className="bg-white rounded-2xl p-8 shadow-lg border border-gray-100">
-            <h3 className="text-2xl font-semibold text-slate-800 mb-4">
-              AI Business Automations
-            </h3>
-            <p className="text-slate-600 mb-6">
-              Streamline your workflows and reduce manual overhead with
-              intelligent automation.
-            </p>
-          </div>
+        <div className="mt-20 space-y-20">
+          {serviceGroups.map((group) => (
+            <section key={group.title} aria-labelledby={group.title.replaceAll(" ", "-").toLowerCase()}>
+              <div className="mb-8 max-w-3xl">
+                <h2
+                  id={group.title.replaceAll(" ", "-").toLowerCase()}
+                  className="mb-3 text-3xl font-bold text-slate-800 md:text-4xl"
+                >
+                  {group.title}
+                </h2>
+                <p className="text-lg leading-7 text-slate-600">{group.description}</p>
+              </div>
 
-          <div className="bg-white rounded-2xl p-8 shadow-lg border border-gray-100">
-            <h3 className="text-2xl font-semibold text-slate-800 mb-4">
-              AI Digital Marketing &amp; Business Promotion
-            </h3>
-            <p className="text-slate-600 mb-6">
-              Scale your reach and optimize marketing campaigns using predictive
-              AI tools.
-            </p>
-          </div>
+              <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+                {group.services.map((service) => {
+                  const isExternal = service.path.startsWith("http");
+                  const className =
+                    "group rounded-2xl border border-gray-100 bg-white p-8 shadow-lg transition-transform hover:-translate-y-1";
+                  const content = (
+                    <>
+                      <h3 className="mb-4 text-2xl font-semibold text-slate-800 group-hover:text-blue-700">
+                        {service.title}
+                      </h3>
+                      <p className="mb-6 leading-7 text-slate-600">{service.description}</p>
+                      <span className="font-semibold text-blue-700">
+                        Learn more about {service.title}
+                      </span>
+                    </>
+                  );
 
-          <div className="bg-white rounded-2xl p-8 shadow-lg border border-gray-100">
-            <h3 className="text-2xl font-semibold text-slate-800 mb-4">
-              AI Voice Agent Talk Time
-            </h3>
-            <p className="text-slate-600 mb-6">
-              Enhance voice interactions and customer support with natural
-              language processing.
-            </p>
-          </div>
-
-          <div className="bg-white rounded-2xl p-8 shadow-lg border border-gray-100">
-            <h3 className="text-2xl font-semibold text-slate-800 mb-4">
-              AI Automated Chatbot
-            </h3>
-            <p className="text-slate-600 mb-6">
-              Provide 24/7 instant support with intelligent, context-aware chat
-              agents.
-            </p>
-          </div>
-
-          <div className="bg-white rounded-2xl p-8 shadow-lg border border-gray-100">
-            <h3 className="text-2xl font-semibold text-slate-800 mb-4">
-              AI add-on Services
-            </h3>
-            <p className="text-slate-600 mb-6">
-              Custom AI integrations and specialized tools to augment your
-              existing stack.
-            </p>
-          </div>
-
-          <div className="bg-white rounded-2xl p-8 shadow-lg border border-gray-100">
-            <h3 className="text-2xl font-semibold text-slate-800 mb-4">
-              Industry Specific AI
-            </h3>
-            <p className="text-slate-600 mb-6">
-              Tailored use cases designed for the unique challenges of your
-              specific market.
-            </p>
-          </div>
+                  return isExternal ? (
+                    <a
+                      key={service.title}
+                      href={service.path}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={className}
+                    >
+                      {content}
+                    </a>
+                  ) : (
+                    <Link key={service.title} to={service.path} className={className}>
+                      {content}
+                    </Link>
+                  );
+                })}
+              </div>
+            </section>
+          ))}
         </div>
       </div>
     </section>

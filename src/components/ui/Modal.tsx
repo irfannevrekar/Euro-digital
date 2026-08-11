@@ -81,7 +81,7 @@ const Modal = ({ isOpen, onClose, title, children, ctaUrl, ctaText }: ModalProps
                                     rel="noopener noreferrer"
                                     className="px-6 py-2 bg-slate-800 text-white font-semibold rounded-full hover:bg-slate-700 transition-colors inline-block text-center"
                                 >
-                                    {ctaText || "Contact Sale"}
+                                    {ctaText || "Contact Sales"}
                                 </a>
                             )}
                         </div>

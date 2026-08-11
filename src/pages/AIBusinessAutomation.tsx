@@ -147,7 +147,7 @@ function AIBusinessAutomation() {
                   AI Startup
                 </h3>
                 <p className="text-[15px] text-slate-600 mb-6 min-h-[40px]">
-                  For startups and publishers looking to automate basic
+                  For startups and growing businesses looking to automate basic
                   operations.
                 </p>
                 <div className="mb-4">
@@ -217,7 +217,7 @@ function AIBusinessAutomation() {
                   AI Business
                 </h3>
                 <p className="text-[15px] text-slate-600 mb-6 min-h-[40px]">
-                  For rapidly scaling startups and publishers needing advanced
+                  For rapidly scaling businesses needing advanced
                   features.
                 </p>
                 <div className="mb-4">

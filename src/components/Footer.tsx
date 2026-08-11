@@ -4,16 +4,18 @@ import { useState, useEffect } from "react";
 
 const quickLinks = [
   { name: "Home", path: "/" },
-  { name: "Services", path: "/#services" },
+  { name: "Digital Marketing Services", path: "/services" },
+  { name: "AI Digital Marketing", path: "/services/ai-business-promotion" },
+  { name: "Website & Funnel Builder", path: "/products/website-builder" },
+  { name: "ED-CRM & Lead Management", path: "/products/edcrm" },
   { name: "About Us", path: "/about" },
-  { name: "Pricing", path: "/services/ai-business-automation#pricing" },
 ];
 
 const socialLinks = [
-  { Icon: Linkedin, href: "https://www.linkedin.com/company/euro-digital-technologies-llc/" },
-  { Icon: Facebook, href: "https://www.facebook.com/EuroDigitalUAE/" },
-  { Icon: Youtube, href: "https://www.youtube.com/watch?v=oXOzAl0Cbkc" },
-  { Icon: Twitter, href: "https://x.com/eurodigitaluae" },
+  { Icon: Linkedin, href: "https://www.linkedin.com/company/euro-digital-technologies-llc/", label: "EuroDigital on LinkedIn" },
+  { Icon: Facebook, href: "https://www.facebook.com/EuroDigitalUAE/", label: "EuroDigital on Facebook" },
+  { Icon: Youtube, href: "https://www.youtube.com/watch?v=oXOzAl0Cbkc", label: "EuroDigital on YouTube" },
+  { Icon: Twitter, href: "https://x.com/eurodigitaluae", label: "EuroDigital on X" },
 ];
 
 function Footer() {
@@ -79,20 +81,22 @@ function Footer() {
               </Link>
 
               <p className="text-[15px] leading-relaxed text-white/80">
-                EuroDigital is a digital marketing and AI automation company based in
-                Abu Dhabi, UAE, helping businesses grow through marketing, lead
-                generation, CRM, websites, and intelligent automation.
+                EuroDigital is a digital marketing company based in Abu Dhabi,
+                UAE. We help businesses generate leads and improve conversion
+                through marketing automation, CRM, websites, and AI-powered
+                customer engagement.
               </p>
 
 
 
               <div className="flex items-center gap-3">
-                {socialLinks.map(({ Icon, href }, i) => (
+                {socialLinks.map(({ Icon, href, label }) => (
                   <a
-                    key={i}
+                    key={label}
                     href={href}
                     target="_blank"
                     rel="noreferrer"
+                    aria-label={label}
                     className="w-10 h-10 flex items-center justify-center rounded-lg text-white/70 hover:text-white hover:bg-white/10 transition-all"
                   >
                     <Icon className="w-5 h-5" />
@@ -165,12 +169,12 @@ function Footer() {
                   Abu Dhabi, UAE
                 </p>
                 <div className="space-y-2">
-                  <p className="hover:text-white transition-coLoading...rs cursor-pointer">
+                  <a className="block hover:text-white transition-colors" href="mailto:support@eurodigital.site">
                     support@eurodigital.site
-                  </p>
-                  <p className="hover:text-white transition-colors cursor-pointer">
-                    +971 561874676
-                  </p>
+                  </a>
+                  <a className="block hover:text-white transition-colors" href="tel:+971561874676">
+                    +971 56 187 4676
+                  </a>
                 </div>
               </div>
             </div>

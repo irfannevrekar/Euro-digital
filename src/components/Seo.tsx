@@ -9,14 +9,14 @@ type PageSeo = {
 
 const pageSeo: Record<string, PageSeo> = {
   "/": {
-    title: "Digital Marketing & AI Automation Company UAE | EuroDigital",
+    title: "Digital Marketing Company UAE | EuroDigital",
     description:
-      "EuroDigital is a digital marketing and AI automation company in Abu Dhabi, UAE, providing lead generation, marketing automation, CRM, AI chatbots, website development, and business automation services.",
+      "EuroDigital is a digital marketing company in Abu Dhabi, UAE, helping businesses generate leads and improve conversion through marketing automation, websites, CRM, and AI-powered customer engagement.",
   },
   "/about": {
-    title: "About EuroDigital | Digital Marketing & AI Automation Company UAE",
+    title: "About EuroDigital | Digital Marketing Company UAE",
     description:
-      "Learn about Euro Digital Technologies LLC, a digital marketing and AI automation company based in Abu Dhabi, UAE.",
+      "Learn about Euro Digital Technologies LLC, a digital marketing company in Abu Dhabi using CRM, websites, marketing automation, and AI to improve customer acquisition and conversion.",
   },
   "/contact": {
     title: "Contact EuroDigital | Digital Marketing & AI Automation UAE",
@@ -24,9 +24,9 @@ const pageSeo: Record<string, PageSeo> = {
       "Contact EuroDigital in Abu Dhabi for digital marketing, lead generation, CRM, websites, AI agents, chatbots, and business automation services.",
   },
   "/services": {
-    title: "Digital Marketing & AI Automation Services UAE | EuroDigital",
+    title: "Digital Marketing Services Powered by AI UAE | EuroDigital",
     description:
-      "Explore EuroDigital services for digital marketing, lead generation, AI business automation, voice agents, chatbots, and industry-specific AI in the UAE.",
+      "Explore EuroDigital services for lead generation, marketing automation, conversion-focused websites, CRM, customer engagement, and AI-supported follow-up in the UAE.",
   },
   "/services/ai-business-automation": {
     title: "AI Business Automation Services UAE | EuroDigital",
@@ -94,7 +94,7 @@ const organizationSchema = {
   url: `${SITE_URL}/`,
   logo: `${SITE_URL}/logo/euro-digital-black-white.png`,
   description:
-    "EuroDigital is a digital marketing and AI automation company based in Abu Dhabi, UAE. The company provides digital marketing, lead generation, marketing automation, CRM, website development, AI agents, chatbots, and business automation services.",
+    "EuroDigital is a digital marketing company based in Abu Dhabi, UAE. The company helps businesses generate leads and improve customer acquisition and conversion through marketing automation, CRM, website development, and AI-powered customer engagement.",
   telephone: "+971561874676",
   email: "support@eurodigital.site",
   address: {
@@ -108,6 +108,12 @@ const organizationSchema = {
     "https://www.facebook.com/EuroDigitalUAE/",
     "https://x.com/eurodigitaluae",
   ],
+  makesOffer: {
+    "@type": "Offer",
+    itemOffered: {
+      "@id": `${SITE_URL}/services/ai-business-promotion#service`,
+    },
+  },
 };
 
 const marketingServiceSchema = {
@@ -117,7 +123,7 @@ const marketingServiceSchema = {
   name: "AI Digital Marketing & Business Promotion",
   serviceType: "Digital Marketing and Marketing Automation",
   description:
-    "AI-powered digital marketing services including campaign automation, audience targeting, personalized content, lead generation, campaign optimization and performance analytics.",
+    "Digital marketing services for lead generation and conversion, supported by AI-powered campaign automation, audience targeting, personalized communication, marketing automation, CRM-connected follow-up, campaign optimization, and performance analytics.",
   provider: { "@id": `${SITE_URL}/#organization` },
   url: `${SITE_URL}/services/ai-business-promotion`,
 };

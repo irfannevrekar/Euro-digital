@@ -8,7 +8,7 @@ function AIBusinessPromotion() {
     id: "ai-business-promotion",
     title: "AI Digital Marketing & Business Promotion",
     description:
-      "EuroDigital provides AI-powered digital marketing services including campaign automation, audience targeting, personalized content, lead generation, campaign optimization, and performance analytics.",
+      "EuroDigital helps businesses generate and convert leads through digital marketing systems supported by campaign automation, audience targeting, personalized communication, CRM-connected follow-up, and performance analytics.",
     image: "/servicesImages/Ai-business-promotion.png",
     features: [
       "Automated marketing workflows",
@@ -16,10 +16,11 @@ function AIBusinessPromotion() {
       "Intelligent campaign optimisation",
       "AI-driven content distribution",
       "Performance tracking and insights",
+      "Automated lead follow-up and CRM connection",
     ],
     detailedDescription:
-      "EuroDigital enables businesses to scale their marketing efforts while maintaining consistency and quality across all channels.",
-    primaryButtonText: "Try To Sales",
+      "AI supports the marketing process by helping teams respond faster, maintain consistent follow-up, and use campaign insights to improve conversion.",
+    primaryButtonText: "Talk to Sales",
   };
 
   const videoUrl =
@@ -29,7 +30,7 @@ function AIBusinessPromotion() {
     <>
       <ServiceHeroVideo
         videoUrl={videoUrl}
-        overlayTitle="Ready to Automate Your Business?"
+        overlayTitle="Ready to Strengthen Your Digital Marketing?"
         ctaLink="https://crm.eurodigital.ae/widget/bookings/web-booking-euro"
       />
       {/* Service Content */}
@@ -91,12 +92,15 @@ function AIBusinessPromotion() {
               )}
 
               <div className="flex gap-4 pt-4">
-                <button
+                <a
+                  href="https://crm.eurodigital.ae/widget/bookings/web-booking-euro"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="rounded-full  font-medium px-6 py-2 shadow-lg  text-black cursor-pointer"
                   style={{ backgroundColor: "var(--primary-blue)" }}
                 >
                   {serviceData.primaryButtonText}
-                </button>
+                </a>
               </div>
             </div>
 
@@ -111,6 +115,60 @@ function AIBusinessPromotion() {
               />
             </div>
           </motion.div>
+        </div>
+      </section>
+
+      <section className="bg-slate-50 py-16 md:py-24">
+        <div className="mx-auto max-w-7xl px-6 md:px-12">
+          <div className="max-w-4xl">
+            <p className="mb-3 text-sm font-semibold uppercase tracking-[0.2em] text-blue-600">
+              Connected digital growth
+            </p>
+            <h2 className="mb-6 text-3xl font-bold text-slate-900 md:text-5xl">
+              From audience targeting to lead follow-up
+            </h2>
+            <p className="text-lg leading-8 text-slate-600">
+              Effective digital marketing does not stop when a campaign generates
+              interest. EuroDigital connects promotion, lead capture, personalized
+              communication, CRM workflows, and automated follow-up so businesses
+              can move more opportunities toward conversion.
+            </p>
+          </div>
+
+          <div className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+            {[
+              {
+                title: "Campaign automation",
+                description:
+                  "Coordinate repeatable marketing workflows and content distribution while maintaining consistent communication.",
+              },
+              {
+                title: "Audience targeting & personalization",
+                description:
+                  "Use customer and campaign data to deliver more relevant messages to defined audiences.",
+              },
+              {
+                title: "Lead generation & CRM follow-up",
+                description:
+                  "Capture interest, organize leads in CRM workflows, and automate timely sales follow-up.",
+              },
+              {
+                title: "Performance & conversion insights",
+                description:
+                  "Track campaign performance and use measurable insights to improve engagement and conversion support.",
+              },
+            ].map((capability) => (
+              <article
+                key={capability.title}
+                className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm"
+              >
+                <h3 className="mb-3 text-xl font-bold text-slate-900">
+                  {capability.title}
+                </h3>
+                <p className="leading-7 text-slate-600">{capability.description}</p>
+              </article>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -138,7 +196,7 @@ function AIBusinessPromotion() {
                   AI Startup
                 </h3>
                 <p className="text-[15px] text-slate-600 mb-6 min-h-[40px]">
-                  For startups and publishers looking to automate basic
+                  For startups and growing businesses looking to automate basic
                   marketing operations.
                 </p>
                 <div className="mb-4">
@@ -208,7 +266,7 @@ function AIBusinessPromotion() {
                   AI Business
                 </h3>
                 <p className="text-[15px] text-slate-600 mb-6 min-h-[40px]">
-                  For rapidly scaling startups and publishers needing advanced
+                  For rapidly scaling businesses needing advanced
                   marketing automation.
                 </p>
                 <div className="mb-4">

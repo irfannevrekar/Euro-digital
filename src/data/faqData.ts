@@ -12,7 +12,7 @@ export interface ServiceFAQ {
 export const serviceFAQs: ServiceFAQ[] = [
   {
     serviceId: "ai-business-automation",
-    subtitle: "Baseten delivers the infrastructure, tooling, and expertise needed to bring great AI products to market - fast.",
+    subtitle: "Learn how EuroDigital connects AI automation with practical business workflows, customer engagement, and measurable growth.",
     faqs: [
       {
         question: "What is AI Business Automation?",

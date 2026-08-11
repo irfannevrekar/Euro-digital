@@ -8,6 +8,7 @@ import { SERVICE_BOOKING_URLS } from "../constants/booking";
 interface Card {
   title: string;
   desc: string;
+  category: "growth" | "engagement" | "automation";
   video?: string;
   image?: string;
   link: string;
@@ -17,6 +18,7 @@ interface Card {
 const cards: Card[] = [
   {
     title: "AI Business Automation",
+    category: "automation",
     desc: "Streamline Operations. Reduce Manual Work. Scale Faster. Automate repetitive tasks and optimize workflows to drive efficiency across your entire organization.",
     video:
       "https://player.mediadelivery.net/play/661416/aba8e1cb-c5df-4c8e-8d47-a8bf6d066411",
@@ -25,6 +27,7 @@ const cards: Card[] = [
   },
   {
     title: "AI Digital Marketing & Business Promotion",
+    category: "growth",
     desc: "EuroDigital provides AI-powered digital marketing services including campaign automation, audience targeting, personalized content, lead generation, campaign optimization, and performance analytics.",
     video:
       "https://player.mediadelivery.net/play/661416/02126d15-3c9d-4d94-a8ac-1d8bbc37332e",
@@ -33,12 +36,14 @@ const cards: Card[] = [
   },
   {
     title: "AI Voice Agent Talk Time",
+    category: "engagement",
     desc: "AI voice calling capacity for automated sales, support, appointment booking, qualification, and customer follow-up.",
     image: "/backgroundImages/ai_automation.png",
     link: "/services/ai-agent-talk-time",
   },
   {
     title: "AI Automated Chatbot",
+    category: "engagement",
     desc: "AI chatbots for websites and messaging channels that provide 24/7 customer support, lead qualification, FAQs, and automated customer engagement.",
     video:
       "https://player.mediadelivery.net/play/661416/c564b724-82f9-4426-b62e-079b3a1b8fb4",
@@ -46,7 +51,8 @@ const cards: Card[] = [
     bookingUrl: SERVICE_BOOKING_URLS.aiAutomatedChatbot,
   },
   {
-    title: "AI add-on Services",
+    title: "AI Add-on Services",
+    category: "automation",
     desc: "Extend capabilities with modular AI services. Integrate powerful AI tools into your existing systems to enhance functionality and performance.",
     video:
       "https://player.mediadelivery.net/play/661416/0547118b-9fd8-4aae-864f-77f5f0690710",
@@ -54,14 +60,16 @@ const cards: Card[] = [
     bookingUrl: SERVICE_BOOKING_URLS.aiAddon,
   },
   {
-    title: "Industry Specific AI Use Cases",
+    title: "Industry-Specific AI Solutions",
+    category: "automation",
     desc: "Tailored accelerators for your vertical. Industry-specific solutions designed to address unique challenges and accelerate growth in your sector.",
     video:
       "https://player.mediadelivery.net/play/661416/78158008-7515-443f-a183-a54a8d3b3a3f",
     link: "/services/industry-specific",
   },
   {
-    title: "AI Website Builder",
+    title: "Conversion-focused Website Builder",
+    category: "growth",
     desc: "Launch polished, high-converting websites in minutes—not weeks. Generate landing pages, supporting pages, and offer flows from simple prompts without writing code.",
     video:
       "https://player.mediadelivery.net/play/661416/2fbe2f5c-3f7c-4ebd-8121-5312b7173497",
@@ -69,7 +77,8 @@ const cards: Card[] = [
     bookingUrl: SERVICE_BOOKING_URLS.aiWebsiteBuilder,
   },
   {
-    title: "ED-CRM",
+    title: "ED-CRM & Lead Management",
+    category: "growth",
     desc: "One platform to attract leads, automate follow-up, and grow revenue. Bring funnels, workflows, AI agents, and real-time reporting together in a single CRM.",
     video:
       "https://player.mediadelivery.net/play/667434/9498cecf-b56b-403f-a713-3551b8f7cf8c",
@@ -78,6 +87,7 @@ const cards: Card[] = [
   },
   {
     title: "Emotion AI",
+    category: "engagement",
     desc: "Connect with customers in a personal, empathetic way. Emotion AI senses tone and intent in real time so every reply feels timely, human, and built to convert.",
     video:
       "https://player.mediadelivery.net/play/661416/63fe6a94-5414-484c-b852-3c38c580a74f",
@@ -85,12 +95,34 @@ const cards: Card[] = [
     bookingUrl: SERVICE_BOOKING_URLS.emotionAi,
   },
   {
-    title: "WhatsApp Business API",
+    title: "WhatsApp Customer Engagement",
+    category: "growth",
     desc: "Engage customers at scale with automated, personalized WhatsApp video journeys. Capture leads, respond instantly, nurture sales conversations, and support customers from one unified AI-powered platform.",
     video:
       "https://player.mediadelivery.net/play/661416/6a61d538-971f-4b67-898e-708a8dfa12ab",
     link: "https://www.eurodigital.marketing/",
     bookingUrl: SERVICE_BOOKING_URLS.whatsappApi,
+  },
+];
+
+const serviceGroups = [
+  {
+    id: "growth" as const,
+    title: "Digital Marketing & Growth",
+    description:
+      "Generate demand, capture leads, automate follow-up, and support conversion through connected marketing, website, CRM, and messaging systems.",
+  },
+  {
+    id: "engagement" as const,
+    title: "AI-powered Customer Engagement",
+    description:
+      "Respond to prospects and customers faster through voice, chat, and emotionally aware engagement tools.",
+  },
+  {
+    id: "automation" as const,
+    title: "Business Automation",
+    description:
+      "Reduce repetitive work and connect the operational workflows that support marketing, sales, and customer service.",
   },
 ];
 
@@ -194,7 +226,7 @@ function Sections({ onBookDemo }: SectionsProps) {
         {/* ... (Overview content) */}
       </section>
 
-      {/* Personal Secretary grid - UPDATED FOR CONSISTENCY */}
+      {/* Services grouped by customer outcome and business role */}
       <section
         id="services"
         className="bg-white py-20 md:py-16 scroll-mt-32"
@@ -205,24 +237,42 @@ function Sections({ onBookDemo }: SectionsProps) {
             className="text-4xl md:text-5xl lg:text-6xl font-semibold"
             style={{ color: "var(--text-primary)" }}
           >
-            Everything Your Personal Secretary Should Do
+            Digital Marketing Systems Built for Growth
           </h2>
           <p
             className="text-base md:text-[19px] max-w-3xl mx-auto leading-relaxed capitalize"
             style={{ color: "var(--text-secondary)" }}
           >
-            EuroDigital is a digital marketing and AI automation company in the UAE,
-            providing lead generation, marketing automation, AI customer engagement,
-            CRM, website development, and business automation services.
+            EuroDigital helps businesses generate leads and improve conversion
+            through digital marketing, marketing automation, conversion-focused
+            websites, CRM, and customer engagement. AI strengthens these systems
+            through faster response, automated follow-up, and connected workflows.
           </p>
         </div>
 
-        <div className="max-w-7xl mx-auto px-6 md:px-12 grid md:grid-cols-2 gap-8 md:gap-10">
-          {cards.map((card, index) => {
-            const isPlaying = currentlyPlayingIndex === index;
-            const isBuffering = bufferingVideoIndex === index;
+        <div className="max-w-7xl mx-auto px-6 md:px-12 space-y-20">
+          {serviceGroups.map((group) => (
+            <section key={group.id} aria-labelledby={`homepage-${group.id}`}>
+              <div className="mb-8 max-w-3xl">
+                <h3
+                  id={`homepage-${group.id}`}
+                  className="mb-3 text-3xl font-semibold md:text-4xl"
+                  style={{ color: "var(--text-primary)" }}
+                >
+                  {group.title}
+                </h3>
+                <p className="text-lg leading-8" style={{ color: "var(--text-secondary)" }}>
+                  {group.description}
+                </p>
+              </div>
 
-            return (
+              <div className="grid gap-8 md:grid-cols-2 md:gap-10">
+                {cards.filter((card) => card.category === group.id).map((card) => {
+                  const index = cards.indexOf(card);
+                  const isPlaying = currentlyPlayingIndex === index;
+                  const isBuffering = bufferingVideoIndex === index;
+
+                  return (
               <div
                 key={card.title}
                 className="group rounded-3xl flex flex-col p-5 md:p-6 border border-slate-200/80 shadow-[0_10px_35px_rgba(15,31,56,0.06)] hover:shadow-[0_22px_60px_rgba(15,31,56,0.14)] hover:-translate-y-1 transition-all duration-300 h-full"
@@ -310,12 +360,12 @@ function Sections({ onBookDemo }: SectionsProps) {
                 <div className="pt-6 md:pt-8 flex flex-col flex-grow">
                   <div className="mb-4">
                     {/* Fixed Title Height or min-height ensures text levels stay same */}
-                    <h3
+                    <h4
                       className="text-2xl md:text-3xl font-semibold leading-tight min-h-[3.5rem] md:min-h-[4.5rem]"
                       style={{ color: "var(--text-primary)" }}
                     >
                       {card.title}
-                    </h3>
+                    </h4>
                   </div>
 
                   {/* Description area */}
@@ -362,8 +412,11 @@ function Sections({ onBookDemo }: SectionsProps) {
                   </div>
                 </div>
               </div>
-            );
-          })}
+                  );
+                })}
+              </div>
+            </section>
+          ))}
         </div>
       </section>
 

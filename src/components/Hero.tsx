@@ -17,18 +17,11 @@ const SLIDE_DURATION_MS = 6000;
 
 const slides: Slide[] = [
   {
-    title: "Digital Marketing & AI Automation Company in the UAE",
+    title: "Digital Marketing Company in the UAE",
     description:
-      "EuroDigital is a digital marketing and AI automation company based in Abu Dhabi, UAE. We help businesses generate leads, run smarter marketing campaigns, automate customer engagement, build conversion-focused websites, and implement AI-powered sales and CRM systems.",
+      "EuroDigital helps businesses generate leads and grow revenue through digital marketing, marketing automation, conversion-focused websites, CRM, and AI-powered customer engagement. Our AI automation capabilities strengthen these marketing systems through faster lead response, automated follow-up, voice agents, chatbots, and intelligent sales workflows.",
     image:
       "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1920&q=75&fm=webp",
-  },
-  {
-    title: "AI Business Automation",
-    description:
-      "EuroDigital’s AI Business Automation solutions are built to eliminate repetitive tasks and optimize your internal workflows. We analyze your business processes and design automation systems that save time, reduce errors, and allow your team to focus on high-value work.",
-    image: "/servicesImages/Ai-business-automation1.png",
-    link: "/services/ai-business-automation",
   },
   {
     title: "AI Digital Marketing & Business Promotion",
@@ -36,6 +29,13 @@ const slides: Slide[] = [
       "EuroDigital provides AI-powered digital marketing services including campaign automation, audience targeting, personalized content, lead generation, campaign optimization, and performance analytics.",
     image: "/servicesImages/Ai-business-promotion.png",
     link: "/services/ai-business-promotion",
+  },
+  {
+    title: "AI Business Automation",
+    description:
+      "EuroDigital’s AI Business Automation solutions are built to eliminate repetitive tasks and optimize your internal workflows. We analyze your business processes and design automation systems that save time, reduce errors, and allow your team to focus on high-value work.",
+    image: "/servicesImages/Ai-business-automation1.png",
+    link: "/services/ai-business-automation",
   },
   {
     title: "AI Voice Agent Talk Time",
