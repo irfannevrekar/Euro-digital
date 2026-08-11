@@ -5,18 +5,18 @@ import { getFAQsByServiceId } from "../data/faqData";
 function AIAgentTalkTime() {
   const serviceData = {
     id: "ai-agent-talk-time",
-    title: "AI Agent Talk Time",
+    title: "AI Voice Agent Talk Time",
     description:
-      "Our AI-powered chatbots are designed to handle customer interactions accurately and professionally, around the clock. These chatbots are trained using your business data, ensuring responses remain relevant, reliable, and aligned with your brand voice.",
+      "AI voice calling capacity for automated sales, support, appointment booking, qualification, and customer follow-up.",
     image: "/backgroundImages/aitalk-time.png",
     features: [
-      "Website, WhatsApp, and platform-based chatbots",
-      "Customer support automation",
-      "Lead qualification and nurturing",
-      "Appointment scheduling and follow-ups",
-      "FAQ and knowledge base handling"
+      "Inbound and outbound AI calling",
+      "Automated sales and customer support",
+      "Lead qualification and follow-up",
+      "Appointment booking and reminders",
+      "Natural, brand-aligned voice conversations"
     ],
-    detailedDescription: "This ensures faster response times, improved customer satisfaction, and reduced support workload.",
+    detailedDescription: "Scale customer conversations while reducing call handling costs and ensuring inquiries receive a timely response.",
     primaryButtonText: "Try For Free",
   };
 
@@ -336,4 +336,3 @@ function AIAgentTalkTime() {
 }
 
 export default AIAgentTalkTime;
-

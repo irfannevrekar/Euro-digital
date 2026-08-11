@@ -59,9 +59,13 @@ function BunnyStreamPlayer({
       video.pause();
     }
 
-    setIsPlaying(false);
-    setIsBuffering(false);
-    setShowControls(false);
+    const resetTimer = window.setTimeout(() => {
+      setIsPlaying(false);
+      setIsBuffering(false);
+      setShowControls(false);
+    }, 0);
+
+    return () => window.clearTimeout(resetTimer);
   }, [isActive]);
 
   const hideControlsAfterDelay = useCallback(() => {

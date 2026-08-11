@@ -6,9 +6,9 @@ import ServiceHeroVideo from "../components/ServiceHeroVideo";
 function AIBusinessPromotion() {
   const serviceData = {
     id: "ai-business-promotion",
-    title: "AI Business Promotion",
+    title: "AI Digital Marketing & Business Promotion",
     description:
-      "Our AI Business Promotion solutions help you reach the right audience at the right time with personalized, data-driven strategies. By leveraging AI, we improve engagement, increase conversions, and make your marketing efforts more efficient.",
+      "EuroDigital provides AI-powered digital marketing services including campaign automation, audience targeting, personalized content, lead generation, campaign optimization, and performance analytics.",
     image: "/servicesImages/Ai-business-promotion.png",
     features: [
       "Automated marketing workflows",

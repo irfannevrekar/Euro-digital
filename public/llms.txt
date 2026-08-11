@@ -1,0 +1,25 @@
+# EuroDigital
+
+> EuroDigital (Euro Digital Technologies LLC) is a digital marketing and AI automation company based in Abu Dhabi, UAE.
+
+EuroDigital helps businesses generate leads, automate marketing and sales workflows, improve customer engagement, build websites, deploy CRM systems, and implement AI-powered business automation.
+
+## Core Services
+
+- [Digital Marketing & AI Business Promotion](https://www.eurodigi.ai/services/ai-business-promotion)
+- [AI Business Automation](https://www.eurodigi.ai/services/ai-business-automation)
+- [AI Voice Agents](https://www.eurodigi.ai/services/ai-agent-talk-time)
+- [AI Chatbots](https://www.eurodigi.ai/services/ai-automated-chatbot)
+- [AI Add-on Services](https://www.eurodigi.ai/services/ai-addon-services)
+- [Industry-specific AI](https://www.eurodigi.ai/services/industry-specific)
+
+## Products
+
+- [AI Website Builder](https://www.eurodigi.ai/products/website-builder)
+- [ED-CRM](https://www.eurodigi.ai/products/edcrm)
+- [Emotion AI](https://www.eurodigi.ai/products/emotionai)
+
+## Company
+
+- [About EuroDigital](https://www.eurodigi.ai/about)
+- [Contact EuroDigital](https://www.eurodigi.ai/contact)

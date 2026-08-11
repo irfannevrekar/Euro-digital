@@ -41,8 +41,8 @@ export const serviceFAQs: ServiceFAQ[] = [
     subtitle: "Transform your marketing strategy with AI-powered promotion solutions that deliver measurable results.",
     faqs: [
       {
-        question: "What is AI Business Promotion?",
-        answer: "AI Business Promotion uses artificial intelligence to create, optimize, and manage marketing campaigns across multiple channels. It analyzes customer behavior, predicts trends, and personalizes content to maximize engagement and conversions."
+        question: "What is AI Digital Marketing & Business Promotion?",
+        answer: "AI Digital Marketing & Business Promotion uses artificial intelligence to create, optimize, and manage marketing campaigns across multiple channels. It analyzes customer behavior, predicts trends, and personalizes content to maximize engagement and conversions."
       },
       {
         question: "How can AI improve my marketing ROI?",
@@ -63,7 +63,7 @@ export const serviceFAQs: ServiceFAQ[] = [
     ]
   },
   {
-    serviceId: "ai-agent-talk-time",
+    serviceId: "ai-automated-chatbot",
     subtitle: "Deliver exceptional customer experiences 24/7 with intelligent AI-powered chat agents.",
     faqs: [
       {
@@ -89,7 +89,7 @@ export const serviceFAQs: ServiceFAQ[] = [
     ]
   },
   {
-    serviceId: "ai-automated-chatbot",
+    serviceId: "ai-agent-talk-time",
     subtitle: "Experience the future of voice communication with AI agents that sound and respond like real humans.",
     faqs: [
       {
@@ -250,4 +250,3 @@ export const serviceFAQs: ServiceFAQ[] = [
 export const getFAQsByServiceId = (serviceId: string): ServiceFAQ | undefined => {
   return serviceFAQs.find(faq => faq.serviceId === serviceId);
 };
-

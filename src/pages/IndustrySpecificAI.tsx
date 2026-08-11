@@ -193,12 +193,12 @@ function IndustrySpecificAI() {
         <div className="max-w-7xl mx-auto px-6 md:px-12">
           {/* Heading */}
           <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-slate-800 mb-4">
-              Everything Your Personal Secretary Should Do
-            </h2>
+            <h1 className="text-4xl md:text-5xl font-bold text-slate-800 mb-4">
+              Industry-Specific AI Solutions
+            </h1>
             <p className="text-lg text-slate-600 max-w-3xl mx-auto ">
-              Baseten Delivers The Infrastructure, Tooling, And Expertise Needed
-              To Bring Great AI Products To Market - Fast.
+              EuroDigital designs practical AI automation, customer engagement,
+              and marketing solutions around the needs of each industry.
             </p>
           </div>
 

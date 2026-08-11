@@ -18,14 +18,17 @@ import PrivacyPolicy from './pages/PrivacyPolicy'
 import TermsAndConditions from './pages/TermsAndConditions'
 import ScrollToTop from './components/ScrollToTop'
 import LoginRedirect from './pages/LoginRedirect'
+import About from './pages/About'
+import Seo from './components/Seo'
 
 function App() {
   return (
     <>
+      <Seo />
       <ScrollToTop />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/why-choose-us" element={<Home />} />
+        <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/login" element={<LoginRedirect />} />
 

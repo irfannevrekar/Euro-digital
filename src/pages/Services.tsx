@@ -24,7 +24,7 @@ function Services() {
 
           <div className="bg-white rounded-2xl p-8 shadow-lg border border-gray-100">
             <h3 className="text-2xl font-semibold text-slate-800 mb-4">
-              AI Business Promotion
+              AI Digital Marketing &amp; Business Promotion
             </h3>
             <p className="text-slate-600 mb-6">
               Scale your reach and optimize marketing campaigns using predictive
@@ -34,7 +34,7 @@ function Services() {
 
           <div className="bg-white rounded-2xl p-8 shadow-lg border border-gray-100">
             <h3 className="text-2xl font-semibold text-slate-800 mb-4">
-              AI Agent Talk Time
+              AI Voice Agent Talk Time
             </h3>
             <p className="text-slate-600 mb-6">
               Enhance voice interactions and customer support with natural

@@ -209,7 +209,7 @@ function AIBusinessAutomation() {
             >
               {/* Dark Header Banner */}
               <div className="bg-[#18b6e3] text-white py-2 px-6 text-center text-[13px] font-extrabold leading-6">
-                Save up to 35% when you add AI Business Promotion.
+                Save up to 35% when you add AI Digital Marketing &amp; Business Promotion.
               </div>
 
               <div className="p-8 pb-4">

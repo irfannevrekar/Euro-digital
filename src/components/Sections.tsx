@@ -24,22 +24,22 @@ const cards: Card[] = [
     bookingUrl: SERVICE_BOOKING_URLS.aiBusinessAutomation,
   },
   {
-    title: "AI Business Promotion",
-    desc: "Smarter Marketing Powered by AI. Leverage data-driven insights to create personalized campaigns that convert and engage your audience effectively.",
+    title: "AI Digital Marketing & Business Promotion",
+    desc: "EuroDigital provides AI-powered digital marketing services including campaign automation, audience targeting, personalized content, lead generation, campaign optimization, and performance analytics.",
     video:
       "https://player.mediadelivery.net/play/661416/02126d15-3c9d-4d94-a8ac-1d8bbc37332e",
     link: "/services/ai-business-promotion",
     bookingUrl: SERVICE_BOOKING_URLS.aiBusinessPromotion,
   },
   {
-    title: "AI Agent Talk Time",
-    desc: "Boost agent productivity with smart co-pilots. Empower your team with real-time assistance and automated tools to handle complex queries with ease.",
+    title: "AI Voice Agent Talk Time",
+    desc: "AI voice calling capacity for automated sales, support, appointment booking, qualification, and customer follow-up.",
     image: "/backgroundImages/ai_automation.png",
     link: "/services/ai-agent-talk-time",
   },
   {
     title: "AI Automated Chatbot",
-    desc: "Always-on support with human-like responses. Deliver instant, 24/7 customer service with intelligent chatbots that understand context and intent.",
+    desc: "AI chatbots for websites and messaging channels that provide 24/7 customer support, lead qualification, FAQs, and automated customer engagement.",
     video:
       "https://player.mediadelivery.net/play/661416/c564b724-82f9-4426-b62e-079b3a1b8fb4",
     link: "/services/ai-automated-chatbot",
@@ -211,9 +211,9 @@ function Sections({ onBookDemo }: SectionsProps) {
             className="text-base md:text-[19px] max-w-3xl mx-auto leading-relaxed capitalize"
             style={{ color: "var(--text-secondary)" }}
           >
-            EuroDigital helps businesses automate operations, improve customer
-            engagement, and launch practical AI systems that create measurable
-            growth.
+            EuroDigital is a digital marketing and AI automation company in the UAE,
+            providing lead generation, marketing automation, AI customer engagement,
+            CRM, website development, and business automation services.
           </p>
         </div>
 

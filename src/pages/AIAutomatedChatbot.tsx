@@ -8,16 +8,16 @@ function AIAutomatedChatbot() {
     id: "ai-automated-chatbot",
     title: "AI Automated Chatbot",
     description:
-      "EuroDigital's AI Voice Agents manage real conversations with customers using natural, human-like speech. These agents can handle calls efficiently while maintaining a professional tone and consistency.",
+      "AI chatbots for websites and messaging channels that provide 24/7 customer support, lead qualification, FAQs, and automated customer engagement.",
     image: "/backgroundImages/ai-automation.png",
     features: [
-      "Inbound customer inquiries",
-      "Outbound follow-up and reminder calls",
-      "Appointment confirmations",
-      "Support and service-related conversations",
+      "Website, WhatsApp, and messaging chatbots",
+      "Instant customer support and FAQs",
+      "Lead qualification and nurturing",
+      "Appointment scheduling and follow-ups",
     ],
     detailedDescription:
-      "Our AI voice agents help businesses reduce call handling costs while ensuring no customer inquiry goes unanswered.",
+      "Our AI chatbots improve response times and customer satisfaction while reducing repetitive support work.",
     primaryButtonText: "Try For Free",
     secondaryButtonText: "Talk to Sales",
   };

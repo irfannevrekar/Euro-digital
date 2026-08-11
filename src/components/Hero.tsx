@@ -17,9 +17,9 @@ const SLIDE_DURATION_MS = 6000;
 
 const slides: Slide[] = [
   {
-    title: "Unlock the Power of AI to Transform Your Business",
+    title: "Digital Marketing & AI Automation Company in the UAE",
     description:
-      "We help brands unlock growth with tailored strategies, innovative design, and data-driven insights that deliver real results.",
+      "EuroDigital is a digital marketing and AI automation company based in Abu Dhabi, UAE. We help businesses generate leads, run smarter marketing campaigns, automate customer engagement, build conversion-focused websites, and implement AI-powered sales and CRM systems.",
     image:
       "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1920&q=75&fm=webp",
   },
@@ -31,23 +31,23 @@ const slides: Slide[] = [
     link: "/services/ai-business-automation",
   },
   {
-    title: "AI Business Promotion",
+    title: "AI Digital Marketing & Business Promotion",
     description:
-      "Our AI Business Promotion solutions help you reach the right audience at the right time with personalized, data-driven strategies. By leveraging AI, we improve engagement, increase conversions, and make your marketing efforts more efficient.",
+      "EuroDigital provides AI-powered digital marketing services including campaign automation, audience targeting, personalized content, lead generation, campaign optimization, and performance analytics.",
     image: "/servicesImages/Ai-business-promotion.png",
     link: "/services/ai-business-promotion",
   },
   {
-    title: "AI Agent Talk Time",
+    title: "AI Voice Agent Talk Time",
     description:
-      "Our AI-powered chatbots are designed to handle customer interactions accurately and professionally, around the clock. These chatbots are trained using your business data, ensuring responses remain relevant, reliable, and aligned with your brand voice.",
+      "AI voice calling capacity for automated sales, support, appointment booking, qualification, and customer follow-up.",
     image: "/backgroundImages/aitalk-time.png",
     link: "/services/ai-agent-talk-time",
   },
   {
     title: "AI Automated Chatbot",
     description:
-      "EuroDigital’s AI Voice Agents manage real conversations with customers using natural, human-like speech. These agents can handle calls efficiently while maintaining a professional tone and consistency.",
+      "AI chatbots for websites and messaging channels that provide 24/7 customer support, lead qualification, FAQs, and automated customer engagement.",
     image: "/backgroundImages/ai-automation.png",
     link: "/services/ai-automated-chatbot",
   },
@@ -178,17 +178,7 @@ function Hero({ onBookDemo }: HeroProps) {
           >
             
             <h1 className="text-4xl md:text-6xl lg:text-7xl font-semibold leading-tight tracking-tight drop-shadow-[0_10px_40px_rgba(0,0,0,0.35)] mt-20">
-              {slides[currentSlide].title.includes(
-                "Transform Your Business"
-              ) ? (
-                <>
-                  Unlock the Power of AI to
-                  <br className="hidden md:block" />
-                  Transform Your Business
-                </>
-              ) : (
-                slides[currentSlide].title
-              )}
+              {slides[currentSlide].title}
             </h1>
 
             <p className="mt-8 text-lg md:text-xl text-gray-200 max-w-4xl mx-auto leading-relaxed capitalize">

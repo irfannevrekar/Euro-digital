@@ -11,12 +11,12 @@ const services = [
   },
   {
     id: "ai-business-promotion",
-    title: "AI Business Promotion",
+    title: "AI Digital Marketing & Business Promotion",
     path: "/services/ai-business-promotion",
   },
   {
     id: "ai-agent-talk-time",
-    title: "AI Agent Talk Time",
+    title: "AI Voice Agent Talk Time",
     path: "/services/ai-agent-talk-time",
   },
   {
