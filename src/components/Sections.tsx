@@ -341,6 +341,7 @@ function Sections({ onBookDemo }: SectionsProps) {
                       }
                     >
                       Learn More
+                      <span className="sr-only"> about {card.title}</span>
                     </Link>
                     <button
                         type="button"
