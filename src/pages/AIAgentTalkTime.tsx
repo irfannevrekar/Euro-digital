@@ -14,16 +14,23 @@ function AIAgentTalkTime() {
       "Automated sales and customer support",
       "Lead qualification and follow-up",
       "Appointment booking and reminders",
-      "Natural, brand-aligned voice conversations"
+      "Natural, brand-aligned voice conversations",
     ],
-    detailedDescription: "Scale customer conversations while reducing call handling costs and ensuring inquiries receive a timely response.",
+    detailedDescription:
+      "Scale customer conversations while reducing call handling costs and ensuring inquiries receive a timely response.",
     primaryButtonText: "Try For Free",
   };
 
   return (
     <>
       {/* Service Content */}
-      <section className="py-16 md:py-24" style={{ background: 'linear-gradient(to right, white 50%, rgba(224, 242, 254, 0.6) 50%)' }}>
+      <section
+        className="py-16 md:py-24"
+        style={{
+          background:
+            "linear-gradient(to right, white 50%, rgba(224, 242, 254, 0.6) 50%)",
+        }}
+      >
         <div className="max-w-7xl mx-auto px-6 md:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -33,10 +40,16 @@ function AIAgentTalkTime() {
             className="grid md:grid-cols-2 gap-12 items-center"
           >
             <div className="space-y-3">
-              <h1 className="text-4xl md:text-5xl font-semibold" style={{ color: 'var(--primary-navy)' }}>
+              <h1
+                className="text-4xl md:text-5xl font-semibold"
+                style={{ color: "var(--primary-navy)" }}
+              >
                 {serviceData.title}
               </h1>
-              <p className="text-lg leading-relaxed" style={{ color: 'var(--text-secondary)' }}>
+              <p
+                className="text-lg leading-relaxed"
+                style={{ color: "var(--text-secondary)" }}
+              >
                 {serviceData.description}
               </p>
 
@@ -45,15 +58,25 @@ function AIAgentTalkTime() {
                   <ul className="space-y-2">
                     {serviceData.features.map((feature, idx) => (
                       <li key={idx} className="flex items-start gap-2">
-                        <span className="text-xs mt-1" style={{ color: 'var(--text-tertiary)' }}>●</span>
-                        <span style={{ color: 'var(--text-secondary)' }}>{feature}</span>
+                        <span
+                          className="text-xs mt-1"
+                          style={{ color: "var(--text-tertiary)" }}
+                        >
+                          ●
+                        </span>
+                        <span style={{ color: "var(--text-secondary)" }}>
+                          {feature}
+                        </span>
                       </li>
                     ))}
                   </ul>
                 </div>
               )}
               {serviceData.detailedDescription && (
-                <p className="text-base leading-relaxed" style={{ color: 'var(--text-tertiary)' }}>
+                <p
+                  className="text-base leading-relaxed"
+                  style={{ color: "var(--text-tertiary)" }}
+                >
                   {serviceData.detailedDescription}
                 </p>
               )}
@@ -61,11 +84,10 @@ function AIAgentTalkTime() {
               <div className="flex gap-4 pt-4">
                 <button
                   className="rounded-full text-black font-medium px-6 py-2 shadow-lg  cursor-pointer"
-                  style={{ backgroundColor: 'var(--primary-blue)' }}
+                  style={{ backgroundColor: "var(--primary-blue)" }}
                 >
                   {serviceData.primaryButtonText}
                 </button>
-
               </div>
             </div>
 
@@ -125,26 +147,46 @@ function AIAgentTalkTime() {
                   </h3>
 
                   <div className="mb-8">
-                    <span className="text-5xl md:text-7xl font-bold text-slate-700">$99</span>
-                    <span className="text-xl text-slate-600 ml-3">Per Month</span>
+                    <span className="text-5xl md:text-7xl font-bold text-slate-700">
+                      $99
+                    </span>
+                    <span className="text-xl text-slate-600 ml-3">
+                      Per Month
+                    </span>
                   </div>
 
                   <div className="space-y-4">
                     <div className="flex items-center gap-3">
-                      <span className="text-green-500 text-2xl font-bold">✓</span>
-                      <span className="text-slate-700 text-lg">1,000 AI Calling Minutes</span>
+                      <span className="text-green-500 text-2xl font-bold">
+                        ✓
+                      </span>
+                      <span className="text-slate-700 text-lg">
+                        1,000 AI Calling Minutes
+                      </span>
                     </div>
                     <div className="flex items-center gap-3">
-                      <span className="text-green-500 text-2xl font-bold">✓</span>
-                      <span className="text-slate-700 text-lg">Basic Voice Customisation</span>
+                      <span className="text-green-500 text-2xl font-bold">
+                        ✓
+                      </span>
+                      <span className="text-slate-700 text-lg">
+                        Basic Voice Customisation
+                      </span>
                     </div>
                     <div className="flex items-center gap-3">
-                      <span className="text-green-500 text-2xl font-bold">✓</span>
-                      <span className="text-slate-700 text-lg">Standard Support</span>
+                      <span className="text-green-500 text-2xl font-bold">
+                        ✓
+                      </span>
+                      <span className="text-slate-700 text-lg">
+                        Standard Support
+                      </span>
                     </div>
                     <div className="flex items-center gap-3">
-                      <span className="text-green-500 text-2xl font-bold">✓</span>
-                      <span className="text-slate-700 text-lg">Analytics Dashboard</span>
+                      <span className="text-green-500 text-2xl font-bold">
+                        ✓
+                      </span>
+                      <span className="text-slate-700 text-lg">
+                        Analytics Dashboard
+                      </span>
                     </div>
                   </div>
                 </div>
@@ -172,30 +214,54 @@ function AIAgentTalkTime() {
                   </h3>
 
                   <div className="mb-8">
-                    <span className="text-5xl md:text-7xl font-bold text-slate-700">$299</span>
-                    <span className="text-xl text-slate-600 ml-3">Per Month</span>
+                    <span className="text-5xl md:text-7xl font-bold text-slate-700">
+                      $299
+                    </span>
+                    <span className="text-xl text-slate-600 ml-3">
+                      Per Month
+                    </span>
                   </div>
 
                   <div className="space-y-4">
                     <div className="flex items-center gap-3">
-                      <span className="text-green-500 text-2xl font-bold">✓</span>
-                      <span className="text-slate-700 text-lg">5,000 AI Calling Minutes</span>
+                      <span className="text-green-500 text-2xl font-bold">
+                        ✓
+                      </span>
+                      <span className="text-slate-700 text-lg">
+                        2,500 AI Calling Minutes
+                      </span>
                     </div>
                     <div className="flex items-center gap-3">
-                      <span className="text-green-500 text-2xl font-bold">✓</span>
-                      <span className="text-slate-700 text-lg">Advanced Voice Customisation</span>
+                      <span className="text-green-500 text-2xl font-bold">
+                        ✓
+                      </span>
+                      <span className="text-slate-700 text-lg">
+                        Advanced Voice Customisation
+                      </span>
                     </div>
                     <div className="flex items-center gap-3">
-                      <span className="text-green-500 text-2xl font-bold">✓</span>
-                      <span className="text-slate-700 text-lg">Priority Support</span>
+                      <span className="text-green-500 text-2xl font-bold">
+                        ✓
+                      </span>
+                      <span className="text-slate-700 text-lg">
+                        Priority Support
+                      </span>
                     </div>
                     <div className="flex items-center gap-3">
-                      <span className="text-green-500 text-2xl font-bold">✓</span>
-                      <span className="text-slate-700 text-lg">Advanced Analytics</span>
+                      <span className="text-green-500 text-2xl font-bold">
+                        ✓
+                      </span>
+                      <span className="text-slate-700 text-lg">
+                        Advanced Analytics
+                      </span>
                     </div>
                     <div className="flex items-center gap-3">
-                      <span className="text-green-500 text-2xl font-bold">✓</span>
-                      <span className="text-slate-700 text-lg">API Integration</span>
+                      <span className="text-green-500 text-2xl font-bold">
+                        ✓
+                      </span>
+                      <span className="text-slate-700 text-lg">
+                        API Integration
+                      </span>
                     </div>
                   </div>
                 </div>
@@ -222,34 +288,62 @@ function AIAgentTalkTime() {
                   </h3>
 
                   <div className="mb-8">
-                    <span className="text-5xl md:text-7xl font-bold text-slate-700">$599</span>
-                    <span className="text-xl text-slate-600 ml-3">Per Month</span>
+                    <span className="text-5xl md:text-7xl font-bold text-slate-700">
+                      $599
+                    </span>
+                    <span className="text-xl text-slate-600 ml-3">
+                      Per Month
+                    </span>
                   </div>
 
                   <div className="space-y-4">
                     <div className="flex items-center gap-3">
-                      <span className="text-green-500 text-2xl font-bold">✓</span>
-                      <span className="text-slate-700 text-lg">15,000 AI Calling Minutes</span>
+                      <span className="text-green-500 text-2xl font-bold">
+                        ✓
+                      </span>
+                      <span className="text-slate-700 text-lg">
+                        5,500 AI Calling Minutes
+                      </span>
                     </div>
                     <div className="flex items-center gap-3">
-                      <span className="text-green-500 text-2xl font-bold">✓</span>
-                      <span className="text-slate-700 text-lg">Premium Voice Customisation</span>
+                      <span className="text-green-500 text-2xl font-bold">
+                        ✓
+                      </span>
+                      <span className="text-slate-700 text-lg">
+                        Premium Voice Customisation
+                      </span>
                     </div>
                     <div className="flex items-center gap-3">
-                      <span className="text-green-500 text-2xl font-bold">✓</span>
-                      <span className="text-slate-700 text-lg">24/7 Support</span>
+                      <span className="text-green-500 text-2xl font-bold">
+                        ✓
+                      </span>
+                      <span className="text-slate-700 text-lg">
+                        24/7 Support
+                      </span>
                     </div>
                     <div className="flex items-center gap-3">
-                      <span className="text-green-500 text-2xl font-bold">✓</span>
-                      <span className="text-slate-700 text-lg">Real-time Analytics</span>
+                      <span className="text-green-500 text-2xl font-bold">
+                        ✓
+                      </span>
+                      <span className="text-slate-700 text-lg">
+                        Real-time Analytics
+                      </span>
                     </div>
                     <div className="flex items-center gap-3">
-                      <span className="text-green-500 text-2xl font-bold">✓</span>
-                      <span className="text-slate-700 text-lg">Full API Access</span>
+                      <span className="text-green-500 text-2xl font-bold">
+                        ✓
+                      </span>
+                      <span className="text-slate-700 text-lg">
+                        Full API Access
+                      </span>
                     </div>
                     <div className="flex items-center gap-3">
-                      <span className="text-green-500 text-2xl font-bold">✓</span>
-                      <span className="text-slate-700 text-lg">Custom Integrations</span>
+                      <span className="text-green-500 text-2xl font-bold">
+                        ✓
+                      </span>
+                      <span className="text-slate-700 text-lg">
+                        Custom Integrations
+                      </span>
                     </div>
                   </div>
                 </div>
@@ -276,37 +370,67 @@ function AIAgentTalkTime() {
                   </h3>
 
                   <div className="mb-8">
-                    <span className="text-5xl md:text-7xl font-bold text-slate-700">Custom</span>
+                    <span className="text-5xl md:text-7xl font-bold text-slate-700">
+                      Custom
+                    </span>
                   </div>
 
                   <div className="space-y-4">
                     <div className="flex items-center gap-3">
-                      <span className="text-green-500 text-2xl font-bold">✓</span>
-                      <span className="text-slate-700 text-lg">Unlimited AI Calling Minutes</span>
+                      <span className="text-green-500 text-2xl font-bold">
+                        ✓
+                      </span>
+                      <span className="text-slate-700 text-lg">
+                        Unlimited AI Calling Minutes
+                      </span>
                     </div>
                     <div className="flex items-center gap-3">
-                      <span className="text-green-500 text-2xl font-bold">✓</span>
-                      <span className="text-slate-700 text-lg">Enterprise Voice Solutions</span>
+                      <span className="text-green-500 text-2xl font-bold">
+                        ✓
+                      </span>
+                      <span className="text-slate-700 text-lg">
+                        Enterprise Voice Solutions
+                      </span>
                     </div>
                     <div className="flex items-center gap-3">
-                      <span className="text-green-500 text-2xl font-bold">✓</span>
-                      <span className="text-slate-700 text-lg">Dedicated Account Manager</span>
+                      <span className="text-green-500 text-2xl font-bold">
+                        ✓
+                      </span>
+                      <span className="text-slate-700 text-lg">
+                        Dedicated Account Manager
+                      </span>
                     </div>
                     <div className="flex items-center gap-3">
-                      <span className="text-green-500 text-2xl font-bold">✓</span>
-                      <span className="text-slate-700 text-lg">Custom Analytics Dashboard</span>
+                      <span className="text-green-500 text-2xl font-bold">
+                        ✓
+                      </span>
+                      <span className="text-slate-700 text-lg">
+                        Custom Analytics Dashboard
+                      </span>
                     </div>
                     <div className="flex items-center gap-3">
-                      <span className="text-green-500 text-2xl font-bold">✓</span>
-                      <span className="text-slate-700 text-lg">White-label Solutions</span>
+                      <span className="text-green-500 text-2xl font-bold">
+                        ✓
+                      </span>
+                      <span className="text-slate-700 text-lg">
+                        White-label Solutions
+                      </span>
                     </div>
                     <div className="flex items-center gap-3">
-                      <span className="text-green-500 text-2xl font-bold">✓</span>
-                      <span className="text-slate-700 text-lg">SLA Guarantee</span>
+                      <span className="text-green-500 text-2xl font-bold">
+                        ✓
+                      </span>
+                      <span className="text-slate-700 text-lg">
+                        SLA Guarantee
+                      </span>
                     </div>
                     <div className="flex items-center gap-3">
-                      <span className="text-green-500 text-2xl font-bold">✓</span>
-                      <span className="text-slate-700 text-lg">On-premise Deployment</span>
+                      <span className="text-green-500 text-2xl font-bold">
+                        ✓
+                      </span>
+                      <span className="text-slate-700 text-lg">
+                        On-premise Deployment
+                      </span>
                     </div>
                   </div>
                 </div>
