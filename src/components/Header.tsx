@@ -1,7 +1,8 @@
 import { ChevronDown, LogIn, Menu, X } from "lucide-react";
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { BOOKING_URL } from "../constants/booking";
+import BookingModal from "./BookingModal";
 
 type NavigationItem = {
   title: string;
@@ -99,6 +100,7 @@ function Header() {
   const [isServicesOpen, setIsServicesOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isMobileServicesOpen, setIsMobileServicesOpen] = useState(false);
+  const [isBookingOpen, setIsBookingOpen] = useState(false);
   const closeTimerRef = useRef<number | null>(null);
 
   useEffect(() => {
@@ -128,6 +130,7 @@ function Header() {
 
   const closeDesktopServices = () => setIsServicesOpen(false);
   const closeMobileMenu = () => setIsMobileMenuOpen(false);
+  const closeBookingModal = useCallback(() => setIsBookingOpen(false), []);
 
   return (
     <header className="fixed inset-x-0 top-0 z-50 border-b border-black/5 bg-white px-4 py-3 shadow-sm md:px-10 md:py-4">
@@ -220,15 +223,14 @@ function Header() {
             <LogIn className="h-4 w-4" />
             Login
           </Link>
-          <a
-            href={BOOKING_URL}
-            target="_blank"
-            rel="noopener noreferrer"
+          <button
+            type="button"
+            onClick={() => setIsBookingOpen(true)}
             className="rounded-md px-6 py-2.5 font-semibold text-white shadow-lg transition-all hover:brightness-110"
             style={{ backgroundColor: "var(--primary-blue)" }}
           >
             Book Consultation
-          </a>
+          </button>
         </div>
 
         <button
@@ -311,6 +313,11 @@ function Header() {
           </nav>
         </div>
       </div>
+      <BookingModal
+        url={isBookingOpen ? BOOKING_URL : null}
+        onClose={closeBookingModal}
+        title="Book a Consultation"
+      />
     </header>
   );
 }
