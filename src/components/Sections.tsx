@@ -246,10 +246,10 @@ function Sections({ onBookDemo }: SectionsProps) {
             className="text-base md:text-[19px] max-w-3xl mx-auto leading-relaxed"
             style={{ color: "var(--text-secondary)" }}
           >
-            EuroDigital helps businesses generate leads and improve conversion
-            through digital marketing, marketing automation, conversion-focused
-            websites, CRM, and customer engagement. AI strengthens these systems
-            through faster response, automated follow-up, and connected workflows.
+            EuroDigital is a digital marketing and AI automation company in the
+            UAE. We connect campaigns, websites, CRM, customer conversations,
+            and everyday business workflows so teams can generate leads and
+            follow up more consistently.
           </p>
         </div>
 

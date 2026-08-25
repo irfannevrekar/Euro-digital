@@ -9,14 +9,14 @@ type PageSeo = {
 
 const pageSeo: Record<string, PageSeo> = {
   "/": {
-    title: "Digital Marketing Company UAE | EuroDigital",
+    title: "Digital Marketing & AI Automation Company UAE | EuroDigital",
     description:
-      "EuroDigital is a digital marketing company in Abu Dhabi, UAE, helping businesses generate leads and improve conversion through marketing automation, websites, CRM, and AI-powered customer engagement.",
+      "EuroDigital is a digital marketing and AI automation company in Abu Dhabi, UAE, providing lead generation, marketing automation, CRM, AI chatbots, website development, and business automation services.",
   },
   "/about": {
-    title: "About EuroDigital | Digital Marketing Company UAE",
+    title: "About EuroDigital | Digital Marketing & AI Automation Company UAE",
     description:
-      "Learn about Euro Digital Technologies LLC, a digital marketing company in Abu Dhabi using CRM, websites, marketing automation, and AI to improve customer acquisition and conversion.",
+      "Learn about Euro Digital Technologies LLC, a digital marketing and AI automation company based in Abu Dhabi, UAE.",
   },
   "/contact": {
     title: "Contact EuroDigital | Digital Marketing & AI Automation UAE",
@@ -114,7 +114,7 @@ const organizationSchema = {
   url: `${SITE_URL}/`,
   logo: `${SITE_URL}/logo/euro-digital-black-white.png`,
   description:
-    "EuroDigital is a digital marketing company based in Abu Dhabi, UAE. The company helps businesses generate leads and improve customer acquisition and conversion through marketing automation, CRM, website development, and AI-powered customer engagement.",
+    "EuroDigital is a digital marketing and AI automation company based in Abu Dhabi, UAE. The company provides digital marketing, lead generation, marketing automation, CRM, website development, AI agents, chatbots, and business automation services.",
   telephone: "+971561874676",
   email: "support@eurodigital.site",
   address: {

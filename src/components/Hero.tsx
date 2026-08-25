@@ -17,9 +17,9 @@ const SLIDE_DURATION_MS = 6000;
 
 const slides: Slide[] = [
   {
-    title: "Digital Marketing Company in the UAE",
+    title: "Digital Marketing & AI Automation Company in the UAE",
     description:
-      "EuroDigital helps businesses generate leads and grow revenue through digital marketing, marketing automation, conversion-focused websites, CRM, and AI-powered customer engagement. Our AI automation capabilities strengthen these marketing systems through faster lead response, automated follow-up, voice agents, chatbots, and intelligent sales workflows.",
+      "EuroDigital is a digital marketing and AI automation company based in Abu Dhabi, UAE. We help businesses generate leads, run smarter marketing campaigns, automate customer engagement, build conversion-focused websites, and implement AI-powered sales and CRM systems.",
     image:
       "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1920&q=75&fm=webp",
   },

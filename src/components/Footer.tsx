@@ -82,10 +82,10 @@ function Footer() {
               </Link>
 
               <p className="text-[15px] leading-relaxed text-white/80">
-                EuroDigital is a digital marketing company based in Abu Dhabi,
-                UAE. We help businesses generate leads and improve conversion
-                through marketing automation, CRM, websites, and AI-powered
-                customer engagement.
+                EuroDigital is a digital marketing and AI automation company
+                based in Abu Dhabi, UAE. We help businesses grow through
+                marketing, lead generation, CRM, websites, and practical
+                automation.
               </p>
 
 

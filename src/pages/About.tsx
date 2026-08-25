@@ -16,7 +16,7 @@ function About() {
           <div className="space-y-6 text-lg leading-8">
             <p>
               EuroDigital, operated by Euro Digital Technologies LLC, is a digital
-              marketing company based in Abu Dhabi, UAE.
+              marketing and AI automation company based in Abu Dhabi, UAE.
             </p>
             <p>
               We combine digital marketing, lead generation systems, CRM,
