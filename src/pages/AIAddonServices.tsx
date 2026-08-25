@@ -8,7 +8,7 @@ function AIAddonServices() {
     id: "ai-addon-services",
     title: "AI add-on Services",
     description:
-      "Our AI Add-on Services allow businesses to enhance their existing tools and platforms with advanced AI features. These add-ons are flexible, scalable, and designed to evolve with your business.",
+      "Our AI add-on Services allow businesses to enhance their existing tools and platforms with advanced AI features. These add-ons are flexible, scalable, and designed to evolve with your business.",
     image: "/servicesImages/ai_addon.png",
     features: [
       "Custom AI integrations",

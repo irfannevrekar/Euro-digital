@@ -4,11 +4,12 @@ import { useState, useEffect } from "react";
 
 const quickLinks = [
   { name: "Home", path: "/" },
-  { name: "Digital Marketing Services", path: "/services" },
-  { name: "AI Digital Marketing", path: "/services/ai-business-promotion" },
-  { name: "Website & Funnel Builder", path: "/products/website-builder" },
-  { name: "ED-CRM & Lead Management", path: "/products/edcrm" },
-  { name: "About Us", path: "/about" },
+  { name: "Services", path: "/services" },
+  { name: "AI Tools", path: "/ai-tools" },
+  { name: "Digital Marketing and Promotions", path: "/solutions/digital-marketing-and-promotions" },
+  { name: "AI Customer Engagement", path: "/solutions/ai-customer-engagement" },
+  { name: "AI Business Automation", path: "/solutions/ai-business-automation" },
+  { name: "Contact", path: "/contact" },
 ];
 
 const socialLinks = [

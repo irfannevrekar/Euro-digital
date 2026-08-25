@@ -105,12 +105,16 @@ src/
 | `/contact` | Contact |
 | `/login` | Login redirect |
 | `/services` | Services overview |
+| `/ai-tools` | AI Tools overview |
+| `/solutions/digital-marketing-and-promotions` | Digital Marketing and Promotions |
+| `/solutions/ai-customer-engagement` | AI Customer Engagement |
+| `/solutions/ai-business-automation` | AI Business Automation solutions |
 | `/services/ai-business-automation` | AI Business Automation |
 | `/services/ai-business-promotion` | AI Business Promotion |
-| `/services/ai-agent-talk-time` | AI Agent Talk Time |
+| `/services/ai-agent-talk-time` | AI Voice Agent Talk Time |
 | `/services/ai-automated-chatbot` | AI Automated Chatbot |
-| `/services/ai-addon-services` | AI Add-on Services |
-| `/services/industry-specific` | Industry Specific AI |
+| `/services/ai-addon-services` | AI add-on Services |
+| `/services/industry-specific` | Industry Specific AI Use Cases |
 | `/products/website-builder` | AI Website Builder |
 | `/products/edcrm` | ED-CRM |
 | `/products/emotionai` | Emotion AI |

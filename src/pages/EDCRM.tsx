@@ -50,7 +50,7 @@ function EDCRM() {
             "Content AI",
             "Funnel AI",
             "Reviews AI*",
-            "Website & Funnel Builder",
+            "AI Website Builder",
             "Domain Management",
             "CRM & Pipelines",
             "Custom Dashboards & Reporting",

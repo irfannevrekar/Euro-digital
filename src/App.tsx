@@ -20,6 +20,10 @@ import ScrollToTop from './components/ScrollToTop'
 import LoginRedirect from './pages/LoginRedirect'
 import About from './pages/About'
 import Seo from './components/Seo'
+import AITools from './pages/AITools'
+import DigitalMarketingSolutions from './pages/DigitalMarketingSolutions'
+import AICustomerEngagementSolutions from './pages/AICustomerEngagementSolutions'
+import AIBusinessAutomationSolutions from './pages/AIBusinessAutomationSolutions'
 
 function App() {
   return (
@@ -31,6 +35,13 @@ function App() {
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/login" element={<LoginRedirect />} />
+
+        <Route element={<ServicesLayout />}>
+          <Route path="/ai-tools" element={<AITools />} />
+          <Route path="/solutions/digital-marketing-and-promotions" element={<DigitalMarketingSolutions />} />
+          <Route path="/solutions/ai-customer-engagement" element={<AICustomerEngagementSolutions />} />
+          <Route path="/solutions/ai-business-automation" element={<AIBusinessAutomationSolutions />} />
+        </Route>
 
         {/* Services with Nested Routes */}
         <Route path="/services" element={<ServicesLayout />}>

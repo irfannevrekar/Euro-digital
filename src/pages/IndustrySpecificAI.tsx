@@ -194,7 +194,7 @@ function IndustrySpecificAI() {
           {/* Heading */}
           <div className="text-center mb-16">
             <h1 className="text-4xl md:text-5xl font-bold text-slate-800 mb-4">
-              Industry-Specific AI Solutions
+              Industry Specific AI Use Cases
             </h1>
             <p className="text-lg text-slate-600 max-w-3xl mx-auto ">
               EuroDigital designs practical AI automation, customer engagement,

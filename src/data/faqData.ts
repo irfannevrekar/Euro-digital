@@ -12,7 +12,7 @@ export interface ServiceFAQ {
 export const serviceFAQs: ServiceFAQ[] = [
   {
     serviceId: "ai-business-automation",
-    subtitle: "Learn how EuroDigital connects AI automation with practical business workflows, customer engagement, and measurable growth.",
+    subtitle: "Common questions about removing repetitive work and connecting day-to-day business processes.",
     faqs: [
       {
         question: "What is AI Business Automation?",
@@ -28,7 +28,7 @@ export const serviceFAQs: ServiceFAQ[] = [
       },
       {
         question: "Do I need technical expertise to use AI Business Automation?",
-        answer: "No, you don't need technical expertise. Our solutions are designed to be user-friendly and we provide comprehensive training and support. We handle the technical implementation and ensure the system integrates seamlessly with your existing tools and processes."
+        answer: "No. We handle the technical setup, connect the system to your existing tools, and show your team how to use and manage the new workflow."
       },
       {
         question: "Is AI Business Automation secure and reliable?",
@@ -38,7 +38,7 @@ export const serviceFAQs: ServiceFAQ[] = [
   },
   {
     serviceId: "ai-business-promotion",
-    subtitle: "Transform your marketing strategy with AI-powered promotion solutions that deliver measurable results.",
+    subtitle: "How we use automation and campaign data to support practical marketing work.",
     faqs: [
       {
         question: "What is AI Digital Marketing & Business Promotion?",
@@ -46,7 +46,7 @@ export const serviceFAQs: ServiceFAQ[] = [
       },
       {
         question: "How can AI improve my marketing ROI?",
-        answer: "AI analyzes vast amounts of data to identify the most effective marketing strategies, optimal timing, and best-performing content. It continuously optimizes campaigns in real-time, ensuring your marketing budget is spent on activities that generate the highest returns."
+        answer: "AI can compare campaign, audience, timing, and content data more quickly than a manual review. Your team can use those findings to move budget toward what is working and test changes where performance is weak."
       },
       {
         question: "Can AI help with content creation?",
@@ -64,11 +64,11 @@ export const serviceFAQs: ServiceFAQ[] = [
   },
   {
     serviceId: "ai-automated-chatbot",
-    subtitle: "Deliver exceptional customer experiences 24/7 with intelligent AI-powered chat agents.",
+    subtitle: "How chatbots handle routine enquiries, collect lead details, and hand conversations to your team.",
     faqs: [
       {
-        question: "What is AI Agent Talk Time?",
-        answer: "AI Agent Talk Time is our advanced chatbot solution that uses natural language processing to engage in human-like conversations with customers. These AI agents handle customer inquiries, provide support, and assist with various tasks around the clock."
+        question: "What is an AI Automated Chatbot?",
+        answer: "An AI Automated Chatbot answers common questions, collects information, and guides customers through routine tasks. It can work around the clock and pass complex or sensitive conversations to a person."
       },
       {
         question: "How natural do the AI conversations feel?",
@@ -76,7 +76,7 @@ export const serviceFAQs: ServiceFAQ[] = [
       },
       {
         question: "Can AI chatbots handle complex customer queries?",
-        answer: "Yes, our AI chatbots are trained on your specific business data and can handle a wide range of queries. For highly complex or sensitive issues, the system seamlessly transfers the conversation to a human agent, ensuring customers always get the help they need."
+        answer: "Yes. We configure the chatbot around your business information and the questions customers commonly ask. Complex or sensitive cases can be passed to a team member along with the conversation history."
       },
       {
         question: "What languages do your AI agents support?",
@@ -90,7 +90,7 @@ export const serviceFAQs: ServiceFAQ[] = [
   },
   {
     serviceId: "ai-agent-talk-time",
-    subtitle: "Experience the future of voice communication with AI agents that sound and respond like real humans.",
+    subtitle: "What AI voice agents can handle, how calls are transferred, and where human oversight fits.",
     faqs: [
       {
         question: "What is an AI Voice Agent?",
@@ -98,7 +98,7 @@ export const serviceFAQs: ServiceFAQ[] = [
       },
       {
         question: "How realistic do AI voice agents sound?",
-        answer: "Our AI voice agents use advanced voice synthesis technology to produce natural-sounding speech with human-like intonation, pace, and emotion. Most callers find it difficult to distinguish between our AI agents and human representatives."
+        answer: "Voice quality depends on the language, accent, script, and call conditions. We tune pace, pronunciation, and tone for the use case, and recommend being clear with callers that they are speaking with an automated agent."
       },
       {
         question: "What types of calls can AI voice agents handle?",
@@ -110,17 +110,17 @@ export const serviceFAQs: ServiceFAQ[] = [
       },
       {
         question: "What happens if the AI can't understand the caller?",
-        answer: "Our voice agents are designed to handle various accents and speech patterns. If they encounter difficulty understanding, they politely ask for clarification. If the issue persists or the query is too complex, the call is seamlessly transferred to a human agent."
+        answer: "The agent can ask the caller to repeat or clarify an answer. If it still cannot understand the request, or the issue falls outside its scope, it can route the call to a team member."
       }
     ]
   },
   {
     serviceId: "ai-addon-services",
-    subtitle: "Enhance your existing systems with powerful AI capabilities without complete overhaul.",
+    subtitle: "Ways to add a focused AI feature without replacing the systems your team already uses.",
     faqs: [
       {
-        question: "What are AI Add-on Services?",
-        answer: "AI Add-on Services are modular AI features that integrate seamlessly with your existing business tools and platforms. They add intelligence, automation, and advanced analytics capabilities without requiring a complete system replacement."
+        question: "What are AI add-on Services?",
+        answer: "AI add-on Services are focused features that connect to tools your business already uses. They can add automation, analysis, or customer-facing functions without requiring a complete system replacement."
       },
       {
         question: "How easy is it to integrate AI add-ons?",
@@ -142,7 +142,7 @@ export const serviceFAQs: ServiceFAQ[] = [
   },
   {
     serviceId: "industry-specific",
-    subtitle: "Specialized AI solutions designed for unique challenges across different industries.",
+    subtitle: "How automation can be adapted to the workflows, customer needs, and rules of a specific sector.",
     faqs: [
       {
         question: "Why do I need industry-specific AI solutions?",
@@ -168,7 +168,7 @@ export const serviceFAQs: ServiceFAQ[] = [
   },
   {
     serviceId: "edcrm",
-    subtitle: "Funnels, automation, AI agents, and real-time dashboards—everything your sales engine needs in one CRM.",
+    subtitle: "How ED-CRM keeps lead capture, follow-up, pipelines, and reporting in one place.",
     faqs: [
       {
         question: "What is ED-CRM?",
@@ -194,7 +194,7 @@ export const serviceFAQs: ServiceFAQ[] = [
   },
   {
     serviceId: "website-builder",
-    subtitle: "Create high-converting websites, multi-page flows, and CRM-ready pages in minutes—no coding required.",
+    subtitle: "How teams can create and update connected website pages without handling routine code changes.",
     faqs: [
       {
         question: "What is AI Website Builder?",
@@ -220,7 +220,7 @@ export const serviceFAQs: ServiceFAQ[] = [
   },
   {
     serviceId: "emotionai",
-    subtitle: "Emotion-aware AI conversations, multilingual voice, and intelligent calling—built to feel human and convert better.",
+    subtitle: "How tone and intent signals can give customer conversations better context.",
     faqs: [
       {
         question: "What is Emotion AI?",

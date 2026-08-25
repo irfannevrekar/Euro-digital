@@ -5,7 +5,7 @@ import Footer from "../components/Footer";
 function ServicesLayout() {
   return (
     <div className="min-h-screen bg-white">
-      {/* Main Navigation with the Services Dropdown */}
+      {/* Shared site navigation */}
       <Header />
       
       {/* Main Content Area 

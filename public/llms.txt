@@ -4,23 +4,29 @@
 
 EuroDigital helps businesses acquire and convert customers through lead generation systems, marketing automation, conversion-focused websites, CRM, and customer engagement. It uses AI automation, voice agents, chatbots, and intelligent sales workflows to improve lead response, follow-up, and conversion.
 
-## Digital Marketing and Growth
+## Digital Marketing and Promotions
 
-- [Digital Marketing & AI Business Promotion](https://www.eurodigi.ai/services/ai-business-promotion)
-- [Conversion-focused Website Builder](https://www.eurodigi.ai/products/website-builder)
-- [ED-CRM and Lead Management](https://www.eurodigi.ai/products/edcrm)
+- [Digital Marketing and Promotions solutions](https://www.eurodigi.ai/solutions/digital-marketing-and-promotions)
 
-## AI-powered Customer Engagement
+- [AI Digital Marketing & Business Promotion](https://www.eurodigi.ai/services/ai-business-promotion)
+- [AI Website Builder](https://www.eurodigi.ai/products/website-builder)
+- [ED-CRM](https://www.eurodigi.ai/products/edcrm)
 
-- [AI Voice Agents](https://www.eurodigi.ai/services/ai-agent-talk-time)
-- [AI Chatbots](https://www.eurodigi.ai/services/ai-automated-chatbot)
+## AI Customer Engagement
+
+- [AI Customer Engagement solutions](https://www.eurodigi.ai/solutions/ai-customer-engagement)
+
+- [AI Voice Agent Talk Time](https://www.eurodigi.ai/services/ai-agent-talk-time)
+- [AI Automated Chatbot](https://www.eurodigi.ai/services/ai-automated-chatbot)
 - [Emotion AI](https://www.eurodigi.ai/products/emotionai)
 
-## Business Automation
+## AI Business Automation
+
+- [AI Business Automation solutions](https://www.eurodigi.ai/solutions/ai-business-automation)
 
 - [AI Business Automation](https://www.eurodigi.ai/services/ai-business-automation)
-- [AI Add-on Services](https://www.eurodigi.ai/services/ai-addon-services)
-- [Industry-specific AI](https://www.eurodigi.ai/services/industry-specific)
+- [AI add-on Services](https://www.eurodigi.ai/services/ai-addon-services)
+- [Industry Specific AI Use Cases](https://www.eurodigi.ai/services/industry-specific)
 
 ## Company
 

@@ -19,7 +19,7 @@ const cards: Card[] = [
   {
     title: "AI Business Automation",
     category: "automation",
-    desc: "Streamline Operations. Reduce Manual Work. Scale Faster. Automate repetitive tasks and optimize workflows to drive efficiency across your entire organization.",
+    desc: "Take repetitive admin off your team's plate. We map the process, connect the right systems, and automate the steps that do not need a person.",
     video:
       "https://player.mediadelivery.net/play/661416/aba8e1cb-c5df-4c8e-8d47-a8bf6d066411",
     link: "/services/ai-business-automation",
@@ -28,7 +28,7 @@ const cards: Card[] = [
   {
     title: "AI Digital Marketing & Business Promotion",
     category: "growth",
-    desc: "EuroDigital provides AI-powered digital marketing services including campaign automation, audience targeting, personalized content, lead generation, campaign optimization, and performance analytics.",
+    desc: "Plan and run targeted campaigns, create relevant content, and use performance data to improve lead generation over time.",
     video:
       "https://player.mediadelivery.net/play/661416/02126d15-3c9d-4d94-a8ac-1d8bbc37332e",
     link: "/services/ai-business-promotion",
@@ -37,49 +37,49 @@ const cards: Card[] = [
   {
     title: "AI Voice Agent Talk Time",
     category: "engagement",
-    desc: "AI voice calling capacity for automated sales, support, appointment booking, qualification, and customer follow-up.",
+    desc: "Handle appointment booking, lead qualification, reminders, support, and follow-up through natural voice conversations.",
     image: "/backgroundImages/ai_automation.png",
     link: "/services/ai-agent-talk-time",
   },
   {
     title: "AI Automated Chatbot",
     category: "engagement",
-    desc: "AI chatbots for websites and messaging channels that provide 24/7 customer support, lead qualification, FAQs, and automated customer engagement.",
+    desc: "Answer common questions, collect lead details, and guide customers on websites and messaging channels at any hour.",
     video:
       "https://player.mediadelivery.net/play/661416/c564b724-82f9-4426-b62e-079b3a1b8fb4",
     link: "/services/ai-automated-chatbot",
     bookingUrl: SERVICE_BOOKING_URLS.aiAutomatedChatbot,
   },
   {
-    title: "AI Add-on Services",
+    title: "AI add-on Services",
     category: "automation",
-    desc: "Extend capabilities with modular AI services. Integrate powerful AI tools into your existing systems to enhance functionality and performance.",
+    desc: "Add focused AI features to the software your team already uses, without replacing the rest of your setup.",
     video:
       "https://player.mediadelivery.net/play/661416/0547118b-9fd8-4aae-864f-77f5f0690710",
     link: "/services/ai-addon-services",
     bookingUrl: SERVICE_BOOKING_URLS.aiAddon,
   },
   {
-    title: "Industry-Specific AI Solutions",
+    title: "Industry Specific AI Use Cases",
     category: "automation",
-    desc: "Tailored accelerators for your vertical. Industry-specific solutions designed to address unique challenges and accelerate growth in your sector.",
+    desc: "Apply automation to familiar workflows in real estate, healthcare, finance, consulting, and other sectors.",
     video:
       "https://player.mediadelivery.net/play/661416/78158008-7515-443f-a183-a54a8d3b3a3f",
     link: "/services/industry-specific",
   },
   {
-    title: "Conversion-focused Website Builder",
+    title: "AI Website Builder",
     category: "growth",
-    desc: "Launch polished, high-converting websites in minutes—not weeks. Generate landing pages, supporting pages, and offer flows from simple prompts without writing code.",
+    desc: "Create landing pages and supporting website pages quickly, with clear offers, lead capture, and no custom coding required.",
     video:
       "https://player.mediadelivery.net/play/661416/2fbe2f5c-3f7c-4ebd-8121-5312b7173497",
     link: "/products/website-builder",
     bookingUrl: SERVICE_BOOKING_URLS.aiWebsiteBuilder,
   },
   {
-    title: "ED-CRM & Lead Management",
+    title: "ED-CRM",
     category: "growth",
-    desc: "One platform to attract leads, automate follow-up, and grow revenue. Bring funnels, workflows, AI agents, and real-time reporting together in a single CRM.",
+    desc: "Keep leads, conversations, follow-up tasks, pipelines, and reporting together so opportunities do not get lost between tools.",
     video:
       "https://player.mediadelivery.net/play/667434/9498cecf-b56b-403f-a713-3551b8f7cf8c",
     link: "/products/edcrm",
@@ -88,16 +88,16 @@ const cards: Card[] = [
   {
     title: "Emotion AI",
     category: "engagement",
-    desc: "Connect with customers in a personal, empathetic way. Emotion AI senses tone and intent in real time so every reply feels timely, human, and built to convert.",
+    desc: "Use tone and intent signals to help customer conversations feel more relevant and better timed.",
     video:
       "https://player.mediadelivery.net/play/661416/63fe6a94-5414-484c-b852-3c38c580a74f",
     link: "/products/emotionai",
     bookingUrl: SERVICE_BOOKING_URLS.emotionAi,
   },
   {
-    title: "WhatsApp Customer Engagement",
+    title: "WhatsApp Business API",
     category: "growth",
-    desc: "Engage customers at scale with automated, personalized WhatsApp video journeys. Capture leads, respond instantly, nurture sales conversations, and support customers from one unified AI-powered platform.",
+    desc: "Handle enquiries, reminders, updates, and sales follow-up on the channel many customers already use every day.",
     video:
       "https://player.mediadelivery.net/play/661416/6a61d538-971f-4b67-898e-708a8dfa12ab",
     link: "https://www.eurodigital.marketing/",
@@ -108,21 +108,24 @@ const cards: Card[] = [
 const serviceGroups = [
   {
     id: "growth" as const,
-    title: "Digital Marketing & Growth",
+    title: "Digital Marketing and Promotions",
+    path: "/solutions/digital-marketing-and-promotions",
     description:
-      "Generate demand, capture leads, automate follow-up, and support conversion through connected marketing, website, CRM, and messaging systems.",
+      "Bring campaigns, websites, CRM, and WhatsApp follow-up into one practical customer-acquisition system.",
   },
   {
     id: "engagement" as const,
-    title: "AI-powered Customer Engagement",
+    title: "AI Customer Engagement",
+    path: "/solutions/ai-customer-engagement",
     description:
-      "Respond to prospects and customers faster through voice, chat, and emotionally aware engagement tools.",
+      "Give customers faster, more consistent help across phone, chat, and messaging channels.",
   },
   {
     id: "automation" as const,
-    title: "Business Automation",
+    title: "AI Business Automation",
+    path: "/solutions/ai-business-automation",
     description:
-      "Reduce repetitive work and connect the operational workflows that support marketing, sales, and customer service.",
+      "Reduce repetitive work and connect the processes your team relies on every day.",
   },
 ];
 
@@ -240,7 +243,7 @@ function Sections({ onBookDemo }: SectionsProps) {
             Digital Marketing Systems Built for Growth
           </h2>
           <p
-            className="text-base md:text-[19px] max-w-3xl mx-auto leading-relaxed capitalize"
+            className="text-base md:text-[19px] max-w-3xl mx-auto leading-relaxed"
             style={{ color: "var(--text-secondary)" }}
           >
             EuroDigital helps businesses generate leads and improve conversion
@@ -264,6 +267,9 @@ function Sections({ onBookDemo }: SectionsProps) {
                 <p className="text-lg leading-8" style={{ color: "var(--text-secondary)" }}>
                   {group.description}
                 </p>
+                <Link to={group.path} className="mt-3 inline-block font-semibold text-blue-700 hover:text-blue-800">
+                  Explore this solution
+                </Link>
               </div>
 
               <div className="grid gap-8 md:grid-cols-2 md:gap-10">
@@ -370,7 +376,7 @@ function Sections({ onBookDemo }: SectionsProps) {
 
                   {/* Description area */}
                   <p
-                    className="text-base md:text-lg leading-relaxed mb-4 capitalize"
+                    className="text-base md:text-lg leading-relaxed mb-4"
                     style={{ color: "var(--text-secondary)" }}
                   >
                     {card.desc}

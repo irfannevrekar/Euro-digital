@@ -24,9 +24,29 @@ const pageSeo: Record<string, PageSeo> = {
       "Contact EuroDigital in Abu Dhabi for digital marketing, lead generation, CRM, websites, AI agents, chatbots, and business automation services.",
   },
   "/services": {
-    title: "Digital Marketing Services Powered by AI UAE | EuroDigital",
+    title: "Digital Marketing, Engagement & Automation Services | EuroDigital",
     description:
-      "Explore EuroDigital services for lead generation, marketing automation, conversion-focused websites, CRM, customer engagement, and AI-supported follow-up in the UAE.",
+      "Explore EuroDigital services for digital marketing, lead generation, CRM, customer engagement, websites, and business automation in the UAE.",
+  },
+  "/ai-tools": {
+    title: "AI Tools for Marketing, Sales & Customer Teams | EuroDigital",
+    description:
+      "Explore EuroDigital's AI Website Builder, ED-CRM, and Emotion AI tools for marketing, sales, and customer engagement teams.",
+  },
+  "/solutions/digital-marketing-and-promotions": {
+    title: "Digital Marketing and Promotions Solutions | EuroDigital UAE",
+    description:
+      "Connect campaigns, websites, CRM, and WhatsApp follow-up with EuroDigital's digital marketing and promotions solutions.",
+  },
+  "/solutions/ai-customer-engagement": {
+    title: "AI Customer Engagement Solutions | EuroDigital UAE",
+    description:
+      "Respond faster across phone, chat, and messaging with EuroDigital's AI customer engagement solutions.",
+  },
+  "/solutions/ai-business-automation": {
+    title: "AI Business Automation Solutions | EuroDigital UAE",
+    description:
+      "Reduce repetitive work and connect day-to-day processes with EuroDigital's AI business automation solutions.",
   },
   "/services/ai-business-automation": {
     title: "AI Business Automation Services UAE | EuroDigital",
@@ -49,17 +69,17 @@ const pageSeo: Record<string, PageSeo> = {
       "Deploy AI chatbots for websites and messaging channels with 24/7 support, lead qualification, FAQs, and automated customer engagement.",
   },
   "/services/ai-addon-services": {
-    title: "AI Add-on Services UAE | EuroDigital",
+    title: "AI add-on Services UAE | EuroDigital",
     description:
       "Enhance your existing business tools and platforms with flexible, scalable AI features and integrations from EuroDigital in the UAE.",
   },
   "/services/industry-specific": {
-    title: "Industry-Specific AI Solutions UAE | EuroDigital",
+    title: "Industry Specific AI Use Cases UAE | EuroDigital",
     description:
       "Explore practical, industry-specific AI solutions from EuroDigital for healthcare, real estate, retail, finance, hospitality, and other sectors.",
   },
   "/products/website-builder": {
-    title: "AI Website & Funnel Builder UAE | EuroDigital",
+    title: "AI Website Builder UAE | EuroDigital",
     description:
       "Build conversion-focused websites and sales funnels with EuroDigital's AI website builder for businesses in the UAE.",
   },
