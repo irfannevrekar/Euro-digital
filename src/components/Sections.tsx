@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { Play } from "lucide-react";
-import { useState, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import BunnyStreamPlayer from "./BunnyStreamPlayer";
 import { isBunnyStreamUrl } from "../utils/bunnyStream";
 import { SERVICE_BOOKING_URLS } from "../constants/booking";
@@ -145,20 +145,201 @@ const serviceGroups = [
 const industries = [
   {
     title: "Real Estate",
+    description: "Explore AI solutions designed for real estate teams.",
     image:
       "https://2c3wn7zfav.ucarecd.net/11ba89c6-4554-4254-a8e6-6193565067df/photo1505693416388ac5ce068fe85.avif",
   },
   {
-    title: "E-commerce",
+    title: "Healthcare",
+    description: "Explore how AI can support healthcare teams and patient journeys.",
     image:
-      "https://2c3wn7zfav.ucarecd.net/0782a6d2-94ea-413a-b1b1-8094d5ed55b4/photo1498050108023c5249f4df085.avif",
+      "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=1200&q=80",
   },
   {
-    title: "Financial Services",
+    title: "Consultancy",
+    description: "Explore AI solutions built for consultancy firms.",
     image:
-      "https://2c3wn7zfav.ucarecd.net/f478ef6d-d78c-469b-9285-3deb12d29e98/photo152060716251377705c0f0d4a.avif",
+      "https://images.unsplash.com/photo-1521737711867-e3b97375f902?auto=format&fit=crop&w=1200&q=80",
+  },
+  {
+    title: "SaaS Company",
+    description: "Explore AI that helps SaaS teams acquire, support, and retain customers.",
+    image:
+      "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1200&q=80",
+  },
+  {
+    title: "Insurance Company",
+    description: "Explore AI for insurance sales, claims, and customer support.",
+    image:
+      "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?auto=format&fit=crop&w=1200&q=80",
+  },
+  {
+    title: "Banking System",
+    description: "Explore AI for secure, responsive banking operations and service.",
+    image:
+      "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=1200&q=80",
+  },
+  {
+    title: "Solar Companies",
+    description: "Explore AI that improves solar lead generation and conversion.",
+    image:
+      "https://images.unsplash.com/photo-1509391366360-2e959784a276?auto=format&fit=crop&w=1200&q=80",
   },
 ];
+
+const testimonials = [
+  {
+    name: "James Patterson",
+    role: "CEO & Founder",
+    company: "Velocity Enterprises",
+    image:
+      "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop",
+    text: "Before working with EuroDigital, our business felt busy but not productive. We were putting in long hours, handling leads manually, following up late, and constantly switching between tools that never really worked together. On paper things looked fine, but behind the scenes it felt chaotic and exhausting.\n\nEuroDigital helped us step back and rebuild the foundation properly. They streamlined our workflows, automated the parts that slowed us down, and gave us clarity over our entire operation. For the first time, our systems actually supported our growth instead of holding it back. We now spend more time making decisions and less time fixing problems.",
+  },
+  {
+    name: "Rachel Thompson",
+    role: "Director of Sales",
+    company: "Horizon Real Estate Group",
+    image:
+      "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=150&h=150&fit=crop",
+    text: "We had no shortage of interest in our business, but we were losing opportunities simply because we couldn't respond fast enough. Messages were missed, follow-ups were delayed, and potential customers quietly moved on.\n\nOnce EuroDigital came in, everything shifted. Leads were handled instantly, conversations were tracked properly, and nothing slipped through the cracks. It didn’t feel automated — it felt intelligent, personal, and reliable.",
+  },
+  {
+    name: "David Kim",
+    role: "Operations Manager",
+    company: "Peak Performance Logistics",
+    image:
+      "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&h=150&fit=crop",
+    text: "Running the business used to feel like we were always reacting. Every day brought new fires to put out: repetitive tasks, manual processes, and inconsistent customer experiences.\n\nEuroDigital changed that dynamic completely. The business now feels calm, controlled, and scalable.",
+  },
+  {
+    name: "Jennifer Martinez",
+    role: "Chief Technology Officer",
+    company: "NextGen Solutions",
+    image:
+      "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=150&h=150&fit=crop",
+    text: "As our company grew, the cracks in our digital systems became impossible to ignore. What worked when we were small simply didn't scale.\n\nEuroDigital helped us grow smarter, not heavier.",
+  },
+  {
+    name: "Michael Andrews",
+    role: "Managing Director",
+    company: "Summit Financial Partners",
+    image:
+      "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=150&h=150&fit=crop",
+    text: "We were already doing okay before EuroDigital, but deep down we knew we were operating below our potential.\n\nEuroDigital brought everything together into one clean, efficient system.",
+  },
+  {
+    name: "Sofia Laurent",
+    role: "Founder & Managing Partner",
+    company: "Aurora Consulting Group",
+    image:
+      "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=150&h=150&fit=crop",
+    text: "We reached a point where growth started creating friction instead of momentum.\n\nEuroDigital aligned our systems, simplified our workflows, and gave us full clarity and control over our next phase of growth.",
+  },
+];
+
+function TestimonialsSection() {
+  const [index, setIndex] = useState(0);
+  const [visibleCards, setVisibleCards] = useState(1);
+
+  useEffect(() => {
+    const updateVisibleCards = () => {
+      setVisibleCards(window.innerWidth >= 1024 ? 3 : window.innerWidth >= 768 ? 2 : 1);
+    };
+
+    updateVisibleCards();
+    window.addEventListener("resize", updateVisibleCards);
+    return () => window.removeEventListener("resize", updateVisibleCards);
+  }, []);
+
+  const totalPages = Math.ceil(testimonials.length / visibleCards);
+
+  useEffect(() => {
+    setIndex((currentIndex) => Math.min(currentIndex, totalPages - 1));
+  }, [totalPages]);
+
+  return (
+    <section
+      id="testimonials"
+      className="scroll-mt-32 overflow-hidden bg-[#0b1538] py-20 md:py-24"
+      style={{
+        backgroundImage:
+          "radial-gradient(circle at 50% 120%, rgba(6, 182, 212, 0.22), transparent 32%)",
+      }}
+    >
+      <div className="mx-auto max-w-6xl px-10 md:px-16">
+        <div className="mb-10 text-center md:mb-12">
+          <h2 className="text-4xl font-bold text-slate-300 md:text-5xl">Testimonials</h2>
+        </div>
+
+        <div className="relative">
+          <button
+            type="button"
+            onClick={() => setIndex((currentIndex) => Math.max(currentIndex - 1, 0))}
+            disabled={index === 0}
+            className="absolute left-0 top-1/2 z-10 hidden h-12 w-12 -translate-x-[175%] -translate-y-1/2 items-center justify-center rounded-full border border-white/10 bg-white text-2xl text-slate-800 shadow-lg transition-colors hover:bg-slate-100 disabled:cursor-not-allowed disabled:bg-slate-400 disabled:opacity-60 lg:flex"
+            aria-label="Previous testimonials"
+          >
+            ‹
+          </button>
+          <button
+            type="button"
+            onClick={() => setIndex((currentIndex) => Math.min(currentIndex + 1, totalPages - 1))}
+            disabled={index === totalPages - 1}
+            className="absolute right-0 top-1/2 z-10 hidden h-12 w-12 translate-x-[175%] -translate-y-1/2 items-center justify-center rounded-full border border-white/10 bg-white text-2xl text-slate-800 shadow-lg transition-colors hover:bg-slate-100 disabled:cursor-not-allowed disabled:bg-slate-400 disabled:opacity-60 lg:flex"
+            aria-label="Next testimonials"
+          >
+            ›
+          </button>
+
+          <div className="overflow-hidden">
+            <div
+              className="flex transition-transform duration-500 ease-out"
+              style={{ transform: `translateX(-${index * (100 / visibleCards)}%)` }}
+            >
+              {testimonials.map((testimonial) => (
+                <article key={testimonial.name} className="w-full shrink-0 px-3 md:w-1/2 lg:w-1/3">
+                  <div className="flex h-full min-h-[31rem] flex-col rounded-2xl border border-slate-100 bg-white p-8 text-center shadow-[0_12px_35px_rgba(0,0,0,0.16)] md:p-10">
+                    <span className="font-serif text-5xl leading-none text-blue-300">“</span>
+                    <p className="mt-7 max-h-[13rem] flex-1 overflow-hidden whitespace-pre-line text-sm italic leading-6 text-slate-600 md:text-base md:leading-7">
+                      {testimonial.text}
+                    </p>
+                    <div className="mt-6 flex flex-col items-center border-t border-slate-100 pt-5">
+                      <img
+                        src={testimonial.image}
+                        alt={testimonial.name}
+                        className="h-14 w-14 rounded-full border-2 border-white object-cover shadow-md"
+                        loading="lazy"
+                      />
+                      <div className="mt-3">
+                        <h3 className="font-bold text-slate-900">{testimonial.name}</h3>
+                        <p className="text-xs uppercase tracking-wide text-slate-500">{testimonial.role}</p>
+                        <p className="mt-1 text-sm font-semibold text-blue-700">{testimonial.company}</p>
+                      </div>
+                    </div>
+                  </div>
+                </article>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        <div className="mt-8 flex items-center justify-center gap-2" aria-label="Testimonial pages">
+          {Array.from({ length: totalPages }, (_, page) => (
+            <button
+              type="button"
+              key={page}
+              onClick={() => setIndex(page)}
+              aria-label={`Show testimonial page ${page + 1}`}
+              aria-current={index === page ? "true" : undefined}
+              className={`h-2 rounded-full transition-all ${index === page ? "w-8 bg-blue-500" : "w-2 bg-slate-300 hover:bg-white"}`}
+            />
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
 
 interface SectionsProps {
   onBookDemo: (bookingUrl?: string) => void;
@@ -446,7 +627,7 @@ function Sections({ onBookDemo }: SectionsProps) {
             className="text-4xl md:text-6xl lg:text-6xl font-semibold"
             style={{ color: "var(--text-primary)" }}
           >
-            Industry-Specific AI
+            Industry-Specific AI Use Cases
           </h2>
           <p
             className="text-base md:text-[19px] max-w-4xl mx-auto leading-relaxed"
@@ -476,7 +657,7 @@ function Sections({ onBookDemo }: SectionsProps) {
                 sizes="(min-width: 768px) 33vw, 100vw"
               />
               <div
-                className="py-6 px-8 text-center flex-grow flex items-center justify-center"
+                className="flex flex-grow flex-col items-center justify-center px-8 py-6 text-center"
                 style={{ backgroundColor: "var(--bg-secondary)" }}
               >
                 <h3
@@ -485,11 +666,26 @@ function Sections({ onBookDemo }: SectionsProps) {
                 >
                   {industry.title}
                 </h3>
+                <p
+                  className="mt-3 text-sm leading-6"
+                  style={{ color: "var(--text-secondary)" }}
+                >
+                  {industry.description}
+                </p>
+                <Link
+                  to="/services/industry-specific"
+                  className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-blue-700 transition-colors hover:text-cyan-600"
+                >
+                  Learn More
+                  <span aria-hidden="true">→</span>
+                </Link>
               </div>
             </div>
           ))}
         </div>
       </section>
+
+      <TestimonialsSection />
 
     </div>
   );
