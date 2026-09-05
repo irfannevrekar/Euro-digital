@@ -71,11 +71,11 @@ function SolutionCategoryPage({ slug }: SolutionCategoryPageProps) {
 
       <section id="included-services" className="scroll-mt-28 bg-slate-50 py-16 md:py-24">
         <div className="mx-auto max-w-7xl px-6 md:px-12">
-          <div className="mb-10 max-w-3xl">
+          <div className="mb-10 max-w-3xl md:max-w-none">
             <p className="mb-3 text-base font-bold uppercase tracking-[0.18em] text-blue-700">
               Services in this solution
             </p>
-            <h2 className="text-3xl font-semibold text-slate-900 md:text-4xl">
+            <h2 className="text-3xl font-semibold text-slate-900 md:whitespace-nowrap md:text-4xl">
               Choose one service or connect them together
             </h2>
             <p className="mt-4 text-xl leading-9 text-slate-600">

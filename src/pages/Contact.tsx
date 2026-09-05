@@ -3,6 +3,8 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 
 function Contact() {
+  type SubmissionState = "idle" | "submitting" | "success" | "error";
+
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -13,11 +15,43 @@ function Contact() {
     agreeIP: false,
     agreeTerms: false,
   });
+  const [submissionState, setSubmissionState] = useState<SubmissionState>("idle");
+  const [submissionError, setSubmissionError] = useState("");
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Form submitted:", formData);
-    // Handle form submission logic here
+    setSubmissionState("submitting");
+    setSubmissionError("");
+
+    try {
+      const submission = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
+      const result = (await submission.json().catch(() => null)) as { error?: string } | null;
+
+      if (!submission.ok) {
+        throw new Error(result?.error ?? "We could not send your enquiry. Please try again.");
+      }
+
+      setSubmissionState("success");
+      setFormData({
+        firstName: "",
+        lastName: "",
+        email: "",
+        contactNumber: "",
+        department: "",
+        message: "",
+        agreeIP: false,
+        agreeTerms: false,
+      });
+    } catch (error) {
+      setSubmissionState("error");
+      setSubmissionError(
+        error instanceof Error ? error.message : "We could not send your enquiry. Please try again.",
+      );
+    }
   };
 
   const handleChange = (
@@ -477,11 +511,22 @@ function Contact() {
                   {/* Submit Button */}
                   <button
                     type="submit"
-                    className="w-full md:w-auto px-12 py-3 rounded-lg text-white font-medium transition-all hover:shadow-lg cursor-pointer"
+                    disabled={submissionState === "submitting"}
+                    className="w-full md:w-auto px-12 py-3 rounded-lg text-white font-medium transition-all hover:shadow-lg cursor-pointer disabled:cursor-not-allowed disabled:opacity-70"
                     style={{ backgroundColor: "var(--primary-cyan)" }}
                   >
-                    Submit
+                    {submissionState === "submitting" ? "Sending…" : "Submit"}
                   </button>
+                  {submissionState === "success" && (
+                    <p className="text-sm font-medium text-emerald-700" role="status">
+                      Thank you. Your enquiry has been received.
+                    </p>
+                  )}
+                  {submissionState === "error" && (
+                    <p className="text-sm font-medium text-red-600" role="alert">
+                      {submissionError}
+                    </p>
+                  )}
                 </form>
               </div>
             </div>

@@ -130,6 +130,14 @@ VITE_BUNNY_STREAM_CDN_HOST=vz-70709547-6b5.b-cdn.net
 VITE_BUNNY_STREAM_CDN_HOST_667434=vz-a8afae03-850.b-cdn.net
 ```
 
+Contact-form submissions require this server-side Vercel environment variable:
+
+```env
+GHL_PRIVATE_INTEGRATION_TOKEN=your-private-integration-token
+```
+
+The GoHighLevel Location ID is configured in `api/contact.ts`. Give the private integration the `contacts.write` scope before deploying.
+
 ## Key Features
 
 - **Video Player:** Custom video player with Bunny Stream integration, play/pause overlays, buffering states, and single-video-at-a-time playback coordination
