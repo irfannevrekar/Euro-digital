@@ -239,13 +239,13 @@ function Sections({ onBookDemo }: SectionsProps) {
       >
         <div className="max-w-7xl mx-auto px-6 md:px-12 space-y-6 text-center mb-14 md:mb-20">
           <h2
-            className="text-4xl md:text-5xl lg:text-6xl font-semibold"
+            className="text-3xl font-semibold md:whitespace-nowrap md:text-[3.25rem] lg:text-[3.5rem]"
             style={{ color: "var(--text-primary)" }}
           >
-            Every business needs more than one solution.
+            Every business needs more than one solution
           </h2>
           <p
-            className="text-base md:text-[19px] max-w-4xl mx-auto leading-relaxed"
+            className="text-lg md:text-[23px] max-w-5xl mx-auto leading-relaxed"
             style={{ color: "var(--text-secondary)" }}
           >
             It needs one, tailor-made to how your industry actually works.
