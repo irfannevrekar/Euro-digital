@@ -111,6 +111,23 @@ const industryDetails: Record<string, IndustryContent> = {
   },
 };
 
+const industryImages: Record<string, string> = {
+  "Real Estate":
+    "https://2c3wn7zfav.ucarecd.net/11ba89c6-4554-4254-a8e6-6193565067df/photo1505693416388ac5ce068fe85.avif",
+  Healthcare:
+    "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=1200&q=80",
+  Consultancy:
+    "https://images.unsplash.com/photo-1521737711867-e3b97375f902?auto=format&fit=crop&w=1200&q=80",
+  "SAAS Company":
+    "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1200&q=80",
+  "Insurance Company":
+    "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?auto=format&fit=crop&w=1200&q=80",
+  "Banking System":
+    "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=1200&q=80",
+  "Solar Companies":
+    "https://images.unsplash.com/photo-1509391366360-2e959784a276?auto=format&fit=crop&w=1200&q=80",
+};
+
 function IndustrySpecificAI() {
   const [selectedIndustry, setSelectedIndustry] = useState<string | null>(null);
 
@@ -153,11 +170,7 @@ function IndustrySpecificAI() {
               transition={{ duration: 0.5 }}
               className="bg-white hover:bg-cyan-50 rounded-2xl p-8 shadow-md hover:shadow-xl transition-all duration-300"
             >
-              <div className="inline-flex items-center justify-center w-14 h-14 bg-green-500 rounded-lg mb-6">
-                <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
-                </svg>
-              </div>
+              <img src={industryImages["Real Estate"]} alt="Real Estate" className="w-full h-64 md:h-72 object-cover rounded-xl mb-6" loading="lazy" />
               <h3 className="text-2xl font-bold text-slate-800 mb-4">Real Estate</h3>
               <p className="text-slate-600 mb-6 leading-relaxed">
                 To know about real estate click on learn more.
@@ -181,11 +194,7 @@ function IndustrySpecificAI() {
               transition={{ duration: 0.5, delay: 0.1 }}
               className="bg-white hover:bg-cyan-50 rounded-2xl p-8 shadow-md hover:shadow-xl transition-all duration-300"
             >
-              <div className="inline-flex items-center justify-center w-14 h-14 bg-green-500 rounded-lg mb-6">
-                <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
-                </svg>
-              </div>
+              <img src={industryImages.Healthcare} alt="Healthcare" className="w-full h-64 md:h-72 object-cover rounded-xl mb-6" loading="lazy" />
               <h3 className="text-2xl font-bold text-slate-800 mb-4">Healthcare</h3>
               <p className="text-slate-600 mb-6 leading-relaxed">
                 To know more about AI in Healthcare, click on leanr more.
@@ -209,11 +218,7 @@ function IndustrySpecificAI() {
               transition={{ duration: 0.5, delay: 0.2 }}
               className="bg-white hover:bg-cyan-50 rounded-2xl p-8 shadow-md hover:shadow-xl transition-all duration-300"
             >
-              <div className="inline-flex items-center justify-center w-14 h-14 bg-green-500 rounded-lg mb-6">
-                <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
-                </svg>
-              </div>
+              <img src={industryImages.Consultancy} alt="Consultancy" className="w-full h-64 md:h-72 object-cover rounded-xl mb-6" loading="lazy" />
               <h3 className="text-2xl font-bold text-slate-800 mb-4">Consultancy</h3>
               <p className="text-slate-600 mb-6 leading-relaxed">
                 To know more about AI in Consultancy, click on learn more.
@@ -237,11 +242,7 @@ function IndustrySpecificAI() {
               transition={{ duration: 0.5, delay: 0.3 }}
               className="bg-white hover:bg-cyan-50 rounded-2xl p-8 shadow-md hover:shadow-xl transition-all duration-300"
             >
-              <div className="inline-flex items-center justify-center w-14 h-14 bg-green-500 rounded-lg mb-6">
-                <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                </svg>
-              </div>
+              <img src={industryImages["SAAS Company"]} alt="SAAS Company" className="w-full h-64 md:h-72 object-cover rounded-xl mb-6" loading="lazy" />
               <h3 className="text-2xl font-bold text-slate-800 mb-4">SAAS Company</h3>
               <p className="text-slate-600 mb-6 leading-relaxed">
                 To know more about AI in SAAS Company, click on learn more.
@@ -265,11 +266,7 @@ function IndustrySpecificAI() {
               transition={{ duration: 0.5, delay: 0.4 }}
               className="bg-white hover:bg-cyan-50 rounded-2xl p-8 shadow-md hover:shadow-xl transition-all duration-300"
             >
-              <div className="inline-flex items-center justify-center w-14 h-14 bg-green-500 rounded-lg mb-6">
-                <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.040A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-                </svg>
-              </div>
+              <img src={industryImages["Insurance Company"]} alt="Insurance Company" className="w-full h-64 md:h-72 object-cover rounded-xl mb-6" loading="lazy" />
               <h3 className="text-2xl font-bold text-slate-800 mb-4">Insurance Company</h3>
               <p className="text-slate-600 mb-6 leading-relaxed">
                 To know more about AI in Insurance Company, click on learn more.
@@ -293,11 +290,7 @@ function IndustrySpecificAI() {
               transition={{ duration: 0.5, delay: 0.5 }}
               className="bg-white hover:bg-cyan-50 rounded-2xl p-8 shadow-md hover:shadow-xl transition-all duration-300"
             >
-              <div className="inline-flex items-center justify-center w-14 h-14 bg-green-500 rounded-lg mb-6">
-                <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" />
-                </svg>
-              </div>
+              <img src={industryImages["Banking System"]} alt="Banking System" className="w-full h-64 md:h-72 object-cover rounded-xl mb-6" loading="lazy" />
               <h3 className="text-2xl font-bold text-slate-800 mb-4">Banking System</h3>
               <p className="text-slate-600 mb-6 leading-relaxed">
                 To know more about AI in Banking System, click on learn more.
@@ -321,11 +314,7 @@ function IndustrySpecificAI() {
               transition={{ duration: 0.5, delay: 0.6 }}
               className="bg-white hover:bg-cyan-50 rounded-2xl p-8 shadow-md hover:shadow-xl transition-all duration-300"
             >
-              <div className="inline-flex items-center justify-center w-14 h-14 bg-green-500 rounded-lg mb-6">
-                <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
-                </svg>
-              </div>
+              <img src={industryImages["Solar Companies"]} alt="Solar Companies" className="w-full h-64 md:h-72 object-cover rounded-xl mb-6" loading="lazy" />
               <h3 className="text-2xl font-bold text-slate-800 mb-4">Solar Companies</h3>
               <p className="text-slate-600 mb-6 leading-relaxed">
                 To know more about AI in Solar Companies, click on learn more.
