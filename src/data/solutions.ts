@@ -69,7 +69,7 @@ export const solutionGroups: SolutionGroup[] = [
     ],
     services: [
       {
-        title: "AI Voice Agent Talk Time",
+        title: "AI Agent Talk Time",
         description:
           "Use natural voice conversations for appointment booking, lead qualification, reminders, support, and outbound follow-up.",
         path: "/services/ai-agent-talk-time",
@@ -108,13 +108,13 @@ export const solutionGroups: SolutionGroup[] = [
         path: "/services/ai-business-automation",
       },
       {
-        title: "AI add-on Services",
+        title: "AI Add-on Services",
         description:
           "Add focused AI features to the software your business already uses instead of starting again with a new stack.",
         path: "/services/ai-addon-services",
       },
       {
-        title: "Industry Specific AI Use Cases",
+        title: "Industry-Specific AI",
         description:
           "Apply automation to the workflows and customer journeys common in sectors such as real estate, healthcare, finance, and consulting.",
         path: "/services/industry-specific",

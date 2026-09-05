@@ -119,8 +119,8 @@ export const serviceFAQs: ServiceFAQ[] = [
     subtitle: "Ways to add a focused AI feature without replacing the systems your team already uses.",
     faqs: [
       {
-        question: "What are AI add-on Services?",
-        answer: "AI add-on Services are focused features that connect to tools your business already uses. They can add automation, analysis, or customer-facing functions without requiring a complete system replacement."
+        question: "What are AI Add-on Services?",
+        answer: "AI Add-on Services are focused features that connect to tools your business already uses. They can add automation, analysis, or customer-facing functions without requiring a complete system replacement."
       },
       {
         question: "How easy is it to integrate AI add-ons?",

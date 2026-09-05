@@ -5,7 +5,7 @@ import { getFAQsByServiceId } from "../data/faqData";
 function AIAgentTalkTime() {
   const serviceData = {
     id: "ai-agent-talk-time",
-    title: "AI Voice Agent Talk Time",
+    title: "AI Agent Talk Time",
     description:
       "AI voice calling capacity for automated sales, support, appointment booking, qualification, and customer follow-up.",
     image: "/backgroundImages/aitalk-time.png",

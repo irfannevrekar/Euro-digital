@@ -38,7 +38,7 @@ const slides: Slide[] = [
     link: "/services/ai-business-automation",
   },
   {
-    title: "AI Voice Agent Talk Time",
+    title: "AI Agent Talk Time",
     description:
       "AI voice calling capacity for automated sales, support, appointment booking, qualification, and customer follow-up.",
     image: "/backgroundImages/aitalk-time.png",
@@ -52,14 +52,14 @@ const slides: Slide[] = [
     link: "/services/ai-automated-chatbot",
   },
   {
-    title: "AI add-on Services",
+    title: "AI Add-on Services",
     description:
-      "Our AI add-on Services allow businesses to enhance their existing tools and platforms with advanced AI features. These add-ons are flexible, scalable, and designed to evolve with your business.",
+      "Our AI Add-on Services allow businesses to enhance their existing tools and platforms with advanced AI features. These add-ons are flexible, scalable, and designed to evolve with your business.",
     image: "/servicesImages/ai_addon.png",
     link: "/services/ai-addon-services",
   },
   {
-    title: "Industry Specific AI Use Cases",
+    title: "Industry-Specific AI",
     description:
       "We understand that every industry has unique challenges. That’s why EuroDigital delivers AI solutions specifically designed for different business domains, ensuring practical and measurable impact.",
     image:

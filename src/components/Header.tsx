@@ -5,12 +5,23 @@ import { BOOKING_URL } from "../constants/booking";
 import { solutionGroups } from "../data/solutions";
 import BookingModal from "./BookingModal";
 
+const serviceLinks = Array.from(
+  new Map(
+    solutionGroups
+      .flatMap((group) => group.services)
+      .map((service) => [service.path, service]),
+  ).values(),
+);
+
 function Header() {
+  const [isServicesOpen, setIsServicesOpen] = useState(false);
   const [isSolutionsOpen, setIsSolutionsOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isMobileServicesOpen, setIsMobileServicesOpen] = useState(false);
   const [isMobileSolutionsOpen, setIsMobileSolutionsOpen] = useState(false);
   const [isBookingOpen, setIsBookingOpen] = useState(false);
-  const closeTimerRef = useRef<number | null>(null);
+  const servicesCloseTimerRef = useRef<number | null>(null);
+  const solutionsCloseTimerRef = useRef<number | null>(null);
 
   useEffect(() => {
     const handleResize = () => {
@@ -29,14 +40,24 @@ function Header() {
   }, [isMobileMenuOpen]);
 
   const openSolutions = () => {
-    if (closeTimerRef.current) window.clearTimeout(closeTimerRef.current);
+    if (solutionsCloseTimerRef.current) window.clearTimeout(solutionsCloseTimerRef.current);
     setIsSolutionsOpen(true);
   };
 
   const scheduleSolutionsClose = () => {
-    closeTimerRef.current = window.setTimeout(() => setIsSolutionsOpen(false), 150);
+    solutionsCloseTimerRef.current = window.setTimeout(() => setIsSolutionsOpen(false), 150);
   };
 
+  const openServices = () => {
+    if (servicesCloseTimerRef.current) window.clearTimeout(servicesCloseTimerRef.current);
+    setIsServicesOpen(true);
+  };
+
+  const scheduleServicesClose = () => {
+    servicesCloseTimerRef.current = window.setTimeout(() => setIsServicesOpen(false), 150);
+  };
+
+  const closeDesktopServices = () => setIsServicesOpen(false);
   const closeDesktopSolutions = () => setIsSolutionsOpen(false);
   const closeMobileMenu = () => setIsMobileMenuOpen(false);
   const closeBookingModal = useCallback(() => setIsBookingOpen(false), []);
@@ -56,9 +77,56 @@ function Header() {
           <Link className="font-medium tracking-wide text-slate-800 hover:text-blue-700" to="/">
             Home
           </Link>
-          <Link className="font-medium tracking-wide text-slate-800 hover:text-blue-700" to="/services">
-            Services
-          </Link>
+          <div
+            className="group relative"
+            onMouseEnter={openServices}
+            onMouseLeave={scheduleServicesClose}
+            onFocus={openServices}
+            onBlur={(event) => {
+              if (!event.currentTarget.contains(event.relatedTarget)) closeDesktopServices();
+            }}
+          >
+            <button
+              type="button"
+              className="flex items-center gap-1 py-2 font-medium tracking-wide text-slate-800 hover:text-blue-700"
+              aria-haspopup="true"
+              aria-expanded={isServicesOpen}
+              onClick={() => setIsServicesOpen((open) => !open)}
+            >
+              Services
+              <ChevronDown className={`h-4 w-4 transition-transform ${isServicesOpen ? "rotate-180" : ""}`} />
+            </button>
+
+            <div
+              className={`absolute -left-72 w-[680px] pt-3 transition-all duration-200 group-hover:pointer-events-auto group-hover:visible group-hover:translate-y-0 group-hover:opacity-100 group-focus-within:pointer-events-auto group-focus-within:visible group-focus-within:translate-y-0 group-focus-within:opacity-100 ${isServicesOpen ? "pointer-events-auto visible translate-y-0 opacity-100" : "pointer-events-none invisible translate-y-2 opacity-0"}`}
+            >
+              <div className="grid grid-cols-3 gap-3 rounded-2xl border border-gray-100 bg-white p-4 shadow-2xl">
+                {serviceLinks.map((service) =>
+                  service.external ? (
+                    <a
+                      key={service.path}
+                      href={service.path}
+                      target="_blank"
+                      rel="noreferrer"
+                      onClick={closeDesktopServices}
+                      className="rounded-xl p-4 text-sm font-bold text-blue-700 transition-colors hover:bg-slate-50"
+                    >
+                      {service.title}
+                    </a>
+                  ) : (
+                    <Link
+                      key={service.path}
+                      to={service.path}
+                      onClick={closeDesktopServices}
+                      className="rounded-xl p-4 text-sm font-bold text-blue-700 transition-colors hover:bg-slate-50"
+                    >
+                      {service.title}
+                    </Link>
+                  ),
+                )}
+              </div>
+            </div>
+          </div>
           <Link className="font-medium tracking-wide text-slate-800 hover:text-blue-700" to="/ai-tools">
             AI Tools
           </Link>
@@ -147,9 +215,50 @@ function Header() {
             <Link to="/" onClick={closeMobileMenu} className="border-b border-gray-100 py-2 text-slate-800">
               Home
             </Link>
-            <Link to="/services" onClick={closeMobileMenu} className="border-b border-gray-100 py-2 text-slate-800">
-              Services
-            </Link>
+            <div>
+              <button
+                type="button"
+                className="flex w-full items-center justify-between border-b border-gray-100 py-2 text-slate-800"
+                onClick={() => setIsMobileServicesOpen((open) => !open)}
+                aria-expanded={isMobileServicesOpen}
+              >
+                Services
+                <ChevronDown className={`h-5 w-5 transition-transform ${isMobileServicesOpen ? "rotate-180" : ""}`} />
+              </button>
+
+              <div className={`${isMobileServicesOpen ? "block" : "hidden"} space-y-2 py-4 pl-3`}>
+                <Link
+                  to="/services"
+                  onClick={closeMobileMenu}
+                  className="block rounded-lg px-3 py-2 text-sm font-semibold text-slate-700 hover:bg-slate-50 hover:text-blue-700"
+                >
+                  All Services
+                </Link>
+                {serviceLinks.map((service) =>
+                  service.external ? (
+                    <a
+                      key={service.path}
+                      href={service.path}
+                      target="_blank"
+                      rel="noreferrer"
+                      onClick={closeMobileMenu}
+                      className="block rounded-lg px-3 py-2 text-sm font-medium text-slate-600 hover:bg-slate-50 hover:text-blue-700"
+                    >
+                      {service.title}
+                    </a>
+                  ) : (
+                    <Link
+                      key={service.path}
+                      to={service.path}
+                      onClick={closeMobileMenu}
+                      className="block rounded-lg px-3 py-2 text-sm font-medium text-slate-600 hover:bg-slate-50 hover:text-blue-700"
+                    >
+                      {service.title}
+                    </Link>
+                  ),
+                )}
+              </div>
+            </div>
             <Link to="/ai-tools" onClick={closeMobileMenu} className="border-b border-gray-100 py-2 text-slate-800">
               AI Tools
             </Link>

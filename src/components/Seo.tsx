@@ -59,7 +59,7 @@ const pageSeo: Record<string, PageSeo> = {
       "EuroDigital provides AI-powered digital marketing and business promotion services including marketing automation, personalized campaigns, content distribution, campaign optimization, and performance analytics.",
   },
   "/services/ai-agent-talk-time": {
-    title: "AI Voice Agent Talk Time UAE | EuroDigital",
+    title: "AI Agent Talk Time UAE | EuroDigital",
     description:
       "Add AI voice calling capacity for automated sales, support, appointment booking, qualification, and customer follow-up with EuroDigital.",
   },
@@ -69,12 +69,12 @@ const pageSeo: Record<string, PageSeo> = {
       "Deploy AI chatbots for websites and messaging channels with 24/7 support, lead qualification, FAQs, and automated customer engagement.",
   },
   "/services/ai-addon-services": {
-    title: "AI add-on Services UAE | EuroDigital",
+    title: "AI Add-on Services UAE | EuroDigital",
     description:
       "Enhance your existing business tools and platforms with flexible, scalable AI features and integrations from EuroDigital in the UAE.",
   },
   "/services/industry-specific": {
-    title: "Industry Specific AI Use Cases UAE | EuroDigital",
+    title: "Industry-Specific AI UAE | EuroDigital",
     description:
       "Explore practical, industry-specific AI solutions from EuroDigital for healthcare, real estate, retail, finance, hospitality, and other sectors.",
   },

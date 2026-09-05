@@ -437,7 +437,7 @@ function Sections({ onBookDemo }: SectionsProps) {
             className="text-4xl md:text-6xl lg:text-6xl font-semibold"
             style={{ color: "var(--text-primary)" }}
           >
-            Industry Specific AI Use Cases
+            Industry-Specific AI
           </h2>
           <p
             className="text-base md:text-[19px] max-w-4xl mx-auto leading-relaxed"

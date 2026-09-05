@@ -17,7 +17,7 @@ function AIBusinessAutomation() {
       "Internal workflow automation",
       "Data processing and reporting",
       "Task management and operational optimisation",
-      "Industry Specific AI Use Cases",
+      "Industry-Specific AI",
     ],
     detailedDescription:
       "Each automation is customised to your business needs, ensuring efficiency without disrupting your current operations.",
