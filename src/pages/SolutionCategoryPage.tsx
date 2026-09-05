@@ -15,14 +15,15 @@ function SolutionCategoryPage({ slug }: SolutionCategoryPageProps) {
     <div className="bg-white text-slate-900">
       <section className="border-b border-slate-100 bg-gradient-to-br from-slate-50 via-white to-cyan-50/70 py-20 md:py-28">
         <div className="mx-auto max-w-7xl px-6 md:px-12">
-          <div className="max-w-4xl">
-            <p className="mb-4 text-sm font-bold uppercase tracking-[0.2em] text-blue-700">
+          <div className="max-w-4xl md:max-w-none">
+            <p className="mb-6 inline-flex items-center gap-3 rounded-full border border-blue-200 bg-blue-50 px-5 py-2 text-base font-extrabold uppercase tracking-[0.28em] text-blue-700 shadow-sm">
+              <span className="h-2.5 w-2.5 rounded-full bg-cyan-400 shadow-[0_0_0_4px_rgba(34,211,238,0.15)]" />
               Solutions
             </p>
-            <h1 className="max-w-4xl text-4xl font-semibold leading-tight text-slate-900 md:text-6xl">
+            <h1 className="max-w-4xl text-4xl font-semibold leading-tight text-slate-900 md:max-w-none md:whitespace-nowrap md:text-5xl">
               {solution.title}
             </h1>
-            <p className="mt-6 max-w-3xl text-lg leading-8 text-slate-600 md:text-xl">
+            <p className="mt-6 max-w-4xl text-justify text-xl leading-8 text-slate-600 md:text-2xl md:leading-9">
               {solution.intro}
             </p>
             <div className="mt-9 flex flex-wrap gap-3">
@@ -47,7 +48,7 @@ function SolutionCategoryPage({ slug }: SolutionCategoryPageProps) {
       <section className="py-16 md:py-20">
         <div className="mx-auto grid max-w-7xl gap-10 px-6 md:grid-cols-[0.8fr_1.2fr] md:px-12">
           <div>
-            <p className="mb-3 text-sm font-bold uppercase tracking-[0.18em] text-blue-700">
+            <p className="mb-3 text-base font-bold uppercase tracking-[0.18em] text-blue-700">
               What this helps with
             </p>
             <h2 className="text-3xl font-semibold text-slate-900 md:text-4xl">
@@ -58,7 +59,7 @@ function SolutionCategoryPage({ slug }: SolutionCategoryPageProps) {
             {solution.outcomes.map((outcome) => (
               <li
                 key={outcome}
-                className="rounded-2xl border border-slate-200 bg-slate-50 p-5 text-base leading-7 text-slate-700"
+                className="rounded-2xl border border-slate-200 bg-slate-50 p-5 text-lg leading-8 text-slate-700"
               >
                 <CheckCircle2 className="mb-4 h-6 w-6 text-cyan-600" />
                 {outcome}
@@ -71,13 +72,13 @@ function SolutionCategoryPage({ slug }: SolutionCategoryPageProps) {
       <section id="included-services" className="scroll-mt-28 bg-slate-50 py-16 md:py-24">
         <div className="mx-auto max-w-7xl px-6 md:px-12">
           <div className="mb-10 max-w-3xl">
-            <p className="mb-3 text-sm font-bold uppercase tracking-[0.18em] text-blue-700">
+            <p className="mb-3 text-base font-bold uppercase tracking-[0.18em] text-blue-700">
               Services in this solution
             </p>
             <h2 className="text-3xl font-semibold text-slate-900 md:text-4xl">
               Choose one service or connect them together
             </h2>
-            <p className="mt-4 text-lg leading-8 text-slate-600">
+            <p className="mt-4 text-xl leading-9 text-slate-600">
               We can solve a specific gap or build a joined-up system around the tools and processes you already have.
             </p>
           </div>
@@ -91,7 +92,7 @@ function SolutionCategoryPage({ slug }: SolutionCategoryPageProps) {
                   <h3 className="text-2xl font-semibold text-slate-900 group-hover:text-blue-700">
                     {service.title}
                   </h3>
-                  <p className="mt-4 flex-1 text-base leading-7 text-slate-600">
+                  <p className="mt-4 flex-1 text-lg leading-8 text-slate-600">
                     {service.description}
                   </p>
                   <span className="mt-6 inline-flex items-center gap-2 font-semibold text-blue-700">
@@ -125,7 +126,7 @@ function SolutionCategoryPage({ slug }: SolutionCategoryPageProps) {
         <div className="mx-auto flex max-w-7xl flex-col justify-between gap-8 px-6 md:flex-row md:items-center md:px-12">
           <div className="max-w-2xl">
             <h2 className="text-3xl font-semibold md:text-4xl">Not sure which service fits?</h2>
-            <p className="mt-4 text-lg leading-8 text-slate-300">
+            <p className="mt-4 text-xl leading-9 text-slate-300">
               Tell us what is slowing the team down. We will help you identify a sensible first step.
             </p>
           </div>

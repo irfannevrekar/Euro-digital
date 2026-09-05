@@ -31,25 +31,25 @@ export const solutionGroups: SolutionGroup[] = [
       {
         title: "AI Business Promotion",
         description:
-          "Plan and run targeted campaigns, create relevant content, and use performance data to improve what happens next.",
+          "No big team, no big budget. No models, no voiceover artists, no production crew. Just professional-quality ads, made fast, made affordable, made to promote your business.",
         path: "/services/ai-business-promotion",
       },
       {
         title: "AI Website Builder",
         description:
-          "Create landing pages and websites that explain the offer clearly, capture enquiries, and connect with your sales process.",
+          "Whether you need a digital presence from scratch or tools to strengthen the one you have, we build professional-quality corporate websites and apps that let your customers connect with your business easily and build your credibility while they do.",
         path: "/products/website-builder",
       },
       {
         title: "ED-CRM",
         description:
-          "Keep leads, conversations, follow-up tasks, and pipeline reporting together so opportunities do not get lost between tools.",
+          "Leads flow in from every channel into one system. Our bots pre-qualify and nurture them, so your sales team's only job is to close the deal. Nothing missed, nothing waiting, 24/7.",
         path: "/products/edcrm",
       },
       {
         title: "WhatsApp Business API",
         description:
-          "Handle enquiries, reminders, updates, and follow-up on the channel many customers already use every day.",
+          "Turn WhatsApp into a full business workflow: a storefront, a payment channel, and a follow-up system, all running on intelligent automation.",
         path: "https://www.eurodigital.marketing/",
         external: true,
       },
@@ -71,19 +71,19 @@ export const solutionGroups: SolutionGroup[] = [
       {
         title: "AI Agent Talk Time",
         description:
-          "Use natural voice conversations for appointment booking, lead qualification, reminders, support, and outbound follow-up.",
+          "Uninterrupted voice agents for every part of your business, handling inquiries, lead generation, and after-sales calls, so your talk time is always covered.",
         path: "/services/ai-agent-talk-time",
       },
       {
         title: "AI Automated Chatbot",
         description:
-          "Answer common questions, collect lead details, and guide customers on your website or messaging channels at any hour.",
+          "A team of agents live on your website and social channels, around the clock, not just for capturing leads, but for after-sales service and every customer conversation in between.",
         path: "/services/ai-automated-chatbot",
       },
       {
         title: "Emotion AI",
         description:
-          "Use signals such as tone and intent to help customer conversations feel more relevant and better timed.",
+          "Every conversation adjusts to your customer's tone and sentiment, whether personal, professional, or human, every time.",
         path: "/products/emotionai",
       },
     ],
@@ -104,19 +104,19 @@ export const solutionGroups: SolutionGroup[] = [
       {
         title: "AI Business Automation",
         description:
-          "Map repetitive processes and automate the steps that slow down operations, sales, and customer service.",
+          "We build AI agents specific to your industry for lead follow-up, lead generation, after-sales service, or any business process you want automated. It's not just automation, it's an intelligence upgrade to the ERP and systems you already run, adding AI capability on top of what you have, so repetitive work gets done without you having to think about it.",
         path: "/services/ai-business-automation",
       },
       {
         title: "AI Add-on Services",
         description:
-          "Add focused AI features to the software your business already uses instead of starting again with a new stack.",
+          "Tailor-made add-ons built on top of your existing systems, bringing intelligence, not just automation, into your operations. Decisions get made, follow-ups get handled, and business runs even while you sleep.",
         path: "/services/ai-addon-services",
       },
       {
         title: "Industry-Specific AI",
         description:
-          "Apply automation to the workflows and customer journeys common in sectors such as real estate, healthcare, finance, and consulting.",
+          "We don't give every business the same solution. Every industry works differently, so every solution is tailor-made to fit.",
         path: "/services/industry-specific",
       },
     ],

@@ -4,6 +4,7 @@ import { useState, useRef } from "react";
 import BunnyStreamPlayer from "./BunnyStreamPlayer";
 import { isBunnyStreamUrl } from "../utils/bunnyStream";
 import { SERVICE_BOOKING_URLS } from "../constants/booking";
+import { solutionGroups } from "../data/solutions";
 
 interface Card {
   title: string;
@@ -15,11 +16,19 @@ interface Card {
   bookingUrl?: string;
 }
 
+const serviceDescriptions = new Map(
+  solutionGroups.flatMap((group) =>
+    group.services.map((service) => [service.title, service.description]),
+  ),
+);
+
+const getServiceDescription = (title: string) => serviceDescriptions.get(title) ?? "";
+
 const cards: Card[] = [
   {
     title: "AI Business Automation",
     category: "automation",
-    desc: "We build AI agents specific to your industry for lead follow-up, lead generation, after-sales service, or any business process you want automated. It's not just automation, it's an intelligence upgrade to the ERP and systems you already run, adding AI capability on top of what you have, so repetitive work gets done without you having to think about it.",
+    desc: getServiceDescription("AI Business Automation"),
     video:
       "https://player.mediadelivery.net/play/661416/aba8e1cb-c5df-4c8e-8d47-a8bf6d066411",
     link: "/services/ai-business-automation",
@@ -28,7 +37,7 @@ const cards: Card[] = [
   {
     title: "AI Business Promotion",
     category: "growth",
-    desc: "No big team, no big budget. No models, no voiceover artists, no production crew. Just professional-quality ads, made fast, made affordable, made to promote your business.",
+    desc: getServiceDescription("AI Business Promotion"),
     video:
       "https://player.mediadelivery.net/play/661416/02126d15-3c9d-4d94-a8ac-1d8bbc37332e",
     link: "/services/ai-business-promotion",
@@ -37,14 +46,14 @@ const cards: Card[] = [
   {
     title: "AI Agent Talk Time",
     category: "engagement",
-    desc: "Uninterrupted voice agents for every part of your business, handling inquiries, lead generation, and after-sales calls, so your talk time is always covered.",
+    desc: getServiceDescription("AI Agent Talk Time"),
     image: "/backgroundImages/ai_automation.png",
     link: "/services/ai-agent-talk-time",
   },
   {
     title: "AI Automated Chatbot",
     category: "engagement",
-    desc: "A team of agents live on your website and social channels, around the clock, not just for capturing leads, but for after-sales service and every customer conversation in between.",
+    desc: getServiceDescription("AI Automated Chatbot"),
     video:
       "https://player.mediadelivery.net/play/661416/c564b724-82f9-4426-b62e-079b3a1b8fb4",
     link: "/services/ai-automated-chatbot",
@@ -53,7 +62,7 @@ const cards: Card[] = [
   {
     title: "AI Add-on Services",
     category: "automation",
-    desc: "Tailor-made add-ons built on top of your existing systems, bringing intelligence, not just automation, into your operations. Decisions get made, follow-ups get handled, and business runs even while you sleep.",
+    desc: getServiceDescription("AI Add-on Services"),
     video:
       "https://player.mediadelivery.net/play/661416/0547118b-9fd8-4aae-864f-77f5f0690710",
     link: "/services/ai-addon-services",
@@ -62,7 +71,7 @@ const cards: Card[] = [
   {
     title: "Industry-Specific AI",
     category: "automation",
-    desc: "We don't give every business the same solution. Every industry works differently, so every solution is tailor-made to fit.",
+    desc: getServiceDescription("Industry-Specific AI"),
     video:
       "https://player.mediadelivery.net/play/661416/78158008-7515-443f-a183-a54a8d3b3a3f",
     link: "/services/industry-specific",
@@ -70,7 +79,7 @@ const cards: Card[] = [
   {
     title: "AI Website Builder",
     category: "growth",
-    desc: "Whether you need a digital presence from scratch or tools to strengthen the one you have, we build professional-quality corporate websites and apps that let your customers connect with your business easily and build your credibility while they do.",
+    desc: getServiceDescription("AI Website Builder"),
     video:
       "https://player.mediadelivery.net/play/661416/2fbe2f5c-3f7c-4ebd-8121-5312b7173497",
     link: "/products/website-builder",
@@ -79,7 +88,7 @@ const cards: Card[] = [
   {
     title: "ED-CRM",
     category: "growth",
-    desc: "Leads flow in from every channel into one system. Our bots pre-qualify and nurture them, so your sales team's only job is to close the deal. Nothing missed, nothing waiting, 24/7.",
+    desc: getServiceDescription("ED-CRM"),
     video:
       "https://player.mediadelivery.net/play/667434/9498cecf-b56b-403f-a713-3551b8f7cf8c",
     link: "/products/edcrm",
@@ -88,7 +97,7 @@ const cards: Card[] = [
   {
     title: "Emotion AI",
     category: "engagement",
-    desc: "Every conversation adjusts to your customer's tone and sentiment, whether personal, professional, or human, every time.",
+    desc: getServiceDescription("Emotion AI"),
     video:
       "https://player.mediadelivery.net/play/661416/63fe6a94-5414-484c-b852-3c38c580a74f",
     link: "/products/emotionai",
@@ -97,7 +106,7 @@ const cards: Card[] = [
   {
     title: "WhatsApp Business API",
     category: "growth",
-    desc: "Turn WhatsApp into a full business workflow: a storefront, a payment channel, and a follow-up system, all running on intelligent automation.",
+    desc: getServiceDescription("WhatsApp Business API"),
     video:
       "https://player.mediadelivery.net/play/661416/6a61d538-971f-4b67-898e-708a8dfa12ab",
     link: "https://www.eurodigital.marketing/",

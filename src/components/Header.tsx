@@ -2,25 +2,55 @@ import { ChevronDown, LogIn, Menu, X } from "lucide-react";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { BOOKING_URL } from "../constants/booking";
-import { solutionGroups } from "../data/solutions";
+import { solutionGroups, type SolutionService } from "../data/solutions";
 import BookingModal from "./BookingModal";
 
-const serviceLinks = Array.from(
-  new Map(
-    solutionGroups
-      .flatMap((group) => group.services)
-      .map((service) => [service.path, service]),
-  ).values(),
-);
+const serviceLinks: SolutionService[] = [
+  { title: "AI Business Automation", path: "/services/ai-business-automation", description: "" },
+  { title: "AI Business Promotion", path: "/services/ai-business-promotion", description: "" },
+  { title: "AI Agent Talk Time", path: "/services/ai-agent-talk-time", description: "" },
+  { title: "AI Automated Chatbot", path: "/services/ai-automated-chatbot", description: "" },
+  { title: "AI Add-on Services", path: "/services/ai-addon-services", description: "" },
+  { title: "Industry Specific AI Use Cases", path: "/services/industry-specific", description: "" },
+];
+
+const aiToolLinks: SolutionService[] = [
+  { title: "AI Website Builder", path: "/products/website-builder", description: "" },
+  { title: "ED-CRM", path: "/products/edcrm", description: "" },
+  { title: "Emotion AI", path: "/products/emotionai", description: "" },
+];
+
+function ServiceLink({
+  service,
+  onClick,
+  className,
+}: {
+  service: SolutionService;
+  onClick: () => void;
+  className: string;
+}) {
+  return service.external ? (
+    <a href={service.path} target="_blank" rel="noreferrer" onClick={onClick} className={className}>
+      {service.title}
+    </a>
+  ) : (
+    <Link to={service.path} onClick={onClick} className={className}>
+      {service.title}
+    </Link>
+  );
+}
 
 function Header() {
   const [isServicesOpen, setIsServicesOpen] = useState(false);
+  const [isAiToolsOpen, setIsAiToolsOpen] = useState(false);
   const [isSolutionsOpen, setIsSolutionsOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isMobileServicesOpen, setIsMobileServicesOpen] = useState(false);
+  const [isMobileAiToolsOpen, setIsMobileAiToolsOpen] = useState(false);
   const [isMobileSolutionsOpen, setIsMobileSolutionsOpen] = useState(false);
   const [isBookingOpen, setIsBookingOpen] = useState(false);
   const servicesCloseTimerRef = useRef<number | null>(null);
+  const aiToolsCloseTimerRef = useRef<number | null>(null);
   const solutionsCloseTimerRef = useRef<number | null>(null);
 
   useEffect(() => {
@@ -57,7 +87,17 @@ function Header() {
     servicesCloseTimerRef.current = window.setTimeout(() => setIsServicesOpen(false), 150);
   };
 
+  const openAiTools = () => {
+    if (aiToolsCloseTimerRef.current) window.clearTimeout(aiToolsCloseTimerRef.current);
+    setIsAiToolsOpen(true);
+  };
+
+  const scheduleAiToolsClose = () => {
+    aiToolsCloseTimerRef.current = window.setTimeout(() => setIsAiToolsOpen(false), 150);
+  };
+
   const closeDesktopServices = () => setIsServicesOpen(false);
+  const closeDesktopAiTools = () => setIsAiToolsOpen(false);
   const closeDesktopSolutions = () => setIsSolutionsOpen(false);
   const closeMobileMenu = () => setIsMobileMenuOpen(false);
   const closeBookingModal = useCallback(() => setIsBookingOpen(false), []);
@@ -98,38 +138,55 @@ function Header() {
             </button>
 
             <div
-              className={`absolute -left-72 w-[680px] pt-3 transition-all duration-200 group-hover:pointer-events-auto group-hover:visible group-hover:translate-y-0 group-hover:opacity-100 group-focus-within:pointer-events-auto group-focus-within:visible group-focus-within:translate-y-0 group-focus-within:opacity-100 ${isServicesOpen ? "pointer-events-auto visible translate-y-0 opacity-100" : "pointer-events-none invisible translate-y-2 opacity-0"}`}
+              className={`absolute left-0 w-72 pt-3 transition-all duration-200 group-hover:pointer-events-auto group-hover:visible group-hover:translate-y-0 group-hover:opacity-100 group-focus-within:pointer-events-auto group-focus-within:visible group-focus-within:translate-y-0 group-focus-within:opacity-100 ${isServicesOpen ? "pointer-events-auto visible translate-y-0 opacity-100" : "pointer-events-none invisible translate-y-2 opacity-0"}`}
             >
-              <div className="grid grid-cols-3 gap-3 rounded-2xl border border-gray-100 bg-white p-4 shadow-2xl">
-                {serviceLinks.map((service) =>
-                  service.external ? (
-                    <a
-                      key={service.path}
-                      href={service.path}
-                      target="_blank"
-                      rel="noreferrer"
-                      onClick={closeDesktopServices}
-                      className="rounded-xl p-4 text-sm font-bold text-blue-700 transition-colors hover:bg-slate-50"
-                    >
-                      {service.title}
-                    </a>
-                  ) : (
-                    <Link
-                      key={service.path}
-                      to={service.path}
-                      onClick={closeDesktopServices}
-                      className="rounded-xl p-4 text-sm font-bold text-blue-700 transition-colors hover:bg-slate-50"
-                    >
-                      {service.title}
-                    </Link>
-                  ),
-                )}
+              <div className="rounded-2xl border border-gray-100 bg-white p-2 shadow-2xl">
+                {serviceLinks.map((service) => (
+                  <ServiceLink
+                    key={service.path}
+                    service={service}
+                    onClick={closeDesktopServices}
+                    className="block rounded-xl px-5 py-3.5 text-sm font-medium text-slate-700 transition-colors hover:bg-slate-50 hover:text-blue-700"
+                  />
+                ))}
               </div>
             </div>
           </div>
-          <Link className="font-medium tracking-wide text-slate-800 hover:text-blue-700" to="/ai-tools">
-            AI Tools
-          </Link>
+          <div
+            className="group relative"
+            onMouseEnter={openAiTools}
+            onMouseLeave={scheduleAiToolsClose}
+            onFocus={openAiTools}
+            onBlur={(event) => {
+              if (!event.currentTarget.contains(event.relatedTarget)) closeDesktopAiTools();
+            }}
+          >
+            <button
+              type="button"
+              className="flex items-center gap-1 py-2 font-medium tracking-wide text-slate-800 hover:text-blue-700"
+              aria-haspopup="true"
+              aria-expanded={isAiToolsOpen}
+              onClick={() => setIsAiToolsOpen((open) => !open)}
+            >
+              AI Tools
+              <ChevronDown className={`h-4 w-4 transition-transform ${isAiToolsOpen ? "rotate-180" : ""}`} />
+            </button>
+
+            <div
+              className={`absolute left-0 w-64 pt-3 transition-all duration-200 group-hover:pointer-events-auto group-hover:visible group-hover:translate-y-0 group-hover:opacity-100 group-focus-within:pointer-events-auto group-focus-within:visible group-focus-within:translate-y-0 group-focus-within:opacity-100 ${isAiToolsOpen ? "pointer-events-auto visible translate-y-0 opacity-100" : "pointer-events-none invisible translate-y-2 opacity-0"}`}
+            >
+              <div className="rounded-2xl border border-gray-100 bg-white p-2 shadow-2xl">
+                {aiToolLinks.map((tool) => (
+                  <ServiceLink
+                    key={tool.path}
+                    service={tool}
+                    onClick={closeDesktopAiTools}
+                    className="block rounded-xl px-5 py-3.5 text-sm font-medium text-slate-700 transition-colors hover:bg-slate-50 hover:text-blue-700"
+                  />
+                ))}
+              </div>
+            </div>
+          </div>
 
           <div
             className="relative"
@@ -234,34 +291,45 @@ function Header() {
                 >
                   All Services
                 </Link>
-                {serviceLinks.map((service) =>
-                  service.external ? (
-                    <a
-                      key={service.path}
-                      href={service.path}
-                      target="_blank"
-                      rel="noreferrer"
-                      onClick={closeMobileMenu}
-                      className="block rounded-lg px-3 py-2 text-sm font-medium text-slate-600 hover:bg-slate-50 hover:text-blue-700"
-                    >
-                      {service.title}
-                    </a>
-                  ) : (
-                    <Link
-                      key={service.path}
-                      to={service.path}
-                      onClick={closeMobileMenu}
-                      className="block rounded-lg px-3 py-2 text-sm font-medium text-slate-600 hover:bg-slate-50 hover:text-blue-700"
-                    >
-                      {service.title}
-                    </Link>
-                  ),
-                )}
+                {serviceLinks.map((service) => (
+                  <ServiceLink
+                    key={service.path}
+                    service={service}
+                    onClick={closeMobileMenu}
+                    className="block rounded-lg px-3 py-2 text-sm font-medium text-slate-600 hover:bg-slate-50 hover:text-blue-700"
+                  />
+                ))}
               </div>
             </div>
-            <Link to="/ai-tools" onClick={closeMobileMenu} className="border-b border-gray-100 py-2 text-slate-800">
-              AI Tools
-            </Link>
+            <div>
+              <button
+                type="button"
+                className="flex w-full items-center justify-between border-b border-gray-100 py-2 text-slate-800"
+                onClick={() => setIsMobileAiToolsOpen((open) => !open)}
+                aria-expanded={isMobileAiToolsOpen}
+              >
+                AI Tools
+                <ChevronDown className={`h-5 w-5 transition-transform ${isMobileAiToolsOpen ? "rotate-180" : ""}`} />
+              </button>
+
+              <div className={`${isMobileAiToolsOpen ? "block" : "hidden"} space-y-2 py-4 pl-3`}>
+                <Link
+                  to="/ai-tools"
+                  onClick={closeMobileMenu}
+                  className="block rounded-lg px-3 py-2 text-sm font-semibold text-slate-700 hover:bg-slate-50 hover:text-blue-700"
+                >
+                  All AI Tools
+                </Link>
+                {aiToolLinks.map((tool) => (
+                  <ServiceLink
+                    key={tool.path}
+                    service={tool}
+                    onClick={closeMobileMenu}
+                    className="block rounded-lg px-3 py-2 text-sm font-medium text-slate-600 hover:bg-slate-50 hover:text-blue-700"
+                  />
+                ))}
+              </div>
+            </div>
 
             <div>
               <button
