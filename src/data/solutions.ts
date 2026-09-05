@@ -29,7 +29,7 @@ export const solutionGroups: SolutionGroup[] = [
     ],
     services: [
       {
-        title: "AI Digital Marketing & Business Promotion",
+        title: "AI Business Promotion",
         description:
           "Plan and run targeted campaigns, create relevant content, and use performance data to improve what happens next.",
         path: "/services/ai-business-promotion",

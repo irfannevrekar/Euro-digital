@@ -41,8 +41,8 @@ export const serviceFAQs: ServiceFAQ[] = [
     subtitle: "How we use automation and campaign data to support practical marketing work.",
     faqs: [
       {
-        question: "What is AI Digital Marketing & Business Promotion?",
-        answer: "AI Digital Marketing & Business Promotion uses artificial intelligence to create, optimize, and manage marketing campaigns across multiple channels. It analyzes customer behavior, predicts trends, and personalizes content to maximize engagement and conversions."
+        question: "What is AI Business Promotion?",
+        answer: "AI Business Promotion uses artificial intelligence to create, optimize, and manage marketing campaigns across multiple channels. It analyzes customer behavior, predicts trends, and personalizes content to maximize engagement and conversions."
       },
       {
         question: "How can AI improve my marketing ROI?",

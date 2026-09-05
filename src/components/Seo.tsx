@@ -54,7 +54,7 @@ const pageSeo: Record<string, PageSeo> = {
       "Automate repetitive business processes, customer workflows and operations with EuroDigital's AI business automation services in the UAE.",
   },
   "/services/ai-business-promotion": {
-    title: "AI Digital Marketing & Business Promotion | EuroDigital UAE",
+    title: "AI Business Promotion | EuroDigital UAE",
     description:
       "EuroDigital provides AI-powered digital marketing and business promotion services including marketing automation, personalized campaigns, content distribution, campaign optimization, and performance analytics.",
   },
@@ -140,7 +140,7 @@ const marketingServiceSchema = {
   "@context": "https://schema.org",
   "@type": "Service",
   "@id": `${SITE_URL}/services/ai-business-promotion#service`,
-  name: "AI Digital Marketing & Business Promotion",
+  name: "AI Business Promotion",
   serviceType: "Digital Marketing and Marketing Automation",
   description:
     "Digital marketing services for lead generation and conversion, supported by AI-powered campaign automation, audience targeting, personalized communication, marketing automation, CRM-connected follow-up, campaign optimization, and performance analytics.",

@@ -19,50 +19,50 @@ const cards: Card[] = [
   {
     title: "AI Business Automation",
     category: "automation",
-    desc: "Take repetitive admin off your team's plate. We map the process, connect the right systems, and automate the steps that do not need a person.",
+    desc: "We build AI agents specific to your industry for lead follow-up, lead generation, after-sales service, or any business process you want automated. It's not just automation, it's an intelligence upgrade to the ERP and systems you already run, adding AI capability on top of what you have, so repetitive work gets done without you having to think about it.",
     video:
       "https://player.mediadelivery.net/play/661416/aba8e1cb-c5df-4c8e-8d47-a8bf6d066411",
     link: "/services/ai-business-automation",
     bookingUrl: SERVICE_BOOKING_URLS.aiBusinessAutomation,
   },
   {
-    title: "AI Digital Marketing & Business Promotion",
+    title: "AI Business Promotion",
     category: "growth",
-    desc: "Plan and run targeted campaigns, create relevant content, and use performance data to improve lead generation over time.",
+    desc: "No big team, no big budget. No models, no voiceover artists, no production crew. Just professional-quality ads, made fast, made affordable, made to promote your business.",
     video:
       "https://player.mediadelivery.net/play/661416/02126d15-3c9d-4d94-a8ac-1d8bbc37332e",
     link: "/services/ai-business-promotion",
     bookingUrl: SERVICE_BOOKING_URLS.aiBusinessPromotion,
   },
   {
-    title: "AI Voice Agent Talk Time",
+    title: "AI Agent Talk Time",
     category: "engagement",
-    desc: "Handle appointment booking, lead qualification, reminders, support, and follow-up through natural voice conversations.",
+    desc: "Uninterrupted voice agents for every part of your business, handling inquiries, lead generation, and after-sales calls, so your talk time is always covered.",
     image: "/backgroundImages/ai_automation.png",
     link: "/services/ai-agent-talk-time",
   },
   {
     title: "AI Automated Chatbot",
     category: "engagement",
-    desc: "Answer common questions, collect lead details, and guide customers on websites and messaging channels at any hour.",
+    desc: "A team of agents live on your website and social channels, around the clock, not just for capturing leads, but for after-sales service and every customer conversation in between.",
     video:
       "https://player.mediadelivery.net/play/661416/c564b724-82f9-4426-b62e-079b3a1b8fb4",
     link: "/services/ai-automated-chatbot",
     bookingUrl: SERVICE_BOOKING_URLS.aiAutomatedChatbot,
   },
   {
-    title: "AI add-on Services",
+    title: "AI Add-on Services",
     category: "automation",
-    desc: "Add focused AI features to the software your team already uses, without replacing the rest of your setup.",
+    desc: "Tailor-made add-ons built on top of your existing systems, bringing intelligence, not just automation, into your operations. Decisions get made, follow-ups get handled, and business runs even while you sleep.",
     video:
       "https://player.mediadelivery.net/play/661416/0547118b-9fd8-4aae-864f-77f5f0690710",
     link: "/services/ai-addon-services",
     bookingUrl: SERVICE_BOOKING_URLS.aiAddon,
   },
   {
-    title: "Industry Specific AI Use Cases",
+    title: "Industry-Specific AI",
     category: "automation",
-    desc: "Apply automation to familiar workflows in real estate, healthcare, finance, consulting, and other sectors.",
+    desc: "We don't give every business the same solution. Every industry works differently, so every solution is tailor-made to fit.",
     video:
       "https://player.mediadelivery.net/play/661416/78158008-7515-443f-a183-a54a8d3b3a3f",
     link: "/services/industry-specific",
@@ -70,7 +70,7 @@ const cards: Card[] = [
   {
     title: "AI Website Builder",
     category: "growth",
-    desc: "Create landing pages and supporting website pages quickly, with clear offers, lead capture, and no custom coding required.",
+    desc: "Whether you need a digital presence from scratch or tools to strengthen the one you have, we build professional-quality corporate websites and apps that let your customers connect with your business easily and build your credibility while they do.",
     video:
       "https://player.mediadelivery.net/play/661416/2fbe2f5c-3f7c-4ebd-8121-5312b7173497",
     link: "/products/website-builder",
@@ -79,7 +79,7 @@ const cards: Card[] = [
   {
     title: "ED-CRM",
     category: "growth",
-    desc: "Keep leads, conversations, follow-up tasks, pipelines, and reporting together so opportunities do not get lost between tools.",
+    desc: "Leads flow in from every channel into one system. Our bots pre-qualify and nurture them, so your sales team's only job is to close the deal. Nothing missed, nothing waiting, 24/7.",
     video:
       "https://player.mediadelivery.net/play/667434/9498cecf-b56b-403f-a713-3551b8f7cf8c",
     link: "/products/edcrm",
@@ -88,7 +88,7 @@ const cards: Card[] = [
   {
     title: "Emotion AI",
     category: "engagement",
-    desc: "Use tone and intent signals to help customer conversations feel more relevant and better timed.",
+    desc: "Every conversation adjusts to your customer's tone and sentiment, whether personal, professional, or human, every time.",
     video:
       "https://player.mediadelivery.net/play/661416/63fe6a94-5414-484c-b852-3c38c580a74f",
     link: "/products/emotionai",
@@ -97,7 +97,7 @@ const cards: Card[] = [
   {
     title: "WhatsApp Business API",
     category: "growth",
-    desc: "Handle enquiries, reminders, updates, and sales follow-up on the channel many customers already use every day.",
+    desc: "Turn WhatsApp into a full business workflow: a storefront, a payment channel, and a follow-up system, all running on intelligent automation.",
     video:
       "https://player.mediadelivery.net/play/661416/6a61d538-971f-4b67-898e-708a8dfa12ab",
     link: "https://www.eurodigital.marketing/",
@@ -105,13 +105,14 @@ const cards: Card[] = [
   },
 ];
 
+/*
 const serviceGroups = [
   {
     id: "growth" as const,
     title: "Digital Marketing and Promotions",
     path: "/solutions/digital-marketing-and-promotions",
     description:
-      "Bring campaigns, websites, CRM, and WhatsApp follow-up into one practical customer-acquisition system.",
+      "Bring campaigns, websites, CRM, and WhatsApp follow-up into one practical customer acquisition system.",
   },
   {
     id: "engagement" as const,
@@ -128,6 +129,7 @@ const serviceGroups = [
       "Reduce repetitive work and connect the processes your team relies on every day.",
   },
 ];
+*/
 
 // execSteps removed — it was unused and caused a TypeScript compile error
 
@@ -232,7 +234,7 @@ function Sections({ onBookDemo }: SectionsProps) {
       {/* Services grouped by customer outcome and business role */}
       <section
         id="services"
-        className="bg-white py-20 md:py-16 scroll-mt-32"
+        className="bg-white pt-20 pb-0 md:pt-16 md:pb-0 scroll-mt-32"
         style={{ color: "var(--primary-navy)" }}
       >
         <div className="max-w-7xl mx-auto px-6 md:px-12 space-y-6 text-center mb-14 md:mb-20">
@@ -240,40 +242,21 @@ function Sections({ onBookDemo }: SectionsProps) {
             className="text-4xl md:text-5xl lg:text-6xl font-semibold"
             style={{ color: "var(--text-primary)" }}
           >
-            Digital Marketing Systems Built for Growth
+            Every business needs more than one solution.
           </h2>
           <p
-            className="text-base md:text-[19px] max-w-3xl mx-auto leading-relaxed"
+            className="text-base md:text-[19px] max-w-4xl mx-auto leading-relaxed"
             style={{ color: "var(--text-secondary)" }}
           >
-            EuroDigital is a digital marketing and AI automation company in the
-            UAE. We connect campaigns, websites, CRM, customer conversations,
-            and everyday business workflows so teams can generate leads and
-            follow up more consistently.
+            It needs one, tailor-made to how your industry actually works.
+            Euro Digital Technologies gives you that: a complete, end-to-end AI
+            business automation solution, built around you.
           </p>
         </div>
 
         <div className="max-w-7xl mx-auto px-6 md:px-12 space-y-20">
-          {serviceGroups.map((group) => (
-            <section key={group.id} aria-labelledby={`homepage-${group.id}`}>
-              <div className="mb-8 max-w-3xl">
-                <h3
-                  id={`homepage-${group.id}`}
-                  className="mb-3 text-3xl font-semibold md:text-4xl"
-                  style={{ color: "var(--text-primary)" }}
-                >
-                  {group.title}
-                </h3>
-                <p className="text-lg leading-8" style={{ color: "var(--text-secondary)" }}>
-                  {group.description}
-                </p>
-                <Link to={group.path} className="mt-3 inline-block font-semibold text-blue-700 hover:text-blue-800">
-                  Explore this solution
-                </Link>
-              </div>
-
-              <div className="grid gap-8 md:grid-cols-2 md:gap-10">
-                {cards.filter((card) => card.category === group.id).map((card) => {
+          <div className="grid items-stretch gap-8 md:grid-cols-2 md:gap-10">
+            {cards.map((card) => {
                   const index = cards.indexOf(card);
                   const isPlaying = currentlyPlayingIndex === index;
                   const isBuffering = bufferingVideoIndex === index;
@@ -364,19 +347,16 @@ function Sections({ onBookDemo }: SectionsProps) {
 
                 {/* Content Area: flex-grow ensures this fills space to push buttons down */}
                 <div className="pt-6 md:pt-8 flex flex-col flex-grow">
-                  <div className="mb-4">
-                    {/* Fixed Title Height or min-height ensures text levels stay same */}
-                    <h4
-                      className="text-2xl md:text-3xl font-semibold leading-tight min-h-[3.5rem] md:min-h-[4.5rem]"
-                      style={{ color: "var(--text-primary)" }}
-                    >
-                      {card.title}
-                    </h4>
-                  </div>
+                  <h4
+                    className="mb-4 text-2xl md:text-3xl font-semibold leading-tight text-balance"
+                    style={{ color: "var(--text-primary)" }}
+                  >
+                    {card.title}
+                  </h4>
 
                   {/* Description area */}
                   <p
-                    className="text-base md:text-lg leading-relaxed mb-4"
+                    className="mb-6 text-base md:text-lg leading-relaxed text-justify"
                     style={{ color: "var(--text-secondary)" }}
                   >
                     {card.desc}
@@ -417,21 +397,34 @@ function Sections({ onBookDemo }: SectionsProps) {
                     </button>
                   </div>
                 </div>
-              </div>
-                  );
-                })}
-              </div>
-            </section>
-          ))}
+            </div>
+                );
+              })}
+          </div>
+          <div
+            className="mx-auto max-w-5xl rounded-3xl px-6 py-10 text-center shadow-[0_18px_50px_rgba(15,31,56,0.16)] md:px-12 md:py-14"
+            style={{ backgroundColor: "var(--primary-navy)" }}
+          >
+            <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-cyan-300/30 bg-cyan-300/10 px-4 py-2 text-sm font-bold uppercase tracking-[0.18em] text-cyan-200">
+              <span className="h-2 w-2 rounded-full bg-cyan-300 shadow-[0_0_12px_rgba(103,232,249,0.9)]" />
+              Built to work together
+            </div>
+            <h3 className="mx-auto max-w-none text-3xl font-semibold leading-tight text-white md:whitespace-nowrap md:text-4xl lg:text-5xl">
+              End-to-End AI Business Automation
+            </h3>
+            <p className="mx-auto mt-6 max-w-4xl text-lg font-medium leading-8 text-white md:text-xl md:leading-9">
+              Every one of these solutions works together. Contact us today,
+              and we&apos;ll design a solution tailor-made for you.
+            </p>
+            <Link
+              to="/contact"
+              className="mt-8 inline-flex items-center justify-center rounded-lg px-6 py-3 text-sm font-semibold text-black transition-transform hover:-translate-y-0.5"
+              style={{ backgroundColor: "var(--primary-blue-light)" }}
+            >
+              Contact Us
+            </Link>
+          </div>
         </div>
-      </section>
-
-      {/* Executive Assistant timeline - Kept as is */}
-      <section
-        className="bg-white py-20 md:py-16"
-        style={{ color: "var(--primary-navy)" }}
-      >
-        {/* ... (Timeline content) */}
       </section>
 
       {/* Industry specific AI use cases - UPDATED FOR CONSISTENCY */}

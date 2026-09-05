@@ -24,7 +24,7 @@ const slides: Slide[] = [
       "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1920&q=75&fm=webp",
   },
   {
-    title: "AI Digital Marketing & Business Promotion",
+    title: "AI Business Promotion",
     description:
       "EuroDigital provides AI-powered digital marketing services including campaign automation, audience targeting, personalized content, lead generation, campaign optimization, and performance analytics.",
     image: "/servicesImages/Ai-business-promotion.png",
