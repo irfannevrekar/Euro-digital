@@ -2,7 +2,10 @@ import { useState } from "react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 
+
+
 function Contact() {
+
   type SubmissionState = "idle" | "submitting" | "success" | "error";
 
   const [formData, setFormData] = useState({
@@ -22,12 +25,15 @@ function Contact() {
     e.preventDefault();
     setSubmissionState("submitting");
     setSubmissionError("");
+    const controller = new AbortController();
+    const timeoutId = window.setTimeout(() => controller.abort(), 20000);
 
     try {
       const submission = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
+        signal: controller.signal,
       });
       const result = (await submission.json().catch(() => null)) as { error?: string } | null;
 
@@ -49,8 +55,14 @@ function Contact() {
     } catch (error) {
       setSubmissionState("error");
       setSubmissionError(
-        error instanceof Error ? error.message : "We could not send your enquiry. Please try again.",
+        error instanceof DOMException && error.name === "AbortError"
+          ? "The email server took too long to respond. Please try again."
+          : error instanceof Error
+            ? error.message
+            : "We could not send your enquiry. Please try again.",
       );
+    } finally {
+      window.clearTimeout(timeoutId);
     }
   };
 

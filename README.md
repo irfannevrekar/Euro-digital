@@ -130,13 +130,25 @@ VITE_BUNNY_STREAM_CDN_HOST=vz-70709547-6b5.b-cdn.net
 VITE_BUNNY_STREAM_CDN_HOST_667434=vz-a8afae03-850.b-cdn.net
 ```
 
-Contact-form submissions require this server-side Vercel environment variable:
+Contact-form submissions use the hardcoded `sales@eurodigi.ai` mailbox and
+`us2.smtp.mailhostbox.com` SMTP server on port 587 with STARTTLS. Add only the mailbox password to
+Vercel:
+
+```env
+SMTP_PASSWORD=the-sales-mailbox-password
+```
+
+The visitor's email is used as `Reply-To`, so the recipient can reply directly
+to the enquiry. `SMTP_USER` can optionally override the hardcoded mailbox.
+
+GoHighLevel synchronisation is optional. If it is enabled, add this server-side
+Vercel environment variable:
 
 ```env
 GHL_PRIVATE_INTEGRATION_TOKEN=your-private-integration-token
 ```
 
-The GoHighLevel Location ID is configured in `api/contact.ts`. Give the private integration the `contacts.write` scope before deploying.
+The GoHighLevel Location ID is configured in `api/contact.ts`. Give the private integration the `contacts.write` scope before deploying. Email delivery is the primary success condition; a GHL sync failure does not cause a successfully delivered email to be reported as failed.
 
 ## Key Features
 
