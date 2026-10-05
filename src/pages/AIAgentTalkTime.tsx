@@ -148,7 +148,7 @@ function AIAgentTalkTime() {
 
                   <div className="mb-8">
                     <span className="text-5xl md:text-7xl font-bold text-slate-700">
-                      $99
+                      $150
                     </span>
                     <span className="text-xl text-slate-600 ml-3">
                       Per Month
@@ -215,7 +215,7 @@ function AIAgentTalkTime() {
 
                   <div className="mb-8">
                     <span className="text-5xl md:text-7xl font-bold text-slate-700">
-                      $299
+                      $750
                     </span>
                     <span className="text-xl text-slate-600 ml-3">
                       Per Month
@@ -228,7 +228,7 @@ function AIAgentTalkTime() {
                         ✓
                       </span>
                       <span className="text-slate-700 text-lg">
-                        2,500 AI Calling Minutes
+                        5,000 AI Calling Minutes
                       </span>
                     </div>
                     <div className="flex items-center gap-3">
@@ -289,7 +289,7 @@ function AIAgentTalkTime() {
 
                   <div className="mb-8">
                     <span className="text-5xl md:text-7xl font-bold text-slate-700">
-                      $599
+                      $2,250
                     </span>
                     <span className="text-xl text-slate-600 ml-3">
                       Per Month
@@ -302,7 +302,7 @@ function AIAgentTalkTime() {
                         ✓
                       </span>
                       <span className="text-slate-700 text-lg">
-                        5,500 AI Calling Minutes
+                        15,000 AI Calling Minutes
                       </span>
                     </div>
                     <div className="flex items-center gap-3">

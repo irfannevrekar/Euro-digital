@@ -23,7 +23,7 @@ function EDCRM() {
       plans={[
         {
           name: "Growth Essentials",
-          price: "$29",
+          price: "$49",
           description: "Core marketing and communication tools for growing your customer pipeline.",
           subprice: "per month",
           features: [
