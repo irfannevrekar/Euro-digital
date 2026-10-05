@@ -18,13 +18,14 @@ function EDCRM() {
       ]}
       detailedDescription="ED-CRM is built for teams that want fewer missed opportunities and more closed deals—from first click to final conversion, everything stays connected, visible, and working while you sleep."
       pricingVariant="ghl"
-      pricingTitle="GHL Pricing"
-      pricingSubtitle="Choose the CRM package that fits your team size, automation needs, and reporting depth."
+      pricingTitle="ED-CRM Pricing"
+      pricingSubtitle="USD $49 per month, plus a one-time customization fee of USD $500–$1,000."
       plans={[
         {
-          name: "Growth Essentials",
+          name: "ED-CRM",
           price: "$49",
-          description: "Core marketing and communication tools for growing your customer pipeline.",
+          description: "A complete CRM platform for managing leads, automations, conversations, funnels, and reporting.",
+          highlighted: true,
           subprice: "per month",
           features: [
             "Email + SMS Marketing",
@@ -36,15 +37,6 @@ function EDCRM() {
             "Booking Calendars",
             "Ad Manager",
             "Online Reputation Management",
-          ],
-        },
-        {
-          name: "AI Business Suite",
-          price: "$49",
-          description: "AI-powered CRM, funnel, reporting, and website tools for scaling teams.",
-          highlighted: true,
-          subprice: "per month",
-          features: [
             "Conversation AI",
             "Voice AI",
             "Content AI",
@@ -54,13 +46,7 @@ function EDCRM() {
             "Domain Management",
             "CRM & Pipelines",
             "Custom Dashboards & Reporting",
-          ],
-        },
-        {
-          name: "Custom",
-          price: "Custom",
-          description: "For businesses that need custom features, integrations, and development support.",
-          features: [
+            "One-time customization: USD $500–$1,000",
             "Custom feature development",
             "Workflow and CRM customization",
             "Third-party integrations",

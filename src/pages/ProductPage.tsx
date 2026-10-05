@@ -41,20 +41,20 @@ const stackedCardThemes = [
 ];
 const stackedTopOffsets = ["md:top-24", "md:top-32", "md:top-40", "md:top-48"];
 const ghlRows = [
-  { feature: "CRM & PIPELINE MANAGEMENT", replaces: ["HS", ">"], otherTools: "$99/MONTHLY", edcrmPrice: "$49", edcrmTier: "AI Business Suite" },
-  { feature: "UNLIMITED SALES FUNNELS", replaces: ["CF", "CL"], otherTools: "$297/MONTHLY", edcrmPrice: "$49", edcrmTier: "AI Business Suite" },
-  { feature: "WEBSITE BUILDER", replaces: ["WP", "WIX", "SS"], otherTools: "$29/MONTHLY", edcrmPrice: "$49", edcrmTier: "AI Business Suite" },
-  { feature: "SURVEYS & FORMS", replaces: ["SG", "T", "WF", "TF"], otherTools: "$49/MONTHLY", edcrmPrice: "$49", edcrmTier: "Growth Essentials" },
-  { feature: "EMAIL MARKETING", replaces: [">", "MC", "HS", "CC"], otherTools: "$99/MONTHLY", edcrmPrice: "$49", edcrmTier: "Growth Essentials" },
-  { feature: "2-WAY SMS MARKETING", replaces: ["AC", "TW", "SM"], otherTools: "$99/MONTHLY", edcrmPrice: "$49", edcrmTier: "Growth Essentials" },
-  { feature: "BOOKING & APPOINTMENTS", replaces: ["CA", "GC", "A"], otherTools: "$29/MONTHLY", edcrmPrice: "$49", edcrmTier: "Growth Essentials" },
-  { feature: "WORKFLOW AUTOMATIONS", replaces: [">", "HS", "K"], otherTools: "$169/MONTHLY", edcrmPrice: "$49", edcrmTier: "Growth Essentials" },
-  { feature: "COURSES/PRODUCTS", replaces: ["KA", "T"], otherTools: "$99/MONTHLY", edcrmPrice: "$49", edcrmTier: "AI Business Suite" },
-  { feature: "CALL TRACKING", replaces: ["CT", "WC"], otherTools: "$49/MONTHLY", edcrmPrice: "$49", edcrmTier: "Growth Essentials" },
-  { feature: "REPUTATION MANAGEMENT", replaces: ["BI", "SM", "BR"], otherTools: "$159/MONTHLY", edcrmPrice: "$49", edcrmTier: "Growth Essentials" },
-  { feature: "TRACKING & ANALYTICS", replaces: ["GA"], otherTools: "$299/MONTHLY", edcrmPrice: "$49", edcrmTier: "AI Business Suite" },
-  { feature: "COMMUNITIES", replaces: ["SK", "M", "C"], otherTools: "$89/MONTHLY", edcrmPrice: "$49", edcrmTier: "AI Business Suite" },
-  { feature: "DOCUMENT SIGNING", replaces: ["ED", "DS"], otherTools: "$47/MONTHLY", edcrmPrice: "$49", edcrmTier: "AI Business Suite" },
+  { feature: "CRM & PIPELINE MANAGEMENT", replaces: ["HS", ">"], otherTools: "$99/MONTHLY", edcrmPrice: "$49", edcrmTier: "ED-CRM" },
+  { feature: "UNLIMITED SALES FUNNELS", replaces: ["CF", "CL"], otherTools: "$297/MONTHLY", edcrmPrice: "$49", edcrmTier: "ED-CRM" },
+  { feature: "WEBSITE BUILDER", replaces: ["WP", "WIX", "SS"], otherTools: "$29/MONTHLY", edcrmPrice: "$49", edcrmTier: "ED-CRM" },
+  { feature: "SURVEYS & FORMS", replaces: ["SG", "T", "WF", "TF"], otherTools: "$49/MONTHLY", edcrmPrice: "$49", edcrmTier: "ED-CRM" },
+  { feature: "EMAIL MARKETING", replaces: [">", "MC", "HS", "CC"], otherTools: "$99/MONTHLY", edcrmPrice: "$49", edcrmTier: "ED-CRM" },
+  { feature: "2-WAY SMS MARKETING", replaces: ["AC", "TW", "SM"], otherTools: "$99/MONTHLY", edcrmPrice: "$49", edcrmTier: "ED-CRM" },
+  { feature: "BOOKING & APPOINTMENTS", replaces: ["CA", "GC", "A"], otherTools: "$29/MONTHLY", edcrmPrice: "$49", edcrmTier: "ED-CRM" },
+  { feature: "WORKFLOW AUTOMATIONS", replaces: [">", "HS", "K"], otherTools: "$169/MONTHLY", edcrmPrice: "$49", edcrmTier: "ED-CRM" },
+  { feature: "COURSES/PRODUCTS", replaces: ["KA", "T"], otherTools: "$99/MONTHLY", edcrmPrice: "$49", edcrmTier: "ED-CRM" },
+  { feature: "CALL TRACKING", replaces: ["CT", "WC"], otherTools: "$49/MONTHLY", edcrmPrice: "$49", edcrmTier: "ED-CRM" },
+  { feature: "REPUTATION MANAGEMENT", replaces: ["BI", "SM", "BR"], otherTools: "$159/MONTHLY", edcrmPrice: "$49", edcrmTier: "ED-CRM" },
+  { feature: "TRACKING & ANALYTICS", replaces: ["GA"], otherTools: "$299/MONTHLY", edcrmPrice: "$49", edcrmTier: "ED-CRM" },
+  { feature: "COMMUNITIES", replaces: ["SK", "M", "C"], otherTools: "$89/MONTHLY", edcrmPrice: "$49", edcrmTier: "ED-CRM" },
+  { feature: "DOCUMENT SIGNING", replaces: ["ED", "DS"], otherTools: "$47/MONTHLY", edcrmPrice: "$49", edcrmTier: "ED-CRM" },
   { feature: "GRAY-LABELED MOBILE APP", replaces: [], otherTools: "UNIQUE TO HIGHLEVEL", edcrmPrice: "Included", edcrmTier: "All plans" },
 ];
 const ghlIconColors = [
@@ -441,7 +441,7 @@ function GhlPricingTable() {
             <div className="border-r border-white/8 px-5 text-slate-300">$1,600+ PER MONTH</div>
             <div className="border-r border-white/8 px-4">
               <div className="inline-flex flex-col gap-0.5 rounded-md bg-[#0a1a28] px-3 py-1.5 ring-1 ring-[#18b6e3]/35">
-                <span className="text-[10px] font-bold uppercase tracking-wider text-slate-500">From</span>
+                
                 <span className="text-lg leading-none text-[#1fc2ee] md:text-xl">
                   $49<span className="ml-1 text-[9px] font-bold uppercase text-slate-400">/mo</span>
                 </span>
