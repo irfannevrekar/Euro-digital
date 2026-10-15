@@ -49,6 +49,8 @@ function Header() {
   const [isMobileAiToolsOpen, setIsMobileAiToolsOpen] = useState(false);
   const [isMobileSolutionsOpen, setIsMobileSolutionsOpen] = useState(false);
   const [isBookingOpen, setIsBookingOpen] = useState(false);
+  const [isHeaderVisible, setIsHeaderVisible] = useState(true);
+  const lastScrollYRef = useRef(0);
   const servicesCloseTimerRef = useRef<number | null>(null);
   const aiToolsCloseTimerRef = useRef<number | null>(null);
   const solutionsCloseTimerRef = useRef<number | null>(null);
@@ -61,6 +63,26 @@ function Header() {
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
+
+  useEffect(() => {
+    lastScrollYRef.current = window.scrollY;
+
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+      const scrollDelta = currentScrollY - lastScrollYRef.current;
+
+      if (currentScrollY <= 24 || scrollDelta < 0) {
+        setIsHeaderVisible(true);
+      } else if (scrollDelta > 4 && !isMobileMenuOpen) {
+        setIsHeaderVisible(false);
+      }
+
+      lastScrollYRef.current = currentScrollY;
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [isMobileMenuOpen]);
 
   useEffect(() => {
     document.body.style.overflow = isMobileMenuOpen ? "hidden" : "unset";
@@ -103,7 +125,11 @@ function Header() {
   const closeBookingModal = useCallback(() => setIsBookingOpen(false), []);
 
   return (
-    <header className="fixed inset-x-0 top-0 z-50 border-b border-black/5 bg-white px-4 py-3 shadow-sm md:px-10 md:py-4">
+    <header
+      className={`fixed inset-x-0 top-0 z-50 border-b border-black/5 bg-white px-4 py-3 shadow-sm transition-transform duration-300 md:px-10 md:py-4 ${
+        isHeaderVisible || isMobileMenuOpen ? "translate-y-0" : "-translate-y-full"
+      }`}
+    >
       <div className="mx-auto flex max-w-7xl items-center justify-between">
         <Link to="/" onClick={closeMobileMenu} className="z-50">
           <img

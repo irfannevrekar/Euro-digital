@@ -16,7 +16,7 @@ function Home() {
     <div className="min-h-screen text-white" style={{ backgroundColor: 'var(--bg-dark)' }}>
       <Header />
       <main>
-        <Hero onBookDemo={() => openBookingModal()} />
+        <Hero />
         <Sections onBookDemo={openBookingModal} />
       </main>
       <Footer />

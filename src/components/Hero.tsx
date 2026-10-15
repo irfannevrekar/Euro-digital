@@ -1,122 +1,121 @@
-import { Link } from "react-router-dom";
-import { motion, AnimatePresence } from "framer-motion";
-import { useEffect, useState } from "react";
-
-interface HeroProps {
-  onBookDemo: () => void;
-}
+import { motion } from "framer-motion";
+import { Maximize2, Minimize2, Volume2, VolumeX } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
+import {
+  getBunnyStreamMp4Url,
+  getBunnyStreamThumbnailUrl,
+} from "../utils/bunnyStream";
 
 type Slide = {
-  title: string;
-  description: string;
-  image: string;
-  link?: string;
+  video: string;
 };
-
-const SLIDE_DURATION_MS = 6000;
 
 const slides: Slide[] = [
   {
-    title: "Digital Marketing & AI Automation Company in the UAE",
-    description:
-      "EuroDigital is a digital marketing and AI automation company based in Abu Dhabi, UAE. We help businesses generate leads, run smarter marketing campaigns, automate customer engagement, build conversion-focused websites, and implement AI-powered sales and CRM systems.",
-    image:
-      "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1920&q=75&fm=webp",
-  },
-  {
-    title: "AI Business Promotion",
-    description:
-      "EuroDigital provides AI-powered digital marketing services including campaign automation, audience targeting, personalized content, lead generation, campaign optimization, and performance analytics.",
-    image: "/servicesImages/Ai-business-promotion.png",
-    link: "/services/ai-business-promotion",
-  },
-  {
-    title: "AI Business Automation",
-    description:
-      "EuroDigital’s AI Business Automation solutions are built to eliminate repetitive tasks and optimize your internal workflows. We analyze your business processes and design automation systems that save time, reduce errors, and allow your team to focus on high-value work.",
-    image: "/servicesImages/Ai-business-automation1.png",
-    link: "/services/ai-business-automation",
-  },
-  {
-    title: "AI Agent Talk Time",
-    description:
-      "AI voice calling capacity for automated sales, support, appointment booking, qualification, and customer follow-up.",
-    image: "/backgroundImages/aitalk-time.png",
-    link: "/services/ai-agent-talk-time",
-  },
-  {
-    title: "AI Automated Chatbot",
-    description:
-      "AI chatbots for websites and messaging channels that provide 24/7 customer support, lead qualification, FAQs, and automated customer engagement.",
-    image: "/backgroundImages/ai-automation.png",
-    link: "/services/ai-automated-chatbot",
-  },
-  {
-    title: "AI Add-on Services",
-    description:
-      "Our AI Add-on Services allow businesses to enhance their existing tools and platforms with advanced AI features. These add-ons are flexible, scalable, and designed to evolve with your business.",
-    image: "/servicesImages/ai_addon.png",
-    link: "/services/ai-addon-services",
-  },
-  {
-    title: "Industry-Specific AI",
-    description:
-      "We understand that every industry has unique challenges. That’s why EuroDigital delivers AI solutions specifically designed for different business domains, ensuring practical and measurable impact.",
-    image:
-      "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1920&q=75&fm=webp",
-    link: "/services/industry-specific",
+    video:
+      "https://player.mediadelivery.net/play/661416/3d3e0dce-0a6b-4467-8c00-fd903dbb9610",
   },
 ];
 
-function Hero({ onBookDemo }: HeroProps) {
-  const [currentSlide, setCurrentSlide] = useState(0);
+function Hero() {
+  const currentSlide = 0;
+  const [isVideoMuted, setIsVideoMuted] = useState(true);
+  const [isFullscreen, setIsFullscreen] = useState(false);
+  const heroSectionRef = useRef<HTMLElement>(null);
+  const heroVideoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
-    slides.forEach((slide) => {
-      const img = new Image();
-      img.src = slide.image;
-    });
+    const video = heroVideoRef.current;
+
+    if (!video) return;
+
+    video.pause();
+    video.currentTime = 0;
+    video.muted = true;
+  }, [currentSlide]);
+
+  useEffect(() => {
+    const section = heroSectionRef.current;
+    const video = heroVideoRef.current;
+
+    if (!section || !video) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && entry.intersectionRatio > 0) {
+          video.play().catch(() => {
+            // Autoplay can be blocked until the page is interacted with.
+          });
+        } else {
+          video.pause();
+        }
+      },
+      { threshold: [0, 0.1] },
+    );
+
+    observer.observe(section);
+
+    return () => observer.disconnect();
   }, []);
 
   useEffect(() => {
-    const timer = window.setTimeout(() => {
-      setCurrentSlide((prev) => (prev + 1) % slides.length);
-    }, SLIDE_DURATION_MS);
+    const handleFullscreenChange = () => {
+      setIsFullscreen(document.fullscreenElement === heroSectionRef.current);
+    };
 
-    return () => window.clearTimeout(timer);
-  }, [currentSlide]);
+    document.addEventListener("fullscreenchange", handleFullscreenChange);
 
-  const nextSlide = () => {
-    setCurrentSlide((prev) => (prev + 1) % slides.length);
-  };
+    return () => {
+      document.removeEventListener("fullscreenchange", handleFullscreenChange);
+    };
+  }, []);
 
-  const prevSlide = () => {
-    setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length);
-  };
+  const toggleFullscreen = async () => {
+    if (!heroSectionRef.current) return;
 
-  const goToSlide = (index: number) => {
-    setCurrentSlide(index);
+    try {
+      if (document.fullscreenElement) {
+        await document.exitFullscreen();
+      } else {
+        await heroSectionRef.current.requestFullscreen();
+      }
+    } catch (error) {
+      console.error("Fullscreen mode failed:", error);
+    }
   };
 
   return (
-    <section className="relative min-h-[75vh] md:min-h-[85vh] flex items-center justify-center overflow-hidden text-white">
+    <section
+      ref={heroSectionRef}
+      className={`relative flex items-center justify-center overflow-hidden text-white ${
+        isFullscreen
+          ? "min-h-screen bg-black"
+          : "mt-[72px] min-h-[90vh] bg-black md:mt-[104px] md:min-h-[calc(100svh-2rem)]"
+      }`}
+    >
       {/* All backgrounds mounted + preloaded — slide changes stay instant */}
       <div className="absolute inset-0 z-0">
         {slides.map((slide, index) => (
-          <motion.img
-            key={slide.image}
-            src={slide.image}
-            alt=""
-            aria-hidden={index !== currentSlide}
+          <motion.div
+            key={slide.video}
             initial={false}
             animate={{ opacity: index === currentSlide ? 1 : 0 }}
             transition={{ duration: 0.8 }}
-            className="absolute inset-0 h-full w-full object-cover pointer-events-none"
-            loading={index === 0 ? "eager" : "lazy"}
-            fetchPriority={index === 0 ? "high" : "low"}
-            decoding="async"
-            sizes="100vw"
-          />
+            className="absolute inset-0"
+            aria-hidden={index !== currentSlide}
+          >
+            <video
+              ref={heroVideoRef}
+              src={getBunnyStreamMp4Url(slide.video) ?? undefined}
+              poster={getBunnyStreamThumbnailUrl(slide.video) ?? undefined}
+              muted
+              playsInline
+              loop
+              preload="auto"
+              className="pointer-events-none h-full w-full object-contain"
+              aria-label="EuroDigital hero video"
+            />
+          </motion.div>
         ))}
 
         {/* Overlays */}
@@ -125,146 +124,46 @@ function Hero({ onBookDemo }: HeroProps) {
         <div className="absolute inset-0 bg-linear-to-t from-[#0b1233]/90 via-transparent to-[#0b1233]/30" />
       </div>
 
-      {/* Navigation Arrows */}
-      <button
-        onClick={prevSlide}
-        className="absolute left-4 md:left-10 top-1/2 -translate-y-1/2 w-12 h-12 md:w-14 md:h-14 rounded-full bg-white/20 border border-white/30 flex items-center justify-center hover:bg-white/30 active:bg-white/40 transition-all z-20 shadow-[0_10px_40px_rgba(0,0,0,0.35)] cursor-pointer touch-manipulation"
-        aria-label="Previous slide"
-      >
-        <svg
-          className="w-5 h-5 md:w-6 md:h-6 text-white"
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth={2.5}
-            d="M14 18l-6-6 6-6"
-          />
-        </svg>
-      </button>
+      <div className="absolute inset-x-0 bottom-8 z-20 flex justify-center gap-3">
+        {slides[currentSlide].video && (
+          <>
+            <button
+              type="button"
+              onClick={() => {
+                const video = heroVideoRef.current;
 
-      <button
-        onClick={nextSlide}
-        className="absolute right-4 md:right-10 top-1/2 -translate-y-1/2 w-12 h-12 md:w-14 md:h-14 rounded-full bg-white/20 border border-white/30 flex items-center justify-center hover:bg-white/30 active:bg-white/40 transition-all z-20 shadow-[0_10px_40px_rgba(0,0,0,0.35)] cursor-pointer touch-manipulation"
-        aria-label="Next slide"
-      >
-        <svg
-          className="w-5 h-5 md:w-6 md:h-6 text-white"
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth={2.5}
-            d="M10 6l6 6-6 6"
-          />
-        </svg>
-      </button>
+                if (!video) return;
 
-      {/* Content */}
-      <div className="relative z-10 max-w-6xl mx-auto px-6 md:px-12 pt-24 md:pt-28 pb-28 md:pb-32 text-center">
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={currentSlide}
-            initial={{ opacity: 0, x: 100 }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: -100 }}
-            transition={{ duration: 0.5, ease: "easeInOut" }}
-          >
-            
-            <h1 className="text-4xl md:text-6xl lg:text-7xl font-semibold leading-tight tracking-tight drop-shadow-[0_10px_40px_rgba(0,0,0,0.35)] mt-20">
-              {slides[currentSlide].title}
-            </h1>
-
-            <p className="mt-8 text-lg md:text-xl text-gray-200 max-w-4xl mx-auto leading-relaxed capitalize">
-              {slides[currentSlide].description}
-            </p>
-          </motion.div>
-        </AnimatePresence>
-
-        {/* Buttons */}
-        <div className="mt-12 flex flex-col sm:flex-row items-center justify-center gap-5">
-          <button
-            type="button"
-            onClick={onBookDemo}
-            className="rounded-2xl font-semibold px-9 py-4 shadow-[0_14px_40px_rgba(0,0,0,0.25)] transition-colors text-lg cursor-pointer"
-            style={{
-              backgroundColor: "var(--primary-green)",
-              color: "var(--primary-navy)",
-              borderColor: "var(--primary-green-dark)",
-              borderWidth: "1px",
-            }}
-            onMouseEnter={(e) =>
-              (e.currentTarget.style.backgroundColor =
-                "var(--primary-green-dark)")
-            }
-            onMouseLeave={(e) =>
-              (e.currentTarget.style.backgroundColor = "var(--primary-green)")
-            }
-          >
-            Book A Demo
-          </button>
-
-          {slides[currentSlide].link && (
-            <Link to={slides[currentSlide].link}>
-              <button className="rounded-2xl border border-white/60 text-white hover:bg-white/10 font-semibold px-9 py-4 transition-all text-lg flex items-center gap-2 group bg-white/0 cursor-pointer">
-                Explore
-                <svg
-                  className="w-5 h-5 transform group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M7 17l10-10m0 0H9m8 0v8"
-                  />
-                </svg>
-              </button>
-            </Link>
-          )}
-        </div>
-
-        {/* Slide Indicators with timer progress */}
-        <div className="mt-12 flex items-center justify-center gap-2">
-          {slides.map((_, index) => {
-            const isActive = index === currentSlide;
-
-            return (
-              <button
-                key={index}
-                onClick={() => goToSlide(index)}
-                className={`relative h-2.5 overflow-hidden rounded-full transition-all cursor-pointer ${
-                  isActive
-                    ? "w-10 bg-white/30"
-                    : "w-2.5 bg-white/40 hover:bg-white/60"
-                }`}
-                aria-label={`Go to slide ${index + 1}`}
-                aria-current={isActive ? "true" : undefined}
-              >
-                {isActive && (
-                  <motion.span
-                    key={currentSlide}
-                    className="absolute inset-y-0 left-0 rounded-full bg-white"
-                    initial={{ width: "0%" }}
-                    animate={{ width: "100%" }}
-                    transition={{
-                      duration: SLIDE_DURATION_MS / 1000,
-                      ease: "linear",
-                    }}
-                  />
-                )}
-              </button>
-            );
-          })}
-        </div>
+                video.muted = !video.muted;
+                setIsVideoMuted(video.muted);
+              }}
+              className="mt-6 inline-flex items-center gap-2 rounded-full border border-white/35 bg-black/25 px-4 py-2 text-sm font-medium text-white backdrop-blur-sm transition-colors hover:bg-black/40"
+              aria-label={isVideoMuted ? "Turn video voice on" : "Mute video voice"}
+              aria-pressed={!isVideoMuted}
+            >
+              {isVideoMuted ? (
+                <VolumeX className="h-4 w-4" aria-hidden="true" />
+              ) : (
+                <Volume2 className="h-4 w-4" aria-hidden="true" />
+              )}
+              {isVideoMuted ? "Turn voice on" : "Mute voice"}
+            </button>
+            <button
+              type="button"
+              onClick={toggleFullscreen}
+              className="mt-6 inline-flex items-center gap-2 rounded-full border border-white/35 bg-black/25 px-4 py-2 text-sm font-medium text-white backdrop-blur-sm transition-colors hover:bg-black/40"
+              aria-label={isFullscreen ? "Exit fullscreen" : "View video fullscreen"}
+              aria-pressed={isFullscreen}
+            >
+              {isFullscreen ? (
+                <Minimize2 className="h-4 w-4" aria-hidden="true" />
+              ) : (
+                <Maximize2 className="h-4 w-4" aria-hidden="true" />
+              )}
+              {isFullscreen ? "Exit fullscreen" : "Maximize video"}
+            </button>
+          </>
+        )}
       </div>
     </section>
   );
