@@ -144,6 +144,108 @@ function AIAutomatedChatbot() {
             </p>
           </div>
 
+          <div className="overflow-x-auto rounded-2xl border border-slate-200 shadow-lg">
+            <table className="w-full min-w-[760px] border-collapse text-left">
+              <thead>
+                <tr className="bg-slate-800 text-white">
+                  <th className="px-6 py-5 text-sm font-semibold uppercase tracking-wide">
+                    Platform
+                  </th>
+                  <th className="px-6 py-5 text-sm font-semibold uppercase tracking-wide">
+                    One-time setup
+                  </th>
+                  <th className="px-6 py-5 text-sm font-semibold uppercase tracking-wide">
+                    Recurring fee
+                  </th>
+                  <th className="px-6 py-5 text-sm font-semibold uppercase tracking-wide">
+                    Included features
+                  </th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-slate-200">
+                <tr className="bg-cyan-50/70 align-top">
+                  <th className="px-6 py-6 text-lg font-bold text-slate-800">
+                    WhatsApp AI Automated Chatbot
+                  </th>
+                  <td className="px-6 py-6 text-2xl font-bold text-slate-700">
+                    $600
+                  </td>
+                  <td className="px-6 py-6 text-2xl font-bold text-slate-700">
+                    $97 <span className="text-sm font-medium">/ month</span>
+                  </td>
+                  <td className="px-6 py-6 text-slate-700">
+                    WhatsApp Business API automation, priority support, monthly
+                    maintenance, and custom WhatsApp templates.
+                  </td>
+                </tr>
+                <tr className="bg-purple-50/70 align-top">
+                  <th className="px-6 py-6 text-lg font-bold text-slate-800">
+                    Instagram AI Chatbot
+                  </th>
+                  <td className="px-6 py-6 text-2xl font-bold text-slate-700">
+                    $600
+                  </td>
+                  <td className="px-6 py-6 text-2xl font-bold text-slate-700">
+                    $97 <span className="text-sm font-medium">/ month</span>
+                  </td>
+                  <td className="px-6 py-6 text-slate-700">
+                    Instagram DM and comment automation, story mention
+                    auto-replies, profile engagement, custom chat flows, and
+                    creator dashboard.
+                  </td>
+                </tr>
+                <tr className="bg-green-50/70 align-top">
+                  <th className="px-6 py-6 text-lg font-bold text-slate-800">
+                    Facebook Messenger AI Chatbot
+                  </th>
+                  <td className="px-6 py-6 text-2xl font-bold text-slate-700">
+                    $600
+                  </td>
+                  <td className="px-6 py-6 text-2xl font-bold text-slate-700">
+                    $97 <span className="text-sm font-medium">/ month</span>
+                  </td>
+                  <td className="px-6 py-6 text-slate-700">
+                    Facebook Page DM and comment automation, instant replies,
+                    lead generation, ticketing integration, personalized
+                    journeys, and analytics dashboard.
+                  </td>
+                </tr>
+                <tr className="bg-orange-50/70 align-top">
+                  <th className="px-6 py-6 text-lg font-bold text-slate-800">
+                    Enterprise chatbot solution
+                  </th>
+                  <td className="px-6 py-6 text-2xl font-bold text-slate-700">
+                    Custom
+                  </td>
+                  <td className="px-6 py-6 text-slate-600">Custom pricing</td>
+                  <td className="px-6 py-6 text-slate-700">
+                    Custom infrastructure, private deployment, enterprise
+                    security, dedicated support, AI model training, and
+                    white-label/API access.
+                  </td>
+                </tr>
+                <tr className="bg-blue-50/80 align-top">
+                  <th className="px-5 py-4 text-lg font-bold text-slate-800">
+                    AI-Enhanced Chatbot Plan
+                  </th>
+                  <td className="px-5 py-4 text-2xl font-bold text-slate-700">
+                    $600
+                  </td>
+                  <td className="px-5 py-4 text-2xl font-bold text-slate-700">
+                    $99 <span className="text-sm font-medium">/ month</span>
+                  </td>
+                  <td className="px-5 py-4 text-slate-700">
+                    Everything included in the selected platform plan, plus
+                    AI-powered conversations, lead qualification, smart
+                    automated replies, personalized journeys, and AI
+                    performance insights.
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div className="hidden">
           <div className="space-y-8">
             {/* Card 1 - WhatsApp AI Automated Chatbot */}
             <div
@@ -157,13 +259,23 @@ function AIAutomatedChatbot() {
                     WhatsApp AI Automated Chatbot
                   </h3>
 
-                  <div className="mb-8">
-                    <span className="text-5xl md:text-7xl font-bold text-slate-700">
-                      $600
-                    </span>
-                    <span className="text-xl text-slate-600 ml-3">
-                      Per Month
-                    </span>
+                  <div className="mb-8 flex flex-wrap items-baseline gap-x-6 gap-y-2">
+                    <div>
+                      <span className="text-5xl md:text-7xl font-bold text-slate-700">
+                        $600
+                      </span>
+                      <span className="text-xl text-slate-600 ml-3">
+                        One Time
+                      </span>
+                    </div>
+                    <div>
+                      <span className="text-4xl md:text-5xl font-bold text-slate-700">
+                        $97
+                      </span>
+                      <span className="text-xl text-slate-600 ml-3">
+                        Per Month
+                      </span>
+                    </div>
                   </div>
 
                   <div className="space-y-4">
@@ -224,13 +336,23 @@ function AIAutomatedChatbot() {
                     Instagram AI Chatbot
                   </h3>
 
-                  <div className="mb-8">
-                    <span className="text-5xl md:text-7xl font-bold text-slate-700">
-                      $600
-                    </span>
-                    <span className="text-xl text-slate-600 ml-3">
-                      Per Month
-                    </span>
+                  <div className="mb-8 flex flex-wrap items-baseline gap-x-6 gap-y-2">
+                    <div>
+                      <span className="text-5xl md:text-7xl font-bold text-slate-700">
+                        $600
+                      </span>
+                      <span className="text-xl text-slate-600 ml-3">
+                        One Time
+                      </span>
+                    </div>
+                    <div>
+                      <span className="text-4xl md:text-5xl font-bold text-slate-700">
+                        $97
+                      </span>
+                      <span className="text-xl text-slate-600 ml-3">
+                        Per Month
+                      </span>
+                    </div>
                   </div>
 
                   <div className="space-y-4">
@@ -298,13 +420,23 @@ function AIAutomatedChatbot() {
                     Facebook Messenger AI Chatbot
                   </h3>
 
-                  <div className="mb-8">
-                    <span className="text-5xl md:text-7xl font-bold text-slate-700">
-                      $600
-                    </span>
-                    <span className="text-xl text-slate-600 ml-3">
-                      Per Month
-                    </span>
+                  <div className="mb-8 flex flex-wrap items-baseline gap-x-6 gap-y-2">
+                    <div>
+                      <span className="text-5xl md:text-7xl font-bold text-slate-700">
+                        $600
+                      </span>
+                      <span className="text-xl text-slate-600 ml-3">
+                        One Time
+                      </span>
+                    </div>
+                    <div>
+                      <span className="text-4xl md:text-5xl font-bold text-slate-700">
+                        $97
+                      </span>
+                      <span className="text-xl text-slate-600 ml-3">
+                        Per Month
+                      </span>
+                    </div>
                   </div>
 
                   <div className="space-y-4">
@@ -455,6 +587,7 @@ function AIAutomatedChatbot() {
                 </div>
               </div>
             </div>
+          </div>
           </div>
         </div>
       </section>

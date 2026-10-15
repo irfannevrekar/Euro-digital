@@ -12,7 +12,11 @@ type ProductPlan = {
   description: string;
   features: string[];
   highlighted?: boolean;
+  badge?: string;
+  hideBadge?: boolean;
   subprice?: string;
+  maintenancePrice?: string;
+  maintenanceLabel?: string;
   image?: string;
 };
 
@@ -1439,15 +1443,18 @@ function ProductPage({
 
       {pricingVariant === "ghl" && <GrowthSolutionSection />}
 
-      <section id="pricing" className="py-16 md:py-24 bg-white scroll-mt-32">
+      <section id="pricing" className="scroll-mt-32 bg-[#f7fbfd] py-16 md:py-24">
         <div className="max-w-7xl mx-auto px-6 md:px-12">
           {pricingVariant !== "ghl" && (
-            <div className="mb-16">
-              <h2 className="text-4xl md:text-5xl font-bold text-slate-900 leading-tight">
+            <div className="mx-auto mb-12 max-w-3xl text-center md:mb-16">
+              <p className="mb-3 text-xs font-extrabold uppercase tracking-[0.2em] text-[#129fc6]">
+                Simple, transparent pricing
+              </p>
+              <h2 className="text-4xl font-bold leading-tight text-slate-950 md:text-5xl">
                 {pricingTitle}
               </h2>
               {pricingSubtitle && (
-                <p className="text-lg text-slate-600 max-w-3xl mt-4">
+                <p className="mx-auto mt-4 max-w-2xl text-lg leading-8 text-slate-600">
                   {pricingSubtitle}
                 </p>
               )}
@@ -1471,21 +1478,23 @@ function ProductPage({
                 )}
               </div>
 
-              <div className="grid gap-6 lg:grid-cols-3">
+              <div className="mx-auto grid max-w-5xl gap-6 lg:grid-cols-2">
                 {plans.map((plan) => (
                   <div
                     key={plan.name}
-                    className={`flex h-full flex-col rounded-2xl border bg-white p-7 shadow-sm transition-all ${
+                    className={`flex h-full flex-col rounded-2xl border bg-white p-7 shadow-sm transition-all duration-300 ease-out hover:-translate-y-2 hover:scale-[1.02] hover:border-[#18b6e3] hover:shadow-[0_28px_80px_rgba(24,182,227,0.28)] ${
                       plan.highlighted
                         ? "border-[#18b6e3] shadow-[0_20px_70px_rgba(24,182,227,0.18)]"
                         : "border-slate-200 hover:shadow-md"
                     }`}
                   >
-                    {plan.highlighted && (
-                      <span className="mb-5 w-fit rounded-full bg-[#18b6e3] px-4 py-2 text-xs font-black uppercase tracking-[0.16em] text-white">
-                        Popular
-                      </span>
-                    )}
+                    <div className="mb-5 flex min-h-[36px] items-start">
+                      {!plan.hideBadge && (plan.highlighted || plan.badge) && (
+                        <span className="w-fit rounded-full bg-[#18b6e3] px-4 py-2 text-xs font-black uppercase tracking-[0.16em] text-white">
+                          {plan.badge ?? "Popular"}
+                        </span>
+                      )}
+                    </div>
                     <h3 className="text-2xl font-bold text-slate-900">{plan.name}</h3>
                     <p className="mt-3 min-h-[56px] text-[15px] leading-6 text-slate-600">
                       {plan.description}
@@ -1679,52 +1688,71 @@ function ProductPage({
               </div>
             </div>
           ) : (
-            <div className="grid md:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 items-stretch gap-6 lg:grid-cols-3">
               {plans.map((plan) => (
                 <div
                   key={plan.name}
-                  className={`bg-white rounded-xl border border-gray-200 transition-all flex flex-col overflow-hidden ${plan.highlighted ? "shadow-lg hover:shadow-xl relative" : "shadow-sm hover:shadow-md"}`}
+                  className={`relative flex h-full flex-col overflow-hidden rounded-2xl border bg-white transition-all duration-300 hover:-translate-y-1 ${plan.highlighted ? "border-[#18b6e3] shadow-[0_18px_50px_rgba(24,182,227,0.18)] hover:shadow-[0_24px_65px_rgba(24,182,227,0.24)]" : "border-slate-200 shadow-sm hover:border-slate-300 hover:shadow-lg"}`}
                 >
                   {plan.highlighted && (
-                    <div className="bg-[#18b6e3] text-white py-2 px-6 text-center text-[13px] font-extrabold">
+                    <div className="absolute inset-x-0 top-0 z-10 bg-[#18b6e3] px-6 py-2.5 text-center text-xs font-extrabold uppercase tracking-[0.12em] text-white">
                       Recommended for growing teams.
                     </div>
                   )}
 
-                  <div className={`p-8 pb-4 ${plan.highlighted ? "" : "mt-11"}`}>
-                    <h3 className="text-2xl font-bold text-slate-900 mb-4">{plan.name}</h3>
-                    <p className="text-[15px] text-slate-600 mb-6 min-h-[40px]">
+                  <div className="p-7 pb-5 pt-[3.25rem] md:p-8 md:pb-6 md:pt-[3.25rem]">
+                    <h3 className="text-2xl font-bold leading-tight text-slate-950">{plan.name}</h3>
+                    <p className="mt-3 min-h-[72px] text-[15px] leading-6 text-slate-600">
                       {plan.description}
                     </p>
-                    <div className="mb-4">
-                      <span className="text-4xl font-bold text-slate-900">{plan.price}</span>
+                    <div className="mt-6">
+                      <span className="text-5xl font-bold leading-none text-slate-950">{plan.price}</span>
                       {plan.subprice ? (
-                        <p className="text-sm text-slate-500 mt-1">{plan.subprice}</p>
+                        <p className="mt-2 text-sm font-medium text-slate-500">{plan.subprice}</p>
                       ) : plan.price !== "Custom" ? (
-                        <p className="text-sm text-slate-500 mt-1">per month, paid yearly</p>
+                        <p className="mt-2 text-sm font-medium text-slate-500">per month, paid yearly</p>
                       ) : null}
+                      {plan.maintenancePrice && (
+                        <div className="mt-6 rounded-xl border border-[#b9e9f5] bg-[#f1fbfe] px-4 py-3.5">
+                          <div className="flex items-center justify-between gap-3">
+                            <div>
+                              <p className="text-[11px] font-extrabold uppercase tracking-[0.14em] text-[#129fc6]">
+                                Optional add-on
+                              </p>
+                              {plan.maintenanceLabel && (
+                                <p className="mt-1 max-w-[10rem] text-sm leading-5 text-slate-600">
+                                  {plan.maintenanceLabel}
+                                </p>
+                              )}
+                            </div>
+                            <span className="shrink-0 text-3xl font-bold leading-none text-slate-950">
+                              {plan.maintenancePrice}
+                            </span>
+                          </div>
+                        </div>
+                      )}
                     </div>
 
-                    <div className="flex gap-3 mb-8">
+                    <div className="grid grid-cols-2 gap-3 pt-1">
                       <a href={bookingUrl} target="_blank" rel="noopener noreferrer">
-                        <button className="bg-[#18b6e3] text-white px-5 py-2 rounded font-semibold text-sm transition-colors cursor-pointer">
+                        <button className="w-full cursor-pointer rounded-lg bg-[#18b6e3] px-4 py-3 text-sm font-bold text-white transition-colors hover:bg-[#109dca]">
                           {plan.price === "Custom" ? "Contact Sales" : "Buy now"}
                         </button>
                       </a>
                       <a href={bookingUrl} target="_blank" rel="noopener noreferrer">
-                        <button className="bg-white text-slate-900 border border-slate-300 px-5 py-2 rounded font-semibold text-sm hover:bg-slate-50 transition-colors cursor-pointer">
+                        <button className="w-full cursor-pointer rounded-lg border border-slate-300 bg-white px-4 py-3 text-sm font-bold text-slate-900 transition-colors hover:bg-slate-50">
                           Request a Demo
                         </button>
                       </a>
                     </div>
                   </div>
 
-                  <div className="px-8 pb-10 flex-grow">
-                    <p className="text-sm font-bold text-slate-900 mb-4">Plan highlights:</p>
-                    <ul className="space-y-3">
+                  <div className="flex-grow border-t border-slate-200 px-7 pb-9 pt-6 md:px-8">
+                    <p className="mb-4 text-xs font-extrabold uppercase tracking-[0.14em] text-slate-500">What’s included</p>
+                    <ul className="space-y-3.5">
                       {plan.features.map((feature) => (
-                        <li key={feature} className="flex gap-3 items-start text-[14px] text-slate-600">
-                          <span className="text-slate-400 font-bold">✓</span>
+                        <li key={feature} className="flex items-start gap-3 text-sm leading-6 text-slate-700">
+                          <Check className="mt-1 h-4 w-4 shrink-0 text-[#18b6e3] stroke-[3]" />
                           <span>{feature}</span>
                         </li>
                       ))}

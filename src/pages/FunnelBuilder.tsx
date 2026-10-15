@@ -26,7 +26,10 @@ function FunnelBuilder() {
           name: "Basic Build",
           price: "$300",
           subprice: "one-time project fee",
-          description: "Perfect for startups and solo founders who need a polished site live fast.",
+          maintenancePrice: "$49",
+          maintenanceLabel: "Monthly Maintenance / Website Support ",
+          description:
+            "Perfect for startups and solo founders who need a polished site live fast.",
           features: [
             "Single-page AI-built landing site",
             "Mobile-responsive layout",
@@ -41,7 +44,10 @@ function FunnelBuilder() {
           name: "Premium Build",
           price: "$500",
           subprice: "one-time project fee",
-          description: "Best for growing brands that need more pages, polish, and conversions.",
+          maintenancePrice: "$49",
+          maintenanceLabel: "Monthly Maintenance / Website Support ",
+          description:
+            "Best for growing brands that need more pages, polish, and conversions.",
           highlighted: true,
           features: [
             "Everything in Basic Build",
@@ -58,7 +64,10 @@ function FunnelBuilder() {
           name: "Custom Build",
           price: "Custom",
           subprice: "tailored scope & quote",
-          description: "For businesses that need unique layouts, integrations, and ongoing flexibility.",
+          maintenancePrice: "$49",
+          maintenanceLabel: "Monthly Maintenance / Website Support ",
+          description:
+            "For businesses that need unique layouts, integrations, and ongoing flexibility.",
           features: [
             "Fully custom site architecture",
             "Unlimited pages & sections",
