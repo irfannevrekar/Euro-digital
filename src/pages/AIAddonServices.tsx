@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import FAQ from "../components/FAQ";
 import { getFAQsByServiceId } from "../data/faqData";
 import ServiceHeroVideo from "../components/ServiceHeroVideo";
+import { ArrowRight, Check } from "lucide-react";
 
 function AIAddonServices() {
   const serviceData = {
@@ -113,328 +114,67 @@ function AIAddonServices() {
         </div>
       </section>
 
-      {/* Stacking Cards Section */}
-      <section className="py-16 md:py-24 bg-white">
+      {/* Pricing comparison */}
+      <section className="pricing-section py-16 md:py-24 bg-white">
         <div className="max-w-7xl mx-auto px-6 md:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-slate-800 mb-4">
-              Web-calling Real Time Avatar
-            </h2>
-            <p className="text-lg text-slate-600 max-w-3xl mx-auto">
-              Beautiful analytics that update as your AI agents work
-            </p>
+          <div className="pricing-heading">
+            <div>
+              <p className="pricing-eyebrow">Flexible plans for every team</p>
+              <h2>Choose the right avatar for your business</h2>
+              <p className="pricing-subtitle">
+                Start with the essentials and scale into a fully managed AI calling experience.
+              </p>
+            </div>
+            <a className="pricing-heading-link" href="https://crm.eurodigital.ae/widget/bookings/web-booking-euro">
+              Talk to an expert <ArrowRight size={17} />
+            </a>
           </div>
 
-          <div className="space-y-8">
-            {/* Card 1 - Web-calling Real Time Avatar */}
-            <div
-              className="md:sticky md:top-24 bg-gradient-to-br from-cyan-50 to-blue-100 rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300"
-              style={{ zIndex: 10 }}
-            >
-              <div className="grid md:grid-cols-2 gap-0">
-                {/* Left Side - Content */}
-                <div className="p-8 md:p-12 flex flex-col justify-center order-2 md:order-1">
-                  <h3 className="text-3xl md:text-4xl font-bold text-slate-800 mb-6">
-                    Web-calling Real Time Avatar
-                  </h3>
-
-                  <div className="mb-8">
-                    <span className="text-5xl md:text-7xl font-bold text-slate-700">
-                      $500
-                    </span>
-                    <div className="text-base text-slate-600 mt-2">
-                      • ($29 / Month Subscription)
+          <div className="pricing-table-wrap">
+            <div className="pricing-table" role="table" aria-label="Real time avatar plans">
+              <div className="pricing-row pricing-row-header" role="row">
+                <div className="pricing-feature-cell" role="columnheader">Plan features</div>
+                {[
+                  ["Web-calling", "$500", "Setup + $29/mo", "Starter"],
+                  ["Advanced", "$799", "Per month", "Popular"],
+                  ["Professional", "$1,199", "Per month", "Best value"],
+                  ["Enterprise", "Custom", "Tailored pricing", "Scale"],
+                ].map(([name, price, detail, label], index) => (
+                  <div className={`pricing-plan-cell ${index === 1 ? "is-popular" : ""}`} role="columnheader" key={name}>
+                    <span className="pricing-plan-label">{label}</span>
+                    <h3>{name} <span>Avatar</span></h3>
+                    <strong>{price}</strong>
+                    <small>{detail}</small>
+                    <div className="pricing-actions">
+                      <a className="pricing-buy" href="https://crm.eurodigital.ae/widget/bookings/web-booking-euro">Buy now</a>
+                      <a className="pricing-demo" href="https://crm.eurodigital.ae/widget/bookings/web-booking-euro">Get demo</a>
                     </div>
                   </div>
-
-                  <div className="space-y-4">
-                    <div className="flex items-center gap-3">
-                      <span className="text-green-500 text-2xl font-bold">
-                        ✓
-                      </span>
-                      <span className="text-slate-700 text-lg">
-                        Voice Customisation
-                      </span>
-                    </div>
-                    <div className="flex items-center gap-3">
-                      <span className="text-green-500 text-2xl font-bold">
-                        ✓
-                      </span>
-                      <span className="text-slate-700 text-lg">
-                        Custom Integration
-                      </span>
-                    </div>
-                    <div className="flex items-center gap-3">
-                      <span className="text-green-500 text-2xl font-bold">
-                        ✓
-                      </span>
-                      <span className="text-slate-700 text-lg">
-                        Priority Support
-                      </span>
-                    </div>
-                    <div className="flex items-center gap-3">
-                      <span className="text-green-500 text-2xl font-bold">
-                        ✓
-                      </span>
-                      <span className="text-slate-700 text-lg">
-                        Calling Price 15 cents a Minutes
-                      </span>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Right Side - Image */}
-                <div className="relative h-full min-h-[300px] md:min-h-[650px] order-1 md:order-2">
-                  <img
-                    src="/backgroundImages/ai_agent.png"
-                    alt="Web-calling Real Time Agent"
-                    className="absolute inset-0 w-full h-full object-cover"
-                  />
-                </div>
+                ))}
               </div>
-            </div>
-
-            {/* Card 2 - Advanced Real Time Avatar */}
-            <div
-              className="md:sticky md:top-32 bg-gradient-to-br from-purple-50 to-pink-100 rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300"
-              style={{ zIndex: 20 }}
-            >
-              <div className="grid md:grid-cols-2 gap-0">
-                <div className="p-8 md:p-12 flex flex-col justify-center order-2 md:order-1">
-                  <h3 className="text-3xl md:text-4xl font-bold text-slate-800 mb-6">
-                    Advanced Real Time Avatar
-                  </h3>
-
-                  <div className="mb-8">
-                    <span className="text-5xl md:text-7xl font-bold text-slate-700">
-                      $799
-                    </span>
-                    <span className="text-xl text-slate-600 ml-3">
-                      Per Month
-                    </span>
-                  </div>
-
-                  <div className="space-y-4">
-                    <div className="flex items-center gap-3">
-                      <span className="text-green-500 text-2xl font-bold">
-                        ✓
-                      </span>
-                      <span className="text-slate-700 text-lg">
-                        Everything in Basic Plan
-                      </span>
+              {[
+                ["Voice customisation", true, true, true, true],
+                ["Custom integration", true, true, true, true],
+                ["Priority support", true, true, true, true],
+                ["Calling at 15¢ per minute", true, true, true, false],
+                ["Multi-language support", false, true, true, true],
+                ["Advanced analytics", false, true, true, true],
+                ["API integration", false, true, true, true],
+                ["Call recording & transcription", false, true, true, true],
+                ["Unlimited calling minutes", false, false, true, true],
+                ["24/7 support + account manager", false, false, true, true],
+                ["Custom infrastructure & deployment", false, false, false, true],
+                ["Security, SLA & multi-region support", false, false, false, true],
+              ].map(([feature, ...plans]) => (
+                <div className="pricing-row" role="row" key={feature as string}>
+                  <div className="pricing-feature-cell" role="cell">{feature}</div>
+                  {plans.map((included, index) => (
+                    <div className="pricing-check-cell" role="cell" key={`${feature}-${index}`}>
+                      {included ? <Check size={18} strokeWidth={2.5} aria-label="Included" /> : <span aria-label="Not included">—</span>}
                     </div>
-                    <div className="flex items-center gap-3">
-                      <span className="text-green-500 text-2xl font-bold">
-                        ✓
-                      </span>
-                      <span className="text-slate-700 text-lg">
-                        Multi-language Support
-                      </span>
-                    </div>
-                    <div className="flex items-center gap-3">
-                      <span className="text-green-500 text-2xl font-bold">
-                        ✓
-                      </span>
-                      <span className="text-slate-700 text-lg">
-                        Advanced Analytics
-                      </span>
-                    </div>
-                    <div className="flex items-center gap-3">
-                      <span className="text-green-500 text-2xl font-bold">
-                        ✓
-                      </span>
-                      <span className="text-slate-700 text-lg">
-                        API Integration
-                      </span>
-                    </div>
-                    <div className="flex items-center gap-3">
-                      <span className="text-green-500 text-2xl font-bold">
-                        ✓
-                      </span>
-                      <span className="text-slate-700 text-lg">
-                        Call Recording & Transcription
-                      </span>
-                    </div>
-                  </div>
+                  ))}
                 </div>
-
-                <div className="relative h-full min-h-[300px] md:min-h-[650px] order-1 md:order-2">
-                  <img
-                    src="/backgroundImages/ai_bussiness.png"
-                    alt="Advanced Real Time Agent"
-                    className="absolute inset-0 w-full h-full object-cover"
-                  />
-                </div>
-              </div>
-            </div>
-
-            {/* Card 3 - Professional Real Time Avatar */}
-            <div
-              className="md:sticky md:top-40 bg-gradient-to-br from-green-50 to-teal-100 rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300"
-              style={{ zIndex: 30 }}
-            >
-              <div className="grid md:grid-cols-2 gap-0">
-                <div className="p-8 md:p-12 flex flex-col justify-center order-2 md:order-1">
-                  <h3 className="text-3xl md:text-4xl font-bold text-slate-800 mb-6">
-                    Professional Real Time Avatar
-                  </h3>
-
-                  <div className="mb-8">
-                    <span className="text-5xl md:text-7xl font-bold text-slate-700">
-                      $1,199
-                    </span>
-                    <span className="text-xl text-slate-600 ml-3">
-                      Per Month
-                    </span>
-                  </div>
-
-                  <div className="space-y-4">
-                    <div className="flex items-center gap-3">
-                      <span className="text-green-500 text-2xl font-bold">
-                        ✓
-                      </span>
-                      <span className="text-slate-700 text-lg">
-                        Everything in Advanced Plan
-                      </span>
-                    </div>
-                    <div className="flex items-center gap-3">
-                      <span className="text-green-500 text-2xl font-bold">
-                        ✓
-                      </span>
-                      <span className="text-slate-700 text-lg">
-                        Unlimited Calling Minutes
-                      </span>
-                    </div>
-                    <div className="flex items-center gap-3">
-                      <span className="text-green-500 text-2xl font-bold">
-                        ✓
-                      </span>
-                      <span className="text-slate-700 text-lg">
-                        24/7 Support
-                      </span>
-                    </div>
-                    <div className="flex items-center gap-3">
-                      <span className="text-green-500 text-2xl font-bold">
-                        ✓
-                      </span>
-                      <span className="text-slate-700 text-lg">
-                        Custom Voice Training
-                      </span>
-                    </div>
-                    <div className="flex items-center gap-3">
-                      <span className="text-green-500 text-2xl font-bold">
-                        ✓
-                      </span>
-                      <span className="text-slate-700 text-lg">
-                        Dedicated Account Manager
-                      </span>
-                    </div>
-                    <div className="flex items-center gap-3">
-                      <span className="text-green-500 text-2xl font-bold">
-                        ✓
-                      </span>
-                      <span className="text-slate-700 text-lg">
-                        CRM Integration
-                      </span>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="relative h-full min-h-[300px] md:min-h-[650px] order-1 md:order-2">
-                  <img
-                    src="/backgroundImages/ai_services.png"
-                    alt="Professional Real Time Agent"
-                    className="absolute inset-0 w-full h-full object-cover"
-                  />
-                </div>
-              </div>
-            </div>
-
-            {/* Card 4 - Enterprise Real Time Avatar */}
-            <div
-              className="md:sticky md:top-48 bg-gradient-to-br from-orange-50 to-amber-100 rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300"
-              style={{ zIndex: 40 }}
-            >
-              <div className="grid md:grid-cols-2 gap-0">
-                <div className="p-8 md:p-12 flex flex-col justify-center order-2 md:order-1">
-                  <h3 className="text-3xl md:text-4xl font-bold text-slate-800 mb-6">
-                    Enterprise Real Time Avatar
-                  </h3>
-
-                  <div className="mb-8">
-                    <span className="text-5xl md:text-7xl font-bold text-slate-700">
-                      Custom
-                    </span>
-                  </div>
-
-                  <div className="space-y-4">
-                    <div className="flex items-center gap-3">
-                      <span className="text-green-500 text-2xl font-bold">
-                        ✓
-                      </span>
-                      <span className="text-slate-700 text-lg">
-                        Everything in Professional Plan
-                      </span>
-                    </div>
-                    <div className="flex items-center gap-3">
-                      <span className="text-green-500 text-2xl font-bold">
-                        ✓
-                      </span>
-                      <span className="text-slate-700 text-lg">
-                        Custom Infrastructure
-                      </span>
-                    </div>
-                    <div className="flex items-center gap-3">
-                      <span className="text-green-500 text-2xl font-bold">
-                        ✓
-                      </span>
-                      <span className="text-slate-700 text-lg">
-                        On-Premise Deployment
-                      </span>
-                    </div>
-                    <div className="flex items-center gap-3">
-                      <span className="text-green-500 text-2xl font-bold">
-                        ✓
-                      </span>
-                      <span className="text-slate-700 text-lg">
-                        Advanced Security Features
-                      </span>
-                    </div>
-                    <div className="flex items-center gap-3">
-                      <span className="text-green-500 text-2xl font-bold">
-                        ✓
-                      </span>
-                      <span className="text-slate-700 text-lg">
-                        SLA Guarantee
-                      </span>
-                    </div>
-                    <div className="flex items-center gap-3">
-                      <span className="text-green-500 text-2xl font-bold">
-                        ✓
-                      </span>
-                      <span className="text-slate-700 text-lg">
-                        Priority Processing
-                      </span>
-                    </div>
-                    <div className="flex items-center gap-3">
-                      <span className="text-green-500 text-2xl font-bold">
-                        ✓
-                      </span>
-                      <span className="text-slate-700 text-lg">
-                        Multi-region Support
-                      </span>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="relative h-full min-h-[300px] md:min-h-[650px] order-1 md:order-2">
-                  <img
-                    src="/backgroundImages/avatar.png"
-                    alt="Enterprise Real Time Avatar"
-                    className="absolute inset-0 w-full h-full object-cover"
-                  />
-                </div>
-              </div>
+              ))}
             </div>
           </div>
         </div>
