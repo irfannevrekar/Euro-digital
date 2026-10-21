@@ -25,6 +25,7 @@ function FunnelBuilder() {
         {
           name: "Basic Build",
           price: "$300",
+          checkoutUrl: "https://buy.stripe.com/00w8wJ17f9mveCcdwqcEw05",
           subprice: "one-time project fee",
           maintenancePrice: "$49",
           maintenanceLabel: "Monthly Maintenance / Website Support ",
@@ -43,6 +44,7 @@ function FunnelBuilder() {
         {
           name: "Premium Build",
           price: "$500",
+          checkoutUrl: "https://buy.stripe.com/8x2dR39DL0PZbq0akecEw06",
           subprice: "one-time project fee",
           maintenancePrice: "$49",
           maintenanceLabel: "Monthly Maintenance / Website Support ",

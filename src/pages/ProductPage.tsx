@@ -18,6 +18,7 @@ type ProductPlan = {
   maintenancePrice?: string;
   maintenanceLabel?: string;
   image?: string;
+  checkoutUrl?: string;
 };
 
 type ProductPageProps = {
@@ -1509,7 +1510,7 @@ function ProductPage({
                       ) : null}
                     </div>
 
-                    <a href={bookingUrl} target="_blank" rel="noopener noreferrer" className="mt-7">
+                    <a href={plan.checkoutUrl ?? bookingUrl} target="_blank" rel="noopener noreferrer" className="mt-7">
                       <button
                         className={`w-full rounded-lg px-5 py-3 text-sm font-bold transition-colors cursor-pointer ${
                           plan.highlighted
@@ -1569,7 +1570,7 @@ function ProductPage({
                       </div>
 
                       <div className="flex flex-wrap gap-3 mb-8">
-                        <a href={bookingUrl} target="_blank" rel="noopener noreferrer">
+                        <a href={plan.checkoutUrl ?? bookingUrl} target="_blank" rel="noopener noreferrer">
                           <button className="bg-[#18b6e3] text-white px-5 py-2.5 rounded-lg font-semibold text-sm transition-colors cursor-pointer">
                             {plan.price === "Custom" ? "Contact Sales" : "Buy now"}
                           </button>
@@ -1671,7 +1672,7 @@ function ProductPage({
                           ))}
                         </div>
 
-                        <a href={bookingUrl} target="_blank" rel="noopener noreferrer" className="mt-auto block">
+                        <a href={plan.checkoutUrl ?? bookingUrl} target="_blank" rel="noopener noreferrer" className="mt-auto block">
                           <button
                             className={`w-full rounded-2xl px-6 py-4 text-lg font-bold transition-colors cursor-pointer ${isHighlighted
                               ? "bg-white text-[#1d8fff] hover:bg-slate-100"
@@ -1734,7 +1735,7 @@ function ProductPage({
                     </div>
 
                     <div className="grid grid-cols-2 gap-3 pt-1">
-                      <a href={bookingUrl} target="_blank" rel="noopener noreferrer">
+                      <a href={plan.checkoutUrl ?? bookingUrl} target="_blank" rel="noopener noreferrer">
                         <button className="w-full cursor-pointer rounded-lg bg-[#18b6e3] px-4 py-3 text-sm font-bold text-white transition-colors hover:bg-[#109dca]">
                           {plan.price === "Custom" ? "Contact Sales" : "Buy now"}
                         </button>

@@ -21,6 +21,7 @@ function AIBuilder() {
         {
           name: "Launch",
           price: "$199",
+          checkoutUrl: "https://buy.stripe.com/9B66oBeY59mvdy8fEycEw09",
           description: "For one AI assistant or automation flow.",
           features: [
             "1 assistant",
@@ -32,6 +33,7 @@ function AIBuilder() {
         {
           name: "Scale",
           price: "$499",
+          checkoutUrl: "https://buy.stripe.com/fZucMZgZ956fgKk2RMeEw0a",
           description: "For teams building multiple AI workflows.",
           highlighted: true,
           features: [

@@ -24,6 +24,7 @@ function EDCRM() {
         {
           name: "ED-CRM (Basic)",
           price: "$49",
+          checkoutUrl: "https://buy.stripe.com/00wblVcPXfKT65G4ZUcEw07",
           description:
             "A complete CRM platform for managing leads, automations, conversations, funnels, and reporting.",
           highlighted: true,
@@ -53,6 +54,7 @@ function EDCRM() {
         {
           name: "ED-CRM (AI Pro)",
           price: "$99",
+          checkoutUrl: "https://buy.stripe.com/4gMaER9DL56f51C1NIcEw08",
           description:
             "Everything in ED-CRM, plus an AI growth layer that qualifies leads, handles conversations, and turns insights into action.",
           badge: "RECOMMENDED",

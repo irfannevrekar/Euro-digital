@@ -135,18 +135,18 @@ function AIAddonServices() {
               <div className="pricing-row pricing-row-header" role="row">
                 <div className="pricing-feature-cell" role="columnheader">Plan features</div>
                 {[
-                  ["Web-calling", "$500", "Setup + $29/mo", "Starter"],
-                  ["Advanced", "$799", "Per month", "Popular"],
-                  ["Professional", "$1,199", "Per month", "Best value"],
-                  ["Enterprise", "Custom", "Tailored pricing", "Scale"],
-                ].map(([name, price, detail, label], index) => (
+                  ["Web-calling", "$500", "Setup + $29/mo", "Starter", "https://buy.stripe.com/bJe00daHPg0X8d08c6cEw02"],
+                  ["Advanced", "$799", "Per month", "Popular", "https://buy.stripe.com/4gMeV7cPXdCL51C4ZUcEw03"],
+                  ["Professional", "$1,199", "Per month", "Best value", "https://buy.stripe.com/bJe5kx6rz56falW1NIcEw04"],
+                  ["Enterprise", "Custom", "Tailored pricing", "Scale", ""],
+                ].map(([name, price, detail, label, checkoutUrl], index) => (
                   <div className={`pricing-plan-cell ${index === 1 ? "is-popular" : ""}`} role="columnheader" key={name}>
                     <span className="pricing-plan-label">{label}</span>
                     <h3>{name} <span>Avatar</span></h3>
                     <strong>{price}</strong>
                     <small>{detail}</small>
                     <div className="pricing-actions">
-                      <a className="pricing-buy" href="https://crm.eurodigital.ae/widget/bookings/web-booking-euro">Buy now</a>
+                      <a className="pricing-buy" href={checkoutUrl || "https://crm.eurodigital.ae/widget/bookings/web-booking-euro"}>Buy now</a>
                       <a className="pricing-demo" href="https://crm.eurodigital.ae/widget/bookings/web-booking-euro">Get demo</a>
                     </div>
                   </div>

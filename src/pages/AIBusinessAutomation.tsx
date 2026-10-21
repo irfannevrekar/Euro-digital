@@ -160,9 +160,11 @@ function AIBusinessAutomation() {
                 </div>
 
                 <div className="flex gap-3 mb-8">
-                  <button className="bg-[#18b6e3] text-white px-5 py-2 rounded font-semibold text-sm  transition-colors cursor-pointer">
-                    Buy now
-                  </button>
+                  <a href="https://buy.stripe.com/5kQ4gtaHPcyH8d0csmcEw00" target="_blank" rel="noopener noreferrer">
+                    <button className="bg-[#18b6e3] text-white px-5 py-2 rounded font-semibold text-sm transition-colors cursor-pointer">
+                      Buy now
+                    </button>
+                  </a>
                   <a
                     href="https://crm.eurodigital.ae/widget/bookings/web-booking-euro"
                     target="_blank"
@@ -230,9 +232,11 @@ function AIBusinessAutomation() {
                 </div>
 
                 <div className="flex gap-3 mb-8">
-                  <button className="bg-[#18b6e3] text-white px-5 py-2 rounded font-semibold text-sm  transition-colors cursor-pointer">
-                    Buy now
-                  </button>
+                  <a href="https://buy.stripe.com/dRm3cpeY5buDfGg63YcEw01" target="_blank" rel="noopener noreferrer">
+                    <button className="bg-[#18b6e3] text-white px-5 py-2 rounded font-semibold text-sm transition-colors cursor-pointer">
+                      Buy now
+                    </button>
+                  </a>
                   <a
                     href="https://crm.eurodigital.ae/widget/bookings/web-booking-euro"
                     target="_blank"
