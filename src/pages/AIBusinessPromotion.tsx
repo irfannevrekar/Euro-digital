@@ -128,10 +128,10 @@ function AIBusinessPromotion() {
               From audience targeting to lead follow-up
             </h2>
             <p className="text-lg leading-8 text-slate-600">
-              Effective digital marketing does not stop when a campaign generates
-              interest. EuroDigital connects promotion, lead capture, personalized
-              communication, CRM workflows, and automated follow-up so businesses
-              can move more opportunities toward conversion.
+              Effective digital marketing does not stop when a campaign
+              generates interest. EuroDigital connects promotion, lead capture,
+              personalized communication, CRM workflows, and automated follow-up
+              so businesses can move more opportunities toward conversion.
             </p>
           </div>
 
@@ -165,7 +165,9 @@ function AIBusinessPromotion() {
                 <h3 className="mb-3 text-xl font-bold text-slate-900">
                   {capability.title}
                 </h3>
-                <p className="leading-7 text-slate-600">{capability.description}</p>
+                <p className="leading-7 text-slate-600">
+                  {capability.description}
+                </p>
               </article>
             ))}
           </div>
@@ -209,7 +211,11 @@ function AIBusinessPromotion() {
                 </div>
 
                 <div className="flex gap-3 mb-8">
-                  <a href="https://buy.stripe.com/5kQ4gtaHPcyH8d0csmcEw00" target="_blank" rel="noopener noreferrer">
+                  <a
+                    href="https://buy.stripe.com/5kQ4gtaHPcyH8dOcsmcEw00"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
                     <button className="bg-[#18b6e3] text-white px-5 py-2 rounded font-semibold text-sm transition-colors cursor-pointer">
                       Buy now
                     </button>
@@ -268,8 +274,8 @@ function AIBusinessPromotion() {
                   AI Business
                 </h3>
                 <p className="text-[15px] text-slate-600 mb-6 min-h-[40px]">
-                  For rapidly scaling businesses needing advanced
-                  marketing automation.
+                  For rapidly scaling businesses needing advanced marketing
+                  automation.
                 </p>
                 <div className="mb-4">
                   <span className="text-4xl font-bold text-slate-900">
@@ -281,7 +287,11 @@ function AIBusinessPromotion() {
                 </div>
 
                 <div className="flex gap-3 mb-8">
-                  <a href="https://buy.stripe.com/dRm3cpeY5buDfGg63YcEw01" target="_blank" rel="noopener noreferrer">
+                  <a
+                    href="https://buy.stripe.com/dRm3cpeY5buDfGg63YcEw01"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
                     <button className="bg-[#18b6e3] text-white px-5 py-2 rounded font-semibold text-sm transition-colors cursor-pointer">
                       Buy now
                     </button>

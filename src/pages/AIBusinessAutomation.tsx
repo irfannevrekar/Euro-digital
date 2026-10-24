@@ -160,7 +160,11 @@ function AIBusinessAutomation() {
                 </div>
 
                 <div className="flex gap-3 mb-8">
-                  <a href="https://buy.stripe.com/5kQ4gtaHPcyH8d0csmcEw00" target="_blank" rel="noopener noreferrer">
+                  <a
+                    href="https://buy.stripe.com/5kQ4gtaHPcyH8dOcsmcEw00"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
                     <button className="bg-[#18b6e3] text-white px-5 py-2 rounded font-semibold text-sm transition-colors cursor-pointer">
                       Buy now
                     </button>
@@ -211,7 +215,8 @@ function AIBusinessAutomation() {
             >
               {/* Dark Header Banner */}
               <div className="bg-[#18b6e3] text-white py-2 px-6 text-center text-[13px] font-extrabold leading-6">
-                Save up to 35% when you add AI Digital Marketing &amp; Business Promotion.
+                Save up to 35% when you add AI Digital Marketing &amp; Business
+                Promotion.
               </div>
 
               <div className="p-8 pb-4">
@@ -219,8 +224,7 @@ function AIBusinessAutomation() {
                   AI Business
                 </h3>
                 <p className="text-[15px] text-slate-600 mb-6 min-h-[40px]">
-                  For rapidly scaling businesses needing advanced
-                  features.
+                  For rapidly scaling businesses needing advanced features.
                 </p>
                 <div className="mb-4">
                   <span className="text-4xl font-bold text-slate-900">
@@ -232,7 +236,11 @@ function AIBusinessAutomation() {
                 </div>
 
                 <div className="flex gap-3 mb-8">
-                  <a href="https://buy.stripe.com/dRm3cpeY5buDfGg63YcEw01" target="_blank" rel="noopener noreferrer">
+                  <a
+                    href="https://buy.stripe.com/dRm3cpeY5buDfGg63YcEw01"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
                     <button className="bg-[#18b6e3] text-white px-5 py-2 rounded font-semibold text-sm transition-colors cursor-pointer">
                       Buy now
                     </button>

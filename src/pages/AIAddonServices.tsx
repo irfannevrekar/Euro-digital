@@ -122,32 +122,79 @@ function AIAddonServices() {
               <p className="pricing-eyebrow">Flexible plans for every team</p>
               <h2>Choose the right avatar for your business</h2>
               <p className="pricing-subtitle">
-                Start with the essentials and scale into a fully managed AI calling experience.
+                Start with the essentials and scale into a fully managed AI
+                calling experience.
               </p>
             </div>
-            <a className="pricing-heading-link" href="https://crm.eurodigital.ae/widget/bookings/web-booking-euro">
+            <a
+              className="pricing-heading-link"
+              href="https://crm.eurodigital.ae/widget/bookings/web-booking-euro"
+            >
               Talk to an expert <ArrowRight size={17} />
             </a>
           </div>
 
           <div className="pricing-table-wrap">
-            <div className="pricing-table" role="table" aria-label="Real time avatar plans">
+            <div
+              className="pricing-table"
+              role="table"
+              aria-label="Real time avatar plans"
+            >
               <div className="pricing-row pricing-row-header" role="row">
-                <div className="pricing-feature-cell" role="columnheader">Plan features</div>
+                <div className="pricing-feature-cell" role="columnheader">
+                  Plan features
+                </div>
                 {[
-                  ["Web-calling", "$500", "Setup + $29/mo", "Starter", "https://buy.stripe.com/bJe00daHPg0X8d08c6cEw02"],
-                  ["Advanced", "$799", "Per month", "Popular", "https://buy.stripe.com/4gMeV7cPXdCL51C4ZUcEw03"],
-                  ["Professional", "$1,199", "Per month", "Best value", "https://buy.stripe.com/bJe5kx6rz56falW1NIcEw04"],
+                  [
+                    "Web-calling",
+                    "$500",
+                    "Setup + $29/mo",
+                    "Starter",
+                    "https://buy.stripe.com/bJe00daHPg0X8d08c6cEw02",
+                  ],
+                  [
+                    "Advanced",
+                    "$799",
+                    "Per month",
+                    "Popular",
+                    "https://buy.stripe.com/4gMeV7cPXdCL51C4ZUcEw03",
+                  ],
+                  [
+                    "Professional",
+                    "$1,199",
+                    "Per month",
+                    "Best value",
+                    "https://buy.stripe.com/bJe5kx6rz56falW1NIcEw04",
+                  ],
                   ["Enterprise", "Custom", "Tailored pricing", "Scale", ""],
                 ].map(([name, price, detail, label, checkoutUrl], index) => (
-                  <div className={`pricing-plan-cell ${index === 1 ? "is-popular" : ""}`} role="columnheader" key={name}>
+                  <div
+                    className={`pricing-plan-cell ${index === 1 ? "is-popular" : ""}`}
+                    role="columnheader"
+                    key={name}
+                  >
                     <span className="pricing-plan-label">{label}</span>
-                    <h3>{name} <span>Avatar</span></h3>
+                    <h3>
+                      {name} <span>Avatar</span>
+                    </h3>
                     <strong>{price}</strong>
                     <small>{detail}</small>
                     <div className="pricing-actions">
-                      <a className="pricing-buy" href={checkoutUrl || "https://crm.eurodigital.ae/widget/bookings/web-booking-euro"}>Buy now</a>
-                      <a className="pricing-demo" href="https://crm.eurodigital.ae/widget/bookings/web-booking-euro">Get demo</a>
+                      <a
+                        className="pricing-buy"
+                        href={
+                          checkoutUrl ||
+                          "https://crm.eurodigital.ae/widget/bookings/web-booking-euro"
+                        }
+                      >
+                        Buy now
+                      </a>
+                      <a
+                        className="pricing-demo"
+                        href="https://crm.eurodigital.ae/widget/bookings/web-booking-euro"
+                      >
+                        Get demo
+                      </a>
                     </div>
                   </div>
                 ))}
@@ -163,14 +210,40 @@ function AIAddonServices() {
                 ["Call recording & transcription", false, true, true, true],
                 ["Unlimited calling minutes", false, false, true, true],
                 ["24/7 support + account manager", false, false, true, true],
-                ["Custom infrastructure & deployment", false, false, false, true],
-                ["Security, SLA & multi-region support", false, false, false, true],
+                [
+                  "Custom infrastructure & deployment",
+                  false,
+                  false,
+                  false,
+                  true,
+                ],
+                [
+                  "Security, SLA & multi-region support",
+                  false,
+                  false,
+                  false,
+                  true,
+                ],
               ].map(([feature, ...plans]) => (
                 <div className="pricing-row" role="row" key={feature as string}>
-                  <div className="pricing-feature-cell" role="cell">{feature}</div>
+                  <div className="pricing-feature-cell" role="cell">
+                    {feature}
+                  </div>
                   {plans.map((included, index) => (
-                    <div className="pricing-check-cell" role="cell" key={`${feature}-${index}`}>
-                      {included ? <Check size={18} strokeWidth={2.5} aria-label="Included" /> : <span aria-label="Not included">—</span>}
+                    <div
+                      className="pricing-check-cell"
+                      role="cell"
+                      key={`${feature}-${index}`}
+                    >
+                      {included ? (
+                        <Check
+                          size={18}
+                          strokeWidth={2.5}
+                          aria-label="Included"
+                        />
+                      ) : (
+                        <span aria-label="Not included">—</span>
+                      )}
                     </div>
                   ))}
                 </div>
