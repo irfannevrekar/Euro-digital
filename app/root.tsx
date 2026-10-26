@@ -11,7 +11,7 @@ export function Layout({ children }: { children: ReactNode }) {
         <link rel="icon" type="image/svg+xml" href="/logo/logo.svg" />
         <link rel="preconnect" href="https://48yfcqwona.ucarecd.net" crossOrigin="anonymous" />
         <link rel="preconnect" href="https://2c3wn7zfav.ucarecd.net" crossOrigin="anonymous" />
-        <link rel="stylesheet" href="https://widget.voiceaiservice.com/react-widget-uv.css" />
+        <link rel="stylesheet" href="https://sidewidget.vercel.app/react-widget-uv.css" />
         <Meta />
         <Links />
       </head>
@@ -20,11 +20,11 @@ export function Layout({ children }: { children: ReactNode }) {
         <ScrollRestoration />
         <Scripts />
         <script dangerouslySetInnerHTML={{ __html: "window.process = { env: {} };" }} />
-        <script src="https://widget.voiceaiservice.com/react-widget-uv.iife.js" />
+        <script src="https://sidewidget.vercel.app/react-widget-uv.iife.js" />
         {createElement("react-widget-uv", {
-          agent_id: "60066779-273a-4dc8-9d1e-ae0aa6c0108e",
+          agent_id: "ebf9ffdb-d13a-493b-ac24-7fcd8fdcfb49",
           schema: "237bc2c6-ef87-4def-be84-701cd673df42",
-          type: "customwidget",
+          type: "thunderemotionlite",
         })}
       </body>
     </html>
