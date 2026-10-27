@@ -3,6 +3,7 @@ import FAQ from "../components/FAQ";
 import { getFAQsByServiceId } from "../data/faqData";
 import ServiceHeroVideo from "../components/ServiceHeroVideo";
 import { ArrowRight, Check } from "lucide-react";
+import { openBookingModal } from "../constants/booking";
 
 function AIAddonServices() {
   const serviceData = {
@@ -92,6 +93,7 @@ function AIAddonServices() {
 
               <div className="flex gap-4 pt-4">
                 <button
+                  onClick={openBookingModal}
                   className="rounded-full text-black font-medium px-6 py-2 shadow-lg cursor-pointer "
                   style={{ backgroundColor: "var(--primary-blue)" }}
                 >
@@ -192,6 +194,10 @@ function AIAddonServices() {
                       <a
                         className="pricing-demo"
                         href="https://crm.eurodigital.ae/widget/bookings/web-booking-euro"
+                        onClick={(event) => {
+                          event.preventDefault();
+                          openBookingModal();
+                        }}
                       >
                         Get demo
                       </a>

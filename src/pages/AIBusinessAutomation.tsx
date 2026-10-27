@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import FAQ from "../components/FAQ";
 import { getFAQsByServiceId } from "../data/faqData";
 import ServiceHeroVideo from "../components/ServiceHeroVideo";
+import { openBookingModal } from "../constants/booking";
 
 function AIBusinessAutomation() {
   const serviceData = {
@@ -171,8 +172,10 @@ function AIBusinessAutomation() {
                   </a>
                   <a
                     href="https://crm.eurodigital.ae/widget/bookings/web-booking-euro"
-                    target="_blank"
-                    rel="noopener noreferrer"
+                    onClick={(event) => {
+                      event.preventDefault();
+                      openBookingModal();
+                    }}
                   >
                     <button className="bg-white text-slate-900 border border-slate-300 px-5 py-2 rounded font-semibold text-sm hover:bg-slate-50 transition-colors cursor-pointer">
                       Request a Demo
@@ -247,8 +250,10 @@ function AIBusinessAutomation() {
                   </a>
                   <a
                     href="https://crm.eurodigital.ae/widget/bookings/web-booking-euro"
-                    target="_blank"
-                    rel="noopener noreferrer"
+                    onClick={(event) => {
+                      event.preventDefault();
+                      openBookingModal();
+                    }}
                   >
                     <button className="bg-white text-slate-900 border border-slate-300 px-5 py-2 rounded font-semibold text-sm hover:bg-slate-50 transition-colors cursor-pointer">
                       Request a Demo
@@ -309,13 +314,18 @@ function AIBusinessAutomation() {
                 <div className="h-4"></div>{" "}
                 {/* Spacer to match price line height */}
                 <div className="flex gap-3 mb-8">
-                  <button className="bg-[#18b6e3] text-white px-5 py-2 rounded font-semibold text-sm transition-colors cursor-pointer">
+                  <button
+                    onClick={openBookingModal}
+                    className="bg-[#18b6e3] text-white px-5 py-2 rounded font-semibold text-sm transition-colors cursor-pointer"
+                  >
                     Contact Sales
                   </button>
                   <a
                     href="https://crm.eurodigital.ae/widget/bookings/web-booking-euro"
-                    target="_blank"
-                    rel="noopener noreferrer"
+                    onClick={(event) => {
+                      event.preventDefault();
+                      openBookingModal();
+                    }}
                   >
                     <button className="bg-white text-slate-900 border border-slate-300 px-5 py-2 rounded font-semibold text-sm hover:bg-slate-50 transition-colors cursor-pointer">
                       Request a Demo

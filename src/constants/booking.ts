@@ -4,6 +4,14 @@ export const BOOKING_URL =
 export const CONSULTATION_BOOKING_URL =
   "https://bookings.cloud.microsoft/book/eurodigitalaiProductDemoConsultationCenter@eurodigital.ae/?ismsaljsauthenabled";
 
+export const BOOKING_MODAL_EVENT = "eurodigital:open-booking-modal";
+
+export function openBookingModal() {
+  if (typeof window !== "undefined") {
+    window.dispatchEvent(new Event(BOOKING_MODAL_EVENT));
+  }
+}
+
 export const SERVICE_BOOKING_URLS = {
   aiBusinessAutomation:
     "https://crm.eurodigital.ae/widget/booking/YS1sTh1rwyoxRNonebe5",

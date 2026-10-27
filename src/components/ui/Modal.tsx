@@ -1,5 +1,6 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { useEffect } from "react";
+import { openBookingModal } from "../../constants/booking";
 
 interface ModalProps {
     isOpen: boolean;
@@ -75,14 +76,16 @@ const Modal = ({ isOpen, onClose, title, children, ctaUrl, ctaText }: ModalProps
                                 Close
                             </button>
                             {ctaUrl && (
-                                <a
-                                    href={ctaUrl}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
+                                <button
+                                    type="button"
+                                    onClick={() => {
+                                        onClose();
+                                        openBookingModal();
+                                    }}
                                     className="px-6 py-2 bg-slate-800 text-white font-semibold rounded-full hover:bg-slate-700 transition-colors inline-block text-center"
                                 >
                                     {ctaText || "Contact Sales"}
-                                </a>
+                                </button>
                             )}
                         </div>
                     </motion.div>

@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { Monitor, PhoneCall } from "lucide-react";
 import FAQ from "../components/FAQ";
 import { getFAQsByServiceId } from "../data/faqData";
+import { openBookingModal } from "../constants/booking";
 
 function AIAgentTalkTime() {
   const serviceData = {
@@ -82,12 +83,19 @@ function AIAgentTalkTime() {
                 </p>
               )}
 
-              <div className="flex gap-4 pt-4">
+              <div className="flex flex-wrap gap-4 pt-4">
                 <button
                   className="rounded-full text-black font-medium px-6 py-2 shadow-lg  cursor-pointer"
                   style={{ backgroundColor: "var(--primary-blue)" }}
                 >
                   {serviceData.primaryButtonText}
+                </button>
+                <button
+                  type="button"
+                  onClick={openBookingModal}
+                  className="rounded-full border-2 border-slate-300 bg-white px-6 py-2 font-medium text-slate-700 shadow-lg transition hover:border-slate-400 hover:bg-slate-50"
+                >
+                  Buy Now
                 </button>
               </div>
             </div>
@@ -136,7 +144,7 @@ function AIAgentTalkTime() {
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {/* Card 1 - AI Startup Talk time */}
             <div
-              className="rounded-xl border border-slate-200 bg-white shadow-sm transition duration-200 hover:-translate-y-1 hover:border-slate-300 hover:shadow-lg"
+              className="flex h-full flex-col rounded-xl border border-slate-200 bg-white shadow-sm transition duration-200 hover:-translate-y-1 hover:border-slate-300 hover:shadow-lg"
             >
               <div className="h-full">
                 <div className="p-7 flex flex-col h-full">
@@ -187,6 +195,14 @@ function AIAgentTalkTime() {
                       </span>
                     </div>
                   </div>
+                  <button
+                    type="button"
+                    onClick={openBookingModal}
+                    className="mt-auto w-full rounded-full px-5 py-3 font-semibold text-white shadow-lg transition hover:brightness-110"
+                    style={{ backgroundColor: "var(--primary-blue)" }}
+                  >
+                    Buy Now
+                  </button>
                 </div>
 
               </div>
@@ -194,7 +210,7 @@ function AIAgentTalkTime() {
 
             {/* Card 2 - AI Business Talk time */}
             <div
-              className="rounded-xl border border-slate-200 bg-white shadow-sm transition duration-200 hover:-translate-y-1 hover:border-slate-300 hover:shadow-lg"
+              className="flex h-full flex-col rounded-xl border border-slate-200 bg-white shadow-sm transition duration-200 hover:-translate-y-1 hover:border-slate-300 hover:shadow-lg"
             >
               <div className="h-full">
                 <div className="p-7 flex flex-col h-full">
@@ -253,6 +269,14 @@ function AIAgentTalkTime() {
                       </span>
                     </div>
                   </div>
+                  <button
+                    type="button"
+                    onClick={openBookingModal}
+                    className="mt-auto w-full rounded-full px-5 py-3 font-semibold text-white shadow-lg transition hover:brightness-110"
+                    style={{ backgroundColor: "var(--primary-blue)" }}
+                  >
+                    Buy Now
+                  </button>
                 </div>
 
               </div>
@@ -260,7 +284,7 @@ function AIAgentTalkTime() {
 
             {/* Card 3 - AI Professional Talk time */}
             <div
-              className="rounded-xl border border-slate-200 bg-white shadow-sm transition duration-200 hover:-translate-y-1 hover:border-slate-300 hover:shadow-lg"
+              className="flex h-full flex-col rounded-xl border border-slate-200 bg-white shadow-sm transition duration-200 hover:-translate-y-1 hover:border-slate-300 hover:shadow-lg"
             >
               <div className="h-full">
                 <div className="p-7 flex flex-col h-full">
@@ -327,6 +351,14 @@ function AIAgentTalkTime() {
                       </span>
                     </div>
                   </div>
+                  <button
+                    type="button"
+                    onClick={openBookingModal}
+                    className="mt-auto w-full rounded-full px-5 py-3 font-semibold text-white shadow-lg transition hover:brightness-110"
+                    style={{ backgroundColor: "var(--primary-blue)" }}
+                  >
+                    Buy Now
+                  </button>
                 </div>
 
               </div>
@@ -353,7 +385,7 @@ function AIAgentTalkTime() {
               { name: "AI Widget Business", price: "$250", features: ["2,500 Voice Widget Minutes", "Advanced Voice Customisation", "Priority Support", "Advanced Analytics", "API Integration"] },
               { name: "AI Widget Professional", price: "$550", features: ["5,500 Voice Widget Minutes", "Premium Voice Customisation", "24/7 Support", "Real-time Analytics", "Full API Access", "Custom Integrations"] },
             ].map((plan) => (
-              <div key={plan.name} className="rounded-xl border border-slate-200 bg-white p-7 shadow-sm transition duration-200 hover:-translate-y-1 hover:border-slate-300 hover:shadow-lg">
+              <div key={plan.name} className="flex h-full flex-col rounded-xl border border-slate-200 bg-white p-7 shadow-sm transition duration-200 hover:-translate-y-1 hover:border-slate-300 hover:shadow-lg">
                 <h3 className="text-xl font-semibold text-slate-900 mb-5">{plan.name}</h3>
                 <div className="mb-7 border-b border-slate-100 pb-6">
                   <span className="text-4xl font-bold tracking-tight text-slate-900">{plan.price}</span>
@@ -367,6 +399,14 @@ function AIAgentTalkTime() {
                     </li>
                   ))}
                 </ul>
+                <button
+                  type="button"
+                  onClick={openBookingModal}
+                  className="mt-auto w-full rounded-full px-5 py-3 font-semibold text-white shadow-lg transition hover:brightness-110"
+                  style={{ backgroundColor: "var(--primary-blue)" }}
+                >
+                  Buy Now
+                </button>
               </div>
             ))}
           </div>

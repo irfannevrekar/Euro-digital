@@ -1,7 +1,7 @@
 import { ChevronDown, LogIn, Menu, X } from "lucide-react";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
-import { CONSULTATION_BOOKING_URL } from "../constants/booking";
+import { BOOKING_MODAL_EVENT, CONSULTATION_BOOKING_URL } from "../constants/booking";
 import { solutionGroups, type SolutionService } from "../data/solutions";
 import BookingModal from "./BookingModal";
 
@@ -83,6 +83,12 @@ function Header() {
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, [isMobileMenuOpen]);
+
+  useEffect(() => {
+    const openBookingFromCta = () => setIsBookingOpen(true);
+    window.addEventListener(BOOKING_MODAL_EVENT, openBookingFromCta);
+    return () => window.removeEventListener(BOOKING_MODAL_EVENT, openBookingFromCta);
+  }, []);
 
   useEffect(() => {
     document.body.style.overflow = isMobileMenuOpen ? "hidden" : "unset";

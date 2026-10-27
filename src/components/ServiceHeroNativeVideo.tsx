@@ -1,6 +1,7 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { useState, useRef } from "react";
 import { RotateCcw, Play, Pause } from "lucide-react";
+import { openBookingModal } from "../constants/booking";
 
 interface ServiceHeroNativeVideoProps {
   videoUrl: string;
@@ -186,8 +187,10 @@ function ServiceHeroNativeVideo({
               <div className="flex flex-col items-center gap-6">
                 <a
                   href={ctaLink}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  onClick={(event) => {
+                    event.preventDefault();
+                    openBookingModal();
+                  }}
                   className="inline-flex items-center justify-center rounded-full bg-[#18b6e3] px-10 py-4 text-xl font-bold text-white shadow-[0_0_20px_rgba(24,182,227,0.4)] transition-all hover:scale-105 hover:bg-[#159fca] hover:shadow-[0_0_30px_rgba(24,182,227,0.6)]"
                 >
                   Book Demo

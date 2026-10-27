@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import FAQ from "../components/FAQ";
 import { getFAQsByServiceId } from "../data/faqData";
 import ServiceHeroVideo from "../components/ServiceHeroVideo";
+import { openBookingModal } from "../constants/booking";
 
 function AIAutomatedChatbot() {
   const serviceData = {
@@ -98,6 +99,7 @@ function AIAutomatedChatbot() {
                   {serviceData.primaryButtonText}
                 </button>
                 <button
+                  onClick={openBookingModal}
                   className="rounded-full font-medium px-6 py-2 transition-all hover:bg-gray-100 border-2 border-gray-300 text-gray-500 cursor-pointer"
                   style={{
                     borderWidth: "2px",
@@ -171,7 +173,10 @@ function AIAutomatedChatbot() {
                     $600
                   </td>
                   <td className="px-6 py-6 text-2xl font-bold text-slate-700">
-                    $97 <span className="text-sm font-medium">/ month</span>
+                    <div>$97 <span className="text-sm font-medium">/ month</span></div>
+                    <button type="button" onClick={openBookingModal} className="mt-4 rounded-full bg-[#18b6e3] px-4 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-[#109dca]">
+                      Buy Now
+                    </button>
                   </td>
                   <td className="px-6 py-6 text-slate-700">
                     WhatsApp Business API automation, priority support, monthly
@@ -186,7 +191,10 @@ function AIAutomatedChatbot() {
                     $600
                   </td>
                   <td className="px-6 py-6 text-2xl font-bold text-slate-700">
-                    $97 <span className="text-sm font-medium">/ month</span>
+                    <div>$97 <span className="text-sm font-medium">/ month</span></div>
+                    <button type="button" onClick={openBookingModal} className="mt-4 rounded-full bg-[#18b6e3] px-4 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-[#109dca]">
+                      Buy Now
+                    </button>
                   </td>
                   <td className="px-6 py-6 text-slate-700">
                     Instagram DM and comment automation, story mention
@@ -202,7 +210,10 @@ function AIAutomatedChatbot() {
                     $600
                   </td>
                   <td className="px-6 py-6 text-2xl font-bold text-slate-700">
-                    $97 <span className="text-sm font-medium">/ month</span>
+                    <div>$97 <span className="text-sm font-medium">/ month</span></div>
+                    <button type="button" onClick={openBookingModal} className="mt-4 rounded-full bg-[#18b6e3] px-4 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-[#109dca]">
+                      Buy Now
+                    </button>
                   </td>
                   <td className="px-6 py-6 text-slate-700">
                     Facebook Page DM and comment automation, instant replies,
@@ -217,7 +228,12 @@ function AIAutomatedChatbot() {
                   <td className="px-6 py-6 text-2xl font-bold text-slate-700">
                     Custom
                   </td>
-                  <td className="px-6 py-6 text-slate-600">Custom pricing</td>
+                  <td className="px-6 py-6 text-slate-600">
+                    <div>Custom pricing</div>
+                    <button type="button" onClick={openBookingModal} className="mt-4 rounded-full bg-[#18b6e3] px-4 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-[#109dca]">
+                      Buy Now
+                    </button>
+                  </td>
                   <td className="px-6 py-6 text-slate-700">
                     Custom infrastructure, private deployment, enterprise
                     security, dedicated support, AI model training, and
@@ -232,7 +248,10 @@ function AIAutomatedChatbot() {
                     $600
                   </td>
                   <td className="px-5 py-4 text-2xl font-bold text-slate-700">
-                    $99 <span className="text-sm font-medium">/ month</span>
+                    <div>$99 <span className="text-sm font-medium">/ month</span></div>
+                    <button type="button" onClick={openBookingModal} className="mt-4 rounded-full bg-[#18b6e3] px-4 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-[#109dca]">
+                      Buy Now
+                    </button>
                   </td>
                   <td className="px-5 py-4 text-slate-700">
                     Everything included in the selected platform plan, plus

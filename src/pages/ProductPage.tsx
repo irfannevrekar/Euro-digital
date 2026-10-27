@@ -4,7 +4,7 @@ import { Check, ChevronRight, DollarSign, Eye, Funnel, MessageCircle, RotateCcw,
 import FAQ from "../components/FAQ";
 import ServiceHeroVideo from "../components/ServiceHeroVideo";
 import { getFAQsByServiceId } from "../data/faqData";
-import { BOOKING_URL as bookingUrl } from "../constants/booking";
+import { BOOKING_URL as bookingUrl, openBookingModal } from "../constants/booking";
 
 type ProductPlan = {
   name: string;
@@ -1417,7 +1417,13 @@ function ProductPage({
               </p>
 
               <div className="flex gap-4 pt-4">
-                <a href={bookingUrl} target="_blank" rel="noopener noreferrer">
+                <a
+                  href={bookingUrl}
+                  onClick={(event) => {
+                    event.preventDefault();
+                    openBookingModal();
+                  }}
+                >
                   <button
                     className="rounded-full text-black font-medium px-6 py-2 shadow-lg cursor-pointer"
                     style={{ backgroundColor: "var(--primary-blue)" }}
@@ -1510,7 +1516,26 @@ function ProductPage({
                       ) : null}
                     </div>
 
-                    <a href={plan.checkoutUrl ?? bookingUrl} target="_blank" rel="noopener noreferrer" className="mt-7">
+                    <button
+                      type="button"
+                      onClick={openBookingModal}
+                      className="mt-6 w-full rounded-lg border border-[#18b6e3] bg-white px-5 py-3 text-sm font-bold text-[#129fc6] transition-colors hover:bg-cyan-50"
+                    >
+                      Book a Demo
+                    </button>
+
+                    <a
+                      href={plan.checkoutUrl ?? bookingUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      onClick={(event) => {
+                        if (plan.price === "Custom") {
+                          event.preventDefault();
+                          openBookingModal();
+                        }
+                      }}
+                      className="mt-7"
+                    >
                       <button
                         className={`w-full rounded-lg px-5 py-3 text-sm font-bold transition-colors cursor-pointer ${
                           plan.highlighted
@@ -1570,12 +1595,28 @@ function ProductPage({
                       </div>
 
                       <div className="flex flex-wrap gap-3 mb-8">
-                        <a href={plan.checkoutUrl ?? bookingUrl} target="_blank" rel="noopener noreferrer">
+                        <a
+                          href={plan.checkoutUrl ?? bookingUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          onClick={(event) => {
+                            if (plan.price === "Custom") {
+                              event.preventDefault();
+                              openBookingModal();
+                            }
+                          }}
+                        >
                           <button className="bg-[#18b6e3] text-white px-5 py-2.5 rounded-lg font-semibold text-sm transition-colors cursor-pointer">
                             {plan.price === "Custom" ? "Contact Sales" : "Buy now"}
                           </button>
                         </a>
-                        <a href={bookingUrl} target="_blank" rel="noopener noreferrer">
+                        <a
+                          href={bookingUrl}
+                          onClick={(event) => {
+                            event.preventDefault();
+                            openBookingModal();
+                          }}
+                        >
                           <button className="bg-white text-slate-900 border border-slate-300 px-5 py-2.5 rounded-lg font-semibold text-sm hover:bg-slate-50 transition-colors cursor-pointer">
                             Request a Demo
                           </button>
@@ -1735,12 +1776,28 @@ function ProductPage({
                     </div>
 
                     <div className="grid grid-cols-2 gap-3 pt-1">
-                      <a href={plan.checkoutUrl ?? bookingUrl} target="_blank" rel="noopener noreferrer">
+                      <a
+                        href={plan.checkoutUrl ?? bookingUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        onClick={(event) => {
+                          if (plan.price === "Custom") {
+                            event.preventDefault();
+                            openBookingModal();
+                          }
+                        }}
+                      >
                         <button className="w-full cursor-pointer rounded-lg bg-[#18b6e3] px-4 py-3 text-sm font-bold text-white transition-colors hover:bg-[#109dca]">
                           {plan.price === "Custom" ? "Contact Sales" : "Buy now"}
                         </button>
                       </a>
-                      <a href={bookingUrl} target="_blank" rel="noopener noreferrer">
+                      <a
+                        href={bookingUrl}
+                        onClick={(event) => {
+                          event.preventDefault();
+                          openBookingModal();
+                        }}
+                      >
                         <button className="w-full cursor-pointer rounded-lg border border-slate-300 bg-white px-4 py-3 text-sm font-bold text-slate-900 transition-colors hover:bg-slate-50">
                           Request a Demo
                         </button>
