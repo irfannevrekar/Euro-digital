@@ -1,7 +1,7 @@
 import { ChevronDown, LogIn, Menu, X } from "lucide-react";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
-import { BOOKING_URL } from "../constants/booking";
+import { CONSULTATION_BOOKING_URL } from "../constants/booking";
 import { solutionGroups, type SolutionService } from "../data/solutions";
 import BookingModal from "./BookingModal";
 
@@ -398,7 +398,7 @@ function Header() {
         </div>
       </div>
       <BookingModal
-        url={isBookingOpen ? BOOKING_URL : null}
+        url={isBookingOpen ? CONSULTATION_BOOKING_URL : null}
         onClose={closeBookingModal}
         title="Book a Consultation"
       />

@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { createPortal } from "react-dom";
 import { X } from "lucide-react";
 
 interface BookingModalProps {
@@ -27,7 +28,7 @@ function BookingModal({ url, onClose, title = "Book a Demo" }: BookingModalProps
 
   if (!url) return null;
 
-  return (
+  return createPortal(
     <div className="fixed inset-0 z-[100] flex items-center justify-center p-3 sm:p-6">
       <button
         type="button"
@@ -57,10 +58,24 @@ function BookingModal({ url, onClose, title = "Book a Demo" }: BookingModalProps
         <iframe
           src={url}
           title={`${title} appointment`}
-          className="min-h-0 flex-1 border-0 bg-white"
+          width="100%"
+          height="100%"
+          scrolling="yes"
+          className="min-h-0 w-full flex-1 bg-white"
+          style={{ border: 0 }}
         />
+        <a
+          href={url}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="shrink-0 border-t border-slate-200 px-5 py-3 text-center text-sm font-medium text-blue-700 hover:text-blue-900"
+        >
+          Having trouble viewing the calendar? Open it in a new tab.
+        </a>
       </div>
     </div>
+    ,
+    document.body,
   );
 }
 
