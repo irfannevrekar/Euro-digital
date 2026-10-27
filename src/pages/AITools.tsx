@@ -1,5 +1,6 @@
 import { ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
+import { openBookingModal } from "../constants/booking";
 
 const tools = [
   {
@@ -75,13 +76,14 @@ function AITools() {
               We can review your current setup and recommend the smallest useful place to start.
             </p>
           </div>
-          <Link
-            to="/contact"
+          <button
+            type="button"
+            onClick={openBookingModal}
             className="inline-flex w-fit items-center gap-2 rounded-lg bg-cyan-500 px-6 py-3 font-semibold text-slate-950 transition-colors hover:bg-cyan-400"
           >
             Talk to our team
             <ArrowRight className="h-4 w-4" />
-          </Link>
+          </button>
         </div>
       </section>
     </div>

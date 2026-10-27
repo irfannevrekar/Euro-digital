@@ -34,12 +34,6 @@ function SolutionCategoryPage({ slug }: SolutionCategoryPageProps) {
                 See what is included
                 <ArrowRight className="h-4 w-4" />
               </a>
-              <Link
-                to="/contact"
-                className="inline-flex items-center rounded-lg border border-slate-300 bg-white px-6 py-3 font-semibold text-slate-800 transition-colors hover:border-blue-300 hover:text-blue-700"
-              >
-                Talk to our team
-              </Link>
             </div>
           </div>
         </div>

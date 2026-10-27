@@ -21,7 +21,6 @@ function AIAddonServices() {
     ],
     detailedDescription:
       "EuroDigital ensures every add-on integrates smoothly into your current ecosystem.",
-    primaryButtonText: "Talk to Sales",
     video:
       "https://player.mediadelivery.net/play/661416/0547118b-9fd8-4aae-864f-77f5f0690710",
   };
@@ -91,15 +90,17 @@ function AIAddonServices() {
                 </p>
               )}
 
-              <div className="flex gap-4 pt-4">
+              <div className="pt-4">
                 <button
+                  type="button"
                   onClick={openBookingModal}
-                  className="rounded-full text-black font-medium px-6 py-2 shadow-lg cursor-pointer "
+                  className="rounded-full px-6 py-2 font-medium text-black shadow-lg transition hover:brightness-110"
                   style={{ backgroundColor: "var(--primary-blue)" }}
                 >
-                  {serviceData.primaryButtonText}
+                  Talk to Us
                 </button>
               </div>
+
             </div>
 
             <div className="relative ">

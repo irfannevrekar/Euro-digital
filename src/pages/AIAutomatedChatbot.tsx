@@ -19,8 +19,7 @@ function AIAutomatedChatbot() {
     ],
     detailedDescription:
       "Our AI chatbots improve response times and customer satisfaction while reducing repetitive support work.",
-    primaryButtonText: "Try For Free",
-    secondaryButtonText: "Talk to Sales",
+    primaryButtonText: "Talk to us",
   };
 
   const videoUrl =
@@ -93,20 +92,11 @@ function AIAutomatedChatbot() {
 
               <div className="flex gap-4 pt-4">
                 <button
+                  onClick={openBookingModal}
                   className="rounded-full text-black font-medium px-6 py-2 shadow-lg cursor-pointer"
                   style={{ backgroundColor: "var(--primary-blue)" }}
                 >
                   {serviceData.primaryButtonText}
-                </button>
-                <button
-                  onClick={openBookingModal}
-                  className="rounded-full font-medium px-6 py-2 transition-all hover:bg-gray-100 border-2 border-gray-300 text-gray-500 cursor-pointer"
-                  style={{
-                    borderWidth: "2px",
-                    backgroundColor: "transparent",
-                  }}
-                >
-                  {serviceData.secondaryButtonText}
                 </button>
               </div>
             </div>
@@ -173,8 +163,14 @@ function AIAutomatedChatbot() {
                     $600
                   </td>
                   <td className="px-6 py-6 text-2xl font-bold text-slate-700">
-                    <div>$97 <span className="text-sm font-medium">/ month</span></div>
-                    <button type="button" onClick={openBookingModal} className="mt-4 rounded-full bg-[#18b6e3] px-4 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-[#109dca]">
+                    <div>
+                      $97 <span className="text-sm font-medium">/ month</span>
+                    </div>
+                    <button
+                      type="button"
+                      onClick={openBookingModal}
+                      className="mt-4 rounded-full bg-[#18b6e3] px-4 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-[#109dca]"
+                    >
                       Buy Now
                     </button>
                   </td>
@@ -191,8 +187,14 @@ function AIAutomatedChatbot() {
                     $600
                   </td>
                   <td className="px-6 py-6 text-2xl font-bold text-slate-700">
-                    <div>$97 <span className="text-sm font-medium">/ month</span></div>
-                    <button type="button" onClick={openBookingModal} className="mt-4 rounded-full bg-[#18b6e3] px-4 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-[#109dca]">
+                    <div>
+                      $97 <span className="text-sm font-medium">/ month</span>
+                    </div>
+                    <button
+                      type="button"
+                      onClick={openBookingModal}
+                      className="mt-4 rounded-full bg-[#18b6e3] px-4 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-[#109dca]"
+                    >
                       Buy Now
                     </button>
                   </td>
@@ -210,8 +212,14 @@ function AIAutomatedChatbot() {
                     $600
                   </td>
                   <td className="px-6 py-6 text-2xl font-bold text-slate-700">
-                    <div>$97 <span className="text-sm font-medium">/ month</span></div>
-                    <button type="button" onClick={openBookingModal} className="mt-4 rounded-full bg-[#18b6e3] px-4 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-[#109dca]">
+                    <div>
+                      $97 <span className="text-sm font-medium">/ month</span>
+                    </div>
+                    <button
+                      type="button"
+                      onClick={openBookingModal}
+                      className="mt-4 rounded-full bg-[#18b6e3] px-4 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-[#109dca]"
+                    >
                       Buy Now
                     </button>
                   </td>
@@ -230,7 +238,11 @@ function AIAutomatedChatbot() {
                   </td>
                   <td className="px-6 py-6 text-slate-600">
                     <div>Custom pricing</div>
-                    <button type="button" onClick={openBookingModal} className="mt-4 rounded-full bg-[#18b6e3] px-4 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-[#109dca]">
+                    <button
+                      type="button"
+                      onClick={openBookingModal}
+                      className="mt-4 rounded-full bg-[#18b6e3] px-4 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-[#109dca]"
+                    >
                       Buy Now
                     </button>
                   </td>
@@ -248,16 +260,22 @@ function AIAutomatedChatbot() {
                     $600
                   </td>
                   <td className="px-5 py-4 text-2xl font-bold text-slate-700">
-                    <div>$99 <span className="text-sm font-medium">/ month</span></div>
-                    <button type="button" onClick={openBookingModal} className="mt-4 rounded-full bg-[#18b6e3] px-4 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-[#109dca]">
+                    <div>
+                      $99 <span className="text-sm font-medium">/ month</span>
+                    </div>
+                    <button
+                      type="button"
+                      onClick={openBookingModal}
+                      className="mt-4 rounded-full bg-[#18b6e3] px-4 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-[#109dca]"
+                    >
                       Buy Now
                     </button>
                   </td>
                   <td className="px-5 py-4 text-slate-700">
                     Everything included in the selected platform plan, plus
                     AI-powered conversations, lead qualification, smart
-                    automated replies, personalized journeys, and AI
-                    performance insights.
+                    automated replies, personalized journeys, and AI performance
+                    insights.
                   </td>
                 </tr>
               </tbody>
@@ -265,348 +283,348 @@ function AIAutomatedChatbot() {
           </div>
 
           <div className="hidden">
-          <div className="space-y-8">
-            {/* Card 1 - WhatsApp AI Automated Chatbot */}
-            <div
-              className="md:sticky md:top-24 bg-gradient-to-br from-cyan-50 to-blue-100 rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300"
-              style={{ zIndex: 10 }}
-            >
-              <div className="grid md:grid-cols-2 gap-0">
-                {/* Left Side - Content */}
-                <div className="p-8 md:p-12 flex flex-col justify-center order-2 md:order-1">
-                  <h3 className="text-3xl md:text-4xl font-bold text-slate-800 mb-6">
-                    WhatsApp AI Automated Chatbot
-                  </h3>
+            <div className="space-y-8">
+              {/* Card 1 - WhatsApp AI Automated Chatbot */}
+              <div
+                className="md:sticky md:top-24 bg-gradient-to-br from-cyan-50 to-blue-100 rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300"
+                style={{ zIndex: 10 }}
+              >
+                <div className="grid md:grid-cols-2 gap-0">
+                  {/* Left Side - Content */}
+                  <div className="p-8 md:p-12 flex flex-col justify-center order-2 md:order-1">
+                    <h3 className="text-3xl md:text-4xl font-bold text-slate-800 mb-6">
+                      WhatsApp AI Automated Chatbot
+                    </h3>
 
-                  <div className="mb-8 flex flex-wrap items-baseline gap-x-6 gap-y-2">
-                    <div>
+                    <div className="mb-8 flex flex-wrap items-baseline gap-x-6 gap-y-2">
+                      <div>
+                        <span className="text-5xl md:text-7xl font-bold text-slate-700">
+                          $600
+                        </span>
+                        <span className="text-xl text-slate-600 ml-3">
+                          One Time
+                        </span>
+                      </div>
+                      <div>
+                        <span className="text-4xl md:text-5xl font-bold text-slate-700">
+                          $97
+                        </span>
+                        <span className="text-xl text-slate-600 ml-3">
+                          Per Month
+                        </span>
+                      </div>
+                    </div>
+
+                    <div className="space-y-4">
+                      <div className="flex items-center gap-3">
+                        <span className="text-green-500 text-2xl font-bold">
+                          ✓
+                        </span>
+                        <span className="text-slate-700 text-lg">
+                          All WhatsApp Business API Automation Included
+                        </span>
+                      </div>
+                      <div className="flex items-center gap-3">
+                        <span className="text-green-500 text-2xl font-bold">
+                          ✓
+                        </span>
+                        <span className="text-slate-700 text-lg">
+                          Priority Support
+                        </span>
+                      </div>
+                      <div className="flex items-center gap-3">
+                        <span className="text-green-500 text-2xl font-bold">
+                          ✓
+                        </span>
+                        <span className="text-slate-700 text-lg">
+                          Monthly Maintenance Included
+                        </span>
+                      </div>
+                      <div className="flex items-center gap-3">
+                        <span className="text-green-500 text-2xl font-bold">
+                          ✓
+                        </span>
+                        <span className="text-slate-700 text-lg">
+                          Custom WhatsApp Templates
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Right Side - Image */}
+                  <div className="relative h-full min-h-[300px] md:min-h-[650px] order-1 md:order-2">
+                    <img
+                      src="/backgroundImages/ai_bussiness.png"
+                      alt="WhatsApp AI Chatbot"
+                      className="absolute inset-0 w-full h-full object-cover"
+                    />
+                  </div>
+                </div>
+              </div>
+
+              {/* Card 2 - Instagram AI Chatbot */}
+              <div
+                className="md:sticky md:top-32 bg-gradient-to-br from-purple-50 to-pink-100 rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300"
+                style={{ zIndex: 20 }}
+              >
+                <div className="grid md:grid-cols-2 gap-0">
+                  <div className="p-8 md:p-12 flex flex-col justify-center order-2 md:order-1">
+                    <h3 className="text-3xl md:text-4xl font-bold text-slate-800 mb-6">
+                      Instagram AI Chatbot
+                    </h3>
+
+                    <div className="mb-8 flex flex-wrap items-baseline gap-x-6 gap-y-2">
+                      <div>
+                        <span className="text-5xl md:text-7xl font-bold text-slate-700">
+                          $600
+                        </span>
+                        <span className="text-xl text-slate-600 ml-3">
+                          One Time
+                        </span>
+                      </div>
+                      <div>
+                        <span className="text-4xl md:text-5xl font-bold text-slate-700">
+                          $97
+                        </span>
+                        <span className="text-xl text-slate-600 ml-3">
+                          Per Month
+                        </span>
+                      </div>
+                    </div>
+
+                    <div className="space-y-4">
+                      <div className="flex items-center gap-3">
+                        <span className="text-green-500 text-2xl font-bold">
+                          ✓
+                        </span>
+                        <span className="text-slate-700 text-lg">
+                          All Instagram DM & Comment Automation Included
+                        </span>
+                      </div>
+                      <div className="flex items-center gap-3">
+                        <span className="text-green-500 text-2xl font-bold">
+                          ✓
+                        </span>
+                        <span className="text-slate-700 text-lg">
+                          Story Mention Auto-Replies
+                        </span>
+                      </div>
+                      <div className="flex items-center gap-3">
+                        <span className="text-green-500 text-2xl font-bold">
+                          ✓
+                        </span>
+                        <span className="text-slate-700 text-lg">
+                          24/7 Profile Engagement
+                        </span>
+                      </div>
+                      <div className="flex items-center gap-3">
+                        <span className="text-green-500 text-2xl font-bold">
+                          ✓
+                        </span>
+                        <span className="text-slate-700 text-lg">
+                          Custom Instagram Chat Flows
+                        </span>
+                      </div>
+                      <div className="flex items-center gap-3">
+                        <span className="text-green-500 text-2xl font-bold">
+                          ✓
+                        </span>
+                        <span className="text-slate-700 text-lg">
+                          Influencer/Creator Dashboard
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="relative h-full min-h-[300px] md:min-h-[650px] order-1 md:order-2">
+                    <img
+                      src="/backgroundImages/ai_agent.png"
+                      alt="Instagram AI Chatbot"
+                      className="absolute inset-0 w-full h-full object-cover"
+                    />
+                  </div>
+                </div>
+              </div>
+
+              {/* Card 3 - Facebook Messenger AI Chatbot */}
+              <div
+                className="md:sticky md:top-40 bg-gradient-to-br from-green-50 to-teal-100 rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300"
+                style={{ zIndex: 30 }}
+              >
+                <div className="grid md:grid-cols-2 gap-0">
+                  <div className="p-8 md:p-12 flex flex-col justify-center order-2 md:order-1">
+                    <h3 className="text-3xl md:text-4xl font-bold text-slate-800 mb-6">
+                      Facebook Messenger AI Chatbot
+                    </h3>
+
+                    <div className="mb-8 flex flex-wrap items-baseline gap-x-6 gap-y-2">
+                      <div>
+                        <span className="text-5xl md:text-7xl font-bold text-slate-700">
+                          $600
+                        </span>
+                        <span className="text-xl text-slate-600 ml-3">
+                          One Time
+                        </span>
+                      </div>
+                      <div>
+                        <span className="text-4xl md:text-5xl font-bold text-slate-700">
+                          $97
+                        </span>
+                        <span className="text-xl text-slate-600 ml-3">
+                          Per Month
+                        </span>
+                      </div>
+                    </div>
+
+                    <div className="space-y-4">
+                      <div className="flex items-center gap-3">
+                        <span className="text-green-500 text-2xl font-bold">
+                          ✓
+                        </span>
+                        <span className="text-slate-700 text-lg">
+                          All Facebook Page DM & Comment Automation Included
+                        </span>
+                      </div>
+                      <div className="flex items-center gap-3">
+                        <span className="text-green-500 text-2xl font-bold">
+                          ✓
+                        </span>
+                        <span className="text-slate-700 text-lg">
+                          Instant Automated Replies
+                        </span>
+                      </div>
+                      <div className="flex items-center gap-3">
+                        <span className="text-green-500 text-2xl font-bold">
+                          ✓
+                        </span>
+                        <span className="text-slate-700 text-lg">
+                          Lead Generation via Messenger Ads
+                        </span>
+                      </div>
+                      <div className="flex items-center gap-3">
+                        <span className="text-green-500 text-2xl font-bold">
+                          ✓
+                        </span>
+                        <span className="text-slate-700 text-lg">
+                          Customer Support Ticketing Integration
+                        </span>
+                      </div>
+                      <div className="flex items-center gap-3">
+                        <span className="text-green-500 text-2xl font-bold">
+                          ✓
+                        </span>
+                        <span className="text-slate-700 text-lg">
+                          Personalized Customer Journeys
+                        </span>
+                      </div>
+                      <div className="flex items-center gap-3">
+                        <span className="text-green-500 text-2xl font-bold">
+                          ✓
+                        </span>
+                        <span className="text-slate-700 text-lg">
+                          Performance Analytics Dashboard
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="relative h-full min-h-[300px] md:min-h-[650px] order-1 md:order-2">
+                    <img
+                      src="/backgroundImages/ai_services.png"
+                      alt="Facebook Messenger AI Chatbot"
+                      className="absolute inset-0 w-full h-full object-cover"
+                    />
+                  </div>
+                </div>
+              </div>
+
+              {/* Card 4 - Enterprise WhatsApp AI */}
+              <div
+                className="md:sticky md:top-48 bg-gradient-to-br from-orange-50 to-amber-100 rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300"
+                style={{ zIndex: 40 }}
+              >
+                <div className="grid md:grid-cols-2 gap-0">
+                  <div className="p-8 md:p-12 flex flex-col justify-center order-2 md:order-1">
+                    <h3 className="text-3xl md:text-4xl font-bold text-slate-800 mb-6">
+                      Enterprise level chatbot solution
+                    </h3>
+
+                    <div className="mb-8">
                       <span className="text-5xl md:text-7xl font-bold text-slate-700">
-                        $600
-                      </span>
-                      <span className="text-xl text-slate-600 ml-3">
-                        One Time
+                        Custom
                       </span>
                     </div>
-                    <div>
-                      <span className="text-4xl md:text-5xl font-bold text-slate-700">
-                        $97
-                      </span>
-                      <span className="text-xl text-slate-600 ml-3">
-                        Per Month
-                      </span>
+
+                    <div className="space-y-4">
+                      <div className="flex items-center gap-3">
+                        <span className="text-green-500 text-2xl font-bold">
+                          ✓
+                        </span>
+                        <span className="text-slate-700 text-lg">
+                          Everything in Facebook Messenger Plan
+                        </span>
+                      </div>
+                      <div className="flex items-center gap-3">
+                        <span className="text-green-500 text-2xl font-bold">
+                          ✓
+                        </span>
+                        <span className="text-slate-700 text-lg">
+                          Custom Infrastructure & Scalability
+                        </span>
+                      </div>
+                      <div className="flex items-center gap-3">
+                        <span className="text-green-500 text-2xl font-bold">
+                          ✓
+                        </span>
+                        <span className="text-slate-700 text-lg">
+                          On-Premise or Private Cloud Deployment
+                        </span>
+                      </div>
+                      <div className="flex items-center gap-3">
+                        <span className="text-green-500 text-2xl font-bold">
+                          ✓
+                        </span>
+                        <span className="text-slate-700 text-lg">
+                          Enterprise-grade Security & Compliance
+                        </span>
+                      </div>
+                      <div className="flex items-center gap-3">
+                        <span className="text-green-500 text-2xl font-bold">
+                          ✓
+                        </span>
+                        <span className="text-slate-700 text-lg">
+                          Dedicated 24/7 Support & SLA Guarantee
+                        </span>
+                      </div>
+                      <div className="flex items-center gap-3">
+                        <span className="text-green-500 text-2xl font-bold">
+                          ✓
+                        </span>
+                        <span className="text-slate-700 text-lg">
+                          Custom AI Model Training
+                        </span>
+                      </div>
+                      <div className="flex items-center gap-3">
+                        <span className="text-green-500 text-2xl font-bold">
+                          ✓
+                        </span>
+                        <span className="text-slate-700 text-lg">
+                          Full White-label & API Access
+                        </span>
+                      </div>
                     </div>
                   </div>
 
-                  <div className="space-y-4">
-                    <div className="flex items-center gap-3">
-                      <span className="text-green-500 text-2xl font-bold">
-                        ✓
-                      </span>
-                      <span className="text-slate-700 text-lg">
-                        All WhatsApp Business API Automation Included
-                      </span>
-                    </div>
-                    <div className="flex items-center gap-3">
-                      <span className="text-green-500 text-2xl font-bold">
-                        ✓
-                      </span>
-                      <span className="text-slate-700 text-lg">
-                        Priority Support
-                      </span>
-                    </div>
-                    <div className="flex items-center gap-3">
-                      <span className="text-green-500 text-2xl font-bold">
-                        ✓
-                      </span>
-                      <span className="text-slate-700 text-lg">
-                        Monthly Maintenance Included
-                      </span>
-                    </div>
-                    <div className="flex items-center gap-3">
-                      <span className="text-green-500 text-2xl font-bold">
-                        ✓
-                      </span>
-                      <span className="text-slate-700 text-lg">
-                        Custom WhatsApp Templates
-                      </span>
-                    </div>
+                  <div className="relative h-full min-h-[300px] md:min-h-[650px] order-1 md:order-2">
+                    <img
+                      src="/backgroundImages/agent.png"
+                      alt="Enterprise level chatbot solution"
+                      className="absolute inset-0 w-full h-full object-cover"
+                    />
                   </div>
-                </div>
-
-                {/* Right Side - Image */}
-                <div className="relative h-full min-h-[300px] md:min-h-[650px] order-1 md:order-2">
-                  <img
-                    src="/backgroundImages/ai_bussiness.png"
-                    alt="WhatsApp AI Chatbot"
-                    className="absolute inset-0 w-full h-full object-cover"
-                  />
                 </div>
               </div>
             </div>
-
-            {/* Card 2 - Instagram AI Chatbot */}
-            <div
-              className="md:sticky md:top-32 bg-gradient-to-br from-purple-50 to-pink-100 rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300"
-              style={{ zIndex: 20 }}
-            >
-              <div className="grid md:grid-cols-2 gap-0">
-                <div className="p-8 md:p-12 flex flex-col justify-center order-2 md:order-1">
-                  <h3 className="text-3xl md:text-4xl font-bold text-slate-800 mb-6">
-                    Instagram AI Chatbot
-                  </h3>
-
-                  <div className="mb-8 flex flex-wrap items-baseline gap-x-6 gap-y-2">
-                    <div>
-                      <span className="text-5xl md:text-7xl font-bold text-slate-700">
-                        $600
-                      </span>
-                      <span className="text-xl text-slate-600 ml-3">
-                        One Time
-                      </span>
-                    </div>
-                    <div>
-                      <span className="text-4xl md:text-5xl font-bold text-slate-700">
-                        $97
-                      </span>
-                      <span className="text-xl text-slate-600 ml-3">
-                        Per Month
-                      </span>
-                    </div>
-                  </div>
-
-                  <div className="space-y-4">
-                    <div className="flex items-center gap-3">
-                      <span className="text-green-500 text-2xl font-bold">
-                        ✓
-                      </span>
-                      <span className="text-slate-700 text-lg">
-                        All Instagram DM & Comment Automation Included
-                      </span>
-                    </div>
-                    <div className="flex items-center gap-3">
-                      <span className="text-green-500 text-2xl font-bold">
-                        ✓
-                      </span>
-                      <span className="text-slate-700 text-lg">
-                        Story Mention Auto-Replies
-                      </span>
-                    </div>
-                    <div className="flex items-center gap-3">
-                      <span className="text-green-500 text-2xl font-bold">
-                        ✓
-                      </span>
-                      <span className="text-slate-700 text-lg">
-                        24/7 Profile Engagement
-                      </span>
-                    </div>
-                    <div className="flex items-center gap-3">
-                      <span className="text-green-500 text-2xl font-bold">
-                        ✓
-                      </span>
-                      <span className="text-slate-700 text-lg">
-                        Custom Instagram Chat Flows
-                      </span>
-                    </div>
-                    <div className="flex items-center gap-3">
-                      <span className="text-green-500 text-2xl font-bold">
-                        ✓
-                      </span>
-                      <span className="text-slate-700 text-lg">
-                        Influencer/Creator Dashboard
-                      </span>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="relative h-full min-h-[300px] md:min-h-[650px] order-1 md:order-2">
-                  <img
-                    src="/backgroundImages/ai_agent.png"
-                    alt="Instagram AI Chatbot"
-                    className="absolute inset-0 w-full h-full object-cover"
-                  />
-                </div>
-              </div>
-            </div>
-
-            {/* Card 3 - Facebook Messenger AI Chatbot */}
-            <div
-              className="md:sticky md:top-40 bg-gradient-to-br from-green-50 to-teal-100 rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300"
-              style={{ zIndex: 30 }}
-            >
-              <div className="grid md:grid-cols-2 gap-0">
-                <div className="p-8 md:p-12 flex flex-col justify-center order-2 md:order-1">
-                  <h3 className="text-3xl md:text-4xl font-bold text-slate-800 mb-6">
-                    Facebook Messenger AI Chatbot
-                  </h3>
-
-                  <div className="mb-8 flex flex-wrap items-baseline gap-x-6 gap-y-2">
-                    <div>
-                      <span className="text-5xl md:text-7xl font-bold text-slate-700">
-                        $600
-                      </span>
-                      <span className="text-xl text-slate-600 ml-3">
-                        One Time
-                      </span>
-                    </div>
-                    <div>
-                      <span className="text-4xl md:text-5xl font-bold text-slate-700">
-                        $97
-                      </span>
-                      <span className="text-xl text-slate-600 ml-3">
-                        Per Month
-                      </span>
-                    </div>
-                  </div>
-
-                  <div className="space-y-4">
-                    <div className="flex items-center gap-3">
-                      <span className="text-green-500 text-2xl font-bold">
-                        ✓
-                      </span>
-                      <span className="text-slate-700 text-lg">
-                        All Facebook Page DM & Comment Automation Included
-                      </span>
-                    </div>
-                    <div className="flex items-center gap-3">
-                      <span className="text-green-500 text-2xl font-bold">
-                        ✓
-                      </span>
-                      <span className="text-slate-700 text-lg">
-                        Instant Automated Replies
-                      </span>
-                    </div>
-                    <div className="flex items-center gap-3">
-                      <span className="text-green-500 text-2xl font-bold">
-                        ✓
-                      </span>
-                      <span className="text-slate-700 text-lg">
-                        Lead Generation via Messenger Ads
-                      </span>
-                    </div>
-                    <div className="flex items-center gap-3">
-                      <span className="text-green-500 text-2xl font-bold">
-                        ✓
-                      </span>
-                      <span className="text-slate-700 text-lg">
-                        Customer Support Ticketing Integration
-                      </span>
-                    </div>
-                    <div className="flex items-center gap-3">
-                      <span className="text-green-500 text-2xl font-bold">
-                        ✓
-                      </span>
-                      <span className="text-slate-700 text-lg">
-                        Personalized Customer Journeys
-                      </span>
-                    </div>
-                    <div className="flex items-center gap-3">
-                      <span className="text-green-500 text-2xl font-bold">
-                        ✓
-                      </span>
-                      <span className="text-slate-700 text-lg">
-                        Performance Analytics Dashboard
-                      </span>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="relative h-full min-h-[300px] md:min-h-[650px] order-1 md:order-2">
-                  <img
-                    src="/backgroundImages/ai_services.png"
-                    alt="Facebook Messenger AI Chatbot"
-                    className="absolute inset-0 w-full h-full object-cover"
-                  />
-                </div>
-              </div>
-            </div>
-
-            {/* Card 4 - Enterprise WhatsApp AI */}
-            <div
-              className="md:sticky md:top-48 bg-gradient-to-br from-orange-50 to-amber-100 rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300"
-              style={{ zIndex: 40 }}
-            >
-              <div className="grid md:grid-cols-2 gap-0">
-                <div className="p-8 md:p-12 flex flex-col justify-center order-2 md:order-1">
-                  <h3 className="text-3xl md:text-4xl font-bold text-slate-800 mb-6">
-                    Enterprise level chatbot solution
-                  </h3>
-
-                  <div className="mb-8">
-                    <span className="text-5xl md:text-7xl font-bold text-slate-700">
-                      Custom
-                    </span>
-                  </div>
-
-                  <div className="space-y-4">
-                    <div className="flex items-center gap-3">
-                      <span className="text-green-500 text-2xl font-bold">
-                        ✓
-                      </span>
-                      <span className="text-slate-700 text-lg">
-                        Everything in Facebook Messenger Plan
-                      </span>
-                    </div>
-                    <div className="flex items-center gap-3">
-                      <span className="text-green-500 text-2xl font-bold">
-                        ✓
-                      </span>
-                      <span className="text-slate-700 text-lg">
-                        Custom Infrastructure & Scalability
-                      </span>
-                    </div>
-                    <div className="flex items-center gap-3">
-                      <span className="text-green-500 text-2xl font-bold">
-                        ✓
-                      </span>
-                      <span className="text-slate-700 text-lg">
-                        On-Premise or Private Cloud Deployment
-                      </span>
-                    </div>
-                    <div className="flex items-center gap-3">
-                      <span className="text-green-500 text-2xl font-bold">
-                        ✓
-                      </span>
-                      <span className="text-slate-700 text-lg">
-                        Enterprise-grade Security & Compliance
-                      </span>
-                    </div>
-                    <div className="flex items-center gap-3">
-                      <span className="text-green-500 text-2xl font-bold">
-                        ✓
-                      </span>
-                      <span className="text-slate-700 text-lg">
-                        Dedicated 24/7 Support & SLA Guarantee
-                      </span>
-                    </div>
-                    <div className="flex items-center gap-3">
-                      <span className="text-green-500 text-2xl font-bold">
-                        ✓
-                      </span>
-                      <span className="text-slate-700 text-lg">
-                        Custom AI Model Training
-                      </span>
-                    </div>
-                    <div className="flex items-center gap-3">
-                      <span className="text-green-500 text-2xl font-bold">
-                        ✓
-                      </span>
-                      <span className="text-slate-700 text-lg">
-                        Full White-label & API Access
-                      </span>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="relative h-full min-h-[300px] md:min-h-[650px] order-1 md:order-2">
-                  <img
-                    src="/backgroundImages/agent.png"
-                    alt="Enterprise level chatbot solution"
-                    className="absolute inset-0 w-full h-full object-cover"
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
           </div>
         </div>
       </section>

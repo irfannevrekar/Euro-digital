@@ -20,7 +20,7 @@ function AIAgentTalkTime() {
     ],
     detailedDescription:
       "Scale customer conversations while reducing call handling costs and ensuring inquiries receive a timely response.",
-    primaryButtonText: "Try For Free",
+    primaryButtonText: "Talk to us",
   };
 
   return (
@@ -85,17 +85,11 @@ function AIAgentTalkTime() {
 
               <div className="flex flex-wrap gap-4 pt-4">
                 <button
+                  onClick={openBookingModal}
                   className="rounded-full text-black font-medium px-6 py-2 shadow-lg  cursor-pointer"
                   style={{ backgroundColor: "var(--primary-blue)" }}
                 >
                   {serviceData.primaryButtonText}
-                </button>
-                <button
-                  type="button"
-                  onClick={openBookingModal}
-                  className="rounded-full border-2 border-slate-300 bg-white px-6 py-2 font-medium text-slate-700 shadow-lg transition hover:border-slate-400 hover:bg-slate-50"
-                >
-                  Buy Now
                 </button>
               </div>
             </div>
@@ -143,9 +137,7 @@ function AIAgentTalkTime() {
 
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {/* Card 1 - AI Startup Talk time */}
-            <div
-              className="flex h-full flex-col rounded-xl border border-slate-200 bg-white shadow-sm transition duration-200 hover:-translate-y-1 hover:border-slate-300 hover:shadow-lg"
-            >
+            <div className="flex h-full flex-col rounded-xl border border-slate-200 bg-white shadow-sm transition duration-200 hover:-translate-y-1 hover:border-slate-300 hover:shadow-lg">
               <div className="h-full">
                 <div className="p-7 flex flex-col h-full">
                   <h3 className="text-xl font-semibold text-slate-900 mb-5">
@@ -204,14 +196,11 @@ function AIAgentTalkTime() {
                     Buy Now
                   </button>
                 </div>
-
               </div>
             </div>
 
             {/* Card 2 - AI Business Talk time */}
-            <div
-              className="flex h-full flex-col rounded-xl border border-slate-200 bg-white shadow-sm transition duration-200 hover:-translate-y-1 hover:border-slate-300 hover:shadow-lg"
-            >
+            <div className="flex h-full flex-col rounded-xl border border-slate-200 bg-white shadow-sm transition duration-200 hover:-translate-y-1 hover:border-slate-300 hover:shadow-lg">
               <div className="h-full">
                 <div className="p-7 flex flex-col h-full">
                   <h3 className="text-xl font-semibold text-slate-900 mb-5">
@@ -278,14 +267,11 @@ function AIAgentTalkTime() {
                     Buy Now
                   </button>
                 </div>
-
               </div>
             </div>
 
             {/* Card 3 - AI Professional Talk time */}
-            <div
-              className="flex h-full flex-col rounded-xl border border-slate-200 bg-white shadow-sm transition duration-200 hover:-translate-y-1 hover:border-slate-300 hover:shadow-lg"
-            >
+            <div className="flex h-full flex-col rounded-xl border border-slate-200 bg-white shadow-sm transition duration-200 hover:-translate-y-1 hover:border-slate-300 hover:shadow-lg">
               <div className="h-full">
                 <div className="p-7 flex flex-col h-full">
                   <h3 className="text-xl font-semibold text-slate-900 mb-5">
@@ -360,10 +346,8 @@ function AIAgentTalkTime() {
                     Buy Now
                   </button>
                 </div>
-
               </div>
             </div>
-
           </div>
 
           <div className="text-center mt-20 mb-12">
@@ -376,24 +360,65 @@ function AIAgentTalkTime() {
               </h2>
             </div>
             <p className="text-lg text-slate-600 max-w-3xl mx-auto">
-              Monthly plans with the same included minutes for website voice widgets.
+              Monthly plans with the same included minutes for website voice
+              widgets.
             </p>
           </div>
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {[
-              { name: "AI Widget Starter", price: "$100", features: ["1,000 Voice Widget Minutes", "Basic Voice Customisation", "Standard Support", "Analytics Dashboard"] },
-              { name: "AI Widget Business", price: "$250", features: ["2,500 Voice Widget Minutes", "Advanced Voice Customisation", "Priority Support", "Advanced Analytics", "API Integration"] },
-              { name: "AI Widget Professional", price: "$550", features: ["5,500 Voice Widget Minutes", "Premium Voice Customisation", "24/7 Support", "Real-time Analytics", "Full API Access", "Custom Integrations"] },
+              {
+                name: "AI Widget Starter",
+                price: "$100",
+                features: [
+                  "1,000 Voice Widget Minutes",
+                  "Basic Voice Customisation",
+                  "Standard Support",
+                  "Analytics Dashboard",
+                ],
+              },
+              {
+                name: "AI Widget Business",
+                price: "$250",
+                features: [
+                  "2,500 Voice Widget Minutes",
+                  "Advanced Voice Customisation",
+                  "Priority Support",
+                  "Advanced Analytics",
+                  "API Integration",
+                ],
+              },
+              {
+                name: "AI Widget Professional",
+                price: "$550",
+                features: [
+                  "5,500 Voice Widget Minutes",
+                  "Premium Voice Customisation",
+                  "24/7 Support",
+                  "Real-time Analytics",
+                  "Full API Access",
+                  "Custom Integrations",
+                ],
+              },
             ].map((plan) => (
-              <div key={plan.name} className="flex h-full flex-col rounded-xl border border-slate-200 bg-white p-7 shadow-sm transition duration-200 hover:-translate-y-1 hover:border-slate-300 hover:shadow-lg">
-                <h3 className="text-xl font-semibold text-slate-900 mb-5">{plan.name}</h3>
+              <div
+                key={plan.name}
+                className="flex h-full flex-col rounded-xl border border-slate-200 bg-white p-7 shadow-sm transition duration-200 hover:-translate-y-1 hover:border-slate-300 hover:shadow-lg"
+              >
+                <h3 className="text-xl font-semibold text-slate-900 mb-5">
+                  {plan.name}
+                </h3>
                 <div className="mb-7 border-b border-slate-100 pb-6">
-                  <span className="text-4xl font-bold tracking-tight text-slate-900">{plan.price}</span>
+                  <span className="text-4xl font-bold tracking-tight text-slate-900">
+                    {plan.price}
+                  </span>
                   <span className="text-sm text-slate-500 ml-2">Per Month</span>
                 </div>
                 <ul className="space-y-3">
                   {plan.features.map((feature) => (
-                    <li key={feature} className="flex items-start gap-3 text-sm leading-6 text-slate-600">
+                    <li
+                      key={feature}
+                      className="flex items-start gap-3 text-sm leading-6 text-slate-600"
+                    >
                       <span className="text-blue-600 font-semibold">✓</span>
                       <span>{feature}</span>
                     </li>

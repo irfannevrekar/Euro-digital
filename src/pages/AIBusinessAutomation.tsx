@@ -22,8 +22,7 @@ function AIBusinessAutomation() {
     ],
     detailedDescription:
       "Each automation is customised to your business needs, ensuring efficiency without disrupting your current operations.",
-    primaryButtonText: "Try For Free",
-    secondaryButtonText: "Talk to Sales",
+    primaryButtonText: "Talk to us",
   };
 
   return (
@@ -93,19 +92,11 @@ function AIBusinessAutomation() {
 
               <div className="flex gap-4 pt-4 ">
                 <button
+                  onClick={openBookingModal}
                   className="rounded-full text-white font-medium px-6 py-2 shadow-lg transition-all hover:shadow-xl hover:scale-105 "
                   style={{ backgroundColor: "var(--primary-blue)" }}
                 >
                   {serviceData.primaryButtonText}
-                </button>
-                <button
-                  className="rounded-full font-medium px-6 py-2 transition-all hover:bg-gray-100 border-2 border-gray-300 text-gray-500 cursor-pointer"
-                  style={{
-                    borderWidth: "2px",
-                    backgroundColor: "transparent",
-                  }}
-                >
-                  {serviceData.secondaryButtonText}
                 </button>
               </div>
             </div>

@@ -21,7 +21,6 @@ function AIBusinessPromotion() {
     ],
     detailedDescription:
       "AI supports the marketing process by helping teams respond faster, maintain consistent follow-up, and use campaign insights to improve conversion.",
-    primaryButtonText: "Talk to Sales",
   };
 
   const videoUrl =
@@ -92,17 +91,17 @@ function AIBusinessPromotion() {
                 </p>
               )}
 
-              <div className="flex gap-4 pt-4">
-                <a
-                  href="https://crm.eurodigital.ae/widget/bookings/web-booking-euro"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="rounded-full  font-medium px-6 py-2 shadow-lg  text-black cursor-pointer"
+              <div className="pt-4">
+                <button
+                  type="button"
+                  onClick={openBookingModal}
+                  className="rounded-full px-6 py-2 font-medium text-black shadow-lg transition hover:brightness-110"
                   style={{ backgroundColor: "var(--primary-blue)" }}
                 >
-                  {serviceData.primaryButtonText}
-                </a>
+                  Talk to Us
+                </button>
               </div>
+
             </div>
 
             <div className="relative ">
