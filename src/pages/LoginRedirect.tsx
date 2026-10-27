@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 
-const LOGIN_URL = "https://app.gohighlevel.com/";
+const LOGIN_URL = "https://portal.edcrm.ai/";
 
 function LoginRedirect() {
   useEffect(() => {
