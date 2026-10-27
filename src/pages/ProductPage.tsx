@@ -326,7 +326,14 @@ const GrowthSolutionSection = memo(function GrowthSolutionSection() {
                 ))}
               </div>
 
-              <a href={bookingUrl} target="_blank" rel="noopener noreferrer" className="mt-9 inline-flex">
+              <a
+                href={bookingUrl}
+                onClick={(event) => {
+                  event.preventDefault();
+                  openBookingModal();
+                }}
+                className="mt-9 inline-flex"
+              >
                 <button className="cursor-pointer inline-flex items-center gap-1 rounded-lg bg-[#06233d] px-10 py-4 text-sm font-black text-white transition-colors hover:bg-[#0b3154] ">
                   Start 14 Day Free Trial
                   <ChevronRight className="h-4 w-4 stroke-[3]" />
@@ -461,7 +468,13 @@ function GhlPricingTable() {
       </div>
 
       <div className="mt-10 flex justify-center">
-        <a href={bookingUrl} target="_blank" rel="noopener noreferrer">
+        <a
+          href={bookingUrl}
+          onClick={(event) => {
+            event.preventDefault();
+            openBookingModal();
+          }}
+        >
           <button className="inline-flex items-center gap-1 rounded-md bg-white px-8 py-4 text-xs font-bold text-slate-950 transition-colors hover:bg-slate-100 cursor-pointer">
             Start 14 Day Free Trial
             <ChevronRight className="h-4 w-4 stroke-[3]" />
@@ -1537,11 +1550,7 @@ function ProductPage({
                       className="mt-7"
                     >
                       <button
-                        className={`w-full rounded-lg px-5 py-3 text-sm font-bold transition-colors cursor-pointer ${
-                          plan.highlighted
-                            ? "bg-[#18b6e3] text-white hover:bg-[#109dca]"
-                            : "border border-slate-300 bg-white text-slate-950 hover:bg-slate-50"
-                        }`}
+                        className="w-full rounded-lg bg-[#18b6e3] px-5 py-3 text-sm font-bold text-white transition-colors hover:bg-[#109dca] cursor-pointer"
                       >
                         {plan.price === "Custom" ? "Contact Sales" : "Buy now"}
                       </button>
@@ -1713,7 +1722,18 @@ function ProductPage({
                           ))}
                         </div>
 
-                        <a href={plan.checkoutUrl ?? bookingUrl} target="_blank" rel="noopener noreferrer" className="mt-auto block">
+                        <a
+                          href={plan.checkoutUrl ?? bookingUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          onClick={(event) => {
+                            if (!plan.checkoutUrl) {
+                              event.preventDefault();
+                              openBookingModal();
+                            }
+                          }}
+                          className="mt-auto block"
+                        >
                           <button
                             className={`w-full rounded-2xl px-6 py-4 text-lg font-bold transition-colors cursor-pointer ${isHighlighted
                               ? "bg-white text-[#1d8fff] hover:bg-slate-100"
