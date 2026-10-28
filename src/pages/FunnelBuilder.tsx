@@ -1,4 +1,5 @@
 import ProductPage from "./ProductPage";
+import { FileText, LayoutTemplate, PanelsTopLeft, Sparkles, Workflow } from "lucide-react";
 
 function FunnelBuilder() {
   return (
@@ -18,6 +19,7 @@ function FunnelBuilder() {
         "Refine headlines, sections, and copy with simple prompts while your design and structure stay intact",
         "Go live with CRM-ready pages that connect straight to your marketing and sales tools—no extra wiring",
       ]}
+      featureIcons={[PanelsTopLeft, LayoutTemplate, FileText, Sparkles, Workflow]}
       detailedDescription="Whether you are launching a new offer or refreshing an existing site, AI Website Builder keeps speed, design quality, and lead capture in one place—so your team can publish faster and convert more visitors into customers."
       pricingTitle="Website Build Pricing"
       pricingSubtitle="Choose the build that fits your goals—from a fast launch to a fully custom site."

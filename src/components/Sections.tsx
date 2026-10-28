@@ -1,11 +1,16 @@
 import { Link } from "react-router-dom";
 import {
   ArrowUpRight,
+  BriefcaseBusiness,
   Bot,
   Building2,
   CalendarCheck,
   ContactRound,
+  Cpu,
   HeartHandshake,
+  Landmark,
+  LayoutGrid,
+  Lightbulb,
   Megaphone,
   MessageCircle,
   PanelsTopLeft,
@@ -14,11 +19,12 @@ import {
   Play,
   Puzzle,
   TrendingUp,
+  Truck,
   Users,
   Workflow,
   Zap,
 } from "lucide-react";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, type ElementType, type PointerEvent as ReactPointerEvent } from "react";
 import BunnyStreamPlayer from "./BunnyStreamPlayer";
 import { isBunnyStreamUrl } from "../utils/bunnyStream";
 import { SERVICE_BOOKING_URLS } from "../constants/booking";
@@ -27,6 +33,7 @@ import { solutionGroups } from "../data/solutions";
 interface Card {
   title: string;
   desc: string;
+  highlight: string;
   category: "growth" | "engagement" | "automation";
   video?: string;
   image?: string;
@@ -44,75 +51,180 @@ const serviceDescriptions = new Map(
 
 const getServiceDescription = (title: string) => serviceDescriptions.get(title) ?? "";
 const detailIcons = [Zap, Users, TrendingUp] as const;
+const categoryPillStyles = {
+  growth: {
+    label: "Growth",
+    icon: TrendingUp,
+    className: "bg-emerald-50 text-emerald-700 ring-emerald-200",
+  },
+  engagement: {
+    label: "Engagement",
+    icon: MessageCircle,
+    className: "bg-violet-50 text-violet-700 ring-violet-200",
+  },
+  automation: {
+    label: "Automation",
+    icon: Workflow,
+    className: "bg-cyan-50 text-cyan-700 ring-cyan-200",
+  },
+} as const;
+
+function HoverProximityText({
+  text,
+  as: TextElement = "h2",
+  className = "text-3xl font-semibold md:whitespace-nowrap md:text-[3.25rem] lg:text-[3.5rem]",
+  baseColor = "var(--text-primary)",
+  hoverColor = "var(--primary-blue)",
+  highlight,
+}: {
+  text: string;
+  as?: ElementType;
+  className?: string;
+  baseColor?: string;
+  hoverColor?: string;
+  highlight?: string;
+}) {
+  const headingRef = useRef<HTMLElement>(null);
+  const pendingPointerRef = useRef<{ x: number; y: number } | null>(null);
+  const frameRef = useRef<number | null>(null);
+  const [strengths, setStrengths] = useState<number[]>([]);
+
+  const handlePointerMove = (event: ReactPointerEvent<HTMLElement>) => {
+    pendingPointerRef.current = { x: event.clientX, y: event.clientY };
+    if (frameRef.current !== null) return;
+
+    frameRef.current = window.requestAnimationFrame(() => {
+      const pointer = pendingPointerRef.current;
+      const heading = headingRef.current;
+      if (!pointer || !heading) {
+        frameRef.current = null;
+        return;
+      }
+
+      const radius = 125;
+      const nextStrengths = Array.from(heading.querySelectorAll<HTMLElement>("[data-hover-letter]"), (letter) => {
+        const rect = letter.getBoundingClientRect();
+        const distance = Math.hypot(pointer.x - (rect.left + rect.width / 2), pointer.y - (rect.top + rect.height / 2));
+        return Math.max(0, 1 - distance / radius) ** 1.5;
+      });
+      setStrengths(nextStrengths);
+      frameRef.current = null;
+    });
+  };
+
+  useEffect(() => () => {
+    if (frameRef.current !== null) window.cancelAnimationFrame(frameRef.current);
+  }, []);
+
+  const characters = Array.from(text);
+  const highlightStart = highlight ? Array.from(text.slice(0, text.indexOf(highlight))).length : -1;
+  const highlightEnd = highlightStart >= 0 ? highlightStart + Array.from(highlight ?? "").length : -1;
+
+  return (
+    <TextElement
+      ref={headingRef}
+      className={className}
+      style={{ color: baseColor }}
+      aria-label={text}
+      onPointerMove={handlePointerMove}
+      onPointerLeave={() => setStrengths([])}
+    >
+      {characters.map((character, index) => {
+        const strength = strengths[index] ?? 0;
+        const letter = (
+          <span
+            key={index}
+            data-hover-letter
+            aria-hidden="true"
+            className="transition-colors duration-100 motion-reduce:transition-none"
+            style={strength > 0 ? { color: `color-mix(in srgb, ${hoverColor} ${Math.round(strength * 100)}%, ${baseColor})` } : undefined}
+          >
+            {character}
+          </span>
+        );
+        return highlightStart >= 0 && index >= highlightStart && index < highlightEnd
+          ? <strong key={index} className="font-semibold text-[var(--primary-green-darker)]">{letter}</strong>
+          : letter;
+      })}
+    </TextElement>
+  );
+}
 
 const cards: Card[] = [
   {
     title: "AI Business Automation",
     category: "automation",
     desc: getServiceDescription("AI Business Automation"),
+    highlight: "AI agents specific to your industry",
     video:
       "https://player.mediadelivery.net/play/661416/aba8e1cb-c5df-4c8e-8d47-a8bf6d066411",
     link: "/services/ai-business-automation",
     bookingUrl: SERVICE_BOOKING_URLS.aiBusinessAutomation,
-    details: ["Lead follow-up agents", "CRM and ERP workflows", "After-sales automation"],
+    details: ["Lead routing", "Connected CRM and ERP workflows"],
     icon: Workflow,
   },
   {
     title: "AI Business Promotion",
     category: "growth",
     desc: getServiceDescription("AI Business Promotion"),
+    highlight: "professional-quality ads",
     video:
       "https://player.mediadelivery.net/play/661416/02126d15-3c9d-4d94-a8ac-1d8bbc37332e",
     link: "/services/ai-business-promotion",
     bookingUrl: SERVICE_BOOKING_URLS.aiBusinessPromotion,
-    details: ["AI-generated campaigns", "Fast ad production", "Audience-ready creative"],
+    details: ["AI-generated campaigns", "Audience-ready creative"],
     icon: Megaphone,
   },
   {
     title: "AI Agent Talk Time",
     category: "engagement",
     desc: getServiceDescription("AI Agent Talk Time"),
+    highlight: "Uninterrupted voice agents",
     image: "/backgroundImages/ai_automation.png",
     link: "/services/ai-agent-talk-time",
-    details: ["Inbound and outbound calls", "Lead qualification", "24/7 call coverage"],
+    details: ["Inbound and outbound calls", "Lead qualification"],
     icon: PhoneCall,
   },
   {
     title: "AI Automated Chatbot",
     category: "engagement",
     desc: getServiceDescription("AI Automated Chatbot"),
+    highlight: "live on your website and social channels",
     video:
       "https://player.mediadelivery.net/play/661416/c564b724-82f9-4426-b62e-079b3a1b8fb4",
     link: "/services/ai-automated-chatbot",
     bookingUrl: SERVICE_BOOKING_URLS.aiAutomatedChatbot,
-    details: ["Website and social chat", "FAQ and support flows", "Lead capture and nurturing"],
+    details: ["Website and social chat", "FAQ and support flows"],
     icon: Bot,
   },
   {
     title: "AI Add-on Services",
     category: "automation",
     desc: getServiceDescription("AI Add-on Services"),
+    highlight: "Tailor-made add-ons",
     video:
       "https://player.mediadelivery.net/play/661416/0547118b-9fd8-4aae-864f-77f5f0690710",
     link: "/services/ai-addon-services",
     bookingUrl: SERVICE_BOOKING_URLS.aiAddon,
-    details: ["Custom system add-ons", "Connected workflows", "Smarter daily decisions"],
+    details: ["Custom system integrations", "Intelligent decision support"],
     icon: Puzzle,
   },
   {
     title: "Industry-Specific AI",
     category: "automation",
     desc: getServiceDescription("Industry-Specific AI"),
+    highlight: "Every industry works differently",
     video:
       "https://player.mediadelivery.net/play/661416/78158008-7515-443f-a183-a54a8d3b3a3f",
     link: "/services/industry-specific",
-    details: ["Industry-specific workflows", "Practical use cases", "Tailored implementation"],
+    details: ["Industry-tailored workflows", "Purpose-built use cases"],
     icon: Building2,
   },
   {
     title: "AI Website Builder",
     category: "growth",
     desc: getServiceDescription("AI Website Builder"),
+    highlight: "professional-quality corporate websites and apps",
     video:
       "https://player.mediadelivery.net/play/661416/2fbe2f5c-3f7c-4ebd-8121-5312b7173497",
     link: "/products/website-builder",
@@ -124,28 +236,31 @@ const cards: Card[] = [
     title: "ED-CRM",
     category: "growth",
     desc: getServiceDescription("ED-CRM"),
+    highlight: "Leads flow in from every channel into one system",
     video:
       "https://player.mediadelivery.net/play/667434/9498cecf-b56b-403f-a713-3551b8f7cf8c",
     link: "/products/edcrm",
     bookingUrl: SERVICE_BOOKING_URLS.edCrm,
-    details: ["One lead pipeline", "Automated follow-up", "Sales visibility"],
+    details: ["One lead pipeline", "Sales visibility"],
     icon: ContactRound,
   },
   {
     title: "Emotion AI",
     category: "engagement",
     desc: getServiceDescription("Emotion AI"),
+    highlight: "tone and sentiment",
     video:
       "https://player.mediadelivery.net/play/661416/63fe6a94-5414-484c-b852-3c38c580a74f",
     link: "/products/emotionai",
     bookingUrl: SERVICE_BOOKING_URLS.emotionAi,
-    details: ["Tone-aware conversations", "Personalized responses", "Better customer context"],
+    details: ["Tone-aware conversations", "Customer sentiment insights"],
     icon: HeartHandshake,
   },
   {
     title: "WhatsApp Business API",
     category: "growth",
     desc: getServiceDescription("WhatsApp Business API"),
+    highlight: "a full business workflow",
     video:
       "https://player.mediadelivery.net/play/661416/6a61d538-971f-4b67-898e-708a8dfa12ab",
     link: "https://www.eurodigital.marketing/",
@@ -230,59 +345,65 @@ const industries = [
 
 const testimonials = [
   {
-    name: "James Patterson",
-    role: "CEO & Founder",
-    company: "Velocity Enterprises",
-    image:
-      "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop",
-    text: "Before working with EuroDigital, our business felt busy but not productive. We were putting in long hours, handling leads manually, following up late, and constantly switching between tools that never really worked together. On paper things looked fine, but behind the scenes it felt chaotic and exhausting.\n\nEuroDigital helped us step back and rebuild the foundation properly. They streamlined our workflows, automated the parts that slowed us down, and gave us clarity over our entire operation. For the first time, our systems actually supported our growth instead of holding it back. We now spend more time making decisions and less time fixing problems.",
+    field: "Business operations",
+    icon: BriefcaseBusiness,
+    image: "/testimonials/business-operations.png",
+    highlight: "less time fixing problems and more time making decisions.",
+    text: "We were putting in long hours, following up late, and switching between tools that didn’t work together. EuroDigital streamlined our workflows. Now we spend less time fixing problems and more time making decisions.",
   },
   {
-    name: "Rachel Thompson",
-    role: "Director of Sales",
-    company: "Horizon Real Estate Group",
-    image:
-      "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=150&h=150&fit=crop",
-    text: "We had no shortage of interest in our business, but we were losing opportunities simply because we couldn't respond fast enough. Messages were missed, follow-ups were delayed, and potential customers quietly moved on.\n\nOnce EuroDigital came in, everything shifted. Leads were handled instantly, conversations were tracked properly, and nothing slipped through the cracks. It didn’t feel automated — it felt intelligent, personal, and reliable.",
+    field: "Real estate",
+    icon: Building2,
+    image: "/testimonials/real-estate.png",
+    highlight: "respond sooner and keep conversations organized",
+    text: "We were losing interested leads because we couldn’t reply quickly enough. EuroDigital helped us respond sooner and keep conversations organized, so follow-ups no longer fall through the cracks.",
   },
   {
-    name: "David Kim",
-    role: "Operations Manager",
-    company: "Peak Performance Logistics",
-    image:
-      "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&h=150&fit=crop",
-    text: "Running the business used to feel like we were always reacting. Every day brought new fires to put out: repetitive tasks, manual processes, and inconsistent customer experiences.\n\nEuroDigital changed that dynamic completely. The business now feels calm, controlled, and scalable.",
+    field: "Logistics",
+    icon: Truck,
+    image: "/testimonials/logistics.png",
+    highlight: "more control to day-to-day operations",
+    text: "We were stuck reacting to repetitive tasks and inconsistent customer experiences. EuroDigital helped bring more control to day-to-day operations and made the business feel easier to scale.",
   },
   {
-    name: "Jennifer Martinez",
-    role: "Chief Technology Officer",
-    company: "NextGen Solutions",
-    image:
-      "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=150&h=150&fit=crop",
-    text: "As our company grew, the cracks in our digital systems became impossible to ignore. What worked when we were small simply didn't scale.\n\nEuroDigital helped us grow smarter, not heavier.",
+    field: "Technology",
+    icon: Cpu,
+    image: "/testimonials/technology.png",
+    highlight: "strengthen the foundation",
+    text: "Our systems worked when we were small, but growth exposed the gaps. EuroDigital helped us strengthen the foundation without adding more complexity.",
   },
   {
-    name: "Michael Andrews",
-    role: "Managing Director",
-    company: "Summit Financial Partners",
-    image:
-      "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=150&h=150&fit=crop",
-    text: "We were already doing okay before EuroDigital, but deep down we knew we were operating below our potential.\n\nEuroDigital brought everything together into one clean, efficient system.",
+    field: "Financial services",
+    icon: Landmark,
+    image: undefined,
+    highlight: "clearer, more efficient setup",
+    text: "We knew our systems were holding us back. EuroDigital brought our tools and workflows together into a clearer, more efficient setup.",
   },
   {
-    name: "Sofia Laurent",
-    role: "Founder & Managing Partner",
-    company: "Aurora Consulting Group",
-    image:
-      "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=150&h=150&fit=crop",
-    text: "We reached a point where growth started creating friction instead of momentum.\n\nEuroDigital aligned our systems, simplified our workflows, and gave us full clarity and control over our next phase of growth.",
+    field: "Consulting",
+    icon: Lightbulb,
+    image: undefined,
+    highlight: "clearer view of what needed attention next",
+    text: "As we grew, our workflows became harder to manage. EuroDigital aligned our systems and gave us a clearer view of what needed attention next.",
   },
 ];
 
 function TestimonialsSection() {
   const [index, setIndex] = useState(0);
   const [visibleCards, setVisibleCards] = useState(1);
+  const [testimonialBackgrounds, setTestimonialBackgrounds] = useState<{
+    active: string | null;
+    outgoing: string | null;
+  }>({ active: null, outgoing: null });
   const swipeStartRef = useRef<{ x: number; y: number } | null>(null);
+
+  const setTestimonialBackground = (next: string | null) => {
+    setTestimonialBackgrounds((current) => {
+      if (current.active === next) return current;
+      const outgoing = current.active ?? current.outgoing;
+      return { active: next, outgoing: outgoing === next ? null : outgoing };
+    });
+  };
 
   useEffect(() => {
     const updateVisibleCards = () => {
@@ -321,15 +442,40 @@ function TestimonialsSection() {
   return (
     <section
       id="testimonials"
-      className="scroll-mt-32 overflow-hidden bg-[#0b1538] pb-20 pt-32 md:pb-24 md:pt-36"
+      className="relative scroll-mt-32 overflow-hidden bg-[#0b1538] pb-20 pt-32 md:pb-24 md:pt-36"
       style={{
         backgroundImage:
           "radial-gradient(circle at 50% 120%, rgba(6, 182, 212, 0.22), transparent 32%)",
       }}
     >
-      <div className="mx-auto max-w-6xl px-10 md:px-16">
+      {testimonialBackgrounds.outgoing && (
+        <div
+          key={`testimonial-background-out-${testimonialBackgrounds.outgoing}`}
+          className="pointer-events-none absolute inset-0 z-0 bg-cover bg-center animate-[testimonial-background-out_450ms_ease-in-out_forwards]"
+          style={{
+            backgroundImage: `linear-gradient(rgba(11,21,56,0.76), rgba(11,21,56,0.76)), url("${testimonialBackgrounds.outgoing}")`,
+          }}
+          onAnimationEnd={() => setTestimonialBackgrounds((current) =>
+            current.outgoing === testimonialBackgrounds.outgoing
+              ? { ...current, outgoing: null }
+              : current,
+          )}
+          aria-hidden="true"
+        />
+      )}
+      {testimonialBackgrounds.active && (
+        <div
+          key={`testimonial-background-in-${testimonialBackgrounds.active}`}
+          className="pointer-events-none absolute inset-0 z-0 bg-cover bg-center animate-[testimonial-background-in_450ms_ease-in-out_forwards]"
+          style={{
+            backgroundImage: `linear-gradient(rgba(11,21,56,0.76), rgba(11,21,56,0.76)), url("${testimonialBackgrounds.active}")`,
+          }}
+          aria-hidden="true"
+        />
+      )}
+      <div className="relative z-10 mx-auto max-w-6xl px-10 md:px-16">
         <div className="mb-10 text-center md:mb-12">
-          <h2 className="text-4xl font-bold text-slate-300 md:text-5xl">Testimonials</h2>
+          <h2 className="text-4xl font-extrabold tracking-[-0.035em] text-white md:text-5xl">Testimonials</h2>
         </div>
 
         <div className="relative">
@@ -364,29 +510,40 @@ function TestimonialsSection() {
               className="flex transition-transform duration-500 ease-out"
               style={{ transform: `translateX(-${activePage * (100 / visibleCards)}%)` }}
             >
-              {testimonials.map((testimonial) => (
-                <article key={testimonial.name} className="w-full shrink-0 px-3 md:w-1/2 lg:w-1/3">
-                  <div className="flex h-full min-h-[31rem] flex-col rounded-2xl border border-slate-100 bg-white p-7 text-center shadow-[0_12px_35px_rgba(0,0,0,0.16)] md:p-9">
-                    <span className="font-serif text-5xl leading-none text-blue-300">“</span>
-                    <p className="mt-7 flex-1 whitespace-pre-line text-sm italic leading-6 text-slate-600 md:text-base md:leading-7">
-                      {testimonial.text}
+              {testimonials.map((testimonial) => {
+                const highlightIndex = testimonial.text.indexOf(testimonial.highlight);
+                return (
+                <article key={testimonial.field} className="w-full shrink-0 px-3 md:w-1/2 lg:w-1/3">
+                  <div
+                    className="group/testimonial flex h-full min-h-[25rem] flex-col rounded-2xl border border-slate-100 bg-white/90 p-6 text-left shadow-[0_12px_35px_rgba(0,0,0,0.16)] transition-[border-color,box-shadow] duration-300 hover:border-cyan-200 hover:shadow-[0_18px_42px_rgba(0,0,0,0.22)] md:min-h-[26rem] md:p-7"
+                    onPointerEnter={() => setTestimonialBackground(testimonial.image ?? null)}
+                    onPointerLeave={() => setTestimonialBackground(null)}
+                  >
+                    <span className="font-serif text-4xl leading-none text-cyan-600" aria-hidden="true">“</span>
+                    <p className="mt-3 flex-1 text-[0.95rem] leading-7 text-slate-700">
+                      {highlightIndex >= 0 ? (
+                        <>
+                          {testimonial.text.slice(0, highlightIndex)}
+                          <strong className="font-semibold text-cyan-800">
+                            {testimonial.highlight}
+                          </strong>
+                          {testimonial.text.slice(highlightIndex + testimonial.highlight.length)}
+                        </>
+                      ) : testimonial.text}
                     </p>
-                    <div className="mt-6 flex flex-col items-center border-t border-slate-100 pt-5">
-                      <img
-                        src={testimonial.image}
-                        alt={testimonial.name}
-                        className="h-14 w-14 rounded-full border-2 border-white object-cover shadow-md"
-                        loading="lazy"
-                      />
-                      <div className="mt-3">
-                        <h3 className="font-bold text-slate-900">{testimonial.name}</h3>
-                        <p className="text-xs uppercase tracking-wide text-slate-500">{testimonial.role}</p>
-                        <p className="mt-1 text-sm font-semibold text-blue-700">{testimonial.company}</p>
-                      </div>
+                    <span className="mt-1 self-end font-serif text-4xl leading-none text-cyan-600" aria-hidden="true">”</span>
+                    <div className="mt-6 flex items-center gap-3 border-t border-slate-100 pt-4">
+                      <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-cyan-50 text-cyan-700 ring-1 ring-inset ring-cyan-100 transition-colors duration-300 group-hover/testimonial:bg-cyan-100 group-hover/testimonial:text-cyan-800 motion-reduce:transition-none">
+                        <testimonial.icon className="h-5 w-5" strokeWidth={1.9} aria-hidden="true" />
+                      </span>
+                      <p className="text-xs font-bold uppercase tracking-[0.12em] text-cyan-700">
+                        {testimonial.field}
+                      </p>
                     </div>
                   </div>
                 </article>
-              ))}
+                );
+              })}
             </div>
           </div>
         </div>
@@ -507,30 +664,24 @@ function Sections({ onBookDemo }: SectionsProps) {
         style={{ color: "var(--primary-navy)" }}
       >
         <div className="max-w-7xl mx-auto px-6 md:px-12 space-y-6 text-center mb-14 md:mb-20">
-          <h2
-            className="text-3xl font-semibold md:whitespace-nowrap md:text-[3.25rem] lg:text-[3.5rem]"
-            style={{ color: "var(--text-primary)" }}
-          >
-            Every business needs more than one solution
-          </h2>
-          <p
+          <HoverProximityText text="Every business needs more than one solution" />
+          <HoverProximityText
+            as="p"
+            text="It needs one, tailor-made to how your industry actually works. Euro Digital Technologies gives you that: a complete, end-to-end AI business automation solution, built around you."
             className="text-lg md:text-[23px] max-w-5xl mx-auto leading-relaxed"
-            style={{ color: "var(--text-secondary)" }}
-          >
-            It needs one, tailor-made to how your industry actually works.
-            Euro Digital Technologies gives you that: a complete, end-to-end AI
-            business automation solution, built around you.
-          </p>
+            baseColor="var(--text-secondary)"
+            hoverColor="var(--primary-green-darker)"
+          />
         </div>
 
         <div className="mx-auto max-w-7xl space-y-10 px-6 md:px-12">
           <div className="relative z-10 flex flex-wrap items-center justify-center gap-2" aria-label="Filter services by category">
             {([
-              { id: "all", label: "All services" },
-              { id: "growth", label: "Growth" },
-              { id: "engagement", label: "Engagement" },
-              { id: "automation", label: "Automation" },
-            ] as const).map(({ id, label }) => {
+              { id: "all", label: "All services", icon: LayoutGrid },
+              { id: "growth", label: "Growth", icon: TrendingUp },
+              { id: "engagement", label: "Engagement", icon: MessageCircle },
+              { id: "automation", label: "Automation", icon: Workflow },
+            ] as const).map(({ id, label, icon: CategoryIcon }) => {
               const count = id === "all" ? cards.length : cards.filter((card) => card.category === id).length;
               const isActive = activeCategory === id;
 
@@ -540,14 +691,16 @@ function Sections({ onBookDemo }: SectionsProps) {
                   type="button"
                   onClick={() => selectCategory(id)}
                   aria-pressed={isActive}
-                  className={`touch-target touch-feedback inline-flex items-center gap-2 rounded-full border px-4 py-2 text-sm font-semibold transition-all duration-200 active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-500 focus-visible:ring-offset-2 ${
+                  aria-label={`${label}, ${count} services`}
+                  className={`group touch-target touch-feedback inline-flex items-center gap-2 rounded-full border px-4 py-2 text-sm font-semibold transition-all duration-200 active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-500 focus-visible:ring-offset-2 ${
                     isActive
                       ? "border-slate-900 bg-slate-900 text-white shadow-md"
                       : "border-slate-200 bg-white text-slate-600 hover:border-cyan-300 hover:bg-cyan-50 hover:text-cyan-800"
                   }`}
                 >
-                  {label}
-                  <span className={`rounded-full px-2 py-0.5 text-xs ${isActive ? "bg-white/15 text-white" : "bg-slate-100 text-slate-500"}`}>
+                  <CategoryIcon className="h-4 w-4 shrink-0" strokeWidth={2} aria-hidden="true" />
+                  <span>{label}</span>
+                  <span className={`max-w-0 scale-75 overflow-hidden whitespace-nowrap rounded-full px-0 py-0.5 text-xs opacity-0 transition-all duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:max-w-10 group-hover:scale-100 group-hover:px-2 group-hover:opacity-100 group-focus-visible:max-w-10 group-focus-visible:scale-100 group-focus-visible:px-2 group-focus-visible:opacity-100 motion-reduce:transition-none ${isActive ? "bg-white/15 text-white" : "bg-slate-100 text-slate-500"}`} aria-hidden="true">
                     {count}
                   </span>
                 </button>
@@ -561,15 +714,17 @@ function Sections({ onBookDemo }: SectionsProps) {
                   const isPlaying = currentlyPlayingIndex === index;
                   const isBuffering = bufferingVideoIndex === index;
                   const ServiceIcon = card.icon;
+                  const category = categoryPillStyles[card.category];
+                  const CategoryIcon = category.icon;
 
                   return (
               <div
                 key={card.title}
-                className="service-card-enter theme-card group relative flex h-full flex-col overflow-hidden rounded-[1.75rem] border border-slate-200/90 bg-gradient-to-br from-white via-white to-cyan-50/40 p-2 shadow-[0_12px_34px_rgba(15,31,56,0.06)] transition-all duration-300 hover:-translate-y-1 hover:border-cyan-300 hover:shadow-[0_24px_60px_rgba(15,31,56,0.15)] focus-within:ring-2 focus-within:ring-cyan-400 focus-within:ring-offset-2"
+                className={`service-card-enter theme-card group relative flex h-full flex-col overflow-hidden rounded-[1.75rem] border border-slate-200/90 p-2 shadow-[0_12px_34px_rgba(15,31,56,0.06)] transition-[background-color,background-image,border-color,box-shadow] duration-300 hover:border-cyan-300 hover:shadow-[0_18px_44px_rgba(15,31,56,0.11)] focus-within:ring-2 focus-within:ring-cyan-400 focus-within:ring-offset-2 md:min-h-[41rem] ${card.title === "AI Automated Chatbot" ? "bg-slate-50/70 hover:bg-slate-100/70 focus-within:bg-slate-100/70" : "bg-gradient-to-br from-white via-white to-cyan-50/40 hover:from-cyan-50/40 hover:via-white hover:to-sky-50/70 focus-within:from-cyan-50/40 focus-within:via-white focus-within:to-sky-50/70"}`}
                 style={{ animationDelay: `${(cardIndex % 2) * 60}ms` }}
               >
                 {/* Media Area: Supports both Images and Videos */}
-                <div className="relative h-64 w-full shrink-0 overflow-hidden rounded-[1.15rem] bg-slate-100 ring-1 ring-inset ring-slate-900/10 md:h-72">
+                <div className="relative h-64 w-full shrink-0 overflow-hidden rounded-t-[1.1875rem] rounded-b-none bg-slate-100 ring-1 ring-inset ring-slate-900/10 md:h-72">
                   {card.video ? (
                     isBunnyStreamUrl(card.video) ? (
                       <BunnyStreamPlayer
@@ -639,7 +794,7 @@ function Sections({ onBookDemo }: SectionsProps) {
                     <img
                       src={card.image}
                       alt={card.title}
-                      className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.035]"
+                      className="h-full w-full object-cover"
                       loading="lazy"
                       decoding="async"
                       sizes="(min-width: 768px) 50vw, 100vw"
@@ -656,71 +811,80 @@ function Sections({ onBookDemo }: SectionsProps) {
 
                 {/* Content Area: flex-grow ensures this fills space to push buttons down */}
                 <div className="flex flex-grow flex-col px-1 pb-1 pt-4 md:px-2 md:pt-5">
-                  <div className="mb-2 flex items-center justify-between gap-3">
-                    <span className="theme-card-category inline-flex items-center rounded-full bg-cyan-50 px-3 py-1 text-[10px] font-extrabold uppercase tracking-[0.16em] text-cyan-700 ring-1 ring-inset ring-cyan-100">
-                      {card.category === "growth"
-                        ? "Growth"
-                        : card.category === "engagement"
-                          ? "Engagement"
-                          : "Automation"}
+                  <h4
+                    className="theme-card-heading mb-4 flex items-center justify-between gap-3 text-2xl font-bold leading-tight tracking-[-0.025em] text-balance md:mb-5 md:text-[1.7rem]"
+                  >
+                    <span className="flex min-w-0 items-center gap-3">
+                      <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-cyan-50 to-sky-100 text-cyan-700 shadow-sm ring-1 ring-inset ring-cyan-200/70 transition duration-300 group-hover:scale-105 group-hover:shadow-md">
+                        <ServiceIcon className="h-5 w-5" strokeWidth={2.2} aria-hidden="true" />
+                      </span>
+                      <span>{card.title}</span>
                     </span>
                     <img
                       src="/logo/logo.svg"
                       alt="Euro Digital Technologies"
-                      className="h-7 w-[4.7rem] object-contain object-right"
+                      className="h-7 w-[4.7rem] shrink-0 object-contain object-right"
                       loading="lazy"
                     />
-                  </div>
-                  <h4
-                    className="theme-card-heading mb-2 flex items-center gap-3 text-2xl font-bold leading-tight tracking-[-0.025em] text-balance md:text-[1.7rem]"
-                  >
-                    <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-cyan-50 to-sky-100 text-cyan-700 shadow-sm ring-1 ring-inset ring-cyan-200/70 transition duration-300 group-hover:scale-105 group-hover:shadow-md">
-                      <ServiceIcon className="h-5 w-5" strokeWidth={2.2} aria-hidden="true" />
-                    </span>
-                    {card.title}
                   </h4>
 
                   {/* Description area */}
-                  <p
-                    className="theme-card-description theme-card-copy mb-4 min-h-0 text-[0.98rem] leading-7 md:min-h-[7rem]"
-                  >
-                    {card.desc}
-                  </p>
+                  <div className="-mx-3 mb-4 flex items-center border-y border-slate-200/80 bg-slate-50/70 px-3 md:-mx-4 md:min-h-40 md:px-4">
+                    <HoverProximityText
+                      as="p"
+                      text={card.desc}
+                      highlight={card.highlight}
+                      className="theme-card-description theme-card-copy min-h-0 py-2 text-justify text-[0.98rem] leading-7 md:min-h-[7rem]"
+                      baseColor="var(--text-secondary)"
+                      hoverColor="var(--primary-green-darker)"
+                    />
+                  </div>
 
-                  <div className="mb-4 grid gap-2 sm:grid-cols-3">
+                  <div className={`mb-4 grid gap-2 ${card.details.length === 2 ? "sm:grid-cols-2" : "sm:grid-cols-3"}`}>
                     {card.details.map((detail, detailIndex) => {
                       const DetailIcon = detailIcons[detailIndex % detailIcons.length];
 
                       return (
                         <div
                           key={detail}
-                          className="theme-card-detail flex min-h-16 items-center gap-3 rounded-2xl bg-gradient-to-br from-slate-900 to-slate-800 px-3 py-3 text-sm font-semibold leading-6 text-white shadow-sm ring-1 ring-inset ring-white/10 transition duration-200 hover:-translate-y-0.5 hover:from-slate-800 hover:to-slate-700 hover:shadow-md"
+                          className="theme-card-detail group/detail relative flex min-h-[4.5rem] items-center gap-3 overflow-hidden rounded-2xl border border-slate-700/90 bg-[radial-gradient(ellipse_at_top_left,rgba(34,211,238,0.10),transparent_58%),linear-gradient(145deg,#172235_0%,#1e293b_58%,#202a3a_100%)] px-3 py-2 text-sm font-semibold leading-6 text-white shadow-[0_5px_16px_rgba(15,31,56,0.20)] ring-1 ring-inset ring-white/[0.06] transition duration-200 hover:-translate-y-0.5 hover:border-cyan-400/50 hover:shadow-[0_10px_24px_rgba(15,31,56,0.28)] motion-reduce:transform-none"
                         >
-                          <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-xl bg-cyan-400/10 text-cyan-300 ring-1 ring-inset ring-cyan-300/15">
-                            <DetailIcon className="h-4 w-4" strokeWidth={2.2} aria-hidden="true" />
+                          <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-cyan-300/15 text-cyan-200 shadow-[0_0_16px_rgba(34,211,238,0.12)] ring-1 ring-inset ring-cyan-200/35 transition duration-200 group-hover/detail:bg-cyan-300/25 group-hover/detail:text-white group-hover/detail:ring-cyan-100/50 motion-reduce:transition-none">
+                            <DetailIcon className={`h-[1.1rem] w-[1.1rem] ${DetailIcon === Zap ? "feature-icon-zap" : DetailIcon === Users ? "feature-icon-users" : ""}`} strokeWidth={2.2} aria-hidden="true" />
                           </span>
-                          <span>{detail}</span>
+                          <span className="flex min-h-9 items-center leading-5">{detail}</span>
                         </div>
                       );
                     })}
                   </div>
 
-                  <div className="theme-card-divider mt-auto flex flex-wrap items-center gap-2 border-t border-slate-100 pt-4">
+                  <div className="theme-card-divider relative mt-auto flex flex-wrap items-center gap-2 border-t border-slate-100 pt-4">
                     <Link
                       to={card.link}
-                      className="touch-target touch-feedback theme-card-primary-action group/learn inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-xl border border-[var(--primary-blue)] bg-[var(--primary-blue)] px-4 py-2.5 text-sm font-bold text-white shadow-[0_8px_18px_rgba(24,182,227,0.22)] transition-all duration-200 hover:-translate-y-0.5 hover:border-[var(--primary-blue-dark)] hover:bg-[var(--primary-blue-dark)] hover:shadow-[0_12px_24px_rgba(18,158,198,0.28)] active:translate-y-0 active:scale-[0.97] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--primary-blue)] focus-visible:ring-offset-2"
+                      className="service-card-cta service-card-cta--learn touch-target touch-feedback theme-card-primary-action group/learn inline-flex h-11 items-center justify-center gap-2 whitespace-nowrap rounded-2xl border border-[var(--primary-blue-dark)] bg-[var(--primary-blue)] px-4 text-sm font-bold text-white transition-colors duration-200 hover:border-[var(--primary-blue-dark)] hover:bg-[var(--primary-blue-dark)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--primary-blue)] focus-visible:ring-offset-2"
                     >
-                      Learn More
-                      <ArrowUpRight className="h-4 w-4 transition-transform duration-200 group-hover/learn:translate-x-0.5 group-hover/learn:-translate-y-0.5" aria-hidden="true" />
+                      <span className="service-card-cta__content" aria-hidden="true">
+                        Learn More
+                        <ArrowUpRight className="h-4 w-4" />
+                      </span>
                       <span className="sr-only"> about {card.title}</span>
                     </Link>
+                    <span
+                      className={`theme-card-category absolute left-1/2 inline-flex h-8 max-w-0 -translate-x-1/2 shrink-0 items-center gap-1.5 overflow-hidden whitespace-nowrap rounded-full px-0 text-[10px] font-extrabold uppercase tracking-[0.16em] opacity-0 ring-1 ring-inset transition-[max-width,padding,opacity] duration-300 ease-out group-hover:max-w-36 group-hover:px-3 group-hover:opacity-100 group-focus-within:max-w-36 group-focus-within:px-3 group-focus-within:opacity-100 motion-reduce:transition-none ${category.className}`}
+                      aria-hidden="true"
+                    >
+                      <CategoryIcon className="h-3 w-3 shrink-0" strokeWidth={2.4} aria-hidden="true" />
+                      {category.label}
+                    </span>
                     <button
                         type="button"
                         onClick={() => onBookDemo(card.bookingUrl)}
-                        className="touch-target touch-feedback inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-xl border border-[var(--primary-green)] bg-[var(--primary-green)] px-4 py-2.5 text-sm font-bold text-[var(--primary-navy)] shadow-[0_8px_18px_rgba(134,196,64,0.24)] transition-all duration-200 hover:-translate-y-0.5 hover:border-[var(--primary-green-dark)] hover:bg-[var(--primary-green-dark)] hover:shadow-[0_12px_24px_rgba(118,180,58,0.3)] active:translate-y-0 active:scale-[0.97] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--primary-green)] focus-visible:ring-offset-2"
+                        className="service-card-cta service-card-cta--demo touch-target touch-feedback ml-auto inline-flex h-11 items-center justify-center gap-2 whitespace-nowrap rounded-2xl border border-[var(--primary-green-darker)] bg-[var(--primary-green-dark)] px-4 text-sm font-bold text-white transition-colors duration-200 hover:border-[var(--primary-green-darker)] hover:bg-[var(--primary-green-darker)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--primary-green)] focus-visible:ring-offset-2"
                     >
+                      <span className="service-card-cta__content" aria-hidden="true">
                         <CalendarCheck className="h-4 w-4" aria-hidden="true" />
                         Book Demo
+                      </span>
                     </button>
                   </div>
                 </div>
@@ -787,7 +951,7 @@ function Sections({ onBookDemo }: SectionsProps) {
                 <img
                   src={industry.image}
                   alt={industry.title}
-                  className="h-full w-full object-cover transition duration-500 group-hover:scale-105"
+                  className="h-full w-full object-cover"
                   loading="lazy"
                   decoding="async"
                   sizes="(min-width: 768px) 33vw, 100vw"

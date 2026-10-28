@@ -1,24 +1,47 @@
-import { ChevronDown, LogIn, Menu, X } from "lucide-react";
+import { Bot, Building2, ChevronDown, ContactRound, HeartHandshake, LogIn, Megaphone, MessageCircle, PanelsTopLeft, PhoneCall, Puzzle, Workflow, Menu, X, type LucideIcon } from "lucide-react";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { BOOKING_MODAL_EVENT, CONSULTATION_BOOKING_URL } from "../constants/booking";
 import { solutionGroups, type SolutionService } from "../data/solutions";
 import BookingModal from "./BookingModal";
 
+const serviceDescriptions: Record<string, string> = Object.fromEntries(
+  solutionGroups.flatMap((group) => group.services.map(({ title, description }) => [title, description])),
+);
+serviceDescriptions["Industry Specific AI Use Cases"] = serviceDescriptions["Industry-Specific AI"];
+
 const serviceLinks: SolutionService[] = [
-  { title: "AI Business Automation", path: "/services/ai-business-automation", description: "" },
-  { title: "AI Business Promotion", path: "/services/ai-business-promotion", description: "" },
-  { title: "AI Agent Talk Time", path: "/services/ai-agent-talk-time", description: "" },
-  { title: "AI Automated Chatbot", path: "/services/ai-automated-chatbot", description: "" },
-  { title: "AI Add-on Services", path: "/services/ai-addon-services", description: "" },
-  { title: "Industry Specific AI Use Cases", path: "/services/industry-specific", description: "" },
+  { title: "AI Business Automation", path: "/services/ai-business-automation", description: serviceDescriptions["AI Business Automation"] },
+  { title: "AI Business Promotion", path: "/services/ai-business-promotion", description: serviceDescriptions["AI Business Promotion"] },
+  { title: "AI Agent Talk Time", path: "/services/ai-agent-talk-time", description: serviceDescriptions["AI Agent Talk Time"] },
+  { title: "AI Automated Chatbot", path: "/services/ai-automated-chatbot", description: serviceDescriptions["AI Automated Chatbot"] },
+  { title: "AI Add-on Services", path: "/services/ai-addon-services", description: serviceDescriptions["AI Add-on Services"] },
+  { title: "Industry Specific AI Use Cases", path: "/services/industry-specific", description: serviceDescriptions["Industry Specific AI Use Cases"] },
 ];
 
 const aiToolLinks: SolutionService[] = [
-  { title: "AI Website Builder", path: "/products/website-builder", description: "" },
-  { title: "ED-CRM", path: "/products/edcrm", description: "" },
-  { title: "Emotion AI", path: "/products/emotionai", description: "" },
+  { title: "AI Website Builder", path: "/products/website-builder", description: serviceDescriptions["AI Website Builder"] },
+  { title: "ED-CRM", path: "/products/edcrm", description: serviceDescriptions["ED-CRM"] },
+  { title: "Emotion AI", path: "/products/emotionai", description: serviceDescriptions["Emotion AI"] },
 ];
+
+const navigationIcons: Record<string, LucideIcon> = {
+  "AI Business Automation": Workflow,
+  "AI Business Promotion": Megaphone,
+  "AI Agent Talk Time": PhoneCall,
+  "AI Automated Chatbot": Bot,
+  "AI Add-on Services": Puzzle,
+  "Industry Specific AI Use Cases": Building2,
+  "AI Website Builder": PanelsTopLeft,
+  "ED-CRM": ContactRound,
+  "Emotion AI": HeartHandshake,
+};
+
+const solutionIcons: Record<string, LucideIcon> = {
+  "digital-marketing-and-promotions": Megaphone,
+  "ai-customer-engagement": MessageCircle,
+  "ai-business-automation": Workflow,
+};
 
 function ServiceLink({
   service,
@@ -29,13 +52,29 @@ function ServiceLink({
   onClick: () => void;
   className: string;
 }) {
+  const Icon = navigationIcons[service.title];
+  const tooltipId = `nav-tip-${service.path.replace(/[^a-z0-9]+/gi, "-")}`;
+  const tooltip = (
+    <span
+      id={tooltipId}
+      role="tooltip"
+      className="pointer-events-none absolute right-full top-0 z-[70] mr-3 max-h-[calc(100vh-7rem)] w-60 -translate-x-1 overflow-x-hidden overflow-y-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden rounded-xl border border-slate-200/80 bg-white px-4 py-3 text-left text-xs font-normal leading-relaxed text-slate-600 opacity-0 shadow-[0_14px_36px_rgba(15,31,56,0.16)] transition duration-150 group-hover/navtip:translate-x-0 group-hover/navtip:opacity-100 group-focus-visible/navtip:translate-x-0 group-focus-visible/navtip:opacity-100 max-lg:hidden before:absolute before:-right-2 before:top-0 before:h-full before:w-3 before:content-['']"
+    >
+      <span className="mb-1 block text-[11px] font-semibold uppercase tracking-[0.12em] text-blue-700">{service.title}</span>
+      {service.description}
+    </span>
+  );
   return service.external ? (
-    <a href={service.path} target="_blank" rel="noreferrer" onClick={onClick} className={className}>
+    <a href={service.path} aria-describedby={tooltipId} target="_blank" rel="noreferrer" onClick={onClick} className={`group/navtip relative ${className}`}>
+      {Icon && <Icon className="h-4 w-4 shrink-0 text-blue-600" aria-hidden="true" />}
       {service.title}
+      {tooltip}
     </a>
   ) : (
-    <Link to={service.path} onClick={onClick} className={className}>
+    <Link to={service.path} aria-describedby={tooltipId} onClick={onClick} className={`group/navtip relative ${className}`}>
+      {Icon && <Icon className="h-4 w-4 shrink-0 text-blue-600" aria-hidden="true" />}
       {service.title}
+      {tooltip}
     </Link>
   );
 }
@@ -148,7 +187,7 @@ function Header() {
       <div className="mx-auto flex max-w-7xl items-center justify-between">
         <Link to="/" onClick={closeMobileMenu} className="z-50">
           <img
-            src="/logo/logo.svg"
+            src="/logo/euro-digital-navbar.png"
             alt="EuroDigital"
             className="h-10 w-auto transition-all md:h-14"
           />
@@ -187,7 +226,7 @@ function Header() {
                     key={service.path}
                     service={service}
                     onClick={closeDesktopServices}
-                    className="block rounded-xl px-5 py-3.5 text-sm font-medium text-slate-700 transition-colors hover:bg-slate-50 hover:text-blue-700"
+                    className="flex items-center gap-3 rounded-xl px-5 py-3.5 text-sm font-medium text-slate-700 transition-colors hover:bg-slate-50 hover:text-blue-700"
                   />
                 ))}
               </div>
@@ -222,7 +261,7 @@ function Header() {
                     key={tool.path}
                     service={tool}
                     onClick={closeDesktopAiTools}
-                    className="block rounded-xl px-5 py-3.5 text-sm font-medium text-slate-700 transition-colors hover:bg-slate-50 hover:text-blue-700"
+                    className="flex items-center gap-3 rounded-xl px-5 py-3.5 text-sm font-medium text-slate-700 transition-colors hover:bg-slate-50 hover:text-blue-700"
                   />
                 ))}
               </div>
@@ -254,17 +293,30 @@ function Header() {
             >
               <div className="grid grid-cols-3 gap-3 rounded-2xl border border-gray-100 bg-white p-4 shadow-2xl">
                 {solutionGroups.map((group) => (
-                  <Link
-                    key={group.slug}
-                    to={`/solutions/${group.slug}`}
-                    onClick={closeDesktopSolutions}
-                    className="rounded-xl p-4 transition-colors hover:bg-slate-50"
-                  >
-                    <span className="text-sm font-bold text-blue-700">{group.title}</span>
-                    <span className="mt-2 block text-xs leading-5 text-slate-600">
-                      {group.shortDescription}
-                    </span>
-                  </Link>
+                  (() => {
+                    const Icon = solutionIcons[group.slug];
+                    return (
+                      <Link
+                        key={group.slug}
+                        to={`/solutions/${group.slug}`}
+                        onClick={closeDesktopSolutions}
+                        aria-describedby={`solution-tip-${group.slug}`}
+                        className="group/solution relative rounded-xl p-4 transition-colors hover:bg-slate-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
+                      >
+                        <span className="mb-3 flex h-10 w-10 items-center justify-center rounded-xl bg-blue-50 text-blue-600 transition-colors group-hover/solution:bg-blue-100">
+                          <Icon className="h-5 w-5" strokeWidth={1.9} aria-hidden="true" />
+                        </span>
+                        <span className="text-sm font-bold text-blue-700">{group.title}</span>
+                        <span className="mt-2 block text-xs leading-5 text-slate-600">
+                          {group.shortDescription}
+                        </span>
+                        <span id={`solution-tip-${group.slug}`} role="tooltip" className="pointer-events-none absolute left-1/2 top-full z-[70] mt-2 w-64 -translate-x-1/2 -translate-y-1 rounded-xl border border-slate-200/80 bg-white px-4 py-3 text-left text-xs font-normal leading-relaxed text-slate-600 opacity-0 shadow-[0_14px_36px_rgba(15,31,56,0.16)] transition duration-150 group-hover/solution:translate-y-0 group-hover/solution:opacity-100 group-focus-visible/solution:translate-y-0 group-focus-visible/solution:opacity-100 max-lg:hidden">
+                          <span className="mb-1 block text-[11px] font-semibold uppercase tracking-[0.12em] text-blue-700">{group.title}</span>
+                          {group.shortDescription}
+                        </span>
+                      </Link>
+                    );
+                  })()
                 ))}
               </div>
             </div>

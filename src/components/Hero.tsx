@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { Maximize2, Minimize2, Volume2, VolumeX } from "lucide-react";
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import {
   getBunnyStreamMp4Url,
   getBunnyStreamThumbnailUrl,
@@ -19,10 +19,25 @@ const slides: Slide[] = [
 
 function Hero() {
   const currentSlide = 0;
-  const [isVideoMuted, setIsVideoMuted] = useState(true);
+  const [isVideoMuted, setIsVideoMuted] = useState(false);
   const [isFullscreen, setIsFullscreen] = useState(false);
   const heroSectionRef = useRef<HTMLElement>(null);
   const heroVideoRef = useRef<HTMLVideoElement>(null);
+  const volumeFadeRef = useRef<number | null>(null);
+
+  const fadeVideoVolume = useCallback((video: HTMLVideoElement, targetVolume: number) => {
+    if (volumeFadeRef.current !== null) window.clearInterval(volumeFadeRef.current);
+    const startVolume = video.volume;
+    const startedAt = performance.now();
+    volumeFadeRef.current = window.setInterval(() => {
+      const progress = Math.min((performance.now() - startedAt) / 1800, 1);
+      video.volume = startVolume + (targetVolume - startVolume) * progress;
+      if (progress >= 1 && volumeFadeRef.current !== null) {
+        window.clearInterval(volumeFadeRef.current);
+        volumeFadeRef.current = null;
+      }
+    }, 40);
+  }, []);
 
   useEffect(() => {
     const video = heroVideoRef.current;
@@ -31,7 +46,8 @@ function Hero() {
 
     video.pause();
     video.currentTime = 0;
-    video.muted = true;
+    video.muted = false;
+    video.volume = 0;
   }, [currentSlide]);
 
   useEffect(() => {
@@ -43,11 +59,25 @@ function Hero() {
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting && entry.intersectionRatio > 0) {
-          video.play().catch(() => {
-            // Autoplay can be blocked until the page is interacted with.
+          video.volume = 0;
+          video.muted = false;
+          video.play().then(() => {
+            setIsVideoMuted(false);
+            fadeVideoVolume(video, 0.75);
+          }).catch(() => {
+            // Browsers commonly block autoplay with sound. Keep the video playing
+            // silently and let the visitor enable sound with the voice control.
+            video.muted = true;
+            video.volume = 0;
+            setIsVideoMuted(true);
+            video.play().catch(() => undefined);
           });
         } else {
           video.pause();
+          if (volumeFadeRef.current !== null) {
+            window.clearInterval(volumeFadeRef.current);
+            volumeFadeRef.current = null;
+          }
         }
       },
       { threshold: [0, 0.1] },
@@ -56,6 +86,10 @@ function Hero() {
     observer.observe(section);
 
     return () => observer.disconnect();
+  }, [fadeVideoVolume]);
+
+  useEffect(() => () => {
+    if (volumeFadeRef.current !== null) window.clearInterval(volumeFadeRef.current);
   }, []);
 
   useEffect(() => {
@@ -90,7 +124,7 @@ function Hero() {
       className={`relative flex items-center justify-center overflow-hidden text-white ${
         isFullscreen
           ? "min-h-screen bg-black"
-          : "mt-[72px] min-h-[90vh] bg-black md:mt-[104px] md:min-h-[calc(100svh-2rem)]"
+          : "mt-[60px] min-h-[90vh] bg-black md:mt-[88px] md:min-h-[calc(100svh-2rem)]"
       }`}
     >
       {/* All backgrounds mounted + preloaded — slide changes stay instant */}
@@ -134,8 +168,15 @@ function Hero() {
 
                 if (!video) return;
 
-                video.muted = !video.muted;
-                setIsVideoMuted(video.muted);
+                if (video.muted) {
+                  video.muted = false;
+                  video.volume = 0;
+                  setIsVideoMuted(false);
+                  fadeVideoVolume(video, 0.75);
+                } else {
+                  video.muted = true;
+                  setIsVideoMuted(true);
+                }
               }}
               className="touch-target touch-feedback mt-6 inline-flex items-center gap-2 rounded-full border border-white/35 bg-black/25 px-4 py-2 text-sm font-medium text-white backdrop-blur-sm transition-colors hover:bg-black/40"
               aria-label={isVideoMuted ? "Turn video voice on" : "Mute video voice"}

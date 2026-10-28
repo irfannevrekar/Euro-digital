@@ -7,13 +7,18 @@ interface ServiceHeroBunnyProps {
 
 function ServiceHeroBunny({ videoUrl, overlayTitle }: ServiceHeroBunnyProps) {
   return (
-    <section className="relative mx-auto mt-10 w-full max-w-[1425px] overflow-hidden rounded-3xl shadow-xl">
-      <BunnyStreamPlayer
-        sourceUrl={videoUrl}
-        title={overlayTitle}
-        className="rounded-3xl"
-        aspectClassName="aspect-video min-h-[280px] md:min-h-[420px]"
-      />
+    <section className="relative mx-auto w-full max-w-7xl px-3 sm:px-5 md:px-8">
+      <div className="rounded-[26px] bg-gradient-to-br from-cyan-300/70 via-sky-200/40 to-emerald-200/60 p-px shadow-[0_28px_80px_rgba(15,31,56,0.18)] sm:rounded-[30px]">
+        <div className="overflow-hidden rounded-[25px] bg-slate-950 ring-1 ring-white/50 sm:rounded-[29px]">
+          <BunnyStreamPlayer
+            sourceUrl={videoUrl}
+            title={overlayTitle}
+            className="rounded-[25px] shadow-none sm:rounded-[29px]"
+            aspectClassName="aspect-video"
+            heroPreview
+          />
+        </div>
+      </div>
     </section>
   );
 }

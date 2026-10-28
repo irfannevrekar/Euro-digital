@@ -16,6 +16,7 @@ interface BunnyStreamPlayerProps {
   isActive?: boolean;
   onActivate?: () => void;
   onDeactivate?: () => void;
+  heroPreview?: boolean;
 }
 
 function formatTime(seconds: number) {
@@ -35,6 +36,7 @@ function BunnyStreamPlayer({
   isActive = true,
   onActivate,
   onDeactivate,
+  heroPreview = false,
 }: BunnyStreamPlayerProps) {
   const mp4Url = getBunnyStreamMp4Url(sourceUrl);
   const posterUrl = getBunnyStreamThumbnailUrl(sourceUrl);
@@ -257,7 +259,19 @@ function BunnyStreamPlayer({
           }}
         />
 
-        <div className="pointer-events-none absolute inset-x-0 bottom-0 z-20 h-32 bg-gradient-to-t from-black/65 via-black/20 to-transparent" />
+        <div className={`pointer-events-none absolute inset-0 z-20 ${heroPreview ? "bg-gradient-to-b from-slate-950/35 via-transparent to-slate-950/45" : "bg-gradient-to-t from-black/65 via-black/20 to-transparent"}`} />
+
+        {heroPreview && !isPlaying && !isBuffering && (
+          <div className="pointer-events-none absolute inset-x-0 top-0 z-30 flex items-start justify-between gap-4 p-4 sm:p-6 md:p-8">
+            <span className="inline-flex items-center gap-2 rounded-full border border-white/25 bg-slate-950/35 px-3.5 py-2 text-[11px] font-semibold uppercase tracking-[0.16em] text-white shadow-lg backdrop-blur-md sm:text-xs">
+              <span className="h-1.5 w-1.5 rounded-full bg-cyan-300 shadow-[0_0_12px_rgba(103,232,249,0.9)]" />
+              Product walkthrough
+            </span>
+            <span className="hidden rounded-full border border-white/20 bg-slate-950/30 px-3.5 py-2 text-xs font-medium text-white/90 backdrop-blur-md sm:inline-flex">
+              Preview
+            </span>
+          </div>
+        )}
 
         <AnimatePresence mode="wait">
           {!isPlaying && !isBuffering && (
@@ -269,17 +283,25 @@ function BunnyStreamPlayer({
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.2 }}
-              className="touch-feedback absolute inset-0 z-30 flex cursor-pointer items-center justify-center bg-black/10"
+              className={`touch-feedback absolute inset-0 z-30 flex cursor-pointer items-center justify-center ${heroPreview ? "bg-transparent" : "bg-black/10"}`}
               aria-label={`Play ${title}`}
             >
               <motion.span
                 whileHover={{ scale: 1.08 }}
                 whileTap={{ scale: 0.94 }}
-                className="flex h-16 w-16 items-center justify-center rounded-full border border-white/30 bg-white/20 text-white shadow-[0_10px_35px_rgba(0,0,0,0.25)] backdrop-blur-md md:h-20 md:w-20"
+                className={`flex items-center justify-center rounded-full border border-white/40 text-white shadow-[0_12px_40px_rgba(0,0,0,0.32)] backdrop-blur-md ${heroPreview ? "h-[76px] w-[76px] bg-white/20 ring-8 ring-white/10 md:h-24 md:w-24" : "h-16 w-16 bg-white/20 md:h-20 md:w-20"}`}
               >
-                <Play className="ml-1 h-7 w-7 fill-white text-white md:h-9 md:w-9" />
+                <Play className={`ml-1 fill-white text-white ${heroPreview ? "h-8 w-8 md:h-10 md:w-10" : "h-7 w-7 md:h-9 md:w-9"}`} />
               </motion.span>
             </motion.button>
+          )}
+
+          {heroPreview && !isPlaying && !isBuffering && (
+            <div className="pointer-events-none absolute inset-x-0 bottom-0 z-30 flex justify-center pb-5 sm:pb-7">
+              <span className="rounded-full border border-white/25 bg-slate-950/45 px-4 py-2 text-xs font-medium text-white shadow-lg backdrop-blur-md sm:text-sm">
+                Play video preview
+              </span>
+            </div>
           )}
 
           {isBuffering && (

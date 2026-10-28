@@ -1,6 +1,6 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { memo, useEffect, useMemo, useRef, useState } from "react";
-import { Check, ChevronLeft, ChevronRight, DollarSign, Eye, Funnel, MessageCircle, RotateCcw, Trophy, X } from "lucide-react";
+import { Check, ChevronLeft, ChevronRight, DollarSign, Eye, Funnel, MessageCircle, RotateCcw, Trophy, X, type LucideIcon } from "lucide-react";
 import FAQ from "../components/FAQ";
 import ServiceHeroVideo from "../components/ServiceHeroVideo";
 import { getFAQsByServiceId } from "../data/faqData";
@@ -28,6 +28,7 @@ type ProductPageProps = {
   image: string;
   video: string;
   features: string[];
+  featureIcons?: LucideIcon[];
   detailedDescription: string;
   overlayTitle: string;
   plans: ProductPlan[];
@@ -1435,6 +1436,7 @@ function ProductPage({
   image,
   video,
   features,
+  featureIcons,
   detailedDescription,
   overlayTitle,
   plans,
@@ -1474,14 +1476,19 @@ function ProductPage({
               </p>
 
               <ul className="space-y-2 ml-4">
-                {features.map((feature) => (
+                {features.map((feature, index) => {
+                  const FeatureIcon = featureIcons?.[index];
+                  return (
                   <li key={feature} className="flex items-start gap-2">
-                    <span className="text-xs mt-1" style={{ color: "var(--text-tertiary)" }}>
-                      •
-                    </span>
+                    {FeatureIcon ? (
+                      <FeatureIcon className="mt-0.5 h-5 w-5 shrink-0" strokeWidth={1.8} aria-hidden="true" style={{ color: "var(--primary-blue)" }} />
+                    ) : (
+                      <span className="text-xs mt-1" style={{ color: "var(--text-tertiary)" }}>•</span>
+                    )}
                     <span style={{ color: "var(--text-secondary)" }}>{feature}</span>
                   </li>
-                ))}
+                  );
+                })}
               </ul>
 
               <p className="text-base leading-relaxed" style={{ color: "var(--text-tertiary)" }}>
