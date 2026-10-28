@@ -91,9 +91,18 @@ function Header() {
   }, []);
 
   useEffect(() => {
-    document.body.style.overflow = isMobileMenuOpen ? "hidden" : "unset";
+    if (!isMobileMenuOpen) return;
+
+    const previousOverflow = document.body.style.overflow;
+    const closeOnEscape = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setIsMobileMenuOpen(false);
+    };
+
+    document.body.style.overflow = "hidden";
+    document.addEventListener("keydown", closeOnEscape);
     return () => {
-      document.body.style.overflow = "unset";
+      document.body.style.overflow = previousOverflow;
+      document.removeEventListener("keydown", closeOnEscape);
     };
   }, [isMobileMenuOpen]);
 
@@ -132,7 +141,7 @@ function Header() {
 
   return (
     <header
-      className={`fixed inset-x-0 top-0 z-50 border-b border-black/5 bg-white px-4 py-3 shadow-sm transition-transform duration-300 md:px-10 md:py-4 ${
+      className={`fixed inset-x-0 top-0 z-50 border-b border-slate-200/80 bg-white px-4 py-3 shadow-sm transition-transform duration-300 supports-[backdrop-filter]:bg-white/90 supports-[backdrop-filter]:backdrop-blur-xl md:px-10 md:py-4 ${
         isHeaderVisible || isMobileMenuOpen ? "translate-y-0" : "-translate-y-full"
       }`}
     >
@@ -289,15 +298,19 @@ function Header() {
           type="button"
           className="z-50 p-2 text-slate-700 lg:hidden"
           onClick={() => setIsMobileMenuOpen((open) => !open)}
-          aria-label="Toggle menu"
+          aria-label={isMobileMenuOpen ? "Close navigation menu" : "Open navigation menu"}
           aria-expanded={isMobileMenuOpen}
+          aria-controls="mobile-navigation-panel"
         >
           {isMobileMenuOpen ? <X className="h-7 w-7" /> : <Menu className="h-7 w-7" />}
         </button>
       </div>
 
       <div
+        id="mobile-navigation-panel"
         className={`fixed inset-0 z-40 bg-white transition-transform duration-300 lg:hidden ${isMobileMenuOpen ? "translate-x-0" : "translate-x-full"}`}
+        aria-hidden={!isMobileMenuOpen}
+        inert={!isMobileMenuOpen}
       >
         <div className="h-full overflow-y-auto px-6 pt-24 pb-10">
           <nav className="flex flex-col gap-5 text-lg font-medium" aria-label="Mobile navigation">

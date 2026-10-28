@@ -33,7 +33,7 @@ function AIBuilder() {
         {
           name: "Scale",
           price: "$499",
-          checkoutUrl: "https://buy.stripe.com/fZucMZgZ956fgKk2RMeEw0a",
+          checkoutUrl: "https://buy.stripe.com/fZucMZg2956fgKk2RMcEw0a",
           description: "For teams building multiple AI workflows.",
           highlighted: true,
           features: [

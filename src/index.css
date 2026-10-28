@@ -2,10 +2,12 @@
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 7rem;
 }
 
 :root {
   font-family: "Roboto", sans-serif;
+  color-scheme: light;
 
   /* Primary Color Palette */
   --primary-blue: #18b6e3;
@@ -38,8 +40,8 @@ html {
   --bg-tertiary: #f5f6f7;
   --bg-dark: #0b1538;
 
-  color: #e9edf5;
-  background-color: #0b1538;
+  color: var(--text-primary);
+  background-color: var(--bg-primary);
 }
 
 * {
@@ -49,10 +51,35 @@ html {
 body {
   margin: 0;
   min-height: 100vh;
-  background-color: var(--bg-dark);
-  color: var(--text-light);
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
+}
+
+::selection {
+  color: #fff;
+  background: var(--primary-blue-dark);
+}
+
+:focus-visible {
+  outline: 3px solid var(--primary-blue-dark);
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
 }
 
 .pricing-section {

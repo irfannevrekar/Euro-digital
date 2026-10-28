@@ -6,7 +6,7 @@ function EDCRM() {
       id="edcrm"
       title="ED-CRM"
       description="One platform to attract leads, automate follow-up, and grow revenue. ED-CRM brings funnels, workflows, AI agents, and real-time reporting together—so your team can sell smarter around the clock."
-      image="/servicesImages/ed-Crm.png"
+      image="/servicesImages/ed-crm-overview.png"
       video="https://player.mediadelivery.net/play/667434/9498cecf-b56b-403f-a713-3551b8f7cf8c"
       overlayTitle="Ready to Organize Your Sales Pipeline?"
       showFAQs
@@ -24,7 +24,7 @@ function EDCRM() {
         {
           name: "ED-CRM (Basic)",
           price: "$49",
-          checkoutUrl: "https://buy.stripe.com/00wblVcPXfKT65G4ZUcEw07",
+          checkoutUrl: "https://buy.stripe.com/00wbIVcPXfKT65G4ZUcEw07",
           description:
             "A complete CRM platform for managing leads, automations, conversations, funnels, and reporting.",
           highlighted: true,

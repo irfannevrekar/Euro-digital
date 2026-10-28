@@ -153,7 +153,7 @@ function AIAddonServices() {
                     "$500",
                     "Setup + $29/mo",
                     "Starter",
-                    "https://buy.stripe.com/bJe00daHPg0X8d08c6cEw02",
+                    "https://buy.stripe.com/bJe00daHPgOX8dO8c6cEw02",
                   ],
                   [
                     "Advanced",

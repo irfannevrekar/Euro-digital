@@ -1,6 +1,7 @@
-import { Linkedin, Facebook, Youtube, Twitter, X } from "lucide-react";
+import { ArrowRight, Linkedin, Facebook, Youtube, Twitter, X } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
+import { openBookingModal } from "../constants/booking";
 
 const quickLinks = [
   { name: "Home", path: "/" },
@@ -23,14 +24,18 @@ function Footer() {
   const [selectedCert, setSelectedCert] = useState<string | null>(null);
 
   useEffect(() => {
-    if (selectedCert) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "unset";
-    }
+    if (!selectedCert) return;
+
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    const closeOnEscape = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setSelectedCert(null);
+    };
+    document.addEventListener("keydown", closeOnEscape);
 
     return () => {
-      document.body.style.overflow = "unset";
+      document.body.style.overflow = previousOverflow;
+      document.removeEventListener("keydown", closeOnEscape);
     };
   }, [selectedCert]);
 
@@ -39,16 +44,21 @@ function Footer() {
       {/* Certificate Modal */}
       {selectedCert && (
         <div
-          className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4"
+          role="dialog"
+          aria-modal="true"
+          aria-label="Certification document"
+          className="fixed inset-0 z-[60] flex items-center justify-center bg-slate-950/75 p-4 backdrop-blur-sm"
           onClick={() => setSelectedCert(null)}
         >
           <div
-            className="bg-white rounded-lg max-w-2xl w-full max-h-[90vh] overflow-auto relative"
+            className="relative max-h-[90vh] w-full max-w-3xl overflow-auto rounded-2xl bg-white shadow-2xl"
             onClick={(e) => e.stopPropagation()}
           >
             <button
+              type="button"
               onClick={() => setSelectedCert(null)}
-              className="cursor-pointer absolute top-4 right-4 p-2 hover:bg-black rounded-lg z-10"
+              aria-label="Close certification document"
+              className="absolute right-3 top-3 z-10 rounded-full bg-white/95 p-2 text-slate-700 shadow transition hover:bg-slate-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-600"
             >
               <X className="w-6 h-6" />
             </button>
@@ -62,21 +72,43 @@ function Footer() {
       )}
 
       <footer
-        className="w-full py-16 md:py-20 bg-cover bg-center bg-no-repeat"
+        className="relative isolate w-full overflow-hidden bg-cover bg-center bg-no-repeat text-white"
         style={{
           backgroundImage: "url('/backgroundImages/Footerbg.png')",
         }}
       >
-        <div className="max-w-7xl mx-auto px-6 md:px-12">
+        <div className="absolute inset-0 -z-10 bg-slate-950/80" aria-hidden="true" />
+        <div className="relative mx-auto max-w-7xl px-6 py-12 md:px-12 md:py-16">
+          <div className="mb-12 flex flex-col gap-5 rounded-2xl border border-white/15 bg-white/[0.07] p-6 backdrop-blur-sm sm:flex-row sm:items-center sm:justify-between sm:p-8">
+            <div>
+              <p className="mb-2 text-xs font-bold uppercase tracking-[0.16em] text-cyan-300">
+                Let&apos;s build what&apos;s next
+              </p>
+              <h2 className="text-2xl font-bold leading-tight text-white md:text-3xl">
+                Ready to make your next move?
+              </h2>
+              <p className="mt-2 max-w-xl text-sm leading-6 text-white/75">
+                Talk with our team about the right services and next steps for your business.
+              </p>
+            </div>
+            <button
+              type="button"
+              onClick={openBookingModal}
+              className="inline-flex min-h-12 shrink-0 items-center justify-center gap-2 rounded-lg bg-cyan-400 px-5 py-3 text-sm font-bold text-slate-950 shadow-lg transition hover:-translate-y-0.5 hover:bg-cyan-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900"
+            >
+              Book a consultation
+              <ArrowRight className="h-4 w-4" aria-hidden="true" />
+            </button>
+          </div>
           {/* MAIN GRID - 4 Column Layout */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12 pt-12 pb-16 border-t border-white/20">
+          <div className="grid grid-cols-1 gap-10 border-t border-white/20 pt-10 sm:grid-cols-2 lg:grid-cols-4 lg:gap-12">
             {/* COLUMN 1 — BRAND (Logo size increased significantly) */}
             <div className="space-y-4 flex flex-col items-start">
               <Link to="/">
                 <img
                   src="/logo/euro-digital-white.png"
                   alt="Euro Digital Technologies"
-                  className="h-20 md:h-36 w-auto object-contain" // Even larger logo
+                    className="h-20 w-auto object-contain md:h-24"
 
                 />
               </Link>
@@ -90,7 +122,7 @@ function Footer() {
 
 
 
-              <div className="flex items-center gap-3">
+              <div className="flex items-center gap-2">
                 {socialLinks.map(({ Icon, href, label }) => (
                   <a
                     key={label}
@@ -98,7 +130,7 @@ function Footer() {
                     target="_blank"
                     rel="noreferrer"
                     aria-label={label}
-                    className="w-10 h-10 flex items-center justify-center rounded-lg text-white/70 hover:text-white hover:bg-white/10 transition-all"
+                    className="flex h-10 w-10 items-center justify-center rounded-lg text-white/70 transition-all hover:bg-white/10 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300"
                   >
                     <Icon className="w-5 h-5" />
                   </a>
@@ -147,7 +179,7 @@ function Footer() {
                   <li key={link.name}>
                     <Link
                       to={link.path}
-                      className="group inline-block text-[15px] text-white/70 hover:text-white"
+                  className="group inline-block text-[15px] text-white/75 transition-colors hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300"
                     >
                       {link.name}
                       <span className="block h-px bg-white w-0 group-hover:w-full transition-all duration-300"></span>
@@ -181,7 +213,13 @@ function Footer() {
             </div>
           </div>
 
-          {/* ... (Bottom bar remains the same) */}
+          <div className="mt-12 flex flex-col gap-4 border-t border-white/20 pt-6 text-sm text-white/65 sm:flex-row sm:items-center sm:justify-between">
+            <p>© {new Date().getFullYear()} Euro Digital Technologies LLC. All rights reserved.</p>
+            <nav aria-label="Legal links" className="flex gap-5">
+              <Link className="transition-colors hover:text-white" to="/privacy">Privacy</Link>
+              <Link className="transition-colors hover:text-white" to="/terms">Terms</Link>
+            </nav>
+          </div>
         </div>
       </footer>
     </>
