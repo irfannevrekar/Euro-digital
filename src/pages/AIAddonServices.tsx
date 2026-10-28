@@ -185,10 +185,13 @@ function AIAddonServices() {
                     <div className="pricing-actions">
                       <a
                         className="pricing-buy"
-                        href={
-                          checkoutUrl ||
-                          "https://crm.eurodigital.ae/widget/bookings/web-booking-euro"
-                        }
+                        href={checkoutUrl || "#"}
+                        onClick={(event) => {
+                          if (!checkoutUrl) {
+                            event.preventDefault();
+                            openBookingModal();
+                          }
+                        }}
                       >
                         Buy now
                       </a>

@@ -187,14 +187,15 @@ function AIAgentTalkTime() {
                       </span>
                     </div>
                   </div>
-                  <button
-                    type="button"
-                    onClick={openBookingModal}
-                    className="mt-auto w-full rounded-full px-5 py-3 font-semibold text-white shadow-lg transition hover:brightness-110"
+                  <a
+                    href="https://buy.stripe.com/fZu00d17ffKTgKkfEycEw0b"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="mt-auto w-full rounded-full px-5 py-3 text-center font-semibold text-white shadow-lg transition hover:brightness-110"
                     style={{ backgroundColor: "var(--primary-blue)" }}
                   >
                     Buy Now
-                  </button>
+                  </a>
                 </div>
               </div>
             </div>
@@ -258,14 +259,15 @@ function AIAgentTalkTime() {
                       </span>
                     </div>
                   </div>
-                  <button
-                    type="button"
-                    onClick={openBookingModal}
-                    className="mt-auto w-full rounded-full px-5 py-3 font-semibold text-white shadow-lg transition hover:brightness-110"
+                  <a
+                    href="https://buy.stripe.com/4gMeV75nv9mvbq0eAucEw0c"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="mt-auto w-full rounded-full px-5 py-3 text-center font-semibold text-white shadow-lg transition hover:brightness-110"
                     style={{ backgroundColor: "var(--primary-blue)" }}
                   >
                     Buy Now
-                  </button>
+                  </a>
                 </div>
               </div>
             </div>
@@ -337,14 +339,15 @@ function AIAgentTalkTime() {
                       </span>
                     </div>
                   </div>
-                  <button
-                    type="button"
-                    onClick={openBookingModal}
-                    className="mt-auto w-full rounded-full px-5 py-3 font-semibold text-white shadow-lg transition hover:brightness-110"
+                  <a
+                    href="https://buy.stripe.com/bJe14h8zHaqzbq0fEycEw0d"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="mt-auto w-full rounded-full px-5 py-3 text-center font-semibold text-white shadow-lg transition hover:brightness-110"
                     style={{ backgroundColor: "var(--primary-blue)" }}
                   >
                     Buy Now
-                  </button>
+                  </a>
                 </div>
               </div>
             </div>
@@ -369,6 +372,7 @@ function AIAgentTalkTime() {
               {
                 name: "AI Widget Starter",
                 price: "$100",
+                checkoutUrl: "https://buy.stripe.com/9B6fZb7vD8ireCccsmcEw0e",
                 features: [
                   "1,000 Voice Widget Minutes",
                   "Basic Voice Customisation",
@@ -379,6 +383,7 @@ function AIAgentTalkTime() {
               {
                 name: "AI Widget Business",
                 price: "$250",
+                checkoutUrl: "https://buy.stripe.com/4gM4gt6rz1U3alWboicEw0f",
                 features: [
                   "2,500 Voice Widget Minutes",
                   "Advanced Voice Customisation",
@@ -390,6 +395,7 @@ function AIAgentTalkTime() {
               {
                 name: "AI Widget Professional",
                 price: "$550",
+                checkoutUrl: "https://buy.stripe.com/4gM5kx8zH0PZ8dOfEycEw0g",
                 features: [
                   "5,500 Voice Widget Minutes",
                   "Premium Voice Customisation",
@@ -424,14 +430,15 @@ function AIAgentTalkTime() {
                     </li>
                   ))}
                 </ul>
-                <button
-                  type="button"
-                  onClick={openBookingModal}
-                  className="mt-auto w-full rounded-full px-5 py-3 font-semibold text-white shadow-lg transition hover:brightness-110"
+                <a
+                  href={plan.checkoutUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-auto w-full rounded-full px-5 py-3 text-center font-semibold text-white shadow-lg transition hover:brightness-110"
                   style={{ backgroundColor: "var(--primary-blue)" }}
                 >
                   Buy Now
-                </button>
+                </a>
               </div>
             ))}
           </div>
