@@ -32,7 +32,7 @@ function getFirstYearEstimate(setupPrice: string, monthlyPrice: string) {
 
 const CHATBOT_SETUP_CHECKOUT_URL =
   "https://buy.stripe.com/3cIfZb8zH8ir79KakecEw0h";
-const CHATBOT_MONTHLY_CHECKOUT_URL =
+const AI_ENHANCED_CHECKOUT_URL =
   "https://buy.stripe.com/dRm3cpeY5buDfGg63YcEw01";
 
 function AIAutomatedChatbot() {
@@ -142,8 +142,7 @@ function AIAutomatedChatbot() {
       setupLabel: "one-time integration",
       price: "$99",
       priceDetail: "per month",
-      setupCheckoutUrl: CHATBOT_SETUP_CHECKOUT_URL,
-      checkoutUrl: CHATBOT_MONTHLY_CHECKOUT_URL,
+      setupCheckoutUrl: AI_ENHANCED_CHECKOUT_URL,
       features: [
         "Everything in the selected platform plan",
         "AI-powered conversations",
@@ -385,7 +384,7 @@ function AIAutomatedChatbot() {
                       {getFirstYearEstimate(plan.setupPrice, plan.price)}
                     </span>
                   </div>
-                  <div className="mt-6 grid grid-cols-2 gap-3">
+                  <div className="mt-6 grid grid-cols-1 gap-3 sm:grid-cols-2">
                     {plan.setupCheckoutUrl ? (
                       <>
                         <a
@@ -416,29 +415,17 @@ function AIAutomatedChatbot() {
                         {plan.buttonLabel || "Book a Consultation"}
                       </button>
                     )}
-                    {plan.checkoutUrl ? (
-                      <a
-                        href={plan.checkoutUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        aria-label={`Subscribe monthly for ${plan.name}`}
-                        className="col-span-2 inline-flex min-h-12 w-full items-center justify-center rounded-lg border border-slate-300 px-3 py-3 text-center text-sm font-bold text-slate-800 transition duration-200 hover:-translate-y-0.5 hover:border-sky-500 hover:bg-sky-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-500 focus-visible:ring-offset-2"
-                      >
-                        Subscribe monthly
-                      </a>
-                    ) : (
-                      <a
-                        href={`#${plan.name.toLowerCase().replace(/[^a-z0-9]+/g, "-")}-features`}
-                        aria-label={`View included features for ${plan.name}`}
-                        className="group col-span-2 inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-lg border border-slate-300 px-3 py-3 text-center text-sm font-bold text-slate-800 transition duration-200 hover:-translate-y-0.5 hover:border-sky-500 hover:bg-sky-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-500 focus-visible:ring-offset-2"
-                      >
-                        See included features
-                        <ArrowRight
-                          className="h-4 w-4 transition-transform group-hover:translate-x-0.5"
-                          aria-hidden="true"
-                        />
-                      </a>
-                    )}
+                    <a
+                      href={`#${plan.name.toLowerCase().replace(/[^a-z0-9]+/g, "-")}-features`}
+                      aria-label={`View included features for ${plan.name}`}
+                      className={`group inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-lg border border-slate-300 px-3 py-3 text-center text-sm font-bold text-slate-800 transition duration-200 hover:-translate-y-0.5 hover:border-sky-500 hover:bg-sky-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-500 focus-visible:ring-offset-2 ${plan.setupCheckoutUrl ? "sm:col-span-2" : ""}`}
+                    >
+                      See included features
+                      <ArrowRight
+                        className="h-4 w-4 transition-transform group-hover:translate-x-0.5"
+                        aria-hidden="true"
+                      />
+                    </a>
                   </div>
                 </div>
                 <div className="flex-1 border-t border-slate-200 bg-slate-50/70 px-6 py-6 sm:px-7">
