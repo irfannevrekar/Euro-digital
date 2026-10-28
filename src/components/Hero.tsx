@@ -124,7 +124,7 @@ function Hero() {
       className={`relative flex items-center justify-center overflow-hidden text-white ${
         isFullscreen
           ? "min-h-screen bg-black"
-          : "mt-[60px] min-h-[90vh] bg-black md:mt-[88px] md:min-h-[calc(100svh-2rem)]"
+          : "mt-[61px] min-h-[90vh] bg-black md:mt-[85px] md:min-h-[calc(100svh-2rem)]"
       }`}
     >
       {/* All backgrounds mounted + preloaded — slide changes stay instant */}

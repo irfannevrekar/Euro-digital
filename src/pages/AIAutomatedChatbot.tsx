@@ -64,6 +64,7 @@ function AIAutomatedChatbot() {
       setupLabel: "one-time integration",
       price: "$97",
       priceDetail: "per month",
+      setupCheckoutUrl: CHATBOT_SETUP_CHECKOUT_URL,
       features: [
         "WhatsApp Business API automation",
         "Priority support",
@@ -75,11 +76,13 @@ function AIAutomatedChatbot() {
       name: "Instagram AI Chatbot",
       category: "Messaging channel",
       icon: Instagram,
-      description: "Turn Instagram messages and comments into timely conversations.",
+      description:
+        "Turn Instagram messages and comments into timely conversations.",
       setupPrice: "$600",
       setupLabel: "one-time integration",
       price: "$97",
       priceDetail: "per month",
+      setupCheckoutUrl: CHATBOT_SETUP_CHECKOUT_URL,
       features: [
         "Instagram DM and comment automation",
         "Story mention auto-replies",
@@ -97,6 +100,7 @@ function AIAutomatedChatbot() {
       setupLabel: "one-time integration",
       price: "$97",
       priceDetail: "per month",
+      setupCheckoutUrl: CHATBOT_SETUP_CHECKOUT_URL,
       features: [
         "Facebook Page DM and comment automation",
         "Instant replies",
@@ -110,7 +114,8 @@ function AIAutomatedChatbot() {
       name: "Enterprise chatbot solution",
       category: "Custom deployment",
       icon: Building2,
-      description: "A tailored chatbot deployment built around your requirements.",
+      description:
+        "A tailored chatbot deployment built around your requirements.",
       badge: "Custom plan",
       setupPrice: "Custom",
       setupLabel: "integration scope",
@@ -130,11 +135,12 @@ function AIAutomatedChatbot() {
       name: "AI-Enhanced Chatbot Plan",
       category: "AI add-on",
       icon: Sparkles,
-      description: "Add AI powered conversations and lead qualification to your platform.",
+      description:
+        "Add AI powered conversations and lead qualification to your platform.",
       badge: "AI powered",
-      setupPrice: "$697",
+      setupPrice: "$600",
       setupLabel: "one-time integration",
-      price: "$699",
+      price: "$99",
       priceDetail: "per month",
       setupCheckoutUrl: CHATBOT_SETUP_CHECKOUT_URL,
       checkoutUrl: CHATBOT_MONTHLY_CHECKOUT_URL,
@@ -220,7 +226,7 @@ function AIAutomatedChatbot() {
               <div className="flex gap-4 pt-4">
                 <button
                   onClick={openBookingModal}
-                  className="touch-target touch-feedback rounded-full text-black font-medium px-6 py-2 shadow-lg cursor-pointer"
+                  className="rounded-full text-black font-medium px-6 py-2 shadow-lg cursor-pointer"
                   style={{ backgroundColor: "var(--primary-blue)" }}
                 >
                   {serviceData.primaryButtonText}
@@ -253,7 +259,8 @@ function AIAutomatedChatbot() {
               AI chatbot plans
             </h2>
             <p className="mt-4 text-base leading-7 text-slate-600 md:text-lg">
-              Compare platform plans and see the setup and recurring costs up front.
+              Compare platform plans and see the setup and recurring costs up
+              front.
             </p>
           </div>
 
@@ -269,7 +276,9 @@ function AIAutomatedChatbot() {
                 viewport={{ once: true, amount: 0.12 }}
                 transition={{
                   duration: prefersReducedMotion ? 0 : 0.45,
-                  delay: prefersReducedMotion ? 0 : Math.min(index * 0.06, 0.24),
+                  delay: prefersReducedMotion
+                    ? 0
+                    : Math.min(index * 0.06, 0.24),
                   ease: "easeOut",
                 }}
                 className={`group relative flex h-full min-h-[600px] flex-col overflow-hidden rounded-2xl border bg-white shadow-sm transition duration-200 hover:-translate-y-1 hover:shadow-xl md:col-span-1 xl:col-span-2 ${
@@ -293,7 +302,11 @@ function AIAutomatedChatbot() {
                 <div className="flex flex-1 flex-col p-6 sm:p-7">
                   <div className="flex items-start gap-4">
                     <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-sky-50 text-sky-700 ring-1 ring-sky-100">
-                      <plan.icon className="h-5 w-5" strokeWidth={1.8} aria-hidden="true" />
+                      <plan.icon
+                        className="h-5 w-5"
+                        strokeWidth={1.8}
+                        aria-hidden="true"
+                      />
                     </span>
                     <div>
                       <p className="mb-1 text-[10px] font-bold uppercase tracking-[0.14em] text-sky-700">
@@ -303,7 +316,7 @@ function AIAutomatedChatbot() {
                         {plan.name}
                       </h3>
                       <p className="mt-2 min-h-14 text-sm leading-6 text-slate-600">
-                    {plan.description}
+                        {plan.description}
                       </p>
                     </div>
                   </div>
@@ -334,7 +347,11 @@ function AIAutomatedChatbot() {
                           </div>
                         </div>
                         <span className="z-10 flex h-7 w-7 items-center justify-center rounded-full border border-slate-200 bg-white text-sky-700 shadow-sm">
-                          <Plus className="h-4 w-4" strokeWidth={2.5} aria-hidden="true" />
+                          <Plus
+                            className="h-4 w-4"
+                            strokeWidth={2.5}
+                            aria-hidden="true"
+                          />
                         </span>
                         <div className="min-w-0 rounded-xl border border-slate-200/80 bg-white px-3 py-3 sm:px-4">
                           <div className="mb-1.5 text-[10px] font-bold uppercase leading-4 tracking-[0.12em] text-slate-500 sm:text-[11px]">
@@ -357,7 +374,9 @@ function AIAutomatedChatbot() {
                   </p>
                   <div className="mt-4 flex items-center justify-between gap-3 border-t border-slate-100 pt-4 text-sm">
                     <span className="text-slate-500">
-                      {plan.price === "Custom" ? "Estimated pricing" : "First 12 months"}
+                      {plan.price === "Custom"
+                        ? "Estimated pricing"
+                        : "First 12 months"}
                       {plan.price !== "Custom" && (
                         <span className="text-xs"> (at listed rates)</span>
                       )}
@@ -366,23 +385,33 @@ function AIAutomatedChatbot() {
                       {getFirstYearEstimate(plan.setupPrice, plan.price)}
                     </span>
                   </div>
-                  <div className="mt-6 grid grid-cols-1 gap-3 sm:grid-cols-2">
+                  <div className="mt-6 grid grid-cols-2 gap-3">
                     {plan.setupCheckoutUrl ? (
-                      <a
-                        href={plan.setupCheckoutUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        aria-label={`Pay one-time setup for ${plan.name}`}
-                        className="touch-target touch-feedback flex items-center justify-center rounded-lg bg-sky-600 px-4 py-3 text-center text-sm font-bold text-white shadow-sm transition duration-200 hover:-translate-y-0.5 hover:bg-sky-700 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-500 focus-visible:ring-offset-2"
-                      >
-                        Pay setup fee
-                      </a>
+                      <>
+                        <a
+                          href={plan.setupCheckoutUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          aria-label={`Open payment link for ${plan.name}`}
+                          className="inline-flex min-h-12 w-full items-center justify-center rounded-lg bg-sky-600 px-3 py-3 text-center text-sm font-bold text-white shadow-sm transition duration-200 hover:-translate-y-0.5 hover:bg-sky-700 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-500 focus-visible:ring-offset-2"
+                        >
+                          Buy now
+                        </a>
+                        <button
+                          type="button"
+                          onClick={openBookingModal}
+                          aria-label={`Book a consultation for ${plan.name}`}
+                          className="inline-flex min-h-12 w-full items-center justify-center rounded-lg border border-slate-300 px-3 py-3 text-center text-sm font-bold text-slate-800 transition duration-200 hover:-translate-y-0.5 hover:border-sky-500 hover:bg-sky-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-500 focus-visible:ring-offset-2"
+                        >
+                          Book a consultation
+                        </button>
+                      </>
                     ) : (
                       <button
                         type="button"
                         onClick={openBookingModal}
                         aria-label={`${plan.buttonLabel || "Buy Now"}: ${plan.name}`}
-                        className="touch-target touch-feedback rounded-lg bg-sky-600 px-4 py-3 text-sm font-bold text-white shadow-sm transition duration-200 hover:-translate-y-0.5 hover:bg-sky-700 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-500 focus-visible:ring-offset-2"
+                        className="inline-flex min-h-12 w-full items-center justify-center rounded-lg bg-sky-600 px-3 py-3 text-center text-sm font-bold text-white shadow-sm transition duration-200 hover:-translate-y-0.5 hover:bg-sky-700 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-500 focus-visible:ring-offset-2"
                       >
                         {plan.buttonLabel || "Book a Consultation"}
                       </button>
@@ -393,7 +422,7 @@ function AIAutomatedChatbot() {
                         target="_blank"
                         rel="noopener noreferrer"
                         aria-label={`Subscribe monthly for ${plan.name}`}
-                        className="touch-target touch-feedback flex items-center justify-center rounded-lg border border-slate-300 px-4 py-3 text-center text-sm font-bold text-slate-800 transition duration-200 hover:-translate-y-0.5 hover:border-sky-500 hover:bg-sky-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-500 focus-visible:ring-offset-2"
+                        className="col-span-2 inline-flex min-h-12 w-full items-center justify-center rounded-lg border border-slate-300 px-3 py-3 text-center text-sm font-bold text-slate-800 transition duration-200 hover:-translate-y-0.5 hover:border-sky-500 hover:bg-sky-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-500 focus-visible:ring-offset-2"
                       >
                         Subscribe monthly
                       </a>
@@ -401,10 +430,13 @@ function AIAutomatedChatbot() {
                       <a
                         href={`#${plan.name.toLowerCase().replace(/[^a-z0-9]+/g, "-")}-features`}
                         aria-label={`View included features for ${plan.name}`}
-                        className="touch-target touch-feedback group flex items-center justify-center gap-2 rounded-lg border border-slate-300 px-4 py-3 text-sm font-bold text-slate-800 transition duration-200 hover:-translate-y-0.5 hover:border-sky-500 hover:bg-sky-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-500 focus-visible:ring-offset-2"
+                        className="group col-span-2 inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-lg border border-slate-300 px-3 py-3 text-center text-sm font-bold text-slate-800 transition duration-200 hover:-translate-y-0.5 hover:border-sky-500 hover:bg-sky-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-500 focus-visible:ring-offset-2"
                       >
                         See included features
-                        <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" aria-hidden="true" />
+                        <ArrowRight
+                          className="h-4 w-4 transition-transform group-hover:translate-x-0.5"
+                          aria-hidden="true"
+                        />
                       </a>
                     )}
                   </div>
@@ -428,7 +460,11 @@ function AIAutomatedChatbot() {
                         className="flex items-start gap-3 text-sm leading-6 text-slate-700"
                       >
                         <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-sky-50 text-sky-700">
-                          <Check className="h-3.5 w-3.5" strokeWidth={2.5} aria-hidden="true" />
+                          <Check
+                            className="h-3.5 w-3.5"
+                            strokeWidth={2.5}
+                            aria-hidden="true"
+                          />
                         </span>
                         <span>{feature}</span>
                       </li>
@@ -449,14 +485,15 @@ function AIAutomatedChatbot() {
                   Not sure which plan fits?
                 </h3>
                 <p className="mt-1 text-sm leading-6 text-slate-600">
-                  Tell us about your channels and goals. We’ll help you choose the right setup.
+                  Tell us about your channels and goals. We’ll help you choose
+                  the right setup.
                 </p>
               </div>
             </div>
             <button
               type="button"
               onClick={openBookingModal}
-              className="touch-target touch-feedback inline-flex shrink-0 items-center justify-center gap-2 rounded-lg border border-slate-300 bg-white px-5 py-3 text-sm font-bold text-slate-800 transition hover:border-sky-500 hover:bg-sky-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-500 focus-visible:ring-offset-2"
+              className="inline-flex min-h-11 shrink-0 items-center justify-center gap-2 rounded-lg border border-slate-300 bg-white px-5 py-3 text-sm font-bold text-slate-800 transition hover:border-sky-500 hover:bg-sky-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-500 focus-visible:ring-offset-2"
             >
               Get plan guidance
               <ArrowRight className="h-4 w-4" aria-hidden="true" />

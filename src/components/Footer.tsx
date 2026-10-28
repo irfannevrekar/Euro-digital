@@ -1,7 +1,7 @@
-import { ArrowRight, Linkedin, Facebook, Youtube, Twitter, X } from "lucide-react";
+import { Linkedin, Facebook, Youtube, Twitter, X } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
-import { openBookingModal } from "../constants/booking";
+import FooterCallToAction from "./FooterCallToAction";
 
 const quickLinks = [
   { name: "Home", path: "/" },
@@ -71,6 +71,8 @@ function Footer() {
         </div>
       )}
 
+      <FooterCallToAction />
+
       <footer
         className="relative isolate w-full overflow-hidden bg-cover bg-center bg-no-repeat text-white"
         style={{
@@ -78,37 +80,16 @@ function Footer() {
         }}
       >
         <div className="absolute inset-0 -z-10 bg-slate-950/80" aria-hidden="true" />
-        <div className="relative mx-auto max-w-7xl px-6 py-12 md:px-12 md:py-16">
-          <div className="mb-12 flex flex-col gap-5 rounded-2xl border border-white/15 bg-white/[0.07] p-6 backdrop-blur-sm sm:flex-row sm:items-center sm:justify-between sm:p-8">
-            <div>
-              <p className="mb-2 text-xs font-bold uppercase tracking-[0.16em] text-cyan-300">
-                Let&apos;s build what&apos;s next
-              </p>
-              <h2 className="text-2xl font-bold leading-tight text-white md:text-3xl">
-                Ready to make your next move?
-              </h2>
-              <p className="mt-2 max-w-xl text-sm leading-6 text-white/75">
-                Talk with our team about the right services and next steps for your business.
-              </p>
-            </div>
-            <button
-              type="button"
-              onClick={openBookingModal}
-              className="touch-target touch-feedback inline-flex min-h-12 shrink-0 items-center justify-center gap-2 rounded-lg bg-cyan-400 px-5 py-3 text-sm font-bold text-slate-950 shadow-lg transition hover:-translate-y-0.5 hover:bg-cyan-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900"
-            >
-              Book a consultation
-              <ArrowRight className="h-4 w-4" aria-hidden="true" />
-            </button>
-          </div>
+        <div className="relative mx-auto max-w-7xl px-6 py-8 md:px-12 md:py-10">
           {/* MAIN GRID - 4 Column Layout */}
-          <div className="grid grid-cols-1 gap-10 border-t border-white/20 pt-10 sm:grid-cols-2 lg:grid-cols-4 lg:gap-12">
+          <div className="grid grid-cols-1 gap-8 border-t border-white/20 pt-8 sm:grid-cols-2 lg:grid-cols-4 lg:gap-8">
             {/* COLUMN 1 — BRAND (Logo size increased significantly) */}
-            <div className="space-y-4 flex flex-col items-start">
+            <div className="flex flex-col items-start space-y-3">
               <Link to="/">
                 <img
                   src="/logo/euro-digital-white.png"
                   alt="Euro Digital Technologies"
-                    className="h-20 w-auto object-contain md:h-24"
+                    className="h-16 w-auto object-contain md:h-20"
 
                 />
               </Link>
@@ -139,12 +120,12 @@ function Footer() {
             </div>
 
             {/* COLUMN 2 — CERTIFICATIONS (Now centered and larger) */}
-            <div className="flex flex-col items-center lg:items-center space-y-8">
+            <div className="flex flex-col items-center space-y-5 lg:items-center">
               <h3 className="text-lg font-semibold text-white">
                 Certifications
               </h3>
 
-              <div className="flex flex-col items-center gap-6">
+              <div className="flex flex-col items-center gap-4">
                 <button
                   onClick={() => setSelectedCert("/logo/icv-certificate.png")}
                     className="touch-target touch-feedback group flex justify-center cursor-pointer"
@@ -152,7 +133,7 @@ function Footer() {
                   <img
                     src="/logo/iclogo.png"
                     alt="ICV Certification"
-                    className="h-16 md:h-20 opacity-90 grayscale group-hover:opacity-100 group-hover:grayscale-0 transition duration-300"
+                    className="h-14 md:h-16 opacity-90 grayscale group-hover:opacity-100 group-hover:grayscale-0 transition duration-300"
                   />
                 </button>
 
@@ -163,7 +144,7 @@ function Footer() {
                   <img
                     src="/logo/iso-1.png"
                     alt="ISO Certification"
-                    className="h-16 md:h-20 opacity-90 grayscale group-hover:opacity-100 group-hover:grayscale-0 transition duration-300"
+                    className="h-14 md:h-16 opacity-90 grayscale group-hover:opacity-100 group-hover:grayscale-0 transition duration-300"
                   />
                 </button>
               </div>
@@ -171,15 +152,15 @@ function Footer() {
 
             {/* COLUMN 3 — QUICK LINKS */}
             <div>
-              <h3 className="text-lg font-semibold mb-6 text-white lg:text-left">
+              <h3 className="text-lg font-semibold mb-4 text-white lg:text-left">
                 Quick Links
               </h3>
-              <ul className="space-y-4 text-left">
+              <ul className="space-y-2 text-left lg:space-y-1">
                 {quickLinks.map((link) => (
                   <li key={link.name}>
                     <Link
                       to={link.path}
-                  className="touch-target group inline-flex items-center text-[15px] text-white/75 transition-colors hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300"
+                  className="touch-target group inline-flex items-center text-[15px] lg:min-h-0 lg:min-w-0 text-white/75 transition-colors hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300"
                     >
                       {link.name}
                       <span className="block h-px bg-white w-0 group-hover:w-full transition-all duration-300"></span>
@@ -191,7 +172,7 @@ function Footer() {
 
             {/* COLUMN 4 — CONTACT US */}
             <div className="text-left">
-              <h3 className="text-lg font-semibold mb-6 text-white">
+              <h3 className="text-lg font-semibold mb-4 text-white">
                 Contact Us
               </h3>
               <div className="space-y-4 text-[15px] text-white/70">
@@ -213,7 +194,7 @@ function Footer() {
             </div>
           </div>
 
-          <div className="mt-12 flex flex-col gap-4 border-t border-white/20 pt-6 text-sm text-white/65 sm:flex-row sm:items-center sm:justify-between">
+          <div className="mt-8 flex flex-col gap-4 border-t border-white/20 pt-5 text-sm text-white/65 sm:flex-row sm:items-center sm:justify-between">
             <p>© {new Date().getFullYear()} Euro Digital Technologies LLC. All rights reserved.</p>
             <nav aria-label="Legal links" className="flex gap-5">
               <Link className="touch-target inline-flex items-center transition-colors hover:text-white" to="/privacy">Privacy</Link>
