@@ -829,7 +829,7 @@ function Sections({ onBookDemo }: SectionsProps) {
                   </h4>
 
                   {/* Description area */}
-                  <div className="-mx-3 mb-4 flex items-center border-y border-slate-200/80 bg-slate-50/70 px-3 md:-mx-4 md:min-h-40 md:px-4">
+                  <div className="-mx-3 flex items-center border-y border-slate-200/80 bg-slate-50/70 px-3 md:-mx-4 md:min-h-40 md:px-4">
                     <HoverProximityText
                       as="p"
                       text={card.desc}
@@ -840,19 +840,25 @@ function Sections({ onBookDemo }: SectionsProps) {
                     />
                   </div>
 
-                  <div className={`mb-4 grid gap-2 ${card.details.length === 2 ? "sm:grid-cols-2" : "sm:grid-cols-3"}`}>
+                  <div
+                    className={`-mx-1 grid grid-cols-1 divide-y divide-slate-300 border border-slate-300 bg-slate-100 sm:min-h-20 sm:items-stretch md:-mx-2 ${card.details.length === 2 ? "sm:grid-cols-2 sm:divide-x-2 sm:divide-y-0" : "sm:grid-cols-3 sm:divide-x-2 sm:divide-y-0"}`}
+                  >
                     {card.details.map((detail, detailIndex) => {
                       const DetailIcon = detailIcons[detailIndex % detailIcons.length];
 
                       return (
                         <div
                           key={detail}
-                          className="theme-card-detail group/detail relative flex min-h-[4.5rem] items-center gap-3 overflow-hidden rounded-2xl border border-slate-700/90 bg-[radial-gradient(ellipse_at_top_left,rgba(34,211,238,0.10),transparent_58%),linear-gradient(145deg,#172235_0%,#1e293b_58%,#202a3a_100%)] px-3 py-2 text-sm font-semibold leading-6 text-white shadow-[0_5px_16px_rgba(15,31,56,0.20)] ring-1 ring-inset ring-white/[0.06] transition duration-200 hover:-translate-y-0.5 hover:border-cyan-400/50 hover:shadow-[0_10px_24px_rgba(15,31,56,0.28)] motion-reduce:transform-none"
+                          className="flex min-h-10 items-center justify-center gap-2 px-3 py-2 text-center text-sm font-medium leading-5 text-slate-700"
                         >
-                          <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-cyan-300/15 text-cyan-200 shadow-[0_0_16px_rgba(34,211,238,0.12)] ring-1 ring-inset ring-cyan-200/35 transition duration-200 group-hover/detail:bg-cyan-300/25 group-hover/detail:text-white group-hover/detail:ring-cyan-100/50 motion-reduce:transition-none">
-                            <DetailIcon className={`h-[1.1rem] w-[1.1rem] ${DetailIcon === Zap ? "feature-icon-zap" : DetailIcon === Users ? "feature-icon-users" : ""}`} strokeWidth={2.2} aria-hidden="true" />
+                          <span className="theme-card-detail inline-flex shrink-0">
+                            <DetailIcon
+                              className={`h-4 w-4 text-cyan-700 ${DetailIcon === Zap ? "feature-icon-zap" : DetailIcon === Users ? "feature-icon-users" : ""}`}
+                              strokeWidth={2.2}
+                              aria-hidden="true"
+                            />
                           </span>
-                          <span className="flex min-h-9 items-center leading-5">{detail}</span>
+                          <span>{detail}</span>
                         </div>
                       );
                     })}
