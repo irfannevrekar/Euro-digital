@@ -1,38 +1,69 @@
 import { motion } from "framer-motion";
+import { ShieldCheck } from "lucide-react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 
 function PrivacyPolicy() {
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-slate-50">
       <Header />
       
       <main className="pt-20">
-        <section className="py-16 md:py-24">
-          <div className="max-w-4xl mx-auto px-6 md:px-8">
+        <section className="pb-16 md:pb-24">
+          <div className="mx-auto max-w-6xl px-6 md:px-8">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
             >
               {/* Header */}
-              <div className="text-center mb-12">
-                <h1 className="text-4xl md:text-5xl font-bold mb-4" style={{ color: 'var(--primary-navy)' }}>
+              <div className="relative mb-12 overflow-hidden rounded-3xl bg-gradient-to-br from-slate-950 via-[#102d4d] to-[#07516c] px-7 py-10 text-left shadow-xl shadow-slate-900/10 sm:px-10 md:mb-14 md:px-14 md:py-14">
+                <div aria-hidden="true" className="absolute -right-16 -top-24 h-72 w-72 rounded-full bg-cyan-400/15 blur-3xl" />
+                <div aria-hidden="true" className="absolute -bottom-32 right-1/3 h-64 w-64 rounded-full bg-blue-500/15 blur-3xl" />
+                <div className="relative max-w-3xl">
+                  <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-3 py-1.5 text-xs font-semibold uppercase tracking-[0.16em] text-cyan-100">
+                    <ShieldCheck aria-hidden="true" className="h-4 w-4" />
+                    Privacy & data protection
+                  </div>
+                <h1 className="mb-4 text-4xl font-bold tracking-tight text-white md:text-5xl lg:text-6xl">
                   Privacy Policy
                 </h1>
-                <p className="text-sm" style={{ color: 'var(--text-tertiary)' }}>
+                <p className="inline-flex rounded-full border border-white/15 bg-slate-950/20 px-3 py-1.5 text-sm text-slate-200">
                   Last Updated: 23 December 2025
                 </p>
+                </div>
               </div>
 
               {/* Content */}
-              <div className="space-y-8">
+              <div className="grid gap-8 lg:grid-cols-[220px_minmax(0,1fr)] lg:gap-10">
+                <nav aria-label="Privacy policy sections" className="h-fit rounded-2xl border border-slate-200 bg-white p-5 shadow-sm lg:sticky lg:top-28">
+                  <h2 className="mb-3 text-xs font-bold uppercase tracking-[0.14em] text-slate-500">On this page</h2>
+                  <ul className="flex flex-wrap gap-2 lg:flex-col lg:gap-1">
+                    {[
+                      ["information-we-collect", "Information we collect"],
+                      ["how-we-use-information", "How we use information"],
+                      ["data-protection", "Data protection"],
+                      ["third-party-services", "Third-party services"],
+                      ["your-rights", "Your rights"],
+                      ["policy-updates", "Policy updates"],
+                      ["contact-us", "Contact us"],
+                    ].map(([id, label]) => (
+                      <li key={id}>
+                        <a href={`#${id}`} className="block rounded-lg px-2.5 py-2 text-sm text-slate-600 transition-colors hover:bg-cyan-50 hover:text-cyan-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-500">
+                          {label}
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                </nav>
+
+                <div className="space-y-4">
                 {/* Introduction */}
                 <motion.div
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.1 }}
-                  className="space-y-4"
+                  className="space-y-4 rounded-2xl border border-slate-200 bg-white p-6 shadow-sm md:p-7"
                 >
                   <p className="text-lg leading-relaxed" style={{ color: 'var(--text-secondary)' }}>
                     At EuroDigital, your privacy matters to us. This Privacy Policy explains how we collect, use, protect, and handle your information when you visit our website or contact us through our services.
@@ -44,9 +75,10 @@ function PrivacyPolicy() {
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.2 }}
-                  className="space-y-4"
+                  id="information-we-collect"
+                  className="space-y-4 rounded-2xl border border-slate-200 bg-white p-6 shadow-sm md:p-7"
                 >
-                  <h2 className="text-2xl md:text-3xl font-semibold" style={{ color: 'var(--primary-navy)' }}>
+                  <h2 className="text-xl font-semibold tracking-tight text-slate-900 md:text-2xl">
                     Information We Collect
                   </h2>
                   <p className="leading-relaxed" style={{ color: 'var(--text-secondary)' }}>
@@ -76,9 +108,10 @@ function PrivacyPolicy() {
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.3 }}
-                  className="space-y-4"
+                  id="how-we-use-information"
+                  className="space-y-4 rounded-2xl border border-slate-200 bg-white p-6 shadow-sm md:p-7"
                 >
-                  <h2 className="text-2xl md:text-3xl font-semibold" style={{ color: 'var(--primary-navy)' }}>
+                  <h2 className="text-xl font-semibold tracking-tight text-slate-900 md:text-2xl">
                     How We Use Your Information
                   </h2>
                   <p className="leading-relaxed" style={{ color: 'var(--text-secondary)' }}>
@@ -112,9 +145,10 @@ function PrivacyPolicy() {
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.4 }}
-                  className="space-y-4"
+                  id="data-protection"
+                  className="space-y-4 rounded-2xl border border-slate-200 bg-white p-6 shadow-sm md:p-7"
                 >
-                  <h2 className="text-2xl md:text-3xl font-semibold" style={{ color: 'var(--primary-navy)' }}>
+                  <h2 className="text-xl font-semibold tracking-tight text-slate-900 md:text-2xl">
                     Data Protection
                   </h2>
                   <p className="leading-relaxed" style={{ color: 'var(--text-secondary)' }}>
@@ -127,9 +161,10 @@ function PrivacyPolicy() {
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.5 }}
-                  className="space-y-4"
+                  id="third-party-services"
+                  className="space-y-4 rounded-2xl border border-slate-200 bg-white p-6 shadow-sm md:p-7"
                 >
-                  <h2 className="text-2xl md:text-3xl font-semibold" style={{ color: 'var(--primary-navy)' }}>
+                  <h2 className="text-xl font-semibold tracking-tight text-slate-900 md:text-2xl">
                     Third-Party Services
                   </h2>
                   <p className="leading-relaxed" style={{ color: 'var(--text-secondary)' }}>
@@ -142,9 +177,10 @@ function PrivacyPolicy() {
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.6 }}
-                  className="space-y-4"
+                  id="your-rights"
+                  className="space-y-4 rounded-2xl border border-slate-200 bg-white p-6 shadow-sm md:p-7"
                 >
-                  <h2 className="text-2xl md:text-3xl font-semibold" style={{ color: 'var(--primary-navy)' }}>
+                  <h2 className="text-xl font-semibold tracking-tight text-slate-900 md:text-2xl">
                     Your Rights
                   </h2>
                   <p className="leading-relaxed" style={{ color: 'var(--text-secondary)' }}>
@@ -174,9 +210,10 @@ function PrivacyPolicy() {
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.7 }}
-                  className="space-y-4"
+                  id="policy-updates"
+                  className="space-y-4 rounded-2xl border border-slate-200 bg-white p-6 shadow-sm md:p-7"
                 >
-                  <h2 className="text-2xl md:text-3xl font-semibold" style={{ color: 'var(--primary-navy)' }}>
+                  <h2 className="text-xl font-semibold tracking-tight text-slate-900 md:text-2xl">
                     Updates to This Policy
                   </h2>
                   <p className="leading-relaxed" style={{ color: 'var(--text-secondary)' }}>
@@ -189,7 +226,8 @@ function PrivacyPolicy() {
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.8 }}
-                  className="bg-gradient-to-r from-blue-50 to-cyan-50 rounded-2xl p-8 mt-12"
+                  id="contact-us"
+                  className="rounded-2xl border border-cyan-100 bg-gradient-to-br from-blue-50 to-cyan-50 p-7 shadow-sm md:p-8"
                 >
                   <h2 className="text-2xl font-semibold mb-4" style={{ color: 'var(--primary-navy)' }}>
                     Contact Us
@@ -205,6 +243,7 @@ function PrivacyPolicy() {
                     Contact Us
                   </a>
                 </motion.div>
+                </div>
               </div>
             </motion.div>
           </div>
