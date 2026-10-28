@@ -30,6 +30,11 @@ function getFirstYearEstimate(setupPrice: string, monthlyPrice: string) {
   }).format(setupAmount + monthlyAmount * 12);
 }
 
+const CHATBOT_SETUP_CHECKOUT_URL =
+  "https://buy.stripe.com/3cIfZb8zH8ir79KakecEw0h";
+const CHATBOT_MONTHLY_CHECKOUT_URL =
+  "https://buy.stripe.com/dRm3cpeY5buDfGg63YcEw01";
+
 function AIAutomatedChatbot() {
   const prefersReducedMotion = useReducedMotion();
   const serviceData = {
@@ -127,10 +132,12 @@ function AIAutomatedChatbot() {
       icon: Sparkles,
       description: "Add AI powered conversations and lead qualification to your platform.",
       badge: "AI powered",
-      setupPrice: "$600",
+      setupPrice: "$697",
       setupLabel: "one-time integration",
-      price: "$99",
+      price: "$699",
       priceDetail: "per month",
+      setupCheckoutUrl: CHATBOT_SETUP_CHECKOUT_URL,
+      checkoutUrl: CHATBOT_MONTHLY_CHECKOUT_URL,
       features: [
         "Everything in the selected platform plan",
         "AI-powered conversations",
@@ -213,7 +220,7 @@ function AIAutomatedChatbot() {
               <div className="flex gap-4 pt-4">
                 <button
                   onClick={openBookingModal}
-                  className="rounded-full text-black font-medium px-6 py-2 shadow-lg cursor-pointer"
+                  className="touch-target touch-feedback rounded-full text-black font-medium px-6 py-2 shadow-lg cursor-pointer"
                   style={{ backgroundColor: "var(--primary-blue)" }}
                 >
                   {serviceData.primaryButtonText}
@@ -360,22 +367,46 @@ function AIAutomatedChatbot() {
                     </span>
                   </div>
                   <div className="mt-6 grid grid-cols-1 gap-3 sm:grid-cols-2">
-                    <button
-                      type="button"
-                      onClick={openBookingModal}
-                      aria-label={`${plan.buttonLabel || "Buy Now"}: ${plan.name}`}
-                      className="min-h-11 rounded-lg bg-sky-600 px-4 py-3 text-sm font-bold text-white shadow-sm transition duration-200 hover:-translate-y-0.5 hover:bg-sky-700 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-500 focus-visible:ring-offset-2"
-                    >
-                      {plan.buttonLabel || "Book a Consultation"}
-                    </button>
-                    <a
-                      href={`#${plan.name.toLowerCase().replace(/[^a-z0-9]+/g, "-")}-features`}
-                      aria-label={`View included features for ${plan.name}`}
-                      className="group flex min-h-11 items-center justify-center gap-2 rounded-lg border border-slate-300 px-4 py-3 text-sm font-bold text-slate-800 transition duration-200 hover:-translate-y-0.5 hover:border-sky-500 hover:bg-sky-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-500 focus-visible:ring-offset-2"
-                    >
-                      See included features
-                      <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" aria-hidden="true" />
-                    </a>
+                    {plan.setupCheckoutUrl ? (
+                      <a
+                        href={plan.setupCheckoutUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label={`Pay one-time setup for ${plan.name}`}
+                        className="touch-target touch-feedback flex items-center justify-center rounded-lg bg-sky-600 px-4 py-3 text-center text-sm font-bold text-white shadow-sm transition duration-200 hover:-translate-y-0.5 hover:bg-sky-700 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-500 focus-visible:ring-offset-2"
+                      >
+                        Pay setup fee
+                      </a>
+                    ) : (
+                      <button
+                        type="button"
+                        onClick={openBookingModal}
+                        aria-label={`${plan.buttonLabel || "Buy Now"}: ${plan.name}`}
+                        className="touch-target touch-feedback rounded-lg bg-sky-600 px-4 py-3 text-sm font-bold text-white shadow-sm transition duration-200 hover:-translate-y-0.5 hover:bg-sky-700 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-500 focus-visible:ring-offset-2"
+                      >
+                        {plan.buttonLabel || "Book a Consultation"}
+                      </button>
+                    )}
+                    {plan.checkoutUrl ? (
+                      <a
+                        href={plan.checkoutUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label={`Subscribe monthly for ${plan.name}`}
+                        className="touch-target touch-feedback flex items-center justify-center rounded-lg border border-slate-300 px-4 py-3 text-center text-sm font-bold text-slate-800 transition duration-200 hover:-translate-y-0.5 hover:border-sky-500 hover:bg-sky-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-500 focus-visible:ring-offset-2"
+                      >
+                        Subscribe monthly
+                      </a>
+                    ) : (
+                      <a
+                        href={`#${plan.name.toLowerCase().replace(/[^a-z0-9]+/g, "-")}-features`}
+                        aria-label={`View included features for ${plan.name}`}
+                        className="touch-target touch-feedback group flex items-center justify-center gap-2 rounded-lg border border-slate-300 px-4 py-3 text-sm font-bold text-slate-800 transition duration-200 hover:-translate-y-0.5 hover:border-sky-500 hover:bg-sky-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-500 focus-visible:ring-offset-2"
+                      >
+                        See included features
+                        <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" aria-hidden="true" />
+                      </a>
+                    )}
                   </div>
                 </div>
                 <div className="flex-1 border-t border-slate-200 bg-slate-50/70 px-6 py-6 sm:px-7">
@@ -425,7 +456,7 @@ function AIAutomatedChatbot() {
             <button
               type="button"
               onClick={openBookingModal}
-              className="inline-flex min-h-11 shrink-0 items-center justify-center gap-2 rounded-lg border border-slate-300 bg-white px-5 py-3 text-sm font-bold text-slate-800 transition hover:border-sky-500 hover:bg-sky-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-500 focus-visible:ring-offset-2"
+              className="touch-target touch-feedback inline-flex shrink-0 items-center justify-center gap-2 rounded-lg border border-slate-300 bg-white px-5 py-3 text-sm font-bold text-slate-800 transition hover:border-sky-500 hover:bg-sky-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-500 focus-visible:ring-offset-2"
             >
               Get plan guidance
               <ArrowRight className="h-4 w-4" aria-hidden="true" />

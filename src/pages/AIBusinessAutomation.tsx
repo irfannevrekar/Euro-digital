@@ -93,7 +93,7 @@ function AIBusinessAutomation() {
               <div className="flex gap-4 pt-4 ">
                 <button
                   onClick={openBookingModal}
-                  className="rounded-full text-white font-medium px-6 py-2 shadow-lg transition-all hover:shadow-xl hover:scale-105 "
+                  className="touch-target touch-feedback rounded-full text-white font-medium px-6 py-2 shadow-lg transition-all hover:shadow-xl hover:scale-105 "
                   style={{ backgroundColor: "var(--primary-blue)" }}
                 >
                   {serviceData.primaryButtonText}
@@ -317,11 +317,7 @@ function AIBusinessAutomation() {
                       event.preventDefault();
                       openBookingModal();
                     }}
-                  >
-                    <button className="bg-white text-slate-900 border border-slate-300 px-5 py-2 rounded font-semibold text-sm hover:bg-slate-50 transition-colors cursor-pointer">
-                      Request a Demo
-                    </button>
-                  </a>
+                  ></a>
                 </div>
               </div>
 

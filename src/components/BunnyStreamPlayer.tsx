@@ -269,7 +269,7 @@ function BunnyStreamPlayer({
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.2 }}
-              className="absolute inset-0 z-30 flex cursor-pointer items-center justify-center bg-black/10"
+              className="touch-feedback absolute inset-0 z-30 flex cursor-pointer items-center justify-center bg-black/10"
               aria-label={`Play ${title}`}
             >
               <motion.span
@@ -309,7 +309,7 @@ function BunnyStreamPlayer({
               <button
                 type="button"
                 onClick={togglePlayPause}
-                className="flex h-9 w-9 shrink-0 cursor-pointer items-center justify-center rounded-full bg-white/15 text-white backdrop-blur-sm transition-transform hover:scale-105"
+                className="touch-target touch-feedback flex shrink-0 cursor-pointer items-center justify-center rounded-full bg-white/15 text-white backdrop-blur-sm transition-transform hover:scale-105"
                 aria-label={isPlaying ? "Pause" : "Play"}
               >
                 {isPlaying ? (
@@ -326,7 +326,7 @@ function BunnyStreamPlayer({
               <div
                 ref={progressRef}
                 onClick={handleProgressClick}
-                className="group/bar relative flex h-6 flex-1 cursor-pointer items-center"
+                className="group/bar relative flex min-h-11 flex-1 cursor-pointer items-center touch-pan-x"
                 aria-label="Video progress"
               >
                 <div className="h-1.5 w-full overflow-hidden rounded-full bg-white/25">
@@ -344,7 +344,7 @@ function BunnyStreamPlayer({
               <button
                 type="button"
                 onClick={toggleMute}
-                className="flex h-9 w-9 shrink-0 cursor-pointer items-center justify-center rounded-full bg-white/15 text-white backdrop-blur-sm transition-transform hover:scale-105"
+                className="touch-target touch-feedback flex shrink-0 cursor-pointer items-center justify-center rounded-full bg-white/15 text-white backdrop-blur-sm transition-transform hover:scale-105"
                 aria-label={isMuted ? "Unmute" : "Mute"}
               >
                 {isMuted ? (

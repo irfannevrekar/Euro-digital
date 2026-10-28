@@ -95,13 +95,12 @@ function AIBusinessPromotion() {
                 <button
                   type="button"
                   onClick={openBookingModal}
-                  className="rounded-full px-6 py-2 font-medium text-black shadow-lg transition hover:brightness-110"
+                  className="touch-target touch-feedback rounded-full px-6 py-2 font-medium text-black shadow-lg transition hover:brightness-110"
                   style={{ backgroundColor: "var(--primary-blue)" }}
                 >
                   Talk to Us
                 </button>
               </div>
-
             </div>
 
             <div className="relative ">
@@ -377,11 +376,7 @@ function AIBusinessPromotion() {
                       event.preventDefault();
                       openBookingModal();
                     }}
-                  >
-                    <button className="bg-white text-slate-900 border border-slate-300 px-5 py-2 rounded font-semibold text-sm hover:bg-slate-50 transition-colors cursor-pointer">
-                      Request a Demo
-                    </button>
-                  </a>
+                  ></a>
                 </div>
               </div>
 

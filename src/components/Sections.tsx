@@ -1,5 +1,23 @@
 import { Link } from "react-router-dom";
-import { Play } from "lucide-react";
+import {
+  ArrowUpRight,
+  Bot,
+  Building2,
+  CalendarCheck,
+  ContactRound,
+  HeartHandshake,
+  Megaphone,
+  MessageCircle,
+  PanelsTopLeft,
+  Pause,
+  PhoneCall,
+  Play,
+  Puzzle,
+  TrendingUp,
+  Users,
+  Workflow,
+  Zap,
+} from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import BunnyStreamPlayer from "./BunnyStreamPlayer";
 import { isBunnyStreamUrl } from "../utils/bunnyStream";
@@ -14,6 +32,8 @@ interface Card {
   image?: string;
   link: string;
   bookingUrl?: string;
+  details: string[];
+  icon: typeof Workflow;
 }
 
 const serviceDescriptions = new Map(
@@ -23,6 +43,7 @@ const serviceDescriptions = new Map(
 );
 
 const getServiceDescription = (title: string) => serviceDescriptions.get(title) ?? "";
+const detailIcons = [Zap, Users, TrendingUp] as const;
 
 const cards: Card[] = [
   {
@@ -33,6 +54,8 @@ const cards: Card[] = [
       "https://player.mediadelivery.net/play/661416/aba8e1cb-c5df-4c8e-8d47-a8bf6d066411",
     link: "/services/ai-business-automation",
     bookingUrl: SERVICE_BOOKING_URLS.aiBusinessAutomation,
+    details: ["Lead follow-up agents", "CRM and ERP workflows", "After-sales automation"],
+    icon: Workflow,
   },
   {
     title: "AI Business Promotion",
@@ -42,6 +65,8 @@ const cards: Card[] = [
       "https://player.mediadelivery.net/play/661416/02126d15-3c9d-4d94-a8ac-1d8bbc37332e",
     link: "/services/ai-business-promotion",
     bookingUrl: SERVICE_BOOKING_URLS.aiBusinessPromotion,
+    details: ["AI-generated campaigns", "Fast ad production", "Audience-ready creative"],
+    icon: Megaphone,
   },
   {
     title: "AI Agent Talk Time",
@@ -49,6 +74,8 @@ const cards: Card[] = [
     desc: getServiceDescription("AI Agent Talk Time"),
     image: "/backgroundImages/ai_automation.png",
     link: "/services/ai-agent-talk-time",
+    details: ["Inbound and outbound calls", "Lead qualification", "24/7 call coverage"],
+    icon: PhoneCall,
   },
   {
     title: "AI Automated Chatbot",
@@ -58,6 +85,8 @@ const cards: Card[] = [
       "https://player.mediadelivery.net/play/661416/c564b724-82f9-4426-b62e-079b3a1b8fb4",
     link: "/services/ai-automated-chatbot",
     bookingUrl: SERVICE_BOOKING_URLS.aiAutomatedChatbot,
+    details: ["Website and social chat", "FAQ and support flows", "Lead capture and nurturing"],
+    icon: Bot,
   },
   {
     title: "AI Add-on Services",
@@ -67,6 +96,8 @@ const cards: Card[] = [
       "https://player.mediadelivery.net/play/661416/0547118b-9fd8-4aae-864f-77f5f0690710",
     link: "/services/ai-addon-services",
     bookingUrl: SERVICE_BOOKING_URLS.aiAddon,
+    details: ["Custom system add-ons", "Connected workflows", "Smarter daily decisions"],
+    icon: Puzzle,
   },
   {
     title: "Industry-Specific AI",
@@ -75,6 +106,8 @@ const cards: Card[] = [
     video:
       "https://player.mediadelivery.net/play/661416/78158008-7515-443f-a183-a54a8d3b3a3f",
     link: "/services/industry-specific",
+    details: ["Industry-specific workflows", "Practical use cases", "Tailored implementation"],
+    icon: Building2,
   },
   {
     title: "AI Website Builder",
@@ -84,6 +117,8 @@ const cards: Card[] = [
       "https://player.mediadelivery.net/play/661416/2fbe2f5c-3f7c-4ebd-8121-5312b7173497",
     link: "/products/website-builder",
     bookingUrl: SERVICE_BOOKING_URLS.aiWebsiteBuilder,
+    details: ["Conversion-ready websites", "AI-assisted content", "Mobile-first experiences"],
+    icon: PanelsTopLeft,
   },
   {
     title: "ED-CRM",
@@ -93,6 +128,8 @@ const cards: Card[] = [
       "https://player.mediadelivery.net/play/667434/9498cecf-b56b-403f-a713-3551b8f7cf8c",
     link: "/products/edcrm",
     bookingUrl: SERVICE_BOOKING_URLS.edCrm,
+    details: ["One lead pipeline", "Automated follow-up", "Sales visibility"],
+    icon: ContactRound,
   },
   {
     title: "Emotion AI",
@@ -102,6 +139,8 @@ const cards: Card[] = [
       "https://player.mediadelivery.net/play/661416/63fe6a94-5414-484c-b852-3c38c580a74f",
     link: "/products/emotionai",
     bookingUrl: SERVICE_BOOKING_URLS.emotionAi,
+    details: ["Tone-aware conversations", "Personalized responses", "Better customer context"],
+    icon: HeartHandshake,
   },
   {
     title: "WhatsApp Business API",
@@ -111,6 +150,8 @@ const cards: Card[] = [
       "https://player.mediadelivery.net/play/661416/6a61d538-971f-4b67-898e-708a8dfa12ab",
     link: "https://www.eurodigital.marketing/",
     bookingUrl: SERVICE_BOOKING_URLS.whatsappApi,
+    details: ["WhatsApp storefronts", "Payment and enquiry flows", "Automated follow-up"],
+    icon: MessageCircle,
   },
 ];
 
@@ -121,7 +162,7 @@ const serviceGroups = [
     title: "Digital Marketing and Promotions",
     path: "/solutions/digital-marketing-and-promotions",
     description:
-      "Bring campaigns, websites, CRM, and WhatsApp follow-up into one practical customer acquisition system.",
+      "Bring campaigns, websites, CRM, and WhatsApp follow-up into one practical customer acquisition system.",
   },
   {
     id: "engagement" as const,
@@ -241,6 +282,7 @@ const testimonials = [
 function TestimonialsSection() {
   const [index, setIndex] = useState(0);
   const [visibleCards, setVisibleCards] = useState(1);
+  const swipeStartRef = useRef<{ x: number; y: number } | null>(null);
 
   useEffect(() => {
     const updateVisibleCards = () => {
@@ -254,14 +296,32 @@ function TestimonialsSection() {
 
   const totalPages = Math.ceil(testimonials.length / visibleCards);
 
-  useEffect(() => {
-    setIndex((currentIndex) => Math.min(currentIndex, totalPages - 1));
-  }, [totalPages]);
+  const activePage = Math.min(index, totalPages - 1);
+
+  const handleSwipeStart = (event: React.PointerEvent<HTMLDivElement>) => {
+    if (event.pointerType !== "touch") return;
+    if ((event.target as HTMLElement).closest("button, a, input, textarea, select")) return;
+    swipeStartRef.current = { x: event.clientX, y: event.clientY };
+  };
+
+  const handleSwipeEnd = (event: React.PointerEvent<HTMLDivElement>) => {
+    const start = swipeStartRef.current;
+    swipeStartRef.current = null;
+    if (!start || event.pointerType !== "touch") return;
+
+    const deltaX = event.clientX - start.x;
+    const deltaY = event.clientY - start.y;
+    if (Math.abs(deltaX) < 48 || Math.abs(deltaX) < Math.abs(deltaY) * 1.25) return;
+
+    setIndex((currentIndex) =>
+      Math.max(0, Math.min(currentIndex + (deltaX < 0 ? 1 : -1), totalPages - 1)),
+    );
+  };
 
   return (
     <section
       id="testimonials"
-      className="scroll-mt-32 overflow-hidden bg-[#0b1538] py-20 md:py-24"
+      className="scroll-mt-32 overflow-hidden bg-[#0b1538] pb-20 pt-32 md:pb-24 md:pt-36"
       style={{
         backgroundImage:
           "radial-gradient(circle at 50% 120%, rgba(6, 182, 212, 0.22), transparent 32%)",
@@ -276,8 +336,8 @@ function TestimonialsSection() {
           <button
             type="button"
             onClick={() => setIndex((currentIndex) => Math.max(currentIndex - 1, 0))}
-            disabled={index === 0}
-            className="absolute left-0 top-1/2 z-10 hidden h-12 w-12 -translate-x-[175%] -translate-y-1/2 items-center justify-center rounded-full border border-white/10 bg-white text-2xl text-slate-800 shadow-lg transition-colors hover:bg-slate-100 disabled:cursor-not-allowed disabled:bg-slate-400 disabled:opacity-60 lg:flex"
+            disabled={activePage === 0}
+            className="touch-target touch-feedback absolute left-0 top-1/2 z-10 hidden -translate-x-[175%] -translate-y-1/2 items-center justify-center rounded-full border border-white/10 bg-white text-2xl text-slate-800 shadow-lg transition-colors hover:bg-slate-100 disabled:cursor-not-allowed disabled:bg-slate-400 disabled:opacity-60 lg:flex"
             aria-label="Previous testimonials"
           >
             ‹
@@ -285,23 +345,30 @@ function TestimonialsSection() {
           <button
             type="button"
             onClick={() => setIndex((currentIndex) => Math.min(currentIndex + 1, totalPages - 1))}
-            disabled={index === totalPages - 1}
-            className="absolute right-0 top-1/2 z-10 hidden h-12 w-12 translate-x-[175%] -translate-y-1/2 items-center justify-center rounded-full border border-white/10 bg-white text-2xl text-slate-800 shadow-lg transition-colors hover:bg-slate-100 disabled:cursor-not-allowed disabled:bg-slate-400 disabled:opacity-60 lg:flex"
+            disabled={activePage === totalPages - 1}
+            className="touch-target touch-feedback absolute right-0 top-1/2 z-10 hidden translate-x-[175%] -translate-y-1/2 items-center justify-center rounded-full border border-white/10 bg-white text-2xl text-slate-800 shadow-lg transition-colors hover:bg-slate-100 disabled:cursor-not-allowed disabled:bg-slate-400 disabled:opacity-60 lg:flex"
             aria-label="Next testimonials"
           >
             ›
           </button>
 
-          <div className="overflow-hidden">
+          <div
+            className="overflow-hidden touch-pan-y"
+            onPointerDown={handleSwipeStart}
+            onPointerUp={handleSwipeEnd}
+            onPointerCancel={() => { swipeStartRef.current = null; }}
+            role="region"
+            aria-label="Swipe through testimonials"
+          >
             <div
               className="flex transition-transform duration-500 ease-out"
-              style={{ transform: `translateX(-${index * (100 / visibleCards)}%)` }}
+              style={{ transform: `translateX(-${activePage * (100 / visibleCards)}%)` }}
             >
               {testimonials.map((testimonial) => (
                 <article key={testimonial.name} className="w-full shrink-0 px-3 md:w-1/2 lg:w-1/3">
-                  <div className="flex h-full min-h-[31rem] flex-col rounded-2xl border border-slate-100 bg-white p-8 text-center shadow-[0_12px_35px_rgba(0,0,0,0.16)] md:p-10">
+                  <div className="flex h-full min-h-[31rem] flex-col rounded-2xl border border-slate-100 bg-white p-7 text-center shadow-[0_12px_35px_rgba(0,0,0,0.16)] md:p-9">
                     <span className="font-serif text-5xl leading-none text-blue-300">“</span>
-                    <p className="mt-7 max-h-[13rem] flex-1 overflow-hidden whitespace-pre-line text-sm italic leading-6 text-slate-600 md:text-base md:leading-7">
+                    <p className="mt-7 flex-1 whitespace-pre-line text-sm italic leading-6 text-slate-600 md:text-base md:leading-7">
                       {testimonial.text}
                     </p>
                     <div className="mt-6 flex flex-col items-center border-t border-slate-100 pt-5">
@@ -331,9 +398,9 @@ function TestimonialsSection() {
               key={page}
               onClick={() => setIndex(page)}
               aria-label={`Show testimonial page ${page + 1}`}
-              aria-current={index === page ? "true" : undefined}
-              className={`h-2 rounded-full transition-all ${index === page ? "w-8 bg-blue-500" : "w-2 bg-slate-300 hover:bg-white"}`}
-            />
+              aria-current={activePage === page ? "true" : undefined}
+              className="touch-target touch-feedback flex items-center justify-center rounded-full p-0 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300"
+            ><span className={`block h-2 rounded-full transition-all ${activePage === page ? "w-8 bg-blue-500" : "w-2 bg-slate-300 hover:bg-white"}`} /></button>
           ))}
         </div>
       </div>
@@ -346,6 +413,7 @@ interface SectionsProps {
 }
 
 function Sections({ onBookDemo }: SectionsProps) {
+  const [activeCategory, setActiveCategory] = useState<Card["category"] | "all">("all");
   const [currentlyPlayingIndex, setCurrentlyPlayingIndex] = useState<
     number | null
   >(null);
@@ -371,6 +439,17 @@ function Sections({ onBookDemo }: SectionsProps) {
       }
     });
   };
+
+  const selectCategory = (category: Card["category"] | "all") => {
+    pauseAllVideos();
+    setCurrentlyPlayingIndex(null);
+    setBufferingVideoIndex(null);
+    setActiveCategory(category);
+  };
+
+  const visibleCards = activeCategory === "all"
+    ? cards
+    : cards.filter((card) => card.category === activeCategory);
 
   const handleBunnyVideoActivate = (index: number) => {
     pauseAllVideos();
@@ -444,21 +523,53 @@ function Sections({ onBookDemo }: SectionsProps) {
           </p>
         </div>
 
-        <div className="max-w-7xl mx-auto px-6 md:px-12 space-y-20">
-          <div className="grid items-stretch gap-8 md:grid-cols-2 md:gap-10">
-            {cards.map((card) => {
+        <div className="mx-auto max-w-7xl space-y-10 px-6 md:px-12">
+          <div className="relative z-10 flex flex-wrap items-center justify-center gap-2" aria-label="Filter services by category">
+            {([
+              { id: "all", label: "All services" },
+              { id: "growth", label: "Growth" },
+              { id: "engagement", label: "Engagement" },
+              { id: "automation", label: "Automation" },
+            ] as const).map(({ id, label }) => {
+              const count = id === "all" ? cards.length : cards.filter((card) => card.category === id).length;
+              const isActive = activeCategory === id;
+
+              return (
+                <button
+                  key={id}
+                  type="button"
+                  onClick={() => selectCategory(id)}
+                  aria-pressed={isActive}
+                  className={`touch-target touch-feedback inline-flex items-center gap-2 rounded-full border px-4 py-2 text-sm font-semibold transition-all duration-200 active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-500 focus-visible:ring-offset-2 ${
+                    isActive
+                      ? "border-slate-900 bg-slate-900 text-white shadow-md"
+                      : "border-slate-200 bg-white text-slate-600 hover:border-cyan-300 hover:bg-cyan-50 hover:text-cyan-800"
+                  }`}
+                >
+                  {label}
+                  <span className={`rounded-full px-2 py-0.5 text-xs ${isActive ? "bg-white/15 text-white" : "bg-slate-100 text-slate-500"}`}>
+                    {count}
+                  </span>
+                </button>
+              );
+            })}
+          </div>
+
+          <div className="grid items-stretch gap-6 md:grid-cols-2 md:gap-8" aria-live="polite">
+            {visibleCards.map((card, cardIndex) => {
                   const index = cards.indexOf(card);
                   const isPlaying = currentlyPlayingIndex === index;
                   const isBuffering = bufferingVideoIndex === index;
+                  const ServiceIcon = card.icon;
 
                   return (
               <div
                 key={card.title}
-                className="group rounded-3xl flex flex-col p-5 md:p-6 border border-slate-200/80 shadow-[0_10px_35px_rgba(15,31,56,0.06)] hover:shadow-[0_22px_60px_rgba(15,31,56,0.14)] hover:-translate-y-1 transition-all duration-300 h-full"
-                style={{ backgroundColor: "var(--bg-secondary)" }}
+                className="service-card-enter theme-card group relative flex h-full flex-col overflow-hidden rounded-[1.75rem] border border-slate-200/90 bg-gradient-to-br from-white via-white to-cyan-50/40 p-2 shadow-[0_12px_34px_rgba(15,31,56,0.06)] transition-all duration-300 hover:-translate-y-1 hover:border-cyan-300 hover:shadow-[0_24px_60px_rgba(15,31,56,0.15)] focus-within:ring-2 focus-within:ring-cyan-400 focus-within:ring-offset-2"
+                style={{ animationDelay: `${(cardIndex % 2) * 60}ms` }}
               >
                 {/* Media Area: Supports both Images and Videos */}
-                <div className="relative w-full h-72 md:h-80 rounded-xl shrink-0 overflow-hidden">
+                <div className="relative h-64 w-full shrink-0 overflow-hidden rounded-[1.15rem] bg-slate-100 ring-1 ring-inset ring-slate-900/10 md:h-72">
                   {card.video ? (
                     isBunnyStreamUrl(card.video) ? (
                       <BunnyStreamPlayer
@@ -485,7 +596,7 @@ function Sections({ onBookDemo }: SectionsProps) {
                           preload={
                             isPlaying || isBuffering ? "auto" : "metadata"
                           }
-                          className="relative z-10 h-full w-full object-cover"
+                          className="relative z-10 h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.025]"
                           onMouseEnter={() => warmVideo(index)}
                           onTouchStart={() => warmVideo(index)}
                           onCanPlay={() => {
@@ -504,85 +615,111 @@ function Sections({ onBookDemo }: SectionsProps) {
                             setBufferingVideoIndex(null);
                           }}
                         />
-                        <div
+                        <button
+                          type="button"
                           onClick={() => handleVideoPlay(index)}
-                          className="absolute inset-0 z-20 flex items-center justify-center bg-black/10 group-hover:bg-black/30 transition-all duration-300 cursor-pointer"
+                          disabled={isBuffering}
+                          aria-label={`${isPlaying ? "Pause" : "Play"} ${card.title} video`}
+                          aria-pressed={isPlaying}
+                  className="touch-feedback group/play absolute inset-0 z-20 flex cursor-pointer items-center justify-center bg-black/10 transition-all duration-300 hover:bg-black/30 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-inset focus-visible:ring-cyan-300 disabled:cursor-wait"
                         >
-                          <div className="bg-white/20 backdrop-blur-sm p-4 rounded-full border border-white/30 transform transition-transform group-hover:scale-110">
+                          <span className="flex h-16 w-16 items-center justify-center rounded-full border border-white/45 bg-slate-950/40 text-white shadow-lg backdrop-blur-md transition duration-200 group-hover/play:scale-110 group-active/play:scale-95">
                             {isBuffering ? (
-                              <div className="h-10 w-10 rounded-full border-4 border-white/35 border-t-white animate-spin" />
+                              <span className="h-9 w-9 animate-spin rounded-full border-4 border-white/35 border-t-white" />
                             ) : isPlaying ? (
-                              <div className="flex gap-1.5">
-                                <div className="w-2.5 h-10 bg-white rounded-full" />
-                                <div className="w-2.5 h-10 bg-white rounded-full" />
-                              </div>
+                              <Pause className="h-8 w-8 fill-white" aria-hidden="true" />
                             ) : (
-                              <Play className="w-10 h-10 text-white fill-white" />
+                              <Play className="ml-1 h-8 w-8 fill-white" aria-hidden="true" />
                             )}
-                          </div>
-                        </div>
+                          </span>
+                        </button>
                       </>
                     )
                   ) : card.image ? (
                     <img
                       src={card.image}
                       alt={card.title}
-                      className="h-full w-full object-cover"
+                      className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.035]"
                       loading="lazy"
                       decoding="async"
                       sizes="(min-width: 768px) 50vw, 100vw"
                     />
                   ) : null}
+                  <div className="pointer-events-none absolute inset-0 z-10 bg-gradient-to-t from-slate-950/45 via-transparent to-slate-950/5" />
+                  {card.video && (
+                    <div className="pointer-events-none absolute bottom-3 left-3 z-20 inline-flex items-center gap-2 rounded-full border border-white/25 bg-slate-950/45 px-3 py-1.5 text-[10px] font-bold uppercase tracking-[0.14em] text-white shadow-lg backdrop-blur-md">
+                      <Play className="h-3 w-3 fill-current" aria-hidden="true" />
+                      Watch overview
+                    </div>
+                  )}
                 </div>
 
                 {/* Content Area: flex-grow ensures this fills space to push buttons down */}
-                <div className="pt-6 md:pt-8 flex flex-col flex-grow">
+                <div className="flex flex-grow flex-col px-1 pb-1 pt-4 md:px-2 md:pt-5">
+                  <div className="mb-2 flex items-center justify-between gap-3">
+                    <span className="theme-card-category inline-flex items-center rounded-full bg-cyan-50 px-3 py-1 text-[10px] font-extrabold uppercase tracking-[0.16em] text-cyan-700 ring-1 ring-inset ring-cyan-100">
+                      {card.category === "growth"
+                        ? "Growth"
+                        : card.category === "engagement"
+                          ? "Engagement"
+                          : "Automation"}
+                    </span>
+                    <img
+                      src="/logo/logo.svg"
+                      alt="Euro Digital Technologies"
+                      className="h-7 w-[4.7rem] object-contain object-right"
+                      loading="lazy"
+                    />
+                  </div>
                   <h4
-                    className="mb-4 text-2xl md:text-3xl font-semibold leading-tight text-balance"
-                    style={{ color: "var(--text-primary)" }}
+                    className="theme-card-heading mb-2 flex items-center gap-3 text-2xl font-bold leading-tight tracking-[-0.025em] text-balance md:text-[1.7rem]"
                   >
+                    <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-cyan-50 to-sky-100 text-cyan-700 shadow-sm ring-1 ring-inset ring-cyan-200/70 transition duration-300 group-hover:scale-105 group-hover:shadow-md">
+                      <ServiceIcon className="h-5 w-5" strokeWidth={2.2} aria-hidden="true" />
+                    </span>
                     {card.title}
                   </h4>
 
                   {/* Description area */}
                   <p
-                    className="mb-6 text-base md:text-lg leading-relaxed text-justify"
-                    style={{ color: "var(--text-secondary)" }}
+                    className="theme-card-description theme-card-copy mb-4 min-h-0 text-[0.98rem] leading-7 md:min-h-[7rem]"
                   >
                     {card.desc}
                   </p>
 
-                  <div className="mt-auto flex flex-wrap items-center gap-3">
+                  <div className="mb-4 grid gap-2 sm:grid-cols-3">
+                    {card.details.map((detail, detailIndex) => {
+                      const DetailIcon = detailIcons[detailIndex % detailIcons.length];
+
+                      return (
+                        <div
+                          key={detail}
+                          className="theme-card-detail flex min-h-16 items-center gap-3 rounded-2xl bg-gradient-to-br from-slate-900 to-slate-800 px-3 py-3 text-sm font-semibold leading-6 text-white shadow-sm ring-1 ring-inset ring-white/10 transition duration-200 hover:-translate-y-0.5 hover:from-slate-800 hover:to-slate-700 hover:shadow-md"
+                        >
+                          <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-xl bg-cyan-400/10 text-cyan-300 ring-1 ring-inset ring-cyan-300/15">
+                            <DetailIcon className="h-4 w-4" strokeWidth={2.2} aria-hidden="true" />
+                          </span>
+                          <span>{detail}</span>
+                        </div>
+                      );
+                    })}
+                  </div>
+
+                  <div className="theme-card-divider mt-auto flex flex-wrap items-center gap-2 border-t border-slate-100 pt-4">
                     <Link
                       to={card.link}
-                      className="inline-flex items-center justify-center whitespace-nowrap rounded-lg px-5 py-2.5 text-sm font-medium text-black transition-colors"
-                      style={{ backgroundColor: "var(--primary-blue-light)" }}
-                      onMouseEnter={(e) =>
-                        (e.currentTarget.style.backgroundColor =
-                          "var(--primary-blue)")
-                      }
-                      onMouseLeave={(e) =>
-                        (e.currentTarget.style.backgroundColor =
-                          "var(--primary-blue-light)")
-                      }
+                      className="touch-target touch-feedback theme-card-primary-action group/learn inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-xl border border-[var(--primary-blue)] bg-[var(--primary-blue)] px-4 py-2.5 text-sm font-bold text-white shadow-[0_8px_18px_rgba(24,182,227,0.22)] transition-all duration-200 hover:-translate-y-0.5 hover:border-[var(--primary-blue-dark)] hover:bg-[var(--primary-blue-dark)] hover:shadow-[0_12px_24px_rgba(18,158,198,0.28)] active:translate-y-0 active:scale-[0.97] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--primary-blue)] focus-visible:ring-offset-2"
                     >
                       Learn More
+                      <ArrowUpRight className="h-4 w-4 transition-transform duration-200 group-hover/learn:translate-x-0.5 group-hover/learn:-translate-y-0.5" aria-hidden="true" />
                       <span className="sr-only"> about {card.title}</span>
                     </Link>
                     <button
                         type="button"
                         onClick={() => onBookDemo(card.bookingUrl)}
-                        className="inline-flex items-center justify-center whitespace-nowrap rounded-lg px-5 py-2.5 text-sm font-medium text-white transition-colors"
-                        style={{ backgroundColor: "var(--primary-navy)" }}
-                        onMouseEnter={(e) =>
-                          (e.currentTarget.style.backgroundColor =
-                            "var(--primary-blue)")
-                        }
-                        onMouseLeave={(e) =>
-                          (e.currentTarget.style.backgroundColor =
-                            "var(--primary-navy)")
-                        }
+                        className="touch-target touch-feedback inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-xl border border-[var(--primary-green)] bg-[var(--primary-green)] px-4 py-2.5 text-sm font-bold text-[var(--primary-navy)] shadow-[0_8px_18px_rgba(134,196,64,0.24)] transition-all duration-200 hover:-translate-y-0.5 hover:border-[var(--primary-green-dark)] hover:bg-[var(--primary-green-dark)] hover:shadow-[0_12px_24px_rgba(118,180,58,0.3)] active:translate-y-0 active:scale-[0.97] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--primary-green)] focus-visible:ring-offset-2"
                     >
+                        <CalendarCheck className="h-4 w-4" aria-hidden="true" />
                         Book Demo
                     </button>
                   </div>
@@ -608,7 +745,7 @@ function Sections({ onBookDemo }: SectionsProps) {
             </p>
             <Link
               to="/contact"
-              className="mt-8 inline-flex items-center justify-center rounded-lg px-6 py-3 text-sm font-semibold text-black transition-transform hover:-translate-y-0.5"
+                  className="touch-target touch-feedback mt-8 inline-flex items-center justify-center rounded-lg px-6 py-3 text-sm font-semibold text-black transition-transform hover:-translate-y-0.5"
               style={{ backgroundColor: "var(--primary-blue-light)" }}
             >
               Contact Us
@@ -637,47 +774,47 @@ function Sections({ onBookDemo }: SectionsProps) {
           </p>
         </div>
 
-        <div className="max-w-7xl mx-auto px-6 md:px-12 grid md:grid-cols-3 gap-8 md:gap-10">
+        <div className="mx-auto grid max-w-7xl gap-6 px-6 md:grid-cols-3 md:gap-8 md:px-12">
           {industries.map((industry) => (
             <div
               key={industry.title}
-              className="rounded-2xl overflow-hidden shadow-[0_16px_45px_rgba(0,0,0,0.12)] flex flex-col h-full hover:shadow-2xl transition-shadow duration-300"
+              className="theme-card group flex h-full flex-col overflow-hidden rounded-[1.5rem] border border-slate-200/90 bg-white shadow-[0_12px_34px_rgba(15,31,56,0.07)] transition-all duration-300 hover:-translate-y-1 hover:border-cyan-200 hover:shadow-[0_22px_50px_rgba(15,31,56,0.14)]"
               style={{
-                borderWidth: "1px",
-                borderColor: "rgba(24, 182, 227, 0.2)",
+                color: "var(--primary-navy)",
               }}
             >
-              {/* Fixed Image Height: h-64 md:h-72 ensures level alignment */}
-              <img
-                src={industry.image}
-                alt={industry.title}
-                className="h-64 md:h-72 w-full object-cover shrink-0"
-                loading="lazy"
-                decoding="async"
-                sizes="(min-width: 768px) 33vw, 100vw"
-              />
+              <div className="relative h-56 shrink-0 overflow-hidden md:h-64">
+                <img
+                  src={industry.image}
+                  alt={industry.title}
+                  className="h-full w-full object-cover transition duration-500 group-hover:scale-105"
+                  loading="lazy"
+                  decoding="async"
+                  sizes="(min-width: 768px) 33vw, 100vw"
+                />
+                <div className="absolute inset-0 bg-slate-950/10 transition-colors duration-300 group-hover:bg-slate-950/20" />
+                <span className="absolute left-4 top-4 rounded-full border border-white/60 bg-white/90 px-3 py-1 text-[10px] font-extrabold uppercase tracking-[0.16em] text-slate-800 shadow-sm backdrop-blur-sm">
+                  Industry solution
+                </span>
+              </div>
               <div
-                className="flex flex-grow flex-col items-center justify-center px-8 py-6 text-center"
-                style={{ backgroundColor: "var(--bg-secondary)" }}
+                className="flex flex-grow flex-col px-6 pb-6 pt-6 md:px-7 md:pb-7"
               >
-                <h3
-                  className="text-xl md:text-2xl font-semibold leading-snug"
-                  style={{ color: "var(--text-primary)" }}
-                >
+                <div className="mb-4 h-1 w-10 rounded-full bg-cyan-400 transition-all duration-300 group-hover:w-16" />
+                <h3 className="theme-card-heading text-xl font-bold leading-snug tracking-[-0.02em] md:text-2xl">
                   {industry.title}
                 </h3>
                 <p
-                  className="mt-3 text-sm leading-6"
-                  style={{ color: "var(--text-secondary)" }}
+                  className="theme-card-copy mt-3 flex-grow text-sm leading-6"
                 >
                   {industry.description}
                 </p>
                 <Link
                   to="/services/industry-specific"
-                  className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-blue-700 transition-colors hover:text-cyan-600"
+                  className="touch-target touch-feedback mt-6 inline-flex w-fit items-center gap-2 rounded-xl border border-slate-200 px-4 py-2.5 text-sm font-bold text-slate-800 transition-all hover:-translate-y-0.5 hover:border-cyan-300 hover:bg-cyan-50 hover:text-cyan-700"
                 >
                   Learn More
-                  <span aria-hidden="true">→</span>
+                  <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
                 </Link>
               </div>
             </div>

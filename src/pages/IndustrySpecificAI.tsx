@@ -177,7 +177,7 @@ function IndustrySpecificAI() {
               </p>
               <button
                 onClick={() => openModal("Real Estate")}
-                className="inline-flex items-center text-cyan-600 font-semibold hover:text-cyan-700 focus:outline-none cursor-pointer hover:underline"
+                className="touch-target touch-feedback inline-flex items-center text-cyan-600 font-semibold hover:text-cyan-700 focus:outline-none cursor-pointer hover:underline"
               >
                 Learn More
                 <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -201,7 +201,7 @@ function IndustrySpecificAI() {
               </p>
               <button
                 onClick={() => openModal("Healthcare")}
-                className="inline-flex items-center text-cyan-600 font-semibold hover:text-cyan-700 focus:outline-none cursor-pointer hover:underline"
+                className="touch-target touch-feedback inline-flex items-center text-cyan-600 font-semibold hover:text-cyan-700 focus:outline-none cursor-pointer hover:underline"
               >
                 Learn More
                 <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -225,7 +225,7 @@ function IndustrySpecificAI() {
               </p>
               <button
                 onClick={() => openModal("Consultancy")}
-                className="inline-flex items-center text-cyan-600 font-semibold hover:text-cyan-700 focus:outline-none cursor-pointer hover:underline"
+                className="touch-target touch-feedback inline-flex items-center text-cyan-600 font-semibold hover:text-cyan-700 focus:outline-none cursor-pointer hover:underline"
               >
                 Learn More
                 <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -249,7 +249,7 @@ function IndustrySpecificAI() {
               </p>
               <button
                 onClick={() => openModal("SAAS Company")}
-                className="inline-flex items-center text-cyan-600 font-semibold hover:text-cyan-700 focus:outline-none cursor-pointer hover:underline"
+                className="touch-target touch-feedback inline-flex items-center text-cyan-600 font-semibold hover:text-cyan-700 focus:outline-none cursor-pointer hover:underline"
               >
                 Learn More
                 <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -273,7 +273,7 @@ function IndustrySpecificAI() {
               </p>
               <button
                 onClick={() => openModal("Insurance Company")}
-                className="inline-flex items-center text-cyan-600 font-semibold hover:text-cyan-700 focus:outline-none cursor-pointer hover:underline"
+                className="touch-target touch-feedback inline-flex items-center text-cyan-600 font-semibold hover:text-cyan-700 focus:outline-none cursor-pointer hover:underline"
               >
                 Learn More
                 <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -297,7 +297,7 @@ function IndustrySpecificAI() {
               </p>
               <button
                 onClick={() => openModal("Banking System")}
-                className="inline-flex items-center text-cyan-600 font-semibold hover:text-cyan-700 focus:outline-none cursor-pointer hover:underline"
+                className="touch-target touch-feedback inline-flex items-center text-cyan-600 font-semibold hover:text-cyan-700 focus:outline-none cursor-pointer hover:underline"
               >
                 Learn More
                 <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -321,7 +321,7 @@ function IndustrySpecificAI() {
               </p>
               <button
                 onClick={() => openModal("Solar Companies")}
-                className="inline-flex items-center text-cyan-600 font-semibold hover:text-cyan-700 focus:outline-none cursor-pointer hover:underline"
+                className="touch-target touch-feedback inline-flex items-center text-cyan-600 font-semibold hover:text-cyan-700 focus:outline-none cursor-pointer hover:underline"
               >
                 Learn More
                 <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">

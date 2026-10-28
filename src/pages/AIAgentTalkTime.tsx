@@ -86,7 +86,7 @@ function AIAgentTalkTime() {
               <div className="flex flex-wrap gap-4 pt-4">
                 <button
                   onClick={openBookingModal}
-                  className="rounded-full text-black font-medium px-6 py-2 shadow-lg  cursor-pointer"
+                  className="touch-target touch-feedback rounded-full text-black font-medium px-6 py-2 shadow-lg cursor-pointer"
                   style={{ backgroundColor: "var(--primary-blue)" }}
                 >
                   {serviceData.primaryButtonText}

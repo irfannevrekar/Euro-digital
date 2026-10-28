@@ -57,7 +57,7 @@ function FAQ({ faqs, title = "Frequently Asked Questions", subtitle }: FAQProps)
                   onClick={() => toggleFAQ(index)}
                   aria-expanded={openIndex === index}
                   aria-controls={`${componentId}-answer-${index}`}
-                  className="flex w-full items-center justify-between px-5 py-5 text-left transition-colors hover:bg-slate-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-sky-600 sm:px-6"
+                  className="touch-target touch-feedback flex w-full items-center justify-between px-5 py-5 text-left transition-colors hover:bg-slate-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-sky-600 sm:px-6"
                 >
                   <span className="pr-4 text-base font-semibold leading-6 text-slate-900 sm:text-lg">
                     {faq.question}

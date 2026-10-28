@@ -94,13 +94,12 @@ function AIAddonServices() {
                 <button
                   type="button"
                   onClick={openBookingModal}
-                  className="rounded-full px-6 py-2 font-medium text-black shadow-lg transition hover:brightness-110"
+                  className="touch-target touch-feedback rounded-full px-6 py-2 font-medium text-black shadow-lg transition hover:brightness-110"
                   style={{ backgroundColor: "var(--primary-blue)" }}
                 >
                   Talk to Us
                 </button>
               </div>
-
             </div>
 
             <div className="relative ">
@@ -183,18 +182,11 @@ function AIAddonServices() {
                     <strong>{price}</strong>
                     <small>{detail}</small>
                     <div className="pricing-actions">
-                      <a
-                        className="pricing-buy"
-                        href={checkoutUrl || "#"}
-                        onClick={(event) => {
-                          if (!checkoutUrl) {
-                            event.preventDefault();
-                            openBookingModal();
-                          }
-                        }}
-                      >
-                        Buy now
-                      </a>
+                      {checkoutUrl && (
+                        <a className="pricing-buy" href={checkoutUrl}>
+                          Buy now
+                        </a>
+                      )}
                       <a
                         className="pricing-demo"
                         href="https://crm.eurodigital.ae/widget/bookings/web-booking-euro"

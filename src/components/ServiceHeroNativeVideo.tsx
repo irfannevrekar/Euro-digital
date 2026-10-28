@@ -116,14 +116,18 @@ function ServiceHeroNativeVideo({
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             className="absolute inset-0 z-20 flex items-center justify-center bg-black/10 transition-colors"
-            onClick={handlePlayVideo}
           >
             <motion.button
+              type="button"
+              onClick={(event) => {
+                event.stopPropagation();
+                handlePlayVideo();
+              }}
               initial={{ scale: 0.5, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
-              className="flex h-20 w-20 items-center justify-center rounded-full border border-white/30 bg-white/20 text-white backdrop-blur-sm md:h-28 md:w-28"
+              className="touch-target flex h-20 w-20 items-center justify-center rounded-full border border-white/30 bg-white/20 text-white backdrop-blur-sm md:h-28 md:w-28"
             >
               <Play className="ml-1 h-8 w-8 fill-white md:h-12 md:w-12" />
             </motion.button>
@@ -146,13 +150,14 @@ function ServiceHeroNativeVideo({
             whileHover={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             className="absolute inset-0 z-20 flex items-center justify-center bg-black/20 opacity-0 transition-opacity"
-            onClick={handlePauseVideo}
           >
             <motion.button
+              type="button"
+              onClick={handlePauseVideo}
               initial={{ scale: 0.8 }}
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
-              className="flex h-20 w-20 items-center justify-center rounded-full border-2 border-white/40 bg-white/20 text-white shadow-2xl backdrop-blur-md hover:bg-white/30 md:h-28 md:w-28"
+              className="touch-target flex h-20 w-20 items-center justify-center rounded-full border-2 border-white/40 bg-white/20 text-white shadow-2xl backdrop-blur-md hover:bg-white/30 md:h-28 md:w-28"
             >
               <Pause className="h-8 w-8 fill-white md:h-12 md:w-12" />
             </motion.button>
@@ -191,7 +196,7 @@ function ServiceHeroNativeVideo({
                     event.preventDefault();
                     openBookingModal();
                   }}
-                  className="inline-flex items-center justify-center rounded-full bg-[#18b6e3] px-10 py-4 text-xl font-bold text-white shadow-[0_0_20px_rgba(24,182,227,0.4)] transition-all hover:scale-105 hover:bg-[#159fca] hover:shadow-[0_0_30px_rgba(24,182,227,0.6)]"
+                  className="touch-target touch-feedback inline-flex items-center justify-center rounded-full bg-[#18b6e3] px-10 py-4 text-xl font-bold text-white shadow-[0_0_20px_rgba(24,182,227,0.4)] transition-all hover:scale-105 hover:bg-[#159fca] hover:shadow-[0_0_30px_rgba(24,182,227,0.6)]"
                 >
                   Book Demo
                 </a>
@@ -199,7 +204,7 @@ function ServiceHeroNativeVideo({
                 <button
                   type="button"
                   onClick={handleWatchAgain}
-                  className="group flex cursor-pointer items-center gap-2 rounded-full border border-white/10 bg-white/5 px-6 py-2.5 text-white/80 transition-all hover:border-white/20 hover:bg-white/10 hover:text-white"
+                  className="touch-target touch-feedback group flex cursor-pointer items-center gap-2 rounded-full border border-white/10 bg-white/5 px-6 py-2.5 text-white/80 transition-all hover:border-white/20 hover:bg-white/10 hover:text-white"
                 >
                   <RotateCcw className="h-4 w-4 transition-transform group-hover:rotate-45" />
                   <span className="text-sm font-semibold tracking-wide">Watch Again</span>

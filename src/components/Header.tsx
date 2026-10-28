@@ -141,7 +141,7 @@ function Header() {
 
   return (
     <header
-      className={`fixed inset-x-0 top-0 z-50 border-b border-slate-200/80 bg-white px-4 py-3 shadow-sm transition-transform duration-300 supports-[backdrop-filter]:bg-white/90 supports-[backdrop-filter]:backdrop-blur-xl md:px-10 md:py-4 ${
+      className={`fixed inset-x-0 top-0 z-50 border-b border-slate-200/80 bg-white/90 px-4 py-2.5 shadow-[0_8px_30px_rgba(15,31,56,0.06)] transition-transform duration-300 supports-[backdrop-filter]:backdrop-blur-xl md:px-10 md:py-3.5 ${
         isHeaderVisible || isMobileMenuOpen ? "translate-y-0" : "-translate-y-full"
       }`}
     >
@@ -150,12 +150,12 @@ function Header() {
           <img
             src="/logo/logo.svg"
             alt="EuroDigital"
-            className="h-12 transition-all md:h-18"
+            className="h-10 w-auto transition-all md:h-14"
           />
         </Link>
 
-        <nav className="hidden items-center gap-7 lg:flex" aria-label="Primary navigation">
-          <Link className="font-medium tracking-wide text-slate-800 hover:text-blue-700" to="/">
+        <nav className="hidden items-center gap-1 lg:flex" aria-label="Primary navigation">
+          <Link className="touch-target inline-flex items-center rounded-full px-3 py-2 text-sm font-semibold tracking-wide text-slate-700 transition-colors hover:bg-slate-50 hover:text-blue-700" to="/">
             Home
           </Link>
           <div
@@ -169,7 +169,7 @@ function Header() {
           >
             <button
               type="button"
-              className="flex items-center gap-1 py-2 font-medium tracking-wide text-slate-800 hover:text-blue-700"
+              className="touch-target flex items-center gap-1 rounded-full px-3 py-2 text-sm font-semibold tracking-wide text-slate-700 transition-colors hover:bg-slate-50 hover:text-blue-700"
               aria-haspopup="true"
               aria-expanded={isServicesOpen}
               onClick={() => setIsServicesOpen((open) => !open)}
@@ -204,7 +204,7 @@ function Header() {
           >
             <button
               type="button"
-              className="flex items-center gap-1 py-2 font-medium tracking-wide text-slate-800 hover:text-blue-700"
+              className="touch-target flex items-center gap-1 rounded-full px-3 py-2 text-sm font-semibold tracking-wide text-slate-700 transition-colors hover:bg-slate-50 hover:text-blue-700"
               aria-haspopup="true"
               aria-expanded={isAiToolsOpen}
               onClick={() => setIsAiToolsOpen((open) => !open)}
@@ -240,7 +240,7 @@ function Header() {
           >
             <button
               type="button"
-              className="flex items-center gap-1 py-2 font-medium tracking-wide text-slate-800"
+              className="touch-target flex items-center gap-1 rounded-full px-3 py-2 text-sm font-semibold tracking-wide text-slate-700 transition-colors hover:bg-slate-50 hover:text-blue-700"
               aria-expanded={isSolutionsOpen}
               aria-haspopup="true"
               onClick={() => setIsSolutionsOpen((open) => !open)}
@@ -270,7 +270,7 @@ function Header() {
             </div>
           </div>
 
-          <Link className="font-medium tracking-wide text-slate-800 hover:text-blue-700" to="/contact">
+          <Link className="touch-target inline-flex items-center rounded-full px-3 py-2 text-sm font-semibold tracking-wide text-slate-700 transition-colors hover:bg-slate-50 hover:text-blue-700" to="/contact">
             Contact
           </Link>
         </nav>
@@ -278,7 +278,7 @@ function Header() {
         <div className="hidden items-center gap-3 lg:flex">
           <Link
             to="/login"
-            className="inline-flex items-center gap-2 rounded-md border px-5 py-2.5 font-semibold text-slate-800 transition-all hover:bg-slate-50"
+            className="touch-target touch-feedback inline-flex items-center gap-2 rounded-xl border px-4 py-2.5 text-sm font-bold text-slate-800 transition-all hover:-translate-y-0.5 hover:bg-slate-50"
             style={{ borderColor: "var(--primary-blue)" }}
           >
             <LogIn className="h-4 w-4" />
@@ -287,7 +287,7 @@ function Header() {
           <button
             type="button"
             onClick={() => setIsBookingOpen(true)}
-            className="rounded-md px-6 py-2.5 font-semibold text-white shadow-lg transition-all hover:brightness-110"
+            className="touch-target touch-feedback rounded-xl px-5 py-2.5 text-sm font-bold text-white shadow-[0_8px_18px_rgba(24,182,227,0.28)] transition-all hover:-translate-y-0.5 hover:brightness-110"
             style={{ backgroundColor: "var(--primary-blue)" }}
           >
             Book Consultation
@@ -296,7 +296,7 @@ function Header() {
 
         <button
           type="button"
-          className="z-50 p-2 text-slate-700 lg:hidden"
+          className="touch-target touch-feedback z-50 flex items-center justify-center rounded-xl p-2 text-slate-700 lg:hidden"
           onClick={() => setIsMobileMenuOpen((open) => !open)}
           aria-label={isMobileMenuOpen ? "Close navigation menu" : "Open navigation menu"}
           aria-expanded={isMobileMenuOpen}
@@ -312,15 +312,15 @@ function Header() {
         aria-hidden={!isMobileMenuOpen}
         inert={!isMobileMenuOpen}
       >
-        <div className="h-full overflow-y-auto px-6 pt-24 pb-10">
-          <nav className="flex flex-col gap-5 text-lg font-medium" aria-label="Mobile navigation">
-            <Link to="/" onClick={closeMobileMenu} className="border-b border-gray-100 py-2 text-slate-800">
+        <div className="h-full overflow-y-auto bg-slate-50/80 px-5 pb-10 pt-24">
+          <nav className="mx-auto flex max-w-md flex-col gap-2 text-lg font-medium" aria-label="Mobile navigation">
+            <Link to="/" onClick={closeMobileMenu} className="touch-target flex items-center rounded-xl bg-white px-4 py-3 text-slate-800 shadow-sm ring-1 ring-slate-200/70">
               Home
             </Link>
             <div>
               <button
                 type="button"
-                className="flex w-full items-center justify-between border-b border-gray-100 py-2 text-slate-800"
+                className="touch-target touch-feedback flex w-full items-center justify-between rounded-xl bg-white px-4 py-3 text-slate-800 shadow-sm ring-1 ring-slate-200/70"
                 onClick={() => setIsMobileServicesOpen((open) => !open)}
                 aria-expanded={isMobileServicesOpen}
               >
@@ -332,7 +332,7 @@ function Header() {
                 <Link
                   to="/services"
                   onClick={closeMobileMenu}
-                  className="block rounded-lg px-3 py-2 text-sm font-semibold text-slate-700 hover:bg-slate-50 hover:text-blue-700"
+                  className="touch-target flex items-center rounded-lg px-3 py-2 text-sm font-semibold text-slate-700 hover:bg-slate-50 hover:text-blue-700"
                 >
                   All Services
                 </Link>
@@ -341,7 +341,7 @@ function Header() {
                     key={service.path}
                     service={service}
                     onClick={closeMobileMenu}
-                    className="block rounded-lg px-3 py-2 text-sm font-medium text-slate-600 hover:bg-slate-50 hover:text-blue-700"
+                    className="touch-target flex items-center rounded-lg px-3 py-2 text-sm font-medium text-slate-600 hover:bg-slate-50 hover:text-blue-700"
                   />
                 ))}
               </div>
@@ -349,7 +349,7 @@ function Header() {
             <div>
               <button
                 type="button"
-                className="flex w-full items-center justify-between border-b border-gray-100 py-2 text-slate-800"
+                className="touch-target touch-feedback flex w-full items-center justify-between rounded-xl bg-white px-4 py-3 text-slate-800 shadow-sm ring-1 ring-slate-200/70"
                 onClick={() => setIsMobileAiToolsOpen((open) => !open)}
                 aria-expanded={isMobileAiToolsOpen}
               >
@@ -361,7 +361,7 @@ function Header() {
                 <Link
                   to="/ai-tools"
                   onClick={closeMobileMenu}
-                  className="block rounded-lg px-3 py-2 text-sm font-semibold text-slate-700 hover:bg-slate-50 hover:text-blue-700"
+                  className="touch-target flex items-center rounded-lg px-3 py-2 text-sm font-semibold text-slate-700 hover:bg-slate-50 hover:text-blue-700"
                 >
                   All AI Tools
                 </Link>
@@ -370,7 +370,7 @@ function Header() {
                     key={tool.path}
                     service={tool}
                     onClick={closeMobileMenu}
-                    className="block rounded-lg px-3 py-2 text-sm font-medium text-slate-600 hover:bg-slate-50 hover:text-blue-700"
+                    className="touch-target flex items-center rounded-lg px-3 py-2 text-sm font-medium text-slate-600 hover:bg-slate-50 hover:text-blue-700"
                   />
                 ))}
               </div>
@@ -379,7 +379,7 @@ function Header() {
             <div>
               <button
                 type="button"
-                className="flex w-full items-center justify-between border-b border-gray-100 py-2 text-slate-800"
+                className="touch-target touch-feedback flex w-full items-center justify-between rounded-xl bg-white px-4 py-3 text-slate-800 shadow-sm ring-1 ring-slate-200/70"
                 onClick={() => setIsMobileSolutionsOpen((open) => !open)}
                 aria-expanded={isMobileSolutionsOpen}
               >
@@ -393,7 +393,7 @@ function Header() {
                     key={group.slug}
                     to={`/solutions/${group.slug}`}
                     onClick={closeMobileMenu}
-                    className="block rounded-lg px-3 py-2 text-sm font-medium text-slate-600 hover:bg-slate-50 hover:text-blue-700"
+                    className="touch-target flex items-center rounded-lg px-3 py-2 text-sm font-medium text-slate-600 hover:bg-slate-50 hover:text-blue-700"
                   >
                     {group.title}
                   </Link>
@@ -401,13 +401,13 @@ function Header() {
               </div>
             </div>
 
-            <Link to="/contact" onClick={closeMobileMenu} className="border-b border-gray-100 py-2 text-slate-800">
+            <Link to="/contact" onClick={closeMobileMenu} className="touch-target flex items-center rounded-xl bg-white px-4 py-3 text-slate-800 shadow-sm ring-1 ring-slate-200/70">
               Contact
             </Link>
             <Link
               to="/login"
               onClick={closeMobileMenu}
-              className="mt-2 inline-flex items-center justify-center gap-2 rounded-md px-5 py-3 text-white shadow-lg"
+              className="touch-target touch-feedback mt-3 inline-flex items-center justify-center gap-2 rounded-xl px-5 py-3 font-bold text-white shadow-lg"
               style={{ backgroundColor: "var(--primary-blue)" }}
             >
               <LogIn className="h-5 w-5" />

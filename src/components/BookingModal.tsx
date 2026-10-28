@@ -49,7 +49,7 @@ function BookingModal({ url, onClose, title = "Book a Demo" }: BookingModalProps
           <button
             type="button"
             onClick={onClose}
-            className="flex h-10 w-10 items-center justify-center rounded-full text-slate-600 transition-colors hover:bg-slate-100 hover:text-slate-950 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
+            className="touch-target touch-feedback flex items-center justify-center rounded-full text-slate-600 transition-colors hover:bg-slate-100 hover:text-slate-950 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
             aria-label="Close booking modal"
           >
             <X className="h-6 w-6" />
@@ -68,7 +68,7 @@ function BookingModal({ url, onClose, title = "Book a Demo" }: BookingModalProps
           href={url}
           target="_blank"
           rel="noopener noreferrer"
-          className="shrink-0 border-t border-slate-200 px-5 py-3 text-center text-sm font-medium text-blue-700 hover:text-blue-900"
+          className="touch-target flex shrink-0 items-center justify-center border-t border-slate-200 px-5 py-3 text-center text-sm font-medium text-blue-700 hover:text-blue-900"
         >
           Having trouble viewing the calendar? Open it in a new tab.
         </a>

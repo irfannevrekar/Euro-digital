@@ -112,14 +112,14 @@ function Hero() {
               playsInline
               loop
               preload="auto"
-              className="pointer-events-none h-full w-full object-contain"
+              className="pointer-events-none h-full w-full object-cover"
               aria-label="EuroDigital hero video"
             />
           </motion.div>
         ))}
 
         {/* Overlays */}
-        <div className="absolute inset-0 bg-black/30" />
+        <div className="absolute inset-0 bg-black/35" />
         <div className="absolute left-1/2 top-1/2 h-[520px] w-[900px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#0b1538]/45 blur-3xl" />
         <div className="absolute inset-0 bg-linear-to-t from-[#0b1233]/90 via-transparent to-[#0b1233]/30" />
       </div>
@@ -137,7 +137,7 @@ function Hero() {
                 video.muted = !video.muted;
                 setIsVideoMuted(video.muted);
               }}
-              className="mt-6 inline-flex items-center gap-2 rounded-full border border-white/35 bg-black/25 px-4 py-2 text-sm font-medium text-white backdrop-blur-sm transition-colors hover:bg-black/40"
+              className="touch-target touch-feedback mt-6 inline-flex items-center gap-2 rounded-full border border-white/35 bg-black/25 px-4 py-2 text-sm font-medium text-white backdrop-blur-sm transition-colors hover:bg-black/40"
               aria-label={isVideoMuted ? "Turn video voice on" : "Mute video voice"}
               aria-pressed={!isVideoMuted}
             >
@@ -151,7 +151,7 @@ function Hero() {
             <button
               type="button"
               onClick={toggleFullscreen}
-              className="mt-6 inline-flex items-center gap-2 rounded-full border border-white/35 bg-black/25 px-4 py-2 text-sm font-medium text-white backdrop-blur-sm transition-colors hover:bg-black/40"
+              className="touch-target touch-feedback mt-6 inline-flex items-center gap-2 rounded-full border border-white/35 bg-black/25 px-4 py-2 text-sm font-medium text-white backdrop-blur-sm transition-colors hover:bg-black/40"
               aria-label={isFullscreen ? "Exit fullscreen" : "View video fullscreen"}
               aria-pressed={isFullscreen}
             >

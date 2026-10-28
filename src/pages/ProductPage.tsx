@@ -1,6 +1,6 @@
 import { AnimatePresence, motion } from "framer-motion";
-import { memo, useEffect, useMemo, useState } from "react";
-import { Check, ChevronRight, DollarSign, Eye, Funnel, MessageCircle, RotateCcw, Trophy, X } from "lucide-react";
+import { memo, useEffect, useMemo, useRef, useState } from "react";
+import { Check, ChevronLeft, ChevronRight, DollarSign, Eye, Funnel, MessageCircle, RotateCcw, Trophy, X } from "lucide-react";
 import FAQ from "../components/FAQ";
 import ServiceHeroVideo from "../components/ServiceHeroVideo";
 import { getFAQsByServiceId } from "../data/faqData";
@@ -293,7 +293,7 @@ const GrowthSolutionSection = memo(function GrowthSolutionSection() {
               key={tab.name}
               type="button"
               onClick={() => setActiveTab(tab)}
-              className={`min-w-[132px] rounded-md border px-8 py-3 text-sm font-black text-slate-900 transition-all ${
+              className={`touch-target touch-feedback min-w-[132px] rounded-md border px-8 py-3 text-sm font-black text-slate-900 transition-all ${
                 activeTab.name === tab.name ? activeClass : "border-slate-200 bg-slate-50 hover:bg-white"
               }`}
             >
@@ -1256,21 +1256,52 @@ function WebsitePreviewSite({ preview }: { preview: WebsiteShowcase }) {
 }
 
 const WebsiteBuilderShowcase = memo(function WebsiteBuilderShowcase() {
-  const [preview, setPreview] = useState<WebsiteShowcase | null>(null);
+  const [previewIndex, setPreviewIndex] = useState<number | null>(null);
+  const swipeStartRef = useRef<{ x: number; y: number } | null>(null);
+  const preview = previewIndex === null ? null : websiteShowcases[previewIndex];
+
+  const handlePreviewSwipeStart = (event: React.PointerEvent<HTMLDivElement>) => {
+    if (event.pointerType !== "touch") return;
+    if ((event.target as HTMLElement).closest("button, a, input, textarea, select")) return;
+    swipeStartRef.current = { x: event.clientX, y: event.clientY };
+  };
+
+  const handlePreviewSwipeEnd = (event: React.PointerEvent<HTMLDivElement>) => {
+    const start = swipeStartRef.current;
+    swipeStartRef.current = null;
+    if (start && event.pointerType === "touch") {
+      const deltaX = event.clientX - start.x;
+      const deltaY = event.clientY - start.y;
+      if (Math.abs(deltaX) >= 48 && Math.abs(deltaX) > Math.abs(deltaY) * 1.25) {
+        setPreviewIndex((current) => {
+          if (current === null) return current;
+          return Math.max(0, Math.min(current + (deltaX < 0 ? 1 : -1), websiteShowcases.length - 1));
+        });
+      }
+    }
+  };
 
   useEffect(() => {
+    if (previewIndex === null) return;
+    const previousOverflow = document.body.style.overflow;
+
     const handleEsc = (event: KeyboardEvent) => {
-      if (event.key === "Escape") setPreview(null);
+      if (event.key === "Escape") setPreviewIndex(null);
+      if (event.key === "ArrowLeft") {
+        setPreviewIndex((current) => current === null ? current : Math.max(0, current - 1));
+      }
+      if (event.key === "ArrowRight") {
+        setPreviewIndex((current) => current === null ? current : Math.min(websiteShowcases.length - 1, current + 1));
+      }
     };
-    if (preview) {
-      document.addEventListener("keydown", handleEsc);
-      document.body.style.overflow = "hidden";
-    }
+
+    document.addEventListener("keydown", handleEsc);
+    document.body.style.overflow = "hidden";
     return () => {
       document.removeEventListener("keydown", handleEsc);
-      document.body.style.overflow = "unset";
+      document.body.style.overflow = previousOverflow;
     };
-  }, [preview]);
+  }, [previewIndex]);
 
   return (
     <section className="bg-white px-6 py-16 md:px-12 md:py-24">
@@ -1308,8 +1339,8 @@ const WebsiteBuilderShowcase = memo(function WebsiteBuilderShowcase() {
                 />
                 <button
                   type="button"
-                  onClick={() => setPreview(site)}
-                  className="absolute right-4 top-4 flex h-11 w-11 items-center justify-center rounded-full border border-white/40 bg-slate-900/70 text-white shadow-lg backdrop-blur-sm transition-all hover:scale-105 hover:bg-slate-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-sky-400"
+                  onClick={() => setPreviewIndex(websiteShowcases.indexOf(site))}
+                  className="touch-target touch-feedback absolute right-4 top-4 flex items-center justify-center rounded-full border border-white/40 bg-slate-900/70 text-white shadow-lg backdrop-blur-sm transition-all hover:scale-105 hover:bg-slate-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-sky-400"
                   aria-label={`Preview ${site.label} website`}
                 >
                   <Eye className="h-5 w-5" />
@@ -1332,7 +1363,7 @@ const WebsiteBuilderShowcase = memo(function WebsiteBuilderShowcase() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              onClick={() => setPreview(null)}
+              onClick={() => setPreviewIndex(null)}
               className="absolute inset-0 bg-slate-950/80 backdrop-blur-sm"
               aria-label="Close preview"
             />
@@ -1352,14 +1383,42 @@ const WebsiteBuilderShowcase = memo(function WebsiteBuilderShowcase() {
               </h3>
               <button
                 type="button"
-                onClick={() => setPreview(null)}
-                className="absolute right-4 top-4 z-20 flex h-10 w-10 items-center justify-center rounded-full bg-slate-950/75 text-white shadow-lg backdrop-blur-sm transition-colors hover:bg-slate-950"
+                onClick={() => setPreviewIndex(null)}
+                className="touch-target touch-feedback absolute right-4 top-4 z-30 flex items-center justify-center rounded-full bg-slate-950/75 text-white shadow-lg backdrop-blur-sm transition-colors hover:bg-slate-950"
                 aria-label="Close preview"
               >
                 <X className="h-5 w-5" />
               </button>
 
-              <div className="h-full overflow-y-auto scrollbar-hide" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
+              <button
+                type="button"
+                onClick={() => setPreviewIndex((current) => current === null ? current : Math.max(0, current - 1))}
+                disabled={previewIndex === 0}
+                className="touch-target touch-feedback absolute left-3 top-1/2 z-30 flex -translate-y-1/2 items-center justify-center rounded-full bg-slate-950/75 text-white shadow-lg backdrop-blur-sm transition hover:bg-slate-950 disabled:cursor-not-allowed disabled:opacity-40 sm:left-5"
+                aria-label="Previous website preview"
+              >
+                <ChevronLeft className="h-6 w-6" />
+              </button>
+              <button
+                type="button"
+                onClick={() => setPreviewIndex((current) => current === null ? current : Math.min(websiteShowcases.length - 1, current + 1))}
+                disabled={previewIndex === websiteShowcases.length - 1}
+                className="touch-target touch-feedback absolute right-3 top-1/2 z-30 flex -translate-y-1/2 items-center justify-center rounded-full bg-slate-950/75 text-white shadow-lg backdrop-blur-sm transition hover:bg-slate-950 disabled:cursor-not-allowed disabled:opacity-40 sm:right-5"
+                aria-label="Next website preview"
+              >
+                <ChevronRight className="h-6 w-6" />
+              </button>
+              <span className="sr-only" role="status" aria-live="polite">
+                {preview.label}, {previewIndex! + 1} of {websiteShowcases.length}
+              </span>
+
+              <div
+                className="h-full overflow-y-auto touch-pan-y scrollbar-hide"
+                style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+                onPointerDown={handlePreviewSwipeStart}
+                onPointerUp={handlePreviewSwipeEnd}
+                onPointerCancel={() => { swipeStartRef.current = null; }}
+              >
                 <WebsitePreviewSite preview={preview} />
               </div>
             </motion.div>
@@ -1532,7 +1591,7 @@ function ProductPage({
                     <button
                       type="button"
                       onClick={openBookingModal}
-                      className="mt-6 w-full rounded-lg border border-[#18b6e3] bg-white px-5 py-3 text-sm font-bold text-[#129fc6] transition-colors hover:bg-cyan-50"
+                      className="touch-target touch-feedback mt-6 w-full rounded-lg border border-[#18b6e3] bg-white px-5 py-3 text-sm font-bold text-[#129fc6] transition-colors hover:bg-cyan-50"
                     >
                       Book a Demo
                     </button>
@@ -1550,7 +1609,7 @@ function ProductPage({
                       className="mt-7"
                     >
                       <button
-                        className="w-full rounded-lg bg-[#18b6e3] px-5 py-3 text-sm font-bold text-white transition-colors hover:bg-[#109dca] cursor-pointer"
+                        className="touch-target touch-feedback w-full rounded-lg bg-[#18b6e3] px-5 py-3 text-sm font-bold text-white transition-colors hover:bg-[#109dca] cursor-pointer"
                       >
                         {plan.price === "Custom" ? "Contact Sales" : "Buy now"}
                       </button>
@@ -1735,7 +1794,7 @@ function ProductPage({
                           className="mt-auto block"
                         >
                           <button
-                            className={`w-full rounded-2xl px-6 py-4 text-lg font-bold transition-colors cursor-pointer ${isHighlighted
+                            className={`touch-target touch-feedback w-full rounded-2xl px-6 py-4 text-lg font-bold transition-colors cursor-pointer ${isHighlighted
                               ? "bg-white text-[#1d8fff] hover:bg-slate-100"
                               : "bg-[#1d8fff] text-white hover:bg-[#0f7ce0]"
                               }`}
@@ -1795,7 +1854,7 @@ function ProductPage({
                       )}
                     </div>
 
-                    <div className="grid grid-cols-2 gap-3 pt-1">
+                    <div className={`grid gap-3 pt-1 ${plan.price === "Custom" ? "grid-cols-1" : "grid-cols-2"}`}>
                       <a
                         href={plan.checkoutUrl ?? bookingUrl}
                         target="_blank"
@@ -1811,17 +1870,19 @@ function ProductPage({
                           {plan.price === "Custom" ? "Contact Sales" : "Buy now"}
                         </button>
                       </a>
-                      <a
-                        href={bookingUrl}
-                        onClick={(event) => {
-                          event.preventDefault();
-                          openBookingModal();
-                        }}
-                      >
-                        <button className="w-full cursor-pointer rounded-lg border border-slate-300 bg-white px-4 py-3 text-sm font-bold text-slate-900 transition-colors hover:bg-slate-50">
-                          Request a Demo
-                        </button>
-                      </a>
+                      {plan.price !== "Custom" && (
+                        <a
+                          href={bookingUrl}
+                          onClick={(event) => {
+                            event.preventDefault();
+                            openBookingModal();
+                          }}
+                        >
+                          <button className="w-full cursor-pointer rounded-lg border border-slate-300 bg-white px-4 py-3 text-sm font-bold text-slate-900 transition-colors hover:bg-slate-50">
+                            Request a Demo
+                          </button>
+                        </a>
+                      )}
                     </div>
                   </div>
 

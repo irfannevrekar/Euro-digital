@@ -79,7 +79,7 @@ function AITools() {
           <button
             type="button"
             onClick={openBookingModal}
-            className="inline-flex w-fit items-center gap-2 rounded-lg bg-cyan-500 px-6 py-3 font-semibold text-slate-950 transition-colors hover:bg-cyan-400"
+            className="touch-target touch-feedback inline-flex w-fit items-center gap-2 rounded-lg bg-cyan-500 px-6 py-3 font-semibold text-slate-950 transition-colors hover:bg-cyan-400"
           >
             Talk to our team
             <ArrowRight className="h-4 w-4" />

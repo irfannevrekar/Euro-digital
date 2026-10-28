@@ -58,7 +58,7 @@ function Footer() {
               type="button"
               onClick={() => setSelectedCert(null)}
               aria-label="Close certification document"
-              className="absolute right-3 top-3 z-10 rounded-full bg-white/95 p-2 text-slate-700 shadow transition hover:bg-slate-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-600"
+              className="touch-target touch-feedback absolute right-3 top-3 z-10 rounded-full bg-white/95 p-2 text-slate-700 shadow transition hover:bg-slate-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-600"
             >
               <X className="w-6 h-6" />
             </button>
@@ -94,7 +94,7 @@ function Footer() {
             <button
               type="button"
               onClick={openBookingModal}
-              className="inline-flex min-h-12 shrink-0 items-center justify-center gap-2 rounded-lg bg-cyan-400 px-5 py-3 text-sm font-bold text-slate-950 shadow-lg transition hover:-translate-y-0.5 hover:bg-cyan-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900"
+              className="touch-target touch-feedback inline-flex min-h-12 shrink-0 items-center justify-center gap-2 rounded-lg bg-cyan-400 px-5 py-3 text-sm font-bold text-slate-950 shadow-lg transition hover:-translate-y-0.5 hover:bg-cyan-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900"
             >
               Book a consultation
               <ArrowRight className="h-4 w-4" aria-hidden="true" />
@@ -130,7 +130,7 @@ function Footer() {
                     target="_blank"
                     rel="noreferrer"
                     aria-label={label}
-                    className="flex h-10 w-10 items-center justify-center rounded-lg text-white/70 transition-all hover:bg-white/10 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300"
+                    className="touch-target touch-feedback flex items-center justify-center rounded-lg text-white/70 transition-all hover:bg-white/10 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300"
                   >
                     <Icon className="w-5 h-5" />
                   </a>
@@ -147,7 +147,7 @@ function Footer() {
               <div className="flex flex-col items-center gap-6">
                 <button
                   onClick={() => setSelectedCert("/logo/icv-certificate.png")}
-                  className="group flex justify-center cursor-pointer"
+                    className="touch-target touch-feedback group flex justify-center cursor-pointer"
                 >
                   <img
                     src="/logo/iclogo.png"
@@ -158,7 +158,7 @@ function Footer() {
 
                 <button
                   onClick={() => setSelectedCert("/logo/iso-certificate.png")}
-                  className="group flex justify-center cursor-pointer"
+                    className="touch-target touch-feedback group flex justify-center cursor-pointer"
                 >
                   <img
                     src="/logo/iso-1.png"
@@ -179,7 +179,7 @@ function Footer() {
                   <li key={link.name}>
                     <Link
                       to={link.path}
-                  className="group inline-block text-[15px] text-white/75 transition-colors hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300"
+                  className="touch-target group inline-flex items-center text-[15px] text-white/75 transition-colors hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300"
                     >
                       {link.name}
                       <span className="block h-px bg-white w-0 group-hover:w-full transition-all duration-300"></span>
@@ -202,10 +202,10 @@ function Footer() {
                   Abu Dhabi, UAE
                 </p>
                 <div className="space-y-2">
-                  <a className="block hover:text-white transition-colors" href="mailto:support@eurodigital.site">
+                  <a className="touch-target inline-flex items-center hover:text-white transition-colors" href="mailto:support@eurodigital.site">
                     support@eurodigital.site
                   </a>
-                  <a className="block hover:text-white transition-colors" href="tel:+971561874676">
+                  <a className="touch-target inline-flex items-center hover:text-white transition-colors" href="tel:+971561874676">
                     +971 56 187 4676
                   </a>
                 </div>
@@ -216,8 +216,8 @@ function Footer() {
           <div className="mt-12 flex flex-col gap-4 border-t border-white/20 pt-6 text-sm text-white/65 sm:flex-row sm:items-center sm:justify-between">
             <p>© {new Date().getFullYear()} Euro Digital Technologies LLC. All rights reserved.</p>
             <nav aria-label="Legal links" className="flex gap-5">
-              <Link className="transition-colors hover:text-white" to="/privacy">Privacy</Link>
-              <Link className="transition-colors hover:text-white" to="/terms">Terms</Link>
+              <Link className="touch-target inline-flex items-center transition-colors hover:text-white" to="/privacy">Privacy</Link>
+              <Link className="touch-target inline-flex items-center transition-colors hover:text-white" to="/terms">Terms</Link>
             </nav>
           </div>
         </div>
