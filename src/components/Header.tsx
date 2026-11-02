@@ -179,11 +179,12 @@ function Header() {
   const closeBookingModal = useCallback(() => setIsBookingOpen(false), []);
 
   return (
-    <header
-      className={`fixed inset-x-0 top-0 z-50 border-b border-slate-200/80 bg-white/90 px-4 py-2.5 shadow-[0_8px_30px_rgba(15,31,56,0.06)] transition-transform duration-300 supports-[backdrop-filter]:backdrop-blur-xl md:px-10 md:py-3.5 ${
-        isHeaderVisible || isMobileMenuOpen ? "translate-y-0" : "-translate-y-full"
-      }`}
-    >
+    <>
+      <header
+        className={`fixed inset-x-0 top-0 z-50 border-b border-slate-200/80 bg-white/90 px-4 py-2.5 shadow-[0_8px_30px_rgba(15,31,56,0.06)] transition-transform duration-300 supports-[backdrop-filter]:backdrop-blur-xl md:px-10 md:py-3.5 ${
+          isHeaderVisible || isMobileMenuOpen ? "translate-y-0" : "-translate-y-full"
+        }`}
+      >
       <div className="mx-auto flex max-w-7xl items-center justify-between">
         <Link to="/" onClick={closeMobileMenu} className="z-50">
           <img
@@ -358,9 +359,10 @@ function Header() {
         </button>
       </div>
 
+      </header>
       <div
         id="mobile-navigation-panel"
-        className={`fixed inset-0 z-40 bg-white transition-transform duration-300 lg:hidden ${isMobileMenuOpen ? "translate-x-0" : "translate-x-full"}`}
+        className={`fixed inset-0 z-[49] bg-white transition-transform duration-300 lg:hidden ${isMobileMenuOpen ? "translate-x-0" : "translate-x-full"}`}
         aria-hidden={!isMobileMenuOpen}
         inert={!isMobileMenuOpen}
       >
@@ -473,7 +475,7 @@ function Header() {
         onClose={closeBookingModal}
         title="Book a Consultation"
       />
-    </header>
+    </>
   );
 }
 

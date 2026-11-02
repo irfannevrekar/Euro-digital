@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Maximize2, Minimize2, Volume2, VolumeX } from "lucide-react";
+import { Maximize2, Minimize2, Pause, Play, Volume2, VolumeX } from "lucide-react";
 import { useCallback, useEffect, useRef, useState } from "react";
 import {
   getBunnyStreamMp4Url,
@@ -20,10 +20,13 @@ const slides: Slide[] = [
 function Hero() {
   const currentSlide = 0;
   const [isVideoMuted, setIsVideoMuted] = useState(false);
+  const [isVideoPlaying, setIsVideoPlaying] = useState(false);
+  const [isVideoBuffering, setIsVideoBuffering] = useState(false);
   const [isFullscreen, setIsFullscreen] = useState(false);
   const heroSectionRef = useRef<HTMLElement>(null);
   const heroVideoRef = useRef<HTMLVideoElement>(null);
   const volumeFadeRef = useRef<number | null>(null);
+  const manuallyPausedRef = useRef(false);
 
   const fadeVideoVolume = useCallback((video: HTMLVideoElement, targetVolume: number) => {
     if (volumeFadeRef.current !== null) window.clearInterval(volumeFadeRef.current);
@@ -58,7 +61,8 @@ function Hero() {
 
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting && entry.intersectionRatio > 0) {
+        if (entry.isIntersecting && entry.intersectionRatio > 0 && !manuallyPausedRef.current) {
+          setIsVideoBuffering(true);
           video.volume = 0;
           video.muted = false;
           video.play().then(() => {
@@ -70,6 +74,7 @@ function Hero() {
             video.muted = true;
             video.volume = 0;
             setIsVideoMuted(true);
+            setIsVideoBuffering(false);
             video.play().catch(() => undefined);
           });
         } else {
@@ -87,6 +92,27 @@ function Hero() {
 
     return () => observer.disconnect();
   }, [fadeVideoVolume]);
+
+  const toggleVideoPlayback = () => {
+    const video = heroVideoRef.current;
+    if (!video) return;
+
+    if (video.paused) {
+      manuallyPausedRef.current = false;
+      setIsVideoBuffering(true);
+      video.play().catch(() => setIsVideoBuffering(false));
+      return;
+    }
+
+    manuallyPausedRef.current = true;
+    video.pause();
+    setIsVideoPlaying(false);
+    setIsVideoBuffering(false);
+    if (volumeFadeRef.current !== null) {
+      window.clearInterval(volumeFadeRef.current);
+      volumeFadeRef.current = null;
+    }
+  };
 
   useEffect(() => () => {
     if (volumeFadeRef.current !== null) window.clearInterval(volumeFadeRef.current);
@@ -148,6 +174,14 @@ function Hero() {
               preload="auto"
               className="pointer-events-none h-full w-full object-cover"
               aria-label="EuroDigital hero video"
+              onWaiting={() => setIsVideoBuffering(true)}
+              onStalled={() => setIsVideoBuffering(true)}
+              onCanPlay={() => setIsVideoBuffering(false)}
+              onPlaying={() => {
+                setIsVideoPlaying(true);
+                setIsVideoBuffering(false);
+              }}
+              onPause={() => setIsVideoPlaying(false)}
             />
           </motion.div>
         ))}
@@ -158,9 +192,25 @@ function Hero() {
         <div className="absolute inset-0 bg-linear-to-t from-[#0b1233]/90 via-transparent to-[#0b1233]/30" />
       </div>
 
+      {isVideoBuffering && (
+        <div className="pointer-events-none absolute inset-0 z-10 flex items-center justify-center" role="status" aria-label="Video is buffering">
+          <span className="h-12 w-12 animate-spin rounded-full border-[3px] border-white/30 border-t-white" />
+        </div>
+      )}
+
       <div className="absolute inset-x-0 bottom-8 z-20 flex justify-center gap-3">
         {slides[currentSlide].video && (
           <>
+            <button
+              type="button"
+              onClick={toggleVideoPlayback}
+              className="touch-target touch-feedback mt-6 inline-flex items-center gap-2 rounded-full border border-white/35 bg-black/25 px-3 py-2 text-sm font-medium text-white backdrop-blur-sm transition-colors hover:bg-black/40 sm:px-4"
+              aria-label={isVideoPlaying ? "Pause hero video" : "Play hero video"}
+              aria-pressed={isVideoPlaying}
+            >
+              {isVideoPlaying ? <Pause className="h-4 w-4" aria-hidden="true" /> : <Play className="h-4 w-4" aria-hidden="true" />}
+              <span className="hidden sm:inline">{isVideoPlaying ? "Pause video" : "Play video"}</span>
+            </button>
             <button
               type="button"
               onClick={() => {
