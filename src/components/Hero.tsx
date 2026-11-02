@@ -28,6 +28,7 @@ function Hero() {
   const volumeFadeRef = useRef<number | null>(null);
   const bufferingTimerRef = useRef<number | null>(null);
   const manuallyPausedRef = useRef(false);
+  const isHoveredRef = useRef(false);
 
   const clearBufferingTimer = () => {
     if (bufferingTimerRef.current !== null) {
@@ -79,17 +80,17 @@ function Hero() {
 
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting && entry.intersectionRatio > 0 && !manuallyPausedRef.current) {
-          video.volume = 0;
-          video.muted = true;
-          setIsVideoMuted(true);
-          video.play().catch(() => setIsVideoBuffering(false));
-        } else {
+        if (!entry.isIntersecting || entry.intersectionRatio <= 0) {
           video.pause();
           if (volumeFadeRef.current !== null) {
             window.clearInterval(volumeFadeRef.current);
             volumeFadeRef.current = null;
           }
+          return;
+        }
+
+        if (isHoveredRef.current && !manuallyPausedRef.current) {
+          video.play().catch(() => setIsVideoBuffering(false));
         }
       },
       { threshold: [0, 0.1] },
@@ -114,6 +115,30 @@ function Hero() {
     video.pause();
     setIsVideoPlaying(false);
     setIsVideoBuffering(false);
+    if (volumeFadeRef.current !== null) {
+      window.clearInterval(volumeFadeRef.current);
+      volumeFadeRef.current = null;
+    }
+  };
+
+  const handleHeroPointerEnter = (event: React.PointerEvent<HTMLElement>) => {
+    if (event.pointerType !== "mouse") return;
+    isHoveredRef.current = true;
+    manuallyPausedRef.current = false;
+    const video = heroVideoRef.current;
+    if (!video) return;
+
+    video.muted = true;
+    video.volume = 0;
+    setIsVideoMuted(true);
+    video.play().catch(() => setIsVideoBuffering(false));
+  };
+
+  const handleHeroPointerLeave = (event: React.PointerEvent<HTMLElement>) => {
+    if (event.pointerType !== "mouse") return;
+    isHoveredRef.current = false;
+    const video = heroVideoRef.current;
+    video?.pause();
     if (volumeFadeRef.current !== null) {
       window.clearInterval(volumeFadeRef.current);
       volumeFadeRef.current = null;
@@ -154,6 +179,8 @@ function Hero() {
   return (
     <section
       ref={heroSectionRef}
+      onPointerEnter={handleHeroPointerEnter}
+      onPointerLeave={handleHeroPointerLeave}
       className={`relative flex items-center justify-center overflow-hidden text-white ${
         isFullscreen
           ? "min-h-screen bg-black"

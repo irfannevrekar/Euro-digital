@@ -650,6 +650,24 @@ function Sections({ onBookDemo }: SectionsProps) {
     }
   };
 
+  const handleVideoHoverStart = (index: number) => {
+    const video = videoRefs.current[index];
+    if (!video || !video.paused) return;
+
+    pauseAllVideos();
+    warmVideo(index);
+    video.muted = true;
+    setBufferingVideoIndex(index);
+    video.play().catch(() => setBufferingVideoIndex(null));
+  };
+
+  const handleVideoHoverEnd = (index: number) => {
+    const video = videoRefs.current[index];
+    if (video && !video.paused) video.pause();
+    setCurrentlyPlayingIndex((playingIndex) => playingIndex === index ? null : playingIndex);
+    setBufferingVideoIndex((loadingIndex) => loadingIndex === index ? null : loadingIndex);
+  };
+
   return (
     <div className="bg-[#0b1538] text-white">
       {/* Overview Section - Kept as is */}
@@ -724,14 +742,27 @@ function Sections({ onBookDemo }: SectionsProps) {
                 style={{ animationDelay: `${(cardIndex % 2) * 60}ms` }}
               >
                 {/* Media Area: Supports both Images and Videos */}
-                <div className="relative h-64 w-full shrink-0 overflow-hidden rounded-t-[1.1875rem] rounded-b-none bg-slate-100 ring-1 ring-inset ring-slate-900/10 md:h-72">
+                <div
+                  className="relative h-64 w-full shrink-0 overflow-hidden rounded-t-[1.1875rem] rounded-b-none bg-slate-100 ring-1 ring-inset ring-slate-900/10 md:h-72"
+                  onPointerEnter={(event) => {
+                    if (event.pointerType === "mouse" && card.video && !isBunnyStreamUrl(card.video)) {
+                      handleVideoHoverStart(index);
+                    }
+                  }}
+                  onPointerLeave={(event) => {
+                    if (event.pointerType === "mouse" && card.video && !isBunnyStreamUrl(card.video)) {
+                      handleVideoHoverEnd(index);
+                    }
+                  }}
+                >
                   {card.video ? (
                     isBunnyStreamUrl(card.video) ? (
                       <BunnyStreamPlayer
                         sourceUrl={card.video}
                         title={card.title}
+                        playOnHover
                         className="h-full rounded-xl"
-                        aspectClassName="h-full min-h-[18rem] md:min-h-[20rem]"
+                        aspectClassName="h-full min-h-0"
                         isActive={
                           currentlyPlayingIndex === null ||
                           currentlyPlayingIndex === index

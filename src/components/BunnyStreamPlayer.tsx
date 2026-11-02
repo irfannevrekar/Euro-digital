@@ -17,6 +17,7 @@ interface BunnyStreamPlayerProps {
   onActivate?: () => void;
   onDeactivate?: () => void;
   heroPreview?: boolean;
+  playOnHover?: boolean;
 }
 
 function formatTime(seconds: number) {
@@ -37,6 +38,7 @@ function BunnyStreamPlayer({
   onActivate,
   onDeactivate,
   heroPreview = false,
+  playOnHover = false,
 }: BunnyStreamPlayerProps) {
   const mp4Url = getBunnyStreamMp4Url(sourceUrl);
   const posterUrl = getBunnyStreamThumbnailUrl(sourceUrl);
@@ -202,6 +204,27 @@ function BunnyStreamPlayer({
   return (
     <div
       className={`group relative w-full overflow-hidden rounded-2xl bg-black shadow-[0_8px_30px_rgba(0,0,0,0.22)] ${className}`}
+      onPointerEnter={(event) => {
+        if (!playOnHover || event.pointerType !== "mouse") return;
+        const video = videoRef.current;
+        if (!video || !video.paused || !isActive) return;
+
+        onActivate?.();
+        video.muted = true;
+        setIsMuted(true);
+        setIsBuffering(true);
+        setShowControls(false);
+        video.play().catch(() => setIsBuffering(false));
+      }}
+      onPointerLeave={(event) => {
+        if (!playOnHover || event.pointerType !== "mouse") return;
+        const video = videoRef.current;
+        if (video && !video.paused) video.pause();
+        setIsPlaying(false);
+        setIsBuffering(false);
+        setShowControls(false);
+        onDeactivate?.();
+      }}
       onMouseMove={isPlaying ? revealControls : undefined}
       onMouseLeave={() => {
         if (isPlaying) setShowControls(false);
