@@ -12,16 +12,19 @@ function BookingModal({ url, onClose, title = "Book a Demo" }: BookingModalProps
   useEffect(() => {
     if (!url) return;
 
-    const previousOverflow = document.body.style.overflow;
+    const previousHtmlOverflow = document.documentElement.style.overflow;
+    const previousBodyOverflow = document.body.style.overflow;
     const closeOnEscape = (event: KeyboardEvent) => {
       if (event.key === "Escape") onClose();
     };
 
+    document.documentElement.style.overflow = "hidden";
     document.body.style.overflow = "hidden";
     document.addEventListener("keydown", closeOnEscape);
 
     return () => {
-      document.body.style.overflow = previousOverflow;
+      document.documentElement.style.overflow = previousHtmlOverflow;
+      document.body.style.overflow = previousBodyOverflow;
       document.removeEventListener("keydown", closeOnEscape);
     };
   }, [url, onClose]);
@@ -58,9 +61,6 @@ function BookingModal({ url, onClose, title = "Book a Demo" }: BookingModalProps
         <iframe
           src={url}
           title={`${title} appointment`}
-          width="100%"
-          height="100%"
-          scrolling="yes"
           className="min-h-0 w-full flex-1 bg-white"
           style={{ border: 0 }}
         />
