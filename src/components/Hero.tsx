@@ -19,14 +19,32 @@ const slides: Slide[] = [
 
 function Hero() {
   const currentSlide = 0;
-  const [isVideoMuted, setIsVideoMuted] = useState(false);
+  const [isVideoMuted, setIsVideoMuted] = useState(true);
   const [isVideoPlaying, setIsVideoPlaying] = useState(false);
   const [isVideoBuffering, setIsVideoBuffering] = useState(false);
   const [isFullscreen, setIsFullscreen] = useState(false);
   const heroSectionRef = useRef<HTMLElement>(null);
   const heroVideoRef = useRef<HTMLVideoElement>(null);
   const volumeFadeRef = useRef<number | null>(null);
+  const bufferingTimerRef = useRef<number | null>(null);
   const manuallyPausedRef = useRef(false);
+
+  const clearBufferingTimer = () => {
+    if (bufferingTimerRef.current !== null) {
+      window.clearTimeout(bufferingTimerRef.current);
+      bufferingTimerRef.current = null;
+    }
+  };
+
+  const scheduleBufferingIndicator = () => {
+    clearBufferingTimer();
+    bufferingTimerRef.current = window.setTimeout(() => {
+      const video = heroVideoRef.current;
+      if (video && !video.paused && video.readyState < HTMLMediaElement.HAVE_FUTURE_DATA) {
+        setIsVideoBuffering(true);
+      }
+    }, 350);
+  };
 
   const fadeVideoVolume = useCallback((video: HTMLVideoElement, targetVolume: number) => {
     if (volumeFadeRef.current !== null) window.clearInterval(volumeFadeRef.current);
@@ -49,7 +67,7 @@ function Hero() {
 
     video.pause();
     video.currentTime = 0;
-    video.muted = false;
+    video.muted = true;
     video.volume = 0;
   }, [currentSlide]);
 
@@ -62,21 +80,10 @@ function Hero() {
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting && entry.intersectionRatio > 0 && !manuallyPausedRef.current) {
-          setIsVideoBuffering(true);
           video.volume = 0;
-          video.muted = false;
-          video.play().then(() => {
-            setIsVideoMuted(false);
-            fadeVideoVolume(video, 0.75);
-          }).catch(() => {
-            // Browsers commonly block autoplay with sound. Keep the video playing
-            // silently and let the visitor enable sound with the voice control.
-            video.muted = true;
-            video.volume = 0;
-            setIsVideoMuted(true);
-            setIsVideoBuffering(false);
-            video.play().catch(() => undefined);
-          });
+          video.muted = true;
+          setIsVideoMuted(true);
+          video.play().catch(() => setIsVideoBuffering(false));
         } else {
           video.pause();
           if (volumeFadeRef.current !== null) {
@@ -91,7 +98,7 @@ function Hero() {
     observer.observe(section);
 
     return () => observer.disconnect();
-  }, [fadeVideoVolume]);
+  }, []);
 
   const toggleVideoPlayback = () => {
     const video = heroVideoRef.current;
@@ -99,7 +106,6 @@ function Hero() {
 
     if (video.paused) {
       manuallyPausedRef.current = false;
-      setIsVideoBuffering(true);
       video.play().catch(() => setIsVideoBuffering(false));
       return;
     }
@@ -115,6 +121,7 @@ function Hero() {
   };
 
   useEffect(() => () => {
+    clearBufferingTimer();
     if (volumeFadeRef.current !== null) window.clearInterval(volumeFadeRef.current);
   }, []);
 
@@ -174,14 +181,25 @@ function Hero() {
               preload="auto"
               className="pointer-events-none h-full w-full object-cover"
               aria-label="EuroDigital hero video"
-              onWaiting={() => setIsVideoBuffering(true)}
-              onStalled={() => setIsVideoBuffering(true)}
-              onCanPlay={() => setIsVideoBuffering(false)}
+              onWaiting={scheduleBufferingIndicator}
+              onCanPlay={() => {
+                clearBufferingTimer();
+                setIsVideoBuffering(false);
+              }}
+              onTimeUpdate={() => {
+                clearBufferingTimer();
+                setIsVideoBuffering(false);
+              }}
               onPlaying={() => {
+                clearBufferingTimer();
                 setIsVideoPlaying(true);
                 setIsVideoBuffering(false);
               }}
-              onPause={() => setIsVideoPlaying(false)}
+              onPause={() => {
+                clearBufferingTimer();
+                setIsVideoPlaying(false);
+                setIsVideoBuffering(false);
+              }}
             />
           </motion.div>
         ))}

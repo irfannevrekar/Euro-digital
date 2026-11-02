@@ -61,6 +61,7 @@ function BookingModal({ url, onClose, title = "Book a Demo" }: BookingModalProps
         <iframe
           src={url}
           title={`${title} appointment`}
+          scrolling="no"
           className="min-h-0 w-full flex-1 bg-white"
           style={{ border: 0 }}
         />
