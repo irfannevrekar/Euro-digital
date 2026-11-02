@@ -192,25 +192,28 @@ function Hero() {
         <div className="absolute inset-0 bg-linear-to-t from-[#0b1233]/90 via-transparent to-[#0b1233]/30" />
       </div>
 
-      {isVideoBuffering && (
-        <div className="pointer-events-none absolute inset-0 z-10 flex items-center justify-center" role="status" aria-label="Video is buffering">
-          <span className="h-12 w-12 animate-spin rounded-full border-[3px] border-white/30 border-t-white" />
-        </div>
-      )}
+      <button
+        type="button"
+        onClick={toggleVideoPlayback}
+        disabled={isVideoBuffering}
+        className="touch-feedback group/play absolute inset-0 z-20 flex cursor-pointer items-center justify-center bg-black/10 transition-all duration-300 hover:bg-black/30 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-inset focus-visible:ring-cyan-300 disabled:cursor-wait"
+        aria-label={isVideoBuffering ? "Hero video is buffering" : isVideoPlaying ? "Pause hero video" : "Play hero video"}
+        aria-pressed={isVideoPlaying}
+      >
+        <span className="flex h-16 w-16 items-center justify-center rounded-full border border-white/45 bg-slate-950/40 text-white shadow-lg backdrop-blur-md transition duration-200 group-hover/play:scale-110 group-active/play:scale-95 md:h-20 md:w-20">
+          {isVideoBuffering ? (
+            <span className="h-9 w-9 animate-spin rounded-full border-4 border-white/35 border-t-white" role="status" aria-label="Video is buffering" />
+          ) : isVideoPlaying ? (
+            <Pause className="h-8 w-8 fill-white md:h-9 md:w-9" aria-hidden="true" />
+          ) : (
+            <Play className="ml-1 h-8 w-8 fill-white md:h-9 md:w-9" aria-hidden="true" />
+          )}
+        </span>
+      </button>
 
       <div className="absolute inset-x-0 bottom-8 z-20 flex justify-center gap-3">
         {slides[currentSlide].video && (
           <>
-            <button
-              type="button"
-              onClick={toggleVideoPlayback}
-              className="touch-target touch-feedback mt-6 inline-flex items-center gap-2 rounded-full border border-white/35 bg-black/25 px-3 py-2 text-sm font-medium text-white backdrop-blur-sm transition-colors hover:bg-black/40 sm:px-4"
-              aria-label={isVideoPlaying ? "Pause hero video" : "Play hero video"}
-              aria-pressed={isVideoPlaying}
-            >
-              {isVideoPlaying ? <Pause className="h-4 w-4" aria-hidden="true" /> : <Play className="h-4 w-4" aria-hidden="true" />}
-              <span className="hidden sm:inline">{isVideoPlaying ? "Pause video" : "Play video"}</span>
-            </button>
             <button
               type="button"
               onClick={() => {

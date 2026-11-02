@@ -2,7 +2,7 @@ export const BOOKING_URL =
   "https://crm.eurodigital.ae/widget/bookings/web-booking-euro";
 
 export const CONSULTATION_BOOKING_URL =
-  "https://bookings.cloud.microsoft/book/eurodigitalaiProductDemoConsultationCenter@eurodigital.ae/?ismsaljsauthenabled";
+  "https://api.edcrm.ai/widget/bookings/euro-digital-marketing";
 
 export const BOOKING_MODAL_EVENT = "eurodigital:open-booking-modal";
 
