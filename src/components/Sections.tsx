@@ -832,7 +832,7 @@ function Sections({ onBookDemo }: SectionsProps) {
                     />
                   ) : null}
                   <div className="pointer-events-none absolute inset-0 z-10 bg-gradient-to-t from-slate-950/45 via-transparent to-slate-950/5" />
-                  {card.video && (
+                  {card.video && !isPlaying && (
                     <div className="pointer-events-none absolute bottom-3 left-3 z-20 inline-flex items-center gap-2 rounded-full border border-white/25 bg-slate-950/45 px-3 py-1.5 text-[10px] font-bold uppercase tracking-[0.14em] text-white shadow-lg backdrop-blur-md">
                       <Play className="h-3 w-3 fill-current" aria-hidden="true" />
                       Watch overview
