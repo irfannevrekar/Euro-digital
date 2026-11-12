@@ -184,7 +184,7 @@ function Hero() {
       className={`relative flex items-center justify-center overflow-hidden text-white ${
         isFullscreen
           ? "min-h-screen bg-black"
-          : "mt-[61px] min-h-[90vh] bg-black md:mt-[85px] md:min-h-[calc(100svh-2rem)]"
+          : "mt-[61px] aspect-video bg-black md:mt-[85px] md:aspect-auto md:min-h-[calc(100svh-2rem)]"
       }`}
     >
       {/* All backgrounds mounted + preloaded — slide changes stay instant */}
@@ -206,7 +206,7 @@ function Hero() {
               playsInline
               loop
               preload="auto"
-              className="pointer-events-none h-full w-full object-cover"
+              className="pointer-events-none h-full w-full object-contain md:object-cover"
               aria-label="EuroDigital hero video"
               onWaiting={scheduleBufferingIndicator}
               onCanPlay={() => {
