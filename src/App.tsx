@@ -24,6 +24,8 @@ import AITools from './pages/AITools'
 import DigitalMarketingSolutions from './pages/DigitalMarketingSolutions'
 import AICustomerEngagementSolutions from './pages/AICustomerEngagementSolutions'
 import AIBusinessAutomationSolutions from './pages/AIBusinessAutomationSolutions'
+import RegionalServicesPage from './pages/RegionalServicesPage'
+import { regions } from './data/regions'
 
 function App() {
   return (
@@ -41,6 +43,9 @@ function App() {
           <Route path="/solutions/digital-marketing-and-promotions" element={<DigitalMarketingSolutions />} />
           <Route path="/solutions/ai-customer-engagement" element={<AICustomerEngagementSolutions />} />
           <Route path="/solutions/ai-business-automation" element={<AIBusinessAutomationSolutions />} />
+          {regions.map((region) => (
+            <Route key={region.slug} path={region.path} element={<RegionalServicesPage slug={region.slug} />} />
+          ))}
         </Route>
 
         {/* Services with Nested Routes */}

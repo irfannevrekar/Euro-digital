@@ -8,6 +8,7 @@ export function Layout({ children }: { children: ReactNode }) {
       <head>
         <meta charSet="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="google-site-verification" content="x0gjXxEa0yUk0u2hWhbNLM7O4LeucS-HNMlhkxP6xc0" />
         <link rel="icon" type="image/svg+xml" href="/logo/logo.svg" />
         <link rel="preconnect" href="https://48yfcqwona.ucarecd.net" crossOrigin="anonymous" />
         <link rel="preconnect" href="https://2c3wn7zfav.ucarecd.net" crossOrigin="anonymous" />
