@@ -2,6 +2,7 @@ import { Linkedin, Facebook, Youtube, Twitter, X, MapPin, Mail, Phone, House, Br
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import FooterCallToAction from "./FooterCallToAction";
+import { regions } from "../data/regions";
 
 const quickLinks = [
   { name: "Home", path: "/", Icon: House },
@@ -161,6 +162,23 @@ function Footer() {
                     >
                       <Icon aria-hidden="true" className="h-4 w-4 shrink-0 text-cyan-300" />
                       {name}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+
+              <h3 className="mb-3 mt-6 text-lg font-semibold text-white lg:text-left">
+                Locations
+              </h3>
+              <ul className="space-y-2 text-left lg:space-y-1">
+                {regions.map((region) => (
+                  <li key={region.slug}>
+                    <Link
+                      to={region.path}
+                      className="touch-target group inline-flex items-center gap-2 text-[15px] text-white/75 transition-colors hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300 lg:min-h-0 lg:min-w-0"
+                    >
+                      <MapPin aria-hidden="true" className="h-4 w-4 shrink-0 text-cyan-300" />
+                      AI Automation {region.name}
                     </Link>
                   </li>
                 ))}

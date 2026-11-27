@@ -1,4 +1,5 @@
 import { useLocation } from "react-router-dom";
+import { regions } from "../data/regions";
 
 const SITE_URL = "https://www.eurodigi.ai";
 
@@ -124,6 +125,7 @@ const pageSeo: Record<string, PageSeo> = {
     description:
       "Read the terms and conditions governing the use of EuroDigital services and website.",
   },
+  ...Object.fromEntries(regions.map((region) => [region.path, region.seo])),
 };
 
 const organizationSchema = {
