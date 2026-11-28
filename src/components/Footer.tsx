@@ -1,8 +1,11 @@
 import { Linkedin, Facebook, Youtube, Twitter, X, MapPin, Mail, Phone, House, BriefcaseBusiness, Bot, Megaphone, MessagesSquare, Workflow, Contact } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
 import FooterCallToAction from "./FooterCallToAction";
-import { regions } from "../data/regions";
+import { PRESENCE_PATH, regions } from "../data/regions";
+
+// These pages end with their own ImageBand, so the footer call-to-action is hidden there.
+const pathsWithoutFooterCta = new Set([PRESENCE_PATH, ...regions.map((region) => region.path)]);
 
 const quickLinks = [
   { name: "Home", path: "/", Icon: House },
@@ -11,6 +14,7 @@ const quickLinks = [
   { name: "Digital Marketing and Promotions", path: "/solutions/digital-marketing-and-promotions", Icon: Megaphone },
   { name: "AI Customer Engagement", path: "/solutions/ai-customer-engagement", Icon: MessagesSquare },
   { name: "AI Business Automation", path: "/solutions/ai-business-automation", Icon: Workflow },
+  { name: "Our Presence", path: "/our-presence", Icon: MapPin },
   { name: "Contact", path: "/contact", Icon: Contact },
 ];
 
@@ -22,6 +26,8 @@ const socialLinks = [
 ];
 
 function Footer() {
+  const { pathname } = useLocation();
+  const showCallToAction = !pathsWithoutFooterCta.has(pathname.replace(/\/$/, "") || "/");
   const [selectedCert, setSelectedCert] = useState<string | null>(null);
 
   useEffect(() => {
@@ -72,7 +78,7 @@ function Footer() {
         </div>
       )}
 
-      <FooterCallToAction />
+      {showCallToAction && <FooterCallToAction />}
 
       <footer
         className="relative isolate w-full overflow-hidden bg-cover bg-center bg-no-repeat text-white"
@@ -162,23 +168,6 @@ function Footer() {
                     >
                       <Icon aria-hidden="true" className="h-4 w-4 shrink-0 text-cyan-300" />
                       {name}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-
-              <h3 className="mb-3 mt-6 text-lg font-semibold text-white lg:text-left">
-                Locations
-              </h3>
-              <ul className="space-y-2 text-left lg:space-y-1">
-                {regions.map((region) => (
-                  <li key={region.slug}>
-                    <Link
-                      to={region.path}
-                      className="touch-target group inline-flex items-center gap-2 text-[15px] text-white/75 transition-colors hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300 lg:min-h-0 lg:min-w-0"
-                    >
-                      <MapPin aria-hidden="true" className="h-4 w-4 shrink-0 text-cyan-300" />
-                      AI Automation {region.name}
                     </Link>
                   </li>
                 ))}
