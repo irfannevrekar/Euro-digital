@@ -1,4 +1,5 @@
 import './App.css'
+import type { ReactNode } from 'react'
 import { Routes, Route } from 'react-router-dom'
 import Home from './pages/Home'
 import Services from './pages/Services'
@@ -25,7 +26,19 @@ import DigitalMarketingSolutions from './pages/DigitalMarketingSolutions'
 import AICustomerEngagementSolutions from './pages/AICustomerEngagementSolutions'
 import AIBusinessAutomationSolutions from './pages/AIBusinessAutomationSolutions'
 import RegionalServicesPage from './pages/RegionalServicesPage'
-import { regions } from './data/regions'
+import OurPresence from './pages/OurPresence'
+import RegionalServiceRoute from './components/RegionalServiceRoute'
+import { PRESENCE_PATH, regions, regionalServices } from './data/regions'
+
+// Existing service pages, reused at /services/<service>/<region>.
+const servicePages: Record<string, ReactNode> = {
+  'ai-business-automation': <AIBusinessAutomation />,
+  'ai-business-promotion': <AIBusinessPromotion />,
+  'ai-agent-talk-time': <AIAgentTalkTime />,
+  'ai-automated-chatbot': <AIAutomatedChatbot />,
+  'ai-addon-services': <AIAddonServices />,
+  'industry-specific': <IndustrySpecificAI />,
+}
 
 function App() {
   return (
@@ -43,6 +56,7 @@ function App() {
           <Route path="/solutions/digital-marketing-and-promotions" element={<DigitalMarketingSolutions />} />
           <Route path="/solutions/ai-customer-engagement" element={<AICustomerEngagementSolutions />} />
           <Route path="/solutions/ai-business-automation" element={<AIBusinessAutomationSolutions />} />
+          <Route path={PRESENCE_PATH} element={<OurPresence />} />
           {regions.map((region) => (
             <Route key={region.slug} path={region.path} element={<RegionalServicesPage slug={region.slug} />} />
           ))}
@@ -57,6 +71,19 @@ function App() {
           <Route path="ai-automated-chatbot" element={<AIAutomatedChatbot />} />
           <Route path="ai-addon-services" element={<AIAddonServices />} />
           <Route path="industry-specific" element={<IndustrySpecificAI />} />
+          {regions.flatMap((region) =>
+            regionalServices.map((service) => (
+              <Route
+                key={`${service.slug}-${region.slug}`}
+                path={`${service.slug}/${region.slug}`}
+                element={
+                  <RegionalServiceRoute region={region} service={service}>
+                    {servicePages[service.slug]}
+                  </RegionalServiceRoute>
+                }
+              />
+            )),
+          )}
         </Route>
 
         {/* Products with Nested Routes */}
